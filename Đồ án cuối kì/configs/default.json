@@ -1,0 +1,12 @@
+{
+  "seed": 42,
+  "horizon_hours": 1,
+  "mode": "smoke",
+  "available_modes": ["smoke", "full"],
+  "paths": {
+    "raw_data": "data/raw",
+    "processed_data": "data/processed",
+    "artifacts": "artifacts",
+    "figures": "reports/figures"
+  }
+}

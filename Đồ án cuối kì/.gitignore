@@ -1,0 +1,52 @@
+# Virtual environments
+.venv/
+venv/
+env/
+.env
+.env.*
+
+# Python, test, notebook and build caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.coverage
+.coverage.*
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# Keep directory placeholders, exclude generated datasets and artifacts
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+artifacts/*
+!artifacts/.gitkeep
+
+# Large data files and binary models anywhere in the project
+*.csv
+*.parquet
+*.feather
+*.h5
+*.hdf5
+*.npy
+*.npz
+*.zip
+*.gz
+*.pkl
+*.pickle
+*.joblib
+*.pt
+*.pth
+*.onnx
+*.keras
+
+# Local editor and OS files
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
