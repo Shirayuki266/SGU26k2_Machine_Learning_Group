@@ -1,0 +1,12 @@
+{
+  "smoke_rows_per_file": 100,
+  "expected_start": "2013-03-01 00:00:00",
+  "expected_end": "2017-02-28 23:00:00",
+  "review_threshold_note": "Project review thresholds only; not UCI validity limits or health standards. Warnings never remove or replace values.",
+  "review_ranges": {
+    "PM2.5": [0, 500], "PM10": [0, 1000], "SO2": [0, 500],
+    "NO2": [0, 400], "CO": [0, 30000], "O3": [0, 500],
+    "TEMP": [-60, 60], "PRES": [850, 1100],
+    "DEWP": [-80, 60], "RAIN": [0, 100], "WSPM": [0, 60]
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "input_files": 12,
+  "parsed_rows": 420768,
+  "candidate_rows": 420768,
+  "output_rows": 420768,
+  "station_count": 12,
+  "error_count": 0,
+  "warning_count": 951,
+  "missing": {
+    "year": 0,
+    "month": 0,
+    "day": 0,
+    "hour": 0,
+    "PM2.5": 8739,
+    "PM10": 6449,
+    "SO2": 9021,
+    "NO2": 12116,
+    "CO": 20701,
+    "O3": 13277,
+    "TEMP": 398,
+    "PRES": 393,
+    "DEWP": 403,
+    "RAIN": 390,
+    "WSPM": 318,
+    "wd": 1822,
+    "station": 0
+  },
+  "dtypes": {
+    "year": "Int64",
+    "month": "Int64",
+    "day": "Int64",
+    "hour": "Int64",
+    "PM2.5": "float64",
+    "PM10": "float64",
+    "SO2": "float64",
+    "NO2": "float64",
+    "CO": "float64",
+    "O3": "float64",
+    "TEMP": "float64",
+    "PRES": "float64",
+    "DEWP": "float64",
+    "RAIN": "float64",
+    "wd": "string",
+    "WSPM": "float64",
+    "station": "string",
+    "source_file": "str",
+    "source_row": "int64",
+    "timestamp": "datetime64[us]"
+  },
+  "raw_sha256": {
+    "PRSA_Data_Aotizhongxin_20130301-20170228.csv": "a94fbcfc71708b6ffdc033360163d91efb7f675e496f6b5860929aa96b96351b",
+    "PRSA_Data_Changping_20130301-20170228.csv": "a2e21402a6d95fb7043f87959e6e3dcbecb957aac356a6f8028a85b047c772e7",
+    "PRSA_Data_Dingling_20130301-20170228.csv": "3d8dff81f18a80d9f455876a785642bffe1e9b9924ec1e6b7ce8cca790432eeb",
+    "PRSA_Data_Dongsi_20130301-20170228.csv": "9c0020214425e5ee2a64d42f97a1f632e1d8f6b53ad50edd85a686cc7999f27e",
+    "PRSA_Data_Guanyuan_20130301-20170228.csv": "59390fee3b032597b387491f5230e7edb90a8558e30217ebd6d9befbe669fbf9",
+    "PRSA_Data_Gucheng_20130301-20170228.csv": "10ae48801ea55869fee56a48b885fb1127859c130551888d71673f34216ba951",
+    "PRSA_Data_Huairou_20130301-20170228.csv": "812dcbe848b3ba2c2d25731064797bff803c46eb0c602156a1fa044df136dc26",
+    "PRSA_Data_Nongzhanguan_20130301-20170228.csv": "572cf87b65ef543cd55d3a711b28474def224a46b0ec3fc8add8aaf13b67a487",
+    "PRSA_Data_Shunyi_20130301-20170228.csv": "520b59e4ead3b0cfe7f1ed673e30275de8441e999db6f413d5172d2277b8c15a",
+    "PRSA_Data_Tiantan_20130301-20170228.csv": "0743e34799cf1ee36195b73321b91baa5625276532e7263c588f68cdef3b4daa",
+    "PRSA_Data_Wanliu_20130301-20170228.csv": "0b1a6d754a07f0def2f55434ddfa3870dcd0063b7f766a6f66b6c11bb05a377a",
+    "PRSA_Data_Wanshouxigong_20130301-20170228.csv": "ab1d6a356d6997a45f6d657ad47de1e05a4a08d4a7015b38a329a90665ab74d0"
+  },
+  "duplicate_policy": "reject_all_duplicate_keys",
+  "imputed": false,
+  "outlier_removal": false,
+  "no_column_in_features": true,
+  "mode": "full",
+  "seed": 42,
+  "audited_at": "2026-10-12T02:10:12.717898+00:00",
+  "python_version": "3.12.10",
+  "pandas_version": "3.0.6",
+  "quality_config": {
+    "smoke_rows_per_file": 100,
+    "expected_start": "2013-03-01 00:00:00",
+    "expected_end": "2017-02-28 23:00:00",
+    "review_threshold_note": "Project review thresholds only; not UCI validity limits or health standards. Warnings never remove or replace values.",
+    "review_ranges": {
+      "PM2.5": [
+        0,
+        500
+      ],
+      "PM10": [
+        0,
+        1000
+      ],
+      "SO2": [
+        0,
+        500
+      ],
+      "NO2": [
+        0,
+        400
+      ],
+      "CO": [
+        0,
+        30000
+      ],
+      "O3": [
+        0,
+        500
+      ],
+      "TEMP": [
+        -60,
+        60
+      ],
+      "PRES": [
+        850,
+        1100
+      ],
+      "DEWP": [
+        -80,
+        60
+      ],
+      "RAIN": [
+        0,
+        100
+      ],
+      "WSPM": [
+        0,
+        60
+      ]
+    }
+  },
+  "status": "passed",
+  "merged_output_written": true,
+  "merged_sha256": "45def94e4f4262360d1be95e3844f53db33b0a0dd9e65b3acd081ace2a11de6a"
+}

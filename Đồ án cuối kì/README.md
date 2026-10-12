@@ -87,3 +87,32 @@ Lần audit full Task 03 đã đếm 420.768 dòng từ 12 file/trạm, khớp s
 ## Sự hỗ trợ của AI (Task 03)
 
 Codex hỗ trợ script tải/audit, từ điển dữ liệu và hướng dẫn sử dụng. Chưa thực hiện imputation hoặc huấn luyện. Commit đề xuất Task 03: `feat: add reproducible UCI dataset download and audit`.
+
+## Task 04: hợp nhất và kiểm tra chất lượng
+
+Sau khi đã tải raw và cài môi trường Python theo hướng dẫn phía trên:
+
+```powershell
+python -m pytest -q
+python scripts/merge_data.py --mode smoke
+python scripts/merge_data.py --mode full
+```
+
+Nếu dùng Python trong venv mà không kích hoạt, thay `python` bằng `.\.venv\Scripts\python.exe`. Lần chạy Task 04 trong workspace này dùng Python portable tại `.\.venv\python.exe` (được tải để kiểm tra, không phải venv chuẩn và không commit); có thể dùng interpreter đó để chạy các lệnh trên. Interpreter portable hiện chỉ cài dependencies cần cho Task 04 (pandas, numpy, pytest và dependencies phụ), chưa xác nhận toàn bộ dependencies Task 01.
+
+Loader trong `src/beijing_air/data.py` đọc các file PRSA2017, kiểm tra inventory/checksum theo manifest, tạo timestamp từ năm/tháng/ngày/giờ, sắp xếp theo `station,timestamp` và xác nhận khóa duy nhất. `No` bị loại khỏi bảng hợp nhất; `source_file` và `source_row` chỉ dùng truy vết, không làm feature. Danh sách đầu vào mô hình phải chọn tường minh từ `FEATURE_COLUMNS`, không lấy tất cả cột trong bảng.
+
+Quy tắc chất lượng chi tiết: [docs/data_quality_policy.md](docs/data_quality_policy.md). Không dùng IQR để xóa outlier, không impute, không thêm các hàng giờ bị thiếu và không tạo target/lag trong task này. Timestamp lỗi, số không hợp lệ, giá trị vi phạm điều kiện vật lý hoặc **bất kỳ trùng khóa nào** đều chặn xuất bảng hợp nhất. Audit phân biệt bản ghi trùng giống nhau và trùng mâu thuẫn; không dùng `No` hay thứ tự dòng để giữ một bản ghi. Ngưỡng rà soát trong `configs/data_quality.json` chỉ sinh cảnh báo, không kết luận số đo cao là sai và không đổi giá trị.
+
+Đầu ra theo mode:
+
+- `data/processed/merged_unimputed_<mode>.csv`: bảng hợp nhất chưa impute; missing ghi `NA`, raw giữ nguyên.
+- `reports/quality_<mode>/issues.csv`: chi tiết lỗi/cảnh báo cùng nguồn dòng/cột.
+- `reports/quality_<mode>/stations.csv`: khóa, khoảng thời gian và giờ thiếu mỗi trạm.
+- `reports/quality_<mode>/summary.json`: số dòng, missing, dtype, cấu hình, phiên bản và checksum.
+
+Mặc định không ghi đè đầu ra đã có. Chỉ thêm `--overwrite` khi chủ động chạy lại và chấp nhận thay đầu ra được sinh cho mode đó. Khi audit lỗi, không xuất bảng hợp nhất; nếu đã cho phép overwrite, bảng hợp nhất cũ của mode đó được xóa để tránh dùng nhầm kết quả đã hết hiệu lực, còn audit lỗi được lưu.
+
+Smoke chỉ đọc 100 dòng đầu mỗi file, không dùng để kết luận chất lượng toàn bộ dữ liệu. Báo cáo full Task 04: [reports/data_quality.md](reports/data_quality.md). Codex hỗ trợ loader, kiểm thử và tài liệu; chưa impute hay huấn luyện.
+
+Commit đề xuất: `feat: merge station data and validate temporal integrity`.

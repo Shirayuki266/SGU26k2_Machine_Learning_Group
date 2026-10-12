@@ -45,6 +45,12 @@ artifacts/*
 *.onnx
 *.keras
 
+# Small quality audit tables are reviewable project outputs
+!reports/quality_smoke/issues.csv
+!reports/quality_smoke/stations.csv
+!reports/quality_full/issues.csv
+!reports/quality_full/stations.csv
+
 # Local editor and OS files
 .vscode/
 .idea/
