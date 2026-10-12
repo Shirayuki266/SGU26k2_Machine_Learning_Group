@@ -1,0 +1,13 @@
+{
+  "dataset_id": 501,
+  "name": "Beijing Multi-Site Air Quality",
+  "source_url": "https://archive.ics.uci.edu/dataset/501/beijing+multi+site+air+quality+data",
+  "download_url": "https://archive.ics.uci.edu/static/public/501/beijing%2Bmulti%2Bsite%2Bair%2Bquality%2Bdata.zip",
+  "archive_name": "PRSA2017_Data_20130301-20170228.zip",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "doi": "10.24432/C5RK5G",
+  "published_rows": 420768,
+  "published_stations": 12,
+  "columns": ["No", "year", "month", "day", "hour", "PM2.5", "PM10", "SO2", "NO2", "CO", "O3", "TEMP", "PRES", "DEWP", "RAIN", "wd", "WSPM", "station"]
+}

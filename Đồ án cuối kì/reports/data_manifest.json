@@ -1,0 +1,84 @@
+﻿{
+    "dataset_id":  501,
+    "name":  "Beijing Multi-Site Air Quality",
+    "source_url":  "https://archive.ics.uci.edu/dataset/501/beijing+multi+site+air+quality+data",
+    "download_url":  "https://archive.ics.uci.edu/static/public/501/beijing%2Bmulti%2Bsite%2Bair%2Bquality%2Bdata.zip",
+    "license":  "CC BY 4.0",
+    "license_url":  "https://creativecommons.org/licenses/by/4.0/",
+    "doi":  "10.24432/C5RK5G",
+    "acquisition":  "download",
+    "downloaded_at":  "2026-10-12T01:49:22.8729593+00:00",
+    "recorded_at":  "2026-10-12T01:52:06.1635193+00:00",
+    "download_date_note":  "downloaded_at is UTC; null means acquisition date unknown, not inferred from file modification time.",
+    "archive":  {
+                    "name":  "uci_501_download.zip",
+                    "bytes":  8192212,
+                    "sha256":  "b04da438b2f331ac0ffd45aebdfec0d20d2367feb5f6948c4b1f7ce1191e33c4"
+                },
+    "prsa_archive":  {
+                         "name":  "PRSA2017_Data_20130301-20170228.zip",
+                         "sha256":  "d1b9261c54132f04c374f762f1e5e512af19f95c95fd6bfa1e8ac7e927e3b0b8"
+                     },
+    "files":  [
+                  {
+                      "path":  "data/raw/PRSA_Data_Aotizhongxin_20130301-20170228.csv",
+                      "bytes":  2835916,
+                      "sha256":  "a94fbcfc71708b6ffdc033360163d91efb7f675e496f6b5860929aa96b96351b"
+                  },
+                  {
+                      "path":  "data/raw/PRSA_Data_Changping_20130301-20170228.csv",
+                      "bytes":  2722295,
+                      "sha256":  "a2e21402a6d95fb7043f87959e6e3dcbecb957aac356a6f8028a85b047c772e7"
+                  },
+                  {
+                      "path":  "data/raw/PRSA_Data_Dingling_20130301-20170228.csv",
+                      "bytes":  2675856,
+                      "sha256":  "3d8dff81f18a80d9f455876a785642bffe1e9b9924ec1e6b7ce8cca790432eeb"
+                  },
+                  {
+                      "path":  "data/raw/PRSA_Data_Dongsi_20130301-20170228.csv",
+                      "bytes":  2636684,
+                      "sha256":  "9c0020214425e5ee2a64d42f97a1f632e1d8f6b53ad50edd85a686cc7999f27e"
+                  },
+                  {
+                      "path":  "data/raw/PRSA_Data_Guanyuan_20130301-20170228.csv",
+                      "bytes":  2695860,
+                      "sha256":  "59390fee3b032597b387491f5230e7edb90a8558e30217ebd6d9befbe669fbf9"
+                  },
+                  {
+                      "path":  "data/raw/PRSA_Data_Gucheng_20130301-20170228.csv",
+                      "bytes":  2654625,
+                      "sha256":  "10ae48801ea55869fee56a48b885fb1127859c130551888d71673f34216ba951"
+                  },
+                  {
+                      "path":  "data/raw/PRSA_Data_Huairou_20130301-20170228.csv",
+                      "bytes":  2641027,
+                      "sha256":  "812dcbe848b3ba2c2d25731064797bff803c46eb0c602156a1fa044df136dc26"
+                  },
+                  {
+                      "path":  "data/raw/PRSA_Data_Nongzhanguan_20130301-20170228.csv",
+                      "bytes":  2839705,
+                      "sha256":  "572cf87b65ef543cd55d3a711b28474def224a46b0ec3fc8add8aaf13b67a487"
+                  },
+                  {
+                      "path":  "data/raw/PRSA_Data_Shunyi_20130301-20170228.csv",
+                      "bytes":  2620654,
+                      "sha256":  "520b59e4ead3b0cfe7f1ed673e30275de8441e999db6f413d5172d2277b8c15a"
+                  },
+                  {
+                      "path":  "data/raw/PRSA_Data_Tiantan_20130301-20170228.csv",
+                      "bytes":  2655061,
+                      "sha256":  "0743e34799cf1ee36195b73321b91baa5625276532e7263c588f68cdef3b4daa"
+                  },
+                  {
+                      "path":  "data/raw/PRSA_Data_Wanliu_20130301-20170228.csv",
+                      "bytes":  2659544,
+                      "sha256":  "0b1a6d754a07f0def2f55434ddfa3870dcd0063b7f766a6f66b6c11bb05a377a"
+                  },
+                  {
+                      "path":  "data/raw/PRSA_Data_Wanshouxigong_20130301-20170228.csv",
+                      "bytes":  2871076,
+                      "sha256":  "ab1d6a356d6997a45f6d657ad47de1e05a4a08d4a7015b38a329a90665ab74d0"
+                  }
+              ]
+}
