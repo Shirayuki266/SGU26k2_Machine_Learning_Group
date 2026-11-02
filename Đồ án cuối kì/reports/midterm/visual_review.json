@@ -1,0 +1,14 @@
+{
+  "task": "MK01",
+  "reviewed_at": "2026-11-02T21:15:39.141379+00:00",
+  "all_docx_pages_via_contact_sheets": 17,
+  "all_pptx_slides_via_contact_sheets": 15,
+  "full_resolution_checks": [
+    "DOCX page5 (split/fold tables)",
+    "DOCX page16 (traceability table)",
+    "PPTX slide10 (metrics/figure/config table)"
+  ],
+  "findings": "No observed clipping, off-page elements or Vietnamese glyph errors; placeholders and draft labels are intentional.",
+  "reviewer": "Codex visual inspection",
+  "not_a_submission_readiness_claim": true
+}

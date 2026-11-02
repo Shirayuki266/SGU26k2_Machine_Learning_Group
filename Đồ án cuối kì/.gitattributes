@@ -72,5 +72,19 @@
 /artifacts/experiments/c895894bcf5a4ff28982fbb1ca9d69d9/artifacts/source/*.py -text whitespace=cr-at-eol
 
 # T12 frozen source bytes include historical CRLF files.
+# Midterm generators, indices and Office/PDF artifacts.
+/configs/midterm.json text eol=lf
+/src/beijing_air/midterm_evidence.py text eol=lf
+/scripts/build_midterm.py text eol=lf
+/scripts/render_midterm.ps1 text eol=lf
+/scripts/verify_midterm.py text eol=lf
+/reports/midterm/*.json text eol=lf
+/reports/midterm/*.csv text eol=lf
+/reports/midterm/*.md text eol=lf
+/reports/midterm/*.docx binary
+/reports/midterm/*.pptx binary
+/reports/midterm/previews/*.pdf binary
+/reports/midterm/previews/*.png binary
+/reports/midterm/figures/*.png binary
 /artifacts/experiments/0a616a9fb5134058b3af3cafb1a70e18/artifacts/source/*.py -text whitespace=cr-at-eol
 /artifacts/experiments/1ee4f2f0e07948a187f5889b042df812/artifacts/source/*.py -text whitespace=cr-at-eol

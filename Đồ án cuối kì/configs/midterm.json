@@ -1,0 +1,22 @@
+{
+  "schema_version": "midterm-evidence-v1",
+  "group_number": null,
+  "institution": null,
+  "class_code": null,
+  "lecturer": null,
+  "members": [],
+  "confirmed_contributions": [],
+  "teacher_rubric_url": null,
+  "submission_deadline": null,
+  "course": "Máy học",
+  "title": "Dự báo nồng độ PM2.5 trước 1 giờ tại các trạm quan trắc ở Bắc Kinh bằng học máy",
+  "filename_stem": "NhomXX_DuBaoPM25_BacKinh_GiuaKy",
+  "scope": "T01–T12; kết quả chính T09/T10, bổ sung T11/T12; chưa T13/test",
+  "sources": [
+    {"id": "S01", "title": "Chen, S. (2017). Beijing Multi-Site Air Quality [Dataset]. UCI Machine Learning Repository. DOI: 10.24432/C5RK5G. CC BY 4.0.", "url": "https://archive.ics.uci.edu/dataset/501/beijing+multi+site+air+quality"},
+    {"id": "S02", "title": "IBM. CRISP-DM Help Overview: sáu pha và vòng lặp của quy trình khai phá dữ liệu.", "url": "https://www.ibm.com/docs/en/spss-modeler/18.6.0?topic=dm-crisp-help-overview"},
+    {"id": "S03", "title": "scikit-learn. Ridge — tài liệu API và regularization.", "url": "https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html"},
+    {"id": "S04", "title": "scikit-learn. RandomForestRegressor — tài liệu API.", "url": "https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html"}
+  ],
+  "ai_disclosure": "Codex hỗ trợ mã, kiểm tra hạ tầng, chạy/ghi thực nghiệm đã được giao, tổng hợp artifact, tạo hình/tài liệu và diễn giải. Số liệu báo cáo lấy từ artifact thật; không tạo thêm run hoặc huấn luyện trong MK01/MK02. Nhóm cần tự kiểm, xác nhận tác giả/phân công/đóng góp và chịu trách nhiệm nội dung trước khi nộp. Không suy đóng góp học thuật từ Git author hoặc người khởi chạy."
+}

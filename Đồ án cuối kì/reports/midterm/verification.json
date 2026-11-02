@@ -1,0 +1,65 @@
+{
+  "docx_paragraphs": 135,
+  "docx_tables": 19,
+  "pptx_slides": 15,
+  "office_crc": "PASS",
+  "cross_document_MAE_values": "PASS",
+  "placeholder_draft_labels": "PASS",
+  "traceability_sources": "PASS",
+  "ledger_unchanged": true,
+  "model_fit_performed": false,
+  "test_samples_accessed": false,
+  "docx_render": {
+    "pages": 17,
+    "page_text_lengths": [
+      803,
+      1590,
+      1519,
+      1437,
+      1634,
+      936,
+      1051,
+      1290,
+      1321,
+      1154,
+      937,
+      1277,
+      1299,
+      1568,
+      2206,
+      1619,
+      1661
+    ],
+    "contacts": [
+      "page_contact_1.png",
+      "page_contact_2.png"
+    ]
+  },
+  "pptx_render": {
+    "pages": 15,
+    "page_text_lengths": [
+      315,
+      481,
+      463,
+      406,
+      447,
+      508,
+      296,
+      334,
+      456,
+      413,
+      345,
+      480,
+      533,
+      518,
+      542
+    ],
+    "contacts": [
+      "slide_contact_1.png",
+      "slide_contact_2.png"
+    ]
+  },
+  "rendered_slide_text_complete": true,
+  "visual_review_required": "Inspect contact sheets and full-resolution pages; automatic text checks do not replace visual review.",
+  "status": "DRAFT_CHECKED"
+}

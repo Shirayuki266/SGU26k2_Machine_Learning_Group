@@ -1,0 +1,40 @@
+{
+  "task_id": "MK01",
+  "draft": true,
+  "missing": [
+    "Số nhóm",
+    "Trường/khoa",
+    "Lớp học phần",
+    "Giảng viên",
+    "Họ tên–MSSV",
+    "Phân công/đóng góp có xác nhận",
+    "Rubric/yêu cầu riêng của thầy",
+    "Hạn nộp chính thức"
+  ],
+  "checks": {
+    "ledger_sha256": "a03912f43bea36b6c23544d531d6405097797942de17659a6d6e87edb2823e56",
+    "runs": 49,
+    "artifacts_checked": 200,
+    "prediction_files_recomputed": 43,
+    "model_fit_performed": false,
+    "test_samples_accessed": false
+  },
+  "slides": 15,
+  "source_commit": "68b8e6d96cbbaf538ef1db746b64c08a1ff694a0",
+  "model_fit_performed": false,
+  "test_samples_accessed": false,
+  "files": [
+    {
+      "path": "reports/midterm/NhomXX_DuBaoPM25_BacKinh_GiuaKy.docx",
+      "sha256": "90ede4019db89d02ef8d7fd14a130df5a7b718bf06e23a1382f9a20b44c13cad",
+      "bytes": 366003
+    },
+    {
+      "path": "reports/midterm/NhomXX_DuBaoPM25_BacKinh_GiuaKy.pptx",
+      "sha256": "a69561a8fb882d86a681e36ea9aae8fe0a50e80f850d10670d69b1b33e1dfc76",
+      "bytes": 295944
+    }
+  ],
+  "generator_sha256": "79f9028d4e9907aa9020d35858440078853fd7cf5a9b4d44305685180097e09d",
+  "evidence_module_sha256": "d8f5a50e84cd189b2034698329210d65dcb922dcc85e2e04809d028b8aacaf0a"
+}

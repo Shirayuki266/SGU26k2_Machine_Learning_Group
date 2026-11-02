@@ -1,0 +1,253 @@
+[
+  {
+    "id": "B01",
+    "kind": "table",
+    "title": "Nguồn dữ liệu và nhóm thuộc tính",
+    "scope": "audit raw",
+    "run_ids": [],
+    "sources": [
+      {
+        "path": "reports/raw_audit_full.json",
+        "sha256": "e0c3685fae180b26d68af89f0f2ad29205a3b1080f3a29d23da0946a62a8250d"
+      },
+      {
+        "path": "docs/data_dictionary.md",
+        "sha256": "02f5af92db43c1e9bbd3bec843f0ceaab234ba9213480376efa1092a12fcfdd1"
+      }
+    ]
+  },
+  {
+    "id": "B02",
+    "kind": "table",
+    "title": "Temporal split và cohorts",
+    "scope": "audit T05, test chỉ count/date",
+    "run_ids": [],
+    "sources": [
+      {
+        "path": "reports/splits_full/split_summary.csv",
+        "sha256": "3f153871dd04449dfe6bc2a5fd72816ac50c20d288e66f32dfa3fff9ea5c2a58"
+      },
+      {
+        "path": "reports/splits_full/split_manifest.json",
+        "sha256": "6d3ac3f05da50324a65c34c1e1601b5df45fefc3d2e6d0e834d43a27062d0e42"
+      }
+    ]
+  },
+  {
+    "id": "B03",
+    "kind": "table",
+    "title": "EDA train: missing và phân phối",
+    "scope": "train operational",
+    "run_ids": [],
+    "sources": [
+      {
+        "path": "reports/eda_train/numeric_summary.csv",
+        "sha256": "80a9c20ad8bf38a200d713042b3518f47c844b040451e44fedae092634724d60"
+      }
+    ]
+  },
+  {
+    "id": "B04",
+    "kind": "table",
+    "title": "Kết quả T09/T10",
+    "scope": "validation full primary",
+    "run_ids": [
+      "24cef47874a94d9faa7bfcbae29b5c58",
+      "aec8630115714bb59d5c89c8a6b368c1",
+      "780ecb7fb59d48bea58d5e4a076f1f26"
+    ],
+    "sources": [
+      {
+        "path": "reports/initial_models/comparison.csv",
+        "sha256": "d796f927756ef7024f0b5f9d4202ba5abdd4345fbf39bb39e3b39655c8c9c794"
+      }
+    ]
+  },
+  {
+    "id": "B05",
+    "kind": "table",
+    "title": "T11 CV và trước–sau",
+    "scope": "train CV + validation riêng",
+    "run_ids": [
+      "c895894bcf5a4ff28982fbb1ca9d69d9",
+      "32e65c5a4cbc489c905cf146b743867f"
+    ],
+    "sources": [
+      {
+        "path": "reports/tuning/candidates.csv",
+        "sha256": "3561256b607c4e267df88cdf67008ee5e4cab3929e928c9cbfe4e4a68fd991b0"
+      },
+      {
+        "path": "reports/tuning/before_after.csv",
+        "sha256": "2ed06e95fb2ada8749bf71d65b492d2ca4412f162c2847c5c3ec391f38445b59"
+      }
+    ]
+  },
+  {
+    "id": "B06",
+    "kind": "table",
+    "title": "T12 A/B/C và đối chứng",
+    "scope": "validation full primary",
+    "run_ids": [
+      "24cef47874a94d9faa7bfcbae29b5c58",
+      "aec8630115714bb59d5c89c8a6b368c1",
+      "780ecb7fb59d48bea58d5e4a076f1f26",
+      "32e65c5a4cbc489c905cf146b743867f",
+      "48d2f03be4614a25906f84d98df9e9dc",
+      "3a9f2500e4dd4ef28d7bc20def6f79c8"
+    ],
+    "sources": [
+      {
+        "path": "reports/ablation/comparison.csv",
+        "sha256": "28ad239e36de36613fe6958cee8cff03709f93177bff1ee7120308e5e9cae666"
+      },
+      {
+        "path": "reports/ablation/selected_features.csv",
+        "sha256": "df043b2a7b30d51ee14754d5694e7fd06a29b3035352d0a9ca5b0f56009b9684"
+      }
+    ]
+  },
+  {
+    "id": "B07",
+    "kind": "table",
+    "title": "Các vòng thử–nhận xét–quyết định",
+    "scope": "phân tích từ artifact",
+    "run_ids": [],
+    "sources": [
+      {
+        "path": "docs/initial_findings.md",
+        "sha256": "a2ea9d947bf715e574e7f5cb0264017bbfcb3368af3b4ab83c61873c38c243a4"
+      },
+      {
+        "path": "docs/tuning_findings.md",
+        "sha256": "e3a82b69212a4106970225cfe0b2c087df717e8eed8c2f9c00a653ba94619326"
+      },
+      {
+        "path": "docs/ablation_findings.md",
+        "sha256": "ec5a72dc779a9363e0be7b922ed58aa1e053871a1653e78b6bcfdd50d16ccab0"
+      }
+    ]
+  },
+  {
+    "id": "F01",
+    "kind": "figure",
+    "title": "Missing trên train",
+    "scope": "train operational",
+    "run_ids": [],
+    "sources": [
+      {
+        "path": "reports/midterm/figures/eda_missing.png",
+        "sha256": "8ec0a7fa11c33f8ebf12a5b709005a74837f4fcb78d5d01933fd949bccbaa8f6"
+      },
+      {
+        "path": "reports/eda_train/numeric_summary.csv",
+        "sha256": "80a9c20ad8bf38a200d713042b3518f47c844b040451e44fedae092634724d60"
+      }
+    ]
+  },
+  {
+    "id": "F02",
+    "kind": "figure",
+    "title": "Tương quan train",
+    "scope": "train; tương quan không là nhân quả",
+    "run_ids": [],
+    "sources": [
+      {
+        "path": "reports/midterm/figures/eda_correlations.png",
+        "sha256": "d22e483d87898426d30292d32978f01db345db2e3c842021109f34cbd67a5faa"
+      },
+      {
+        "path": "reports/eda_train/correlation_pairs.csv",
+        "sha256": "067e32d95ba24f7791a5ae8478c82f8d69fc350633395207a61036b686ce95f3"
+      },
+      {
+        "path": "reports/eda_train/pearson.csv",
+        "sha256": "b5eca25e3e044c110b7613d1a286f96930418a7cd58367211cee7dfd42983c2c"
+      }
+    ]
+  },
+  {
+    "id": "F03",
+    "kind": "figure",
+    "title": "Sơ đồ pipeline",
+    "scope": "sơ đồ phương pháp",
+    "run_ids": [],
+    "sources": [
+      {
+        "path": "reports/midterm/figures/pipeline.png",
+        "sha256": "ae95ec4fb8622d80f107618b2b59ef2b69d1c83b499bd2ccb5deeee34ecb8764"
+      },
+      {
+        "path": "src/beijing_air/preprocessing.py",
+        "sha256": "3e121c4f6f5226b3764f053f1ceafdc9087ff3bbc97382dcc75242044b5d241f"
+      },
+      {
+        "path": "src/beijing_air/feature_selection.py",
+        "sha256": "b3952adf480b755ca0373a03a4a5756545ed0d0ea4288a4800a391f021674cb4"
+      }
+    ]
+  },
+  {
+    "id": "F04",
+    "kind": "figure",
+    "title": "T09/T10 validation",
+    "scope": "validation full primary",
+    "run_ids": [
+      "24cef47874a94d9faa7bfcbae29b5c58",
+      "aec8630115714bb59d5c89c8a6b368c1",
+      "780ecb7fb59d48bea58d5e4a076f1f26"
+    ],
+    "sources": [
+      {
+        "path": "reports/midterm/figures/t10_validation.png",
+        "sha256": "d5bc3fc71987c9ba16b1d29cb8310388bc9e2653497fc193d9a84e49e1e3b731"
+      },
+      {
+        "path": "reports/initial_models/comparison.csv",
+        "sha256": "d796f927756ef7024f0b5f9d4202ba5abdd4345fbf39bb39e3b39655c8c9c794"
+      }
+    ]
+  },
+  {
+    "id": "F05",
+    "kind": "figure",
+    "title": "T11 CV và validation",
+    "scope": "CV train / validation tách nhãn",
+    "run_ids": [
+      "c895894bcf5a4ff28982fbb1ca9d69d9"
+    ],
+    "sources": [
+      {
+        "path": "reports/midterm/figures/t11_summary.png",
+        "sha256": "19f3f97659fe420fe855fea97d9ef52aefa5d3ca9ef8de3c4ce9a6fd2a931531"
+      },
+      {
+        "path": "reports/tuning/candidates.csv",
+        "sha256": "3561256b607c4e267df88cdf67008ee5e4cab3929e928c9cbfe4e4a68fd991b0"
+      },
+      {
+        "path": "reports/tuning/before_after.csv",
+        "sha256": "2ed06e95fb2ada8749bf71d65b492d2ca4412f162c2847c5c3ec391f38445b59"
+      }
+    ]
+  },
+  {
+    "id": "F06",
+    "kind": "figure",
+    "title": "T12 ablation",
+    "scope": "CV train / validation tách nhãn",
+    "run_ids": [
+      "0a616a9fb5134058b3af3cafb1a70e18"
+    ],
+    "sources": [
+      {
+        "path": "reports/midterm/figures/t12_summary.png",
+        "sha256": "5df039de66387028dfbe8ae71f235e232f5d83694f8e96c4e8c6cc934b6a3913"
+      },
+      {
+        "path": "reports/ablation/comparison.csv",
+        "sha256": "28ad239e36de36613fe6958cee8cff03709f93177bff1ee7120308e5e9cae666"
+      }
+    ]
+  }
+]
