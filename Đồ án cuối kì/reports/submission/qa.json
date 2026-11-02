@@ -1,0 +1,490 @@
+{
+  "task_id": "MK02",
+  "checked_at": "2026-11-02T21:37:19.145573+00:00",
+  "status": "DRAFT_CHECKED",
+  "ready_to_submit": false,
+  "isolated_python": {
+    "status": "PASS",
+    "python": "3.12.10",
+    "packages_initially_absent": [
+      "numpy",
+      "beijing_air"
+    ],
+    "new_site_packages": true,
+    "scope": "Fresh packages and local wheel on the same Windows OS, not a new machine/OS",
+    "versions": {
+      "pandas": "3.0.6",
+      "numpy": "2.5.4",
+      "scikit-learn": "1.9.1",
+      "matplotlib": "3.11.2",
+      "python-docx": "1.2.0",
+      "python-pptx": "1.0.2",
+      "PyMuPDF": "2.0",
+      "openpyxl": "3.1.5",
+      "nbclient": "0.11.0",
+      "ipykernel": "7.4.0"
+    },
+    "constraints": "constraints.txt",
+    "standard_venv_status": "NOT_VERIFIED: current interpreter is embedded Python",
+    "build_isolation_attempt": "Unsupported by embedded ._pth; resolved by setuptools/wheel and --no-build-isolation in the isolated runtime",
+    "install_commands": [
+      ".venv/python.exe -m pip --python artifacts/mk02_clean_python/python.exe install setuptools wheel pip",
+      ".venv/python.exe -m pip --python artifacts/mk02_clean_python/python.exe install --no-build-isolation -c reports/submission/constraints.txt ./artifacts/mk02_extract_01/NhomXX_DuBaoPM25_BacKinh_GiuaKy/source[midterm]"
+    ],
+    "verified_sys_path": [
+      "<project>\\artifacts\\mk02_clean_python\\python312.zip",
+      "<project>\\artifacts\\mk02_clean_python",
+      "<project>\\artifacts\\mk02_clean_python\\Lib\\site-packages"
+    ],
+    "installed_package_path": "<project>\\artifacts\\mk02_clean_python\\Lib\\site-packages\\beijing_air\\__init__.py",
+    "installed_packages": {
+      "altair": "6.3.0",
+      "anyio": "4.16.0",
+      "argon2-cffi": "25.1.0",
+      "argon2-cffi-bindings": "26.1.0",
+      "arrow": "1.4.0",
+      "asttokens": "3.0.2",
+      "async-lru": "2.4.0",
+      "attrs": "26.1.0",
+      "babel": "2.18.0",
+      "beautifulsoup4": "4.15.0",
+      "beijing-air-quality": "0.1.0",
+      "bleach": "6.4.0",
+      "certifi": "2026.10.23",
+      "cffi": "2.1.1",
+      "charset-normalizer": "3.5.2",
+      "click": "8.5.0",
+      "cloudpickle": "3.1.2",
+      "colorama": "0.4.6",
+      "comm": "0.2.3",
+      "contourpy": "1.4.0",
+      "cycler": "0.12.1",
+      "debugpy": "1.8.22",
+      "defusedxml": "0.7.1",
+      "et_xmlfile": "2.0.0",
+      "executing": "2.3.0",
+      "fastjsonschema": "2.22.3",
+      "flatbuffers": "25.12.19",
+      "fonttools": "4.68.0",
+      "fqdn": "1.6.0",
+      "h11": "0.16.0",
+      "httpcore": "1.0.9",
+      "httpx": "0.28.1",
+      "idna": "3.20",
+      "iniconfig": "2.3.1",
+      "ipykernel": "7.4.0",
+      "ipython": "9.18.0",
+      "ipython_pygments_lexers": "1.1.1",
+      "ipywidgets": "8.1.9",
+      "isoduration": "20.11.0",
+      "itsdangerous": "2.2.0",
+      "jedi": "0.20.1",
+      "Jinja2": "3.1.6",
+      "joblib": "1.6.0",
+      "json5": "0.17.3",
+      "jsonpointer": "3.7",
+      "jsonschema": "4.26.0",
+      "jsonschema-specifications": "2025.9.1",
+      "jupyter": "1.1.1",
+      "jupyterlab": "4.6.5",
+      "jupyterlab_pygments": "0.3.0",
+      "jupyterlab_server": "2.28.1",
+      "jupyterlab_widgets": "3.0.17",
+      "jupyter_builder": "1.2.4",
+      "jupyter_client": "8.10.0",
+      "jupyter-console": "6.6.3",
+      "jupyter_core": "5.9.1",
+      "jupyter-events": "0.12.1",
+      "jupyter-lsp": "2.3.1",
+      "jupyter_server": "2.21.1",
+      "jupyter_server_terminals": "0.5.4",
+      "kiwisolver": "1.5.1",
+      "lark": "1.3.1",
+      "lxml": "6.1.3",
+      "MarkupSafe": "3.0.4",
+      "matplotlib": "3.11.2",
+      "matplotlib-inline": "0.2.2",
+      "mistune": "3.4.0",
+      "narwhals": "2.28.0",
+      "nbclient": "0.11.0",
+      "nbconvert": "7.17.2",
+      "nbformat": "5.11.1",
+      "nest-asyncio2": "1.7.4",
+      "networkx": "3.7",
+      "notebook": "7.6.4",
+      "notebook_shim": "0.2.4",
+      "numpy": "2.5.4",
+      "onnxruntime": "1.31.1",
+      "openpyxl": "3.1.5",
+      "packaging": "26.3",
+      "pandas": "3.0.6",
+      "pandocfilters": "1.5.1",
+      "parso": "0.8.7",
+      "pillow": "13.0.0",
+      "pip": "26.3",
+      "platformdirs": "4.14.3",
+      "pluggy": "1.6.0",
+      "prometheus_client": "0.26.0",
+      "prompt_toolkit": "3.0.53",
+      "protobuf": "7.36.2",
+      "psutil": "7.2.2",
+      "pure_eval": "0.2.4",
+      "pyarrow": "26.0.0",
+      "pycparser": "3.12",
+      "pydeck": "0.9.3",
+      "Pygments": "2.21.0",
+      "pymupdf": "2.0",
+      "pymupdf4llm": "2.0",
+      "pymupdf_layout": "2.0",
+      "pyparsing": "3.3.3",
+      "pytest": "9.1.1",
+      "python-dateutil": "2.9.0.post0",
+      "python-docx": "1.2.0",
+      "python-json-logger": "4.2.0",
+      "python-multipart": "0.0.33",
+      "python-pptx": "1.0.2",
+      "pywinpty": "3.1.2",
+      "PyYAML": "6.0.3",
+      "pyzmq": "27.2.0",
+      "referencing": "0.37.0",
+      "requests": "2.34.2",
+      "rfc3339-validator": "0.1.4",
+      "rfc3986-validator": "0.1.1",
+      "rfc3987-syntax": "1.1.0",
+      "rpds-py": "2026.9.1",
+      "scikit-learn": "1.9.1",
+      "scipy": "1.18.1",
+      "seaborn": "0.13.2",
+      "Send2Trash": "2.1.0",
+      "setuptools": "84.2.1",
+      "six": "1.17.0",
+      "soupsieve": "3.0.4",
+      "stack-data": "0.6.3",
+      "starlette": "1.10.0",
+      "streamlit": "1.66.1",
+      "tabulate": "0.10.0",
+      "terminado": "0.18.1",
+      "threadpoolctl": "3.7.0",
+      "tinycss2": "1.5.1",
+      "tornado": "6.6",
+      "traitlets": "5.16.1",
+      "typing_extensions": "4.16.0",
+      "tzdata": "2026.5",
+      "uri-template": "1.3.0",
+      "urllib3": "2.8.0",
+      "uvicorn": "0.54.0",
+      "watchdog": "6.0.0",
+      "wcwidth": "0.9.4",
+      "webcolors": "25.10.0",
+      "webencodings": "0.6.1",
+      "websockets": "17.4",
+      "websocket-client": "1.9.2",
+      "wheel": "0.48.0",
+      "widgetsnbextension": "4.0.16",
+      "xlsxwriter": "3.3.1"
+    },
+    "constraints_origin": "Versions observed in the verified isolated runtime; Windows/Python 3.12, not a universal lockfile"
+  },
+  "commands": [
+    {
+      "command": [
+        "<isolated-python>",
+        "scripts/check_imports.py"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 27.078,
+      "output": "Python 3.12.10 (CPython)\nExecutable: <project>\\artifacts\\mk02_clean_python\\python.exe\nOK   beijing_air: 0.1.0\n     Source: <project>\\artifacts\\mk02_clean_python\\Lib\\site-packages\\beijing_air\\__init__.py\nOK   pandas: 3.0.6\nOK   numpy: 2.5.4\nOK   sklearn: 1.9.1\nOK   matplotlib: 3.11.2\nOK   seaborn: 0.13.2\nOK   joblib: 1.6.0\nOK   streamlit: 1.66.1\nOK   pytest: 9.1.1\nOK   jupyter: 1.1.1\n\n"
+    },
+    {
+      "command": [
+        "<isolated-python>",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 4.891,
+      "output": "No broken requirements found.\n\n"
+    },
+    {
+      "command": [
+        "<isolated-python>",
+        "scripts/verify_midterm.py",
+        "--office-only",
+        "--output",
+        "artifacts/mk02_office_check.json"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 5.969,
+      "output": "{\"docx_paragraphs\": 135, \"docx_tables\": 19, \"pptx_slides\": 15, \"office_crc\": \"PASS\", \"cross_document_MAE_values\": \"PASS\", \"placeholder_draft_labels\": \"PASS\", \"traceability_sources\": \"PASS\", \"ledger_unchanged\": true, \"model_fit_performed\": false, \"test_samples_accessed\": false, \"status\": \"DRAFT_CHECKED\"}\n\n"
+    },
+    {
+      "command": [
+        "<isolated-python>",
+        "scripts/run_eda_notebook.py",
+        "--mode",
+        "full",
+        "--output-tag",
+        "mk02_clean_20261103_01"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 62.765,
+      "output": "PASS: 13 cells executed from a fresh kernel; mode=full\nNotebook: artifacts\\t06_runtime\\executed_full_mk02_clean_20261103_01.ipynb\n\n<project>\\artifacts\\mk02_clean_python\\Lib\\site-packages\\zmq\\_future.py:718: RuntimeWarning: Proactor event loop does not implement add_reader family of methods required for zmq. Registering an additional selector thread for add_reader support via tornado. Use `asyncio.set_event_loop_policy(WindowsSelectorEventLoopPolicy())` to avoid this warning.\n  self._get_loop()\n[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.\n"
+    },
+    {
+      "command": [
+        "<isolated-python>",
+        "scripts/verify_eda.py",
+        "--report",
+        "reports/eda_train_mk02_clean_20261103_01",
+        "--notebook",
+        "artifacts/t06_runtime/executed_full_mk02_clean_20261103_01.ipynb"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 29.031,
+      "output": "PASS: 14 tables recomputed from train; 9 PNGs/captions; 13 executed notebook cells; checksums intact\n\n"
+    }
+  ],
+  "replay": {
+    "status": "PASS",
+    "mode": "full",
+    "scope": "train-only EDA, not a model experiment",
+    "output_tag": "mk02_clean_20261103_01",
+    "code_cells": 13,
+    "tables_recomputed": 14,
+    "png_verified": 9,
+    "historical_tables_match": [
+      "autocorrelation.csv",
+      "categorical_counts.csv",
+      "correlation_pairs.csv",
+      "daily_station.csv",
+      "hourly.csv",
+      "monthly.csv",
+      "numeric_summary.csv",
+      "pearson.csv",
+      "sample_gaps.csv",
+      "schema.csv",
+      "seasonal.csv",
+      "spearman.csv",
+      "station_missing_pct.csv",
+      "station_summary.csv"
+    ],
+    "analyzed_rows": 205977,
+    "primary_rows": 204865,
+    "test_accessed": false,
+    "model_fit_performed": false
+  },
+  "replay_files": [
+    {
+      "path": "reports/eda_train_mk02_clean_20261103_01/autocorrelation.csv",
+      "sha256": "c9a662f51ad3013112295c5fee8b1210d3dad0352d02f1a44617592033f5af4b",
+      "bytes": 4108
+    },
+    {
+      "path": "reports/eda_train_mk02_clean_20261103_01/categorical_counts.csv",
+      "sha256": "800ec5c37e8e8d324043c386b7939c3c8fc8210c5fc0b8370d76eca22ed57e08",
+      "bytes": 510
+    },
+    {
+      "path": "reports/eda_train_mk02_clean_20261103_01/correlation_pairs.csv",
+      "sha256": "067e32d95ba24f7791a5ae8478c82f8d69fc350633395207a61036b686ce95f3",
+      "bytes": 1139
+    },
+    {
+      "path": "reports/eda_train_mk02_clean_20261103_01/daily_station.csv",
+      "sha256": "116f66a94693b044c32d1afaea1418675d9f4abe850594e05183116dce5c6cd5",
+      "bytes": 665577
+    },
+    {
+      "path": "reports/eda_train_mk02_clean_20261103_01/figure_index.csv",
+      "sha256": "ea81fbd1f1426a86993e273c704e37f18fb29934e7636ad94e194be35e766fb1",
+      "bytes": 4006
+    },
+    {
+      "path": "reports/eda_train_mk02_clean_20261103_01/figure_index.md",
+      "sha256": "7bf21a68b5f8fbc6c6872f21f4df968f55abd0e120b065b33031c3c3f3943ace",
+      "bytes": 4152
+    },
+    {
+      "path": "reports/eda_train_mk02_clean_20261103_01/hourly.csv",
+      "sha256": "94804ed2a35c6f94c035c111a451625b74ac76e19db0332e9e539c9e4709164b",
+      "bytes": 1552
+    },
+    {
+      "path": "reports/eda_train_mk02_clean_20261103_01/monthly.csv",
+      "sha256": "f1cb0a7c26c36d0594ba978263644a6628e96b901026e0ca31c64efebea40820",
+      "bytes": 765
+    },
+    {
+      "path": "reports/eda_train_mk02_clean_20261103_01/numeric_summary.csv",
+      "sha256": "80a9c20ad8bf38a200d713042b3518f47c844b040451e44fedae092634724d60",
+      "bytes": 2329
+    },
+    {
+      "path": "reports/eda_train_mk02_clean_20261103_01/pearson.csv",
+      "sha256": "b5eca25e3e044c110b7613d1a286f96930418a7cd58367211cee7dfd42983c2c",
+      "bytes": 2837
+    },
+    {
+      "path": "reports/eda_train_mk02_clean_20261103_01/sample_gaps.csv",
+      "sha256": "48952e71a5fa0e19d8add5191b91ff7e37ed7932eb02f8f4529eace2527aed8d",
+      "bytes": 883
+    },
+    {
+      "path": "reports/eda_train_mk02_clean_20261103_01/schema.csv",
+      "sha256": "8fcd920d3b5e4b00acf9aa8f402793a0d04c5687154678753ffe138e8fef73f1",
+      "bytes": 1183
+    },
+    {
+      "path": "reports/eda_train_mk02_clean_20261103_01/seasonal.csv",
+      "sha256": "3729e73395c393e189ae51ec6167d83510783746ffacfc9662f1e52a3a90bd20",
+      "bytes": 304
+    },
+    {
+      "path": "reports/eda_train_mk02_clean_20261103_01/spearman.csv",
+      "sha256": "59ebbd9a27fedffde0b252931deadb9a1e30baed1ebf7189af13f7c90ae17128",
+      "bytes": 2851
+    },
+    {
+      "path": "reports/eda_train_mk02_clean_20261103_01/station_missing_pct.csv",
+      "sha256": "79bb5137779ff153e53900af120df532d7027f1b6d6c37df05b31dba6fd9cfc7",
+      "bytes": 2982
+    },
+    {
+      "path": "reports/eda_train_mk02_clean_20261103_01/station_summary.csv",
+      "sha256": "fbbd146091d255d7efaf8849728293a783b6f76cff60ae2c9e28dfdc64d35761",
+      "bytes": 1189
+    },
+    {
+      "path": "reports/figures/eda_train_mk02_clean_20261103_01/01_missing.png",
+      "sha256": "e34cad59694a2efa7c2f16d2ced9d84e21e49ad9a7594dc4965e56e6a812498a",
+      "bytes": 78735
+    },
+    {
+      "path": "reports/figures/eda_train_mk02_clean_20261103_01/02_distributions.png",
+      "sha256": "0889f244efc6842d8bff24a5d2356f9ae62c0980292f9bbd19e41239570d7964",
+      "bytes": 185034
+    },
+    {
+      "path": "reports/figures/eda_train_mk02_clean_20261103_01/03_tails.png",
+      "sha256": "bcf8ea7fb91ec91154b2ceff83949271be6dafad3ded8e1237ee74d2819b7bc6",
+      "bytes": 57739
+    },
+    {
+      "path": "reports/figures/eda_train_mk02_clean_20261103_01/04_correlations.png",
+      "sha256": "90f1afa0b6193fd07fc2a893168afbdd5fc5a047d7705dfb9a07d8a40a345438",
+      "bytes": 294534
+    },
+    {
+      "path": "reports/figures/eda_train_mk02_clean_20261103_01/05_relationships.png",
+      "sha256": "474a7c3f619b6215d9d2c743e61cf3bb77f2608852a1a699b395fdbd7ee60576",
+      "bytes": 612532
+    },
+    {
+      "path": "reports/figures/eda_train_mk02_clean_20261103_01/06_stations.png",
+      "sha256": "1501eda8a8e77609999f27019b47dcf0e011b85aaf0d39d8cef793ac3edcf817",
+      "bytes": 98412
+    },
+    {
+      "path": "reports/figures/eda_train_mk02_clean_20261103_01/07_calendar.png",
+      "sha256": "308ce8ab41fb1d671dc921032776dba802f45f1bd727986f320cac0cfaf0f5b5",
+      "bytes": 138153
+    },
+    {
+      "path": "reports/figures/eda_train_mk02_clean_20261103_01/08_timeline.png",
+      "sha256": "19e356b8f3723ad3cff6fb8ece90a14ce1fe69a916ea80efdc0a0693e169d28f",
+      "bytes": 1312903
+    },
+    {
+      "path": "reports/figures/eda_train_mk02_clean_20261103_01/09_autocorrelation.png",
+      "sha256": "c62ef70c362886a31d2d248e486dfa11fb619b801cde3ec3654dbd583edeb142",
+      "bytes": 112549
+    },
+    {
+      "path": "reports/eda_train_mk02_clean_20261103_01/eda_manifest.json",
+      "sha256": "a3684ff746072cc63c7b79de153d7acac3e754513c94e34eef3b692df12237e9",
+      "bytes": 7411
+    },
+    {
+      "path": "artifacts/t06_runtime/executed_full_mk02_clean_20261103_01.ipynb",
+      "sha256": "98f2e35b1b6d9c34d57f7b7086d1b21d9c680968ed37484563efb9a22340a7e8",
+      "bytes": 4055330
+    }
+  ],
+  "history_unchanged": {
+    "before": {
+      "experiments/experiment_log.csv": "a03912f43bea36b6c23544d531d6405097797942de17659a6d6e87edb2823e56",
+      "notebooks/01_train_eda.ipynb": "6167e531c04180432caaeb921b0f5fee4a15c1b3a702a6fb197e99f0a52618b1",
+      "reports/midterm/verification.json": "469d5d0600ea2936184c3b091a2de94d54b56c50027b0854be36be1ae09cde54"
+    },
+    "after": {
+      "experiments/experiment_log.csv": "a03912f43bea36b6c23544d531d6405097797942de17659a6d6e87edb2823e56",
+      "notebooks/01_train_eda.ipynb": "6167e531c04180432caaeb921b0f5fee4a15c1b3a702a6fb197e99f0a52618b1",
+      "reports/midterm/verification.json": "469d5d0600ea2936184c3b091a2de94d54b56c50027b0854be36be1ae09cde54"
+    },
+    "unchanged": true
+  },
+  "zip_unit_checks": {
+    "status": "PASS",
+    "synthetic_tests": 6,
+    "command": ".venv/python.exe -m pytest tests/test_submission.py -q -p no:cacheprovider --basetemp=artifacts/mk02_pytest_pass2",
+    "scope": "Synthetic TEST ZIP only; traversal, foreign separator, case collisions, tampered SHA, Unicode extraction",
+    "isolated_status": "PASS: 6 tests in 5.52s",
+    "isolated_command": "artifacts/mk02_clean_python/python.exe -m pytest tests/test_submission.py -q -p no:cacheprovider --basetemp=artifacts/mk02_pytest_isolated"
+  },
+  "initial_package_verification": {
+    "task_id": "MK02",
+    "checked_at": "2026-11-02T21:28:29.330023+00:00",
+    "status": "DRAFT_CHECKED",
+    "ready_to_submit": false,
+    "zip_sha256": "d25d0b6106159c783d1c6b85f1e7e6066546a608bbc4cd8b3a0761b5264f7713",
+    "zip_bytes": 213702163,
+    "files_including_manifest": 638,
+    "zip_crc_paths_checksums": "PASS",
+    "excel_links": "PASS",
+    "evidence": {
+      "ledger_sha256": "a03912f43bea36b6c23544d531d6405097797942de17659a6d6e87edb2823e56",
+      "runs": 49,
+      "artifacts_checked": 200,
+      "prediction_files_recomputed": 43,
+      "model_fit_performed": false,
+      "test_samples_accessed": false
+    },
+    "office": {
+      "docx_paragraphs": 135,
+      "docx_tables": 19,
+      "pptx_slides": 15,
+      "office_crc": "PASS",
+      "cross_document_MAE_values": "PASS",
+      "placeholder_draft_labels": "PASS",
+      "traceability_sources": "PASS",
+      "ledger_unchanged": true,
+      "model_fit_performed": false,
+      "test_samples_accessed": false
+    },
+    "common_validation_ids": "PASS: six full runs, same ordered primary IDs",
+    "ledger_unchanged": "a03912f43bea36b6c23544d531d6405097797942de17659a6d6e87edb2823e56",
+    "model_fit_performed": false,
+    "test_samples_accessed": false,
+    "missing": [
+      "Số nhóm",
+      "Trường/khoa",
+      "Lớp học phần",
+      "Giảng viên",
+      "Họ tên–MSSV",
+      "Phân công/đóng góp có xác nhận",
+      "Rubric/yêu cầu riêng của thầy",
+      "Hạn nộp chính thức"
+    ]
+  },
+  "final_zip_verification": "See adjacent verification.json and ZIP SHA-256 sidecar; kept outside ZIP to avoid a self-checksum cycle",
+  "office_visual_review": "MK01 render/visual evidence retained without altering original DOCX/PPTX/PDF; Office content rechecked in isolated runtime",
+  "unverified": [
+    "Group/member/contribution details and teacher rubric/deadline are supplied later by the user",
+    "Standard Windows venv and a separate clean OS/machine were not verified",
+    "No full model retraining; no historical serialized weights exist"
+  ],
+  "model_fit_performed": false,
+  "test_samples_accessed": false,
+  "classroom_submitted": false
+}

@@ -86,5 +86,18 @@
 /reports/midterm/previews/*.pdf binary
 /reports/midterm/previews/*.png binary
 /reports/midterm/figures/*.png binary
+/scripts/package_midterm.py text eol=lf
+/scripts/verify_submission.py text eol=lf
+/tests/test_submission.py text eol=lf
+/docs/submission_checklist.md text eol=lf
+/reports/submission/*.json text eol=lf
+/reports/submission/*.txt text eol=lf
+/reports/submission/*.sha256 text eol=lf
+/README.md text eol=lf
+/docs/midterm_plan.md text eol=lf
+/docs/project_plan.md text eol=lf
+/README.md text eol=lf
+/docs/midterm_plan.md text eol=lf
+/docs/project_plan.md text eol=lf
 /artifacts/experiments/0a616a9fb5134058b3af3cafb1a70e18/artifacts/source/*.py -text whitespace=cr-at-eol
 /artifacts/experiments/1ee4f2f0e07948a187f5889b042df812/artifacts/source/*.py -text whitespace=cr-at-eol

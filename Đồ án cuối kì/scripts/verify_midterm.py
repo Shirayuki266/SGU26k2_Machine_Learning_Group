@@ -119,6 +119,8 @@ def render_review(pdf_path, folder, prefix, contact_output):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--office-only", action="store_true")
+    p.add_argument("--output", default="reports/midterm/verification.json",
+                   help="Separate QA output; use artifacts/ to preserve historical verification")
     args = p.parse_args()
     e, slide_texts, result = verify_office(ROOT)
     preview = ROOT / "reports/midterm/previews"
@@ -148,7 +150,9 @@ def main():
         result["rendered_slide_text_complete"] = True
         result["visual_review_required"] = "Inspect contact sheets and full-resolution pages; automatic text checks do not replace visual review."
     result["status"] = "DRAFT_CHECKED"
-    (ROOT / "reports/midterm/verification.json").write_text(json.dumps(result, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
+    output = ROOT / args.output
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(result, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
     print(json.dumps(result, ensure_ascii=False))
 
 
