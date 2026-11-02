@@ -1,5 +1,12 @@
 # Quy tắc làm việc với Codex
 
+Ngoại lệ theo yêu cầu MK01/MK02 mới nhất của người dùng: **Codex được merge
+riêng PR MK01 (Issue #26) sau khi hoàn tất kiểm tra DOCX/PPTX**. Đây là quyền
+cho một task, không mở rộng sang task khác hoặc tự đóng Issue. MK02 (Issue #27)
+chỉ commit/push/mở PR để người dùng merge sau; không nộp Classroom. Người dùng
+tự bổ sung thông tin nhóm, nên sản phẩm giữ NhomXX/[CẦN BỔ SUNG] và trạng thái
+nháp. Yêu cầu trực tiếp này có ưu tiên hơn quy tắc không merge chung bên dưới.
+
 Áp dụng trong `Đồ án cuối kì/`; không sửa bài lab. Theo quyền người dùng bổ sung
 ngày 02/11/2026, được tạo Issue khi cần, tạo branch, commit, push branch và mở PR
 cho task được giao; quy trình này thay thế yêu cầu chờ cho phép từng lần trước

@@ -87,6 +87,7 @@ experiments/.experiment_log.lock
 !reports/initial_models/**/*.csv
 !reports/tuning/**/*.csv
 !reports/ablation/**/*.csv
+!reports/midterm/*.csv
 !artifacts/experiments/
 artifacts/experiments/*
 !artifacts/experiments/918f7e6185db4904a3362d44facca68d/

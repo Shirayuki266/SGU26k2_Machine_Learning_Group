@@ -2,7 +2,7 @@
 
 Tên/phạm vi do người dùng chốt ngày 02/11/2026. **MK01 tạo cả DOCX và PPTX;
 MK02 kiểm tra và đóng gói**, không tách nhầm hai mã thành báo cáo và slide.
-T02 chỉ chuẩn bị checklist, chưa tạo các sản phẩm đó.
+T02 chỉ chuẩn bị checklist. Cập nhật MK01/Issue #26: đã có [DOCX17trang và PPTX15slide](midterm_deliverables.md) từ artifact T01–T12, render và kiểm; bản nháp còn [CẦN BỔ SUNG] do người dùng tự điền nhóm/rubric. MK02/Issue #27 sẽ kiểm và đóng gói sau MK01, chưa tự merge MK02.
 
 Hiện có T01 xác minh môi trường, đặc tả T02, manifest/audit T03–T04 và logger
 T04-LOG, target/split và count/date audit T05, EDA train T06 có bảng/PNG gốc,

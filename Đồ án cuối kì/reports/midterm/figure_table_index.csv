@@ -1,0 +1,14 @@
+id,kind,title,scope,run_ids,source_paths
+B01,table,Nguồn dữ liệu và nhóm thuộc tính,audit raw,,reports/raw_audit_full.json;docs/data_dictionary.md
+B02,table,Temporal split và cohorts,"audit T05, test chỉ count/date",,reports/splits_full/split_summary.csv;reports/splits_full/split_manifest.json
+B03,table,EDA train: missing và phân phối,train operational,,reports/eda_train/numeric_summary.csv
+B04,table,Kết quả T09/T10,validation full primary,24cef47874a94d9faa7bfcbae29b5c58;aec8630115714bb59d5c89c8a6b368c1;780ecb7fb59d48bea58d5e4a076f1f26,reports/initial_models/comparison.csv
+B05,table,T11 CV và trước–sau,train CV + validation riêng,c895894bcf5a4ff28982fbb1ca9d69d9;32e65c5a4cbc489c905cf146b743867f,reports/tuning/candidates.csv;reports/tuning/before_after.csv
+B06,table,T12 A/B/C và đối chứng,validation full primary,24cef47874a94d9faa7bfcbae29b5c58;aec8630115714bb59d5c89c8a6b368c1;780ecb7fb59d48bea58d5e4a076f1f26;32e65c5a4cbc489c905cf146b743867f;48d2f03be4614a25906f84d98df9e9dc;3a9f2500e4dd4ef28d7bc20def6f79c8,reports/ablation/comparison.csv;reports/ablation/selected_features.csv
+B07,table,Các vòng thử–nhận xét–quyết định,phân tích từ artifact,,docs/initial_findings.md;docs/tuning_findings.md;docs/ablation_findings.md
+F01,figure,Missing trên train,train operational,,reports/midterm/figures/eda_missing.png;reports/eda_train/numeric_summary.csv
+F02,figure,Tương quan train,train; tương quan không là nhân quả,,reports/midterm/figures/eda_correlations.png;reports/eda_train/correlation_pairs.csv;reports/eda_train/pearson.csv
+F03,figure,Sơ đồ pipeline,sơ đồ phương pháp,,reports/midterm/figures/pipeline.png;src/beijing_air/preprocessing.py;src/beijing_air/feature_selection.py
+F04,figure,T09/T10 validation,validation full primary,24cef47874a94d9faa7bfcbae29b5c58;aec8630115714bb59d5c89c8a6b368c1;780ecb7fb59d48bea58d5e4a076f1f26,reports/midterm/figures/t10_validation.png;reports/initial_models/comparison.csv
+F05,figure,T11 CV và validation,CV train / validation tách nhãn,c895894bcf5a4ff28982fbb1ca9d69d9,reports/midterm/figures/t11_summary.png;reports/tuning/candidates.csv;reports/tuning/before_after.csv
+F06,figure,T12 ablation,CV train / validation tách nhãn,0a616a9fb5134058b3af3cafb1a70e18,reports/midterm/figures/t12_summary.png;reports/ablation/comparison.csv

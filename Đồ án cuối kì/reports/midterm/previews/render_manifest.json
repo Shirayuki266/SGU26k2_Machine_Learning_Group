@@ -1,0 +1,13 @@
+{
+    "renderer":  "LibreOffice DOCX / Microsoft PowerPoint PPTX",
+    "libreoffice_version":  "26.8.2.2",
+    "powerpoint_version":  "16.0",
+    "word_export":  "Unresponsive on authoring machine; no successful Word export claim",
+    "docx_pages":  17,
+    "pptx_slides":  15,
+    "docx_sha256":  "90ede4019db89d02ef8d7fd14a130df5a7b718bf06e23a1382f9a20b44c13cad",
+    "pptx_sha256":  "a69561a8fb882d86a681e36ea9aae8fe0a50e80f850d10670d69b1b33e1dfc76",
+    "report_pdf_sha256":  "450b33b86761857cc801ad3a825e6313216028c6e38a1968e9ea666e54948164",
+    "slides_pdf_sha256":  "147f02266858f05f553aa2c72704e0bf502bd7c3b8ecca496520ed811b986a12",
+    "originals_unchanged":  true
+}

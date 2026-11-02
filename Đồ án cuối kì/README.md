@@ -432,3 +432,16 @@ Runner không fit lại completed cùng signature, chặn full khác config ho�
 sau lỗi; không xóa lịch sử vượt budget. Hồ sơ T12 track trực tiếp, không ZIP mới.
 Frozen config khóa data/split provenance/features/preprocessing/model/params/
 postprocessing/criteria, **chưa có weights triển khai**; T13 chỉ khi được giao.
+
+## MK01: tài liệu giữa kỳ bản nháp
+
+Đã tạo [DOCX17trang](reports/midterm/NhomXX_DuBaoPM25_BacKinh_GiuaKy.docx) và
+[PPTX15slide](reports/midterm/NhomXX_DuBaoPM25_BacKinh_GiuaKy.pptx), có
+[PDF preview](reports/midterm/previews/report.pdf), [slide PDF](reports/midterm/previews/slides.pdf)
+và [hướng dẫn/kiểm tra](docs/midterm_deliverables.md). Cùng snapshot49run thật,
+không huấn luyện hoặc mở test. Nhóm tự bổ sung thông tin trong configs/midterm.json;
+NhomXX/[CẦN BỔ SUNG] nghĩa là **bản nháp, chưa sẵn sàng nộp**.
+
+Cài optional dependencies với pip install -e ".[midterm]", chạy scripts/build_midterm.py,
+render bằng scripts/render_midterm.ps1 (LibreOffice +PowerPoint), kiểm scripts/verify_midterm.py.
+MK02 sẽ đóng gói riêng và người dùng merge PR MK02; không nộp Classroom.
