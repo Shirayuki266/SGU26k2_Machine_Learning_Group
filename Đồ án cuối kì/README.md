@@ -118,6 +118,13 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/audit_raw.ps1 -Mode 
 
 Script tải ZIP chính thức UCI 501, tìm ZIP con `PRSA2017_Data_20130301-20170228.zip` rồi giải nén các CSV trạm trực tiếp vào `data/raw/`. Không dùng các CSV phụ trong ZIP ngoài và không thay bằng bộ Beijing PM2.5 một trạm. Các file đã tồn tại được kiểm tra SHA-256; nếu khác, script dừng và không ghi đè.
 
+ZIP phải có đủ số file trạm theo metadata UCI (hiện là 12); ZIP thiếu trạm bị
+từ chối trước khi xuất CSV. Khi raw/manifest đã có và còn khớp, script chỉ xác
+minh, không tải lại hoặc ghi lại manifest. ZIP ngoài hoặc ZIP PRSA2017 bên
+trong đều được chấp nhận nếu checksum đã được ghi trong manifest; giữ nguyên
+descriptor ZIP gốc, nguồn và ngày tải ban đầu. Nếu metadata/checksum khác,
+script dừng để rà soát, không tự thay provenance.
+
 Nếu mạng bị chặn, mở [trang UCI 501](https://archive.ics.uci.edu/dataset/501/beijing+multi+site+air+quality+data), chọn **Download**, lưu ZIP vào `data/raw/uci_501_download.zip`. Hoặc đặt ZIP PRSA2017 lấy từ gói tải chính thức vào `data/raw/PRSA2017_Data_20130301-20170228.zip`. Không cần tự giải nén. Chạy một trong hai lệnh tương ứng:
 
 ```powershell
@@ -127,11 +134,26 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/download_uci.ps1 -Zi
 
 Với ZIP thủ công, thêm `-DownloadedAt "2026-10-12T10:00:00+07:00"` **chỉ khi đó là thời điểm tải thực tế của bạn**; ví dụ này không phải ngày tải mặc định. Nếu không biết, manifest ghi `null`, không suy ra từ ngày sửa file. Nếu lần tải lỗi để lại `.part`, kiểm tra và xóa riêng file tải dở đó trước khi thử lại; không xóa dữ liệu đã giải nén.
 
+`-DownloadedAt` phải có offset timezone hoặc `Z`, được chuẩn hóa về UTC khi tạo
+manifest mới. Manifest hiện có luôn giữ ngày tải đã ghi, không lấy ngày xác
+minh lại thay ngày tải hoặc điền ngày cũ bằng phỏng đoán.
+
 `reports/data_manifest.json` lưu nguồn, license, ngày tải UTC, thời điểm ghi manifest và SHA-256 của ZIP/CSV. Checksum là dấu vết của file tải thực tế, không phải checksum do UCI công bố. `configs/uci_501.json` ghi metadata tham chiếu chính thức. `docs/data_dictionary.md` ghi ý nghĩa và đơn vị các trường.
 
 Audit đọc raw mà không sửa, impute hay huấn luyện; kiểm tra schema, tên trạm, kiểu giá trị, missing từng cột, số dòng, thời gian, timestamp trùng và khoảng trống giờ. Kết quả ghi `reports/raw_audit_smoke.json` hoặc `reports/raw_audit_full.json`; chỉ full được dùng cho báo cáo dữ liệu chính thức. Số dòng được đếm từ CSV rồi đối chiếu metadata, không gán bằng số công bố. Nếu lệch hoặc lỗi dữ liệu, script ghi báo cáo và trả lỗi.
 
 Lần audit full Task 03 đã đếm 420.768 dòng từ 12 file/trạm, khớp số công bố. Báo cáo thực tế và giới hạn kiểm tra: [reports/data_audit.md](reports/data_audit.md). Raw vẫn giữ nguyên; chưa impute hoặc huấn luyện.
+
+Kiểm thử cơ chế tải dùng fixture `TEST_ONLY` trong thư mục tạm, mock mạng và
+không đọc/sửa raw dự án:
+
+```powershell
+.\.venv\python.exe -m pytest tests/test_acquisition.py -q --basetemp=.pytest_cache/t03-acquisition
+```
+
+Các ca PowerShell được skip rõ ràng nếu máy chưa có PowerShell; kết quả local
+Windows của lần xác minh được ghi trong báo cáo audit. T03 chỉ kiểm tra nguồn
+và chất lượng raw, không tạo split/mẫu dự báo hoặc đánh giá test mô hình.
 
 ## Sự hỗ trợ của AI (Task 03)
 

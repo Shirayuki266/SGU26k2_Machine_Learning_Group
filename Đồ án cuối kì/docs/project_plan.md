@@ -33,7 +33,7 @@ Phụ thuộc là trình tự kỹ thuật, không cấp quyền chạy. Chưa c
 | --- | --- | --- | --- |
 | T01 | Cấu trúc/môi trường, README/config/dependencies, cài/import | — | Issue #2; PR #8 đã merge; [xác minh](t01_environment_verification.md) portable 3.12.10/import đủ; chưa kiểm máy sạch |
 | T02 | Problem definition, experiment plan, CRISP-DM/project plan, checklist giữa kỳ | T01 | Issue #3 gốc đã đóng; lần này cập nhật tài liệu, bàn giao PR riêng |
-| T03 | Tải UCI 501, nguồn/license, manifest/checksum | T01–T02 | Issue #4; có configs/uci_501.json, reports/data_manifest.json, reports/data_audit.md; không tải lại |
+| T03 | Tải UCI 501, nguồn/license, manifest/checksum | T01–T02 | Issue #4; xác minh lại 02/11/2026: 12 trạm/420.768 dòng, manifest/raw không đổi; sửa fallback ZIP, xem reports/data_audit.md; không tải lại |
 | T04 | Ghép trạm, audit chất lượng, giữ raw/chưa impute | T03 | Issue #5; có src/beijing_air/data.py, tests/test_data.py, reports/data_quality.md; không audit lại |
 | T04-LOG | Logger, CSV, hồ sơ run và kiểm thử | T01–T04; trước model | Tên hiện hành của T04-BỔ SUNG, cùng Issue #6/PR #7 đã merge; không tạo hệ thống song song |
 | T05 | Target đúng +1 giờ cùng trạm, temporal split và kiểm tra ranh giới | T04, T02 | Issue #1 có tên tương ứng và đã đóng, **chưa có mã/artifact đủ xác minh trong repo**; không suy hoàn thành từ Issue |
