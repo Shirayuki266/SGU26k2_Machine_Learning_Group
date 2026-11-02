@@ -29,7 +29,10 @@ function Copy-Entry($entry, [string]$destination) {
 
 $acquisition = 'manual'
 $downloadTime = $null
-if ($DownloadedAt) { $downloadTime = [DateTimeOffset]::Parse($DownloadedAt).ToString('o') }
+if ($DownloadedAt) {
+    if ($DownloadedAt -notmatch '(Z|[+-]\d{2}:\d{2})$') { throw 'DownloadedAt must include an explicit timezone offset or Z.' }
+    $downloadTime = [DateTimeOffset]::Parse($DownloadedAt).ToUniversalTime().ToString('o')
+}
 if ($ZipPath) {
     $archivePath = (Resolve-Path -LiteralPath $ZipPath).Path
 } else {
@@ -48,9 +51,11 @@ if ($ZipPath) {
 
 $manifestPath = Join-Path $reports 'data_manifest.json'
 $archiveHash = (Get-FileHash -LiteralPath $archivePath -Algorithm SHA256).Hash.ToLowerInvariant()
+$old = $null
 if (Test-Path -LiteralPath $manifestPath) {
     $old = Get-Content -Raw -LiteralPath $manifestPath | ConvertFrom-Json
-    if ($old.archive.sha256 -ne $archiveHash) { throw 'Archive differs from existing manifest; refusing to replace provenance.' }
+    # A manual fallback may supply the already-recorded inner PRSA archive.
+    if ($archiveHash -notin @($old.archive.sha256, $old.prsa_archive.sha256)) { throw 'Archive differs from existing manifest; refusing to replace provenance.' }
     $downloadTime = $old.downloaded_at
     $acquisition = $old.acquisition
 }
@@ -64,11 +69,14 @@ try {
     } else { $prsaPath = $archivePath }
 } finally { $archive.Dispose() }
 
+$prsaHash = (Get-FileHash -LiteralPath $prsaPath -Algorithm SHA256).Hash.ToLowerInvariant()
+if ($null -ne $old -and $old.prsa_archive.sha256 -ne $prsaHash) { throw 'PRSA archive differs from existing manifest; refusing to replace provenance.' }
 $archive = [System.IO.Compression.ZipFile]::OpenRead($prsaPath)
 $files = @()
 try {
     $entries = @($archive.Entries | Where-Object { $_.Name -match '^PRSA_Data_.+_20130301-20170228\.csv$' })
     if ($entries.Count -eq 0) { throw 'Not a PRSA2017 multi-site archive; no station CSV files found.' }
+    if ($entries.Count -ne $config.published_stations) { throw "Station file count $($entries.Count) differs from UCI metadata $($config.published_stations); refusing incomplete archive." }
     $names = @($entries | ForEach-Object { $_.Name })
     if (@($names | Select-Object -Unique).Count -ne $names.Count) { throw 'Duplicate station filenames in ZIP.' }
     foreach ($entry in $entries) {
@@ -79,6 +87,23 @@ try {
     }
 } finally { $archive.Dispose() }
 
+if ($null -ne $old) {
+    foreach ($field in @('dataset_id', 'name', 'source_url', 'download_url', 'license', 'license_url', 'doi')) {
+        if ($old.$field -ne $config.$field) { throw "Existing provenance metadata differs: $field. Review before changing the manifest." }
+    }
+    if (@($old.files).Count -ne $files.Count) { throw 'Station inventory differs from existing manifest.' }
+    foreach ($file in $files) {
+        $prior = @($old.files | Where-Object { $_.path -eq $file.path })
+        if ($prior.Count -ne 1 -or $prior[0].sha256 -ne $file.sha256 -or $prior[0].bytes -ne $file.bytes) {
+            throw "Station provenance differs from existing manifest: $($file.path)"
+        }
+    }
+    # A verification rerun must not change recorded_at or the original archive
+    # descriptor/acquisition date, even when it uses the inner ZIP directly.
+    Write-Output "Verified $($files.Count) station files. Existing manifest preserved: $manifestPath"
+    return
+}
+
 $manifest = [ordered]@{
     dataset_id = $config.dataset_id; name = $config.name
     source_url = $config.source_url; download_url = $config.download_url
@@ -87,7 +112,7 @@ $manifest = [ordered]@{
     recorded_at = [DateTimeOffset]::UtcNow.ToString('o')
     download_date_note = 'downloaded_at is UTC; null means acquisition date unknown, not inferred from file modification time.'
     archive = [ordered]@{ name = [IO.Path]::GetFileName($archivePath); bytes = (Get-Item -LiteralPath $archivePath).Length; sha256 = $archiveHash }
-    prsa_archive = [ordered]@{ name = [IO.Path]::GetFileName($prsaPath); sha256 = (Get-FileHash -LiteralPath $prsaPath -Algorithm SHA256).Hash.ToLowerInvariant() }
+    prsa_archive = [ordered]@{ name = [IO.Path]::GetFileName($prsaPath); sha256 = $prsaHash }
     files = $files
 }
 $manifest | ConvertTo-Json -Depth 8 | Set-Content -Encoding UTF8 -LiteralPath $manifestPath
