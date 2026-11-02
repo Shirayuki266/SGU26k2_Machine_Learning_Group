@@ -1,0 +1,20 @@
+{
+  "evaluation": {
+    "n_total": 24815,
+    "n_scored": 24815,
+    "unavailable": 0,
+    "coverage": 1.0,
+    "MAE": 11.769124011199516,
+    "RMSE": 22.030088542580522,
+    "R2": 0.9360980964276431,
+    "r2_undefined_reason": null
+  },
+  "timing_seconds": {
+    "fit_pipeline": 1.5144542999987607,
+    "predict_evaluation": 0.09183529999427265
+  },
+  "kept_groups": 12,
+  "model_dimensions": 24,
+  "validation_csv_accessed": false,
+  "test_csv_accessed": false
+}

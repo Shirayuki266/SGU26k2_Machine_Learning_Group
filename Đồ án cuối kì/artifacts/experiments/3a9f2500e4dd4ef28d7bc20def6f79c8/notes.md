@@ -1,0 +1,1 @@
+Final C, same Ridge alpha=0.1, no extra parameter tuning; C k chosen only by train CV. No clipping/test/serialized weights.

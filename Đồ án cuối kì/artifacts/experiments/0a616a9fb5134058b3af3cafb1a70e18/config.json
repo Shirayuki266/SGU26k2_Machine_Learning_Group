@@ -1,0 +1,373 @@
+{
+  "task_id": "T12",
+  "reference_run_id": "32e65c5a4cbc489c905cf146b743867f",
+  "parent_run_id": null,
+  "fold_id": null,
+  "mode": "full",
+  "kind": "feature_selection",
+  "objective": "Fixed-parameter A/B ablation and train-CV grouped B-to-C selection; freeze deployment by validation.",
+  "hypothesis": "Causal PM2.5 history may improve Ridge A at fixed alpha; grouped coefficient selection may reduce redundant dimensions with little loss, without guaranteed improvement.",
+  "change": null,
+  "model": "ridge",
+  "parameters": {
+    "stage": "search",
+    "signature": {
+      "design": {
+        "schema_version": "t12-group-ridge-v1",
+        "model": "ridge",
+        "alpha": 0.1,
+        "reference_A_run_id": "32e65c5a4cbc489c905cf146b743867f",
+        "t11_search_run_id": "c895894bcf5a4ff28982fbb1ca9d69d9",
+        "historical_comparators": {
+          "random_forest_A": "780ecb7fb59d48bea58d5e4a076f1f26",
+          "persistence": "24cef47874a94d9faa7bfcbae29b5c58"
+        },
+        "cohort": "primary",
+        "selector": {
+          "method": "grouped_select_from_ridge",
+          "k_groups": [
+            12,
+            20,
+            28
+          ],
+          "score": "sqrt(mean(pilot_coef_squared_within_raw_feature_group))",
+          "categorical_policy": "keep_all_one_hot_columns_together",
+          "indicator_policy": "same_group_as_source_numeric_feature",
+          "rank_tie_break": "T07_registry_order",
+          "pilot_alpha": 0.1
+        },
+        "selection": {
+          "cv_metric": "pooled_MAE",
+          "cv_tie_break": "fewer_groups",
+          "tolerance": 1e-12,
+          "deployment_metric": "validation_MAE",
+          "deployment_pool": [
+            "A",
+            "B",
+            "C",
+            "random_forest_A",
+            "persistence"
+          ],
+          "deployment_tie_order": [
+            "A",
+            "random_forest_A",
+            "B",
+            "C",
+            "persistence"
+          ]
+        },
+        "budget": {
+          "full_searches": 1,
+          "selector_candidates": 3,
+          "folds": 3,
+          "cv_pipeline_fits": 9,
+          "cv_pilot_estimator_fits": 9,
+          "validation_pipeline_fits": 2,
+          "total_estimator_fits": 21,
+          "RF_fits": 0,
+          "automatic_retries": 0
+        },
+        "smoke": {
+          "k_groups": [
+            20
+          ],
+          "train_rows_per_station": 64,
+          "evaluation_rows_per_station": 16,
+          "validation": false
+        },
+        "resources": {
+          "blas_threads": 1,
+          "execution": "sequential",
+          "minimum_free_memory_mb": 768
+        },
+        "hypothesis": "Causal PM2.5 history may improve Ridge A at fixed alpha; grouped coefficient selection may reduce redundant dimensions with little loss, without guaranteed improvement.",
+        "postprocessing": "identity_no_clipping",
+        "save_model_weights": false,
+        "final_refit_policy": "Only when T13 is assigned: refit locked pipeline recipe on train+validation, including selector if C; no test-driven changes."
+      },
+      "provenance": {
+        "train_provenance": {
+          "split_manifest": "reports/splits_full/split_manifest.json",
+          "split_manifest_sha256": "6d3ac3f05da50324a65c34c1e1601b5df45fefc3d2e6d0e834d43a27062d0e42",
+          "t05_snapshot_id": "2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc",
+          "input_files_read": [
+            {
+              "path": "data/processed/samples_full/train.csv",
+              "sha256": "ebc89c94b576f009705446da7c4bec079f750755e5755e5041b6a93f09226d46",
+              "bytes": 51395102
+            },
+            {
+              "path": "data/processed/samples_full/sample_ids/train.csv",
+              "sha256": "336d58dda970536fb0c7dc1739529fe2f1bcb4200a5f32e2f3d40cca1279d8bf",
+              "bytes": 24598381
+            }
+          ],
+          "source_mode": "full",
+          "validation_start": "2015-03-01T00:00:00"
+        },
+        "t07_manifest_sha256": "6f53aed4fd9e4bd592c9c980bcaa4a06f23e8abd3c92af3242fff479d97e7d43",
+        "train_B": {
+          "path": "data/processed/features_full/train_B.csv",
+          "sha256": "42ee245c9e8b1e1eac4467df1a6c6a82e8582fbb9518f926cd95f654ecbbfcdd",
+          "bytes": 74690923
+        },
+        "t07_snapshot_id": "1b01fe65f7bbff32d1273afd704241687b6f220dd867ee681446978db8139a51"
+      },
+      "temporal_cv": {
+        "strategy": "expanding_window",
+        "partition": "train",
+        "group_by": "unique_target_timestamp",
+        "fit_target_must_precede_first_origin": true,
+        "folds": [
+          {
+            "fold_id": 1,
+            "evaluation_start": "2014-06-01T00:00:00",
+            "evaluation_end": "2014-09-01T00:00:00"
+          },
+          {
+            "fold_id": 2,
+            "evaluation_start": "2014-09-01T00:00:00",
+            "evaluation_end": "2014-12-01T00:00:00"
+          },
+          {
+            "fold_id": 3,
+            "evaluation_start": "2014-12-01T00:00:00",
+            "evaluation_end": "2015-03-01T00:00:00"
+          }
+        ]
+      },
+      "features": {
+        "A": {
+          "legacy_name": "F0",
+          "measurements": [
+            "PM2.5",
+            "PM10",
+            "SO2",
+            "NO2",
+            "CO",
+            "O3",
+            "TEMP",
+            "PRES",
+            "DEWP",
+            "RAIN",
+            "WSPM"
+          ],
+          "categorical": [
+            "station",
+            "wd"
+          ],
+          "calendar_reference": "target_timestamp",
+          "calendar": [
+            "target_hour",
+            "target_month",
+            "target_day_of_week"
+          ],
+          "cyclic_calendar": {
+            "target_hour": 24,
+            "target_month": 12
+          }
+        },
+        "B": {
+          "legacy_name": "F1",
+          "extends": "A",
+          "pm25_lag_hours": [
+            1,
+            3,
+            6,
+            12,
+            24
+          ],
+          "pm25_rolling_windows_hours": [
+            3,
+            6,
+            12,
+            24
+          ],
+          "rolling_stats": [
+            "mean",
+            "std"
+          ],
+          "rolling_std_ddof": 1,
+          "rolling_include_current": true,
+          "rolling_min_periods": "window"
+        },
+        "C": {
+          "extends": "B",
+          "selector_fit_scope": "training_partition_of_each_run_or_fold",
+          "selection_method": null,
+          "selected_features": null
+        }
+      },
+      "preprocessing": {
+        "schema_version": "t08-preprocessing-v1",
+        "numeric": {
+          "imputation_strategy": "median",
+          "keep_empty_features": true,
+          "missing_indicators": "all",
+          "scale": {
+            "ridge": true,
+            "random_forest": false
+          }
+        },
+        "categorical": {
+          "imputation_strategy": "constant",
+          "fill_value": "__MISSING__",
+          "handle_unknown": "ignore",
+          "sparse_output": false
+        },
+        "output": {
+          "format": "pandas",
+          "verbose_feature_names": true
+        },
+        "prediction_postprocessing": {
+          "negative_predictions": "identity",
+          "applies_to": [
+            "persistence",
+            "ridge",
+            "random_forest"
+          ]
+        }
+      },
+      "reference_config_sha256": "14c77d76cd624833023c16902dac5703fc573b23f5429bef53662e3f8bf3d7f0",
+      "source_sha256": {
+        "ablation.py": "994a42aa0353529ae740603a8b2f23770234f7f8137a7c84280a2b0e56eceae9",
+        "feature_selection.py": "b3952adf480b755ca0373a03a4a5756545ed0d0ea4288a4800a391f021674cb4",
+        "features.py": "ccb40348855216057b1c10ab34a67a3da467979fb51417df5b6782f265996210",
+        "preprocessing.py": "3e121c4f6f5226b3764f053f1ceafdc9087ff3bbc97382dcc75242044b5d241f",
+        "evaluation.py": "903dad88d32507360c18e67d7c0559bea069a94e6859978244c442196d5ec27a",
+        "data.py": "21daa9dfdf0a07a1caf34c639125bfc5c4ba4b307af993a80bfcdd97d6efb324",
+        "temporal_cv.py": "c8e9c746a83e15124b65046c8f454f88745a8d438b78e6db47197f8fd6719df6",
+        "tuning.py": "98d87ab85e5e83f7a89ca08898b9cce78c644fb1d08eccb3771d0b7817c65de2",
+        "initial_models.py": "88fba57cf8f13c12f168310ce8bc6e37a96c8ef604e9f7db064d29b30d86da4b",
+        "eda.py": "56f509c6f5dbd0970fcc81885def5793c91238d48e0faa341ff227070541f8a5",
+        "samples.py": "4ef941da6714a685528f048e74c6c52771825e919287622dfa3b53cd77666735",
+        "metrics.py": "c282e54515b5ad25fa9b67c576c8d082da9833878d65ac89e22ac7714b221769",
+        "run_ablation.py": "895bb57a45557a97f1affe9df25154a678fd2399a74ed35d0b1d701fb748505a",
+        "run_tuning.py": "e21d2f650037d418764741db7c53ceba6886fc97d8973ed6faf549c0a4b0c182",
+        "run_initial_models.py": "57c76f73ca281c871cba659b63e7bf3aa1f9c18f232556173de561bf315159d7"
+      }
+    },
+    "smoke_reference_run_id": "1ee4f2f0e07948a187f5889b042df812"
+  },
+  "feature_set": "C",
+  "preprocessing": {
+    "schema_version": "t08-preprocessing-v1",
+    "numeric": {
+      "imputation_strategy": "median",
+      "keep_empty_features": true,
+      "missing_indicators": "all",
+      "scale": {
+        "ridge": true,
+        "random_forest": false
+      }
+    },
+    "categorical": {
+      "imputation_strategy": "constant",
+      "fill_value": "__MISSING__",
+      "handle_unknown": "ignore",
+      "sparse_output": false
+    },
+    "output": {
+      "format": "pandas",
+      "verbose_feature_names": true
+    },
+    "prediction_postprocessing": {
+      "negative_predictions": "identity",
+      "applies_to": [
+        "persistence",
+        "ridge",
+        "random_forest"
+      ]
+    }
+  },
+  "data": {
+    "provenance": {
+      "train_provenance": {
+        "split_manifest": "reports/splits_full/split_manifest.json",
+        "split_manifest_sha256": "6d3ac3f05da50324a65c34c1e1601b5df45fefc3d2e6d0e834d43a27062d0e42",
+        "t05_snapshot_id": "2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc",
+        "input_files_read": [
+          {
+            "path": "data/processed/samples_full/train.csv",
+            "sha256": "ebc89c94b576f009705446da7c4bec079f750755e5755e5041b6a93f09226d46",
+            "bytes": 51395102
+          },
+          {
+            "path": "data/processed/samples_full/sample_ids/train.csv",
+            "sha256": "336d58dda970536fb0c7dc1739529fe2f1bcb4200a5f32e2f3d40cca1279d8bf",
+            "bytes": 24598381
+          }
+        ],
+        "source_mode": "full",
+        "validation_start": "2015-03-01T00:00:00"
+      },
+      "t07_manifest_sha256": "6f53aed4fd9e4bd592c9c980bcaa4a06f23e8abd3c92af3242fff479d97e7d43",
+      "train_B": {
+        "path": "data/processed/features_full/train_B.csv",
+        "sha256": "42ee245c9e8b1e1eac4467df1a6c6a82e8582fbb9518f926cd95f654ecbbfcdd",
+        "bytes": 74690923
+      },
+      "t07_snapshot_id": "1b01fe65f7bbff32d1273afd704241687b6f220dd867ee681446978db8139a51"
+    },
+    "train": {
+      "samples": 204865,
+      "ordered_ids_sha256": "4bce8e5dc4505432d8b26ff1d7bf3b7971be01bb443ee640a0ba0b7d8ca6838e",
+      "stations": [
+        "Aotizhongxin",
+        "Changping",
+        "Dingling",
+        "Dongsi",
+        "Guanyuan",
+        "Gucheng",
+        "Huairou",
+        "Nongzhanguan",
+        "Shunyi",
+        "Tiantan",
+        "Wanliu",
+        "Wanshouxigong"
+      ],
+      "first_target": "2013-03-01 01:00:00",
+      "last_target": "2015-02-28 23:00:00",
+      "unique_target_timestamps": 17485
+    }
+  },
+  "split": {
+    "strategy": "expanding_window",
+    "partition": "train",
+    "group_by": "unique_target_timestamp",
+    "fit_target_must_precede_first_origin": true,
+    "folds": [
+      {
+        "fold_id": 1,
+        "evaluation_start": "2014-06-01T00:00:00",
+        "evaluation_end": "2014-09-01T00:00:00"
+      },
+      {
+        "fold_id": 2,
+        "evaluation_start": "2014-09-01T00:00:00",
+        "evaluation_end": "2014-12-01T00:00:00"
+      },
+      {
+        "fold_id": 3,
+        "evaluation_start": "2014-12-01T00:00:00",
+        "evaluation_end": "2015-03-01T00:00:00"
+      }
+    ]
+  },
+  "time_ranges": null,
+  "sample_counts": null,
+  "seed": null,
+  "budget": {
+    "full_searches": 1,
+    "selector_candidates": 3,
+    "folds": 3,
+    "cv_pipeline_fits": 9,
+    "cv_pilot_estimator_fits": 9,
+    "validation_pipeline_fits": 2,
+    "total_estimator_fits": 21,
+    "RF_fits": 0,
+    "automatic_retries": 0
+  },
+  "is_test": false,
+  "source": "executed_script"
+}

@@ -1,0 +1,8 @@
+{
+  "selected_k_groups": 20,
+  "attempted_cv_pipeline_fits": 3,
+  "failed_candidates": 0,
+  "selected_deployment_variant": null,
+  "test_csv_accessed": false,
+  "memory_mb_before_data": 2757.3125
+}

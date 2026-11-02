@@ -1,0 +1,33 @@
+{
+  "validation_primary": {
+    "n_total": 102479,
+    "n_scored": 102479,
+    "unavailable": 0,
+    "coverage": 1.0,
+    "MAE": 9.90337659459443,
+    "RMSE": 18.50106336879714,
+    "R2": 0.9489668070394924,
+    "r2_undefined_reason": null,
+    "negative_predictions": 1473
+  },
+  "train_primary": {
+    "n_total": 204865,
+    "n_scored": 204865,
+    "unavailable": 0,
+    "coverage": 1.0,
+    "MAE": 11.107759476277712,
+    "RMSE": 19.789071821025313,
+    "R2": 0.9370392888197401,
+    "r2_undefined_reason": null,
+    "negative_predictions": 2330
+  },
+  "timing_seconds": {
+    "fit_pipeline": 1.711406700000225,
+    "predict_evaluation": 0.2885219000017969,
+    "predict_train": 0.5551465999960783
+  },
+  "raw_kept_groups": 12,
+  "model_dimensions": 24,
+  "test_csv_accessed": false,
+  "generalization_gap_MAE": -1.2043828816832818
+}

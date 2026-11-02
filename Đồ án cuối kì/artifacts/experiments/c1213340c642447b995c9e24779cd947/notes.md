@@ -1,0 +1,1 @@
+C top20 groups; rank pooled CV MAE, no validation-based k choice.

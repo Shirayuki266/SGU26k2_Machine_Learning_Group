@@ -1,0 +1,18 @@
+{
+  "schema_version": "t12-group-ridge-v1",
+  "model": "ridge",
+  "alpha": 0.1,
+  "reference_A_run_id": "32e65c5a4cbc489c905cf146b743867f",
+  "t11_search_run_id": "c895894bcf5a4ff28982fbb1ca9d69d9",
+  "historical_comparators": {"random_forest_A": "780ecb7fb59d48bea58d5e4a076f1f26", "persistence": "24cef47874a94d9faa7bfcbae29b5c58"},
+  "cohort": "primary",
+  "selector": {"method": "grouped_select_from_ridge", "k_groups": [12, 20, 28], "score": "sqrt(mean(pilot_coef_squared_within_raw_feature_group))", "categorical_policy": "keep_all_one_hot_columns_together", "indicator_policy": "same_group_as_source_numeric_feature", "rank_tie_break": "T07_registry_order", "pilot_alpha": 0.1},
+  "selection": {"cv_metric": "pooled_MAE", "cv_tie_break": "fewer_groups", "tolerance": 1e-12, "deployment_metric": "validation_MAE", "deployment_pool": ["A", "B", "C", "random_forest_A", "persistence"], "deployment_tie_order": ["A", "random_forest_A", "B", "C", "persistence"]},
+  "budget": {"full_searches": 1, "selector_candidates": 3, "folds": 3, "cv_pipeline_fits": 9, "cv_pilot_estimator_fits": 9, "validation_pipeline_fits": 2, "total_estimator_fits": 21, "RF_fits": 0, "automatic_retries": 0},
+  "smoke": {"k_groups": [20], "train_rows_per_station": 64, "evaluation_rows_per_station": 16, "validation": false},
+  "resources": {"blas_threads": 1, "execution": "sequential", "minimum_free_memory_mb": 768},
+  "hypothesis": "Causal PM2.5 history may improve Ridge A at fixed alpha; grouped coefficient selection may reduce redundant dimensions with little loss, without guaranteed improvement.",
+  "postprocessing": "identity_no_clipping",
+  "save_model_weights": false,
+  "final_refit_policy": "Only when T13 is assigned: refit locked pipeline recipe on train+validation, including selector if C; no test-driven changes."
+}

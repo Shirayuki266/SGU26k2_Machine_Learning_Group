@@ -1,0 +1,78 @@
+{
+  "selection": {
+    "candidate_run_id": "c1213340c642447b995c9e24779cd947",
+    "k_groups": 20,
+    "pooled_MAE": 40.57549553529336,
+    "locked_at": "2026-11-02T16:13:10.330457+00:00",
+    "before_validation": true
+  },
+  "candidates": [
+    {
+      "run_id": "c1213340c642447b995c9e24779cd947",
+      "k_groups": 20,
+      "status": "completed",
+      "fold_run_ids": [
+        "28f78d6980f541b8a2beae0d7f2b7db4",
+        "9535123fa34b455fa9b307081191ff45",
+        "0917ba745e2c42f28a6589d113f6bb7b"
+      ],
+      "failed_fold_run_ids": [],
+      "summary": {
+        "pooled": {
+          "n_total": 576,
+          "n_scored": 576,
+          "unavailable": 0,
+          "coverage": 1.0,
+          "MAE": 40.57549553529336,
+          "RMSE": 43.70141422901865,
+          "R2": -0.14074392524900148,
+          "r2_undefined_reason": null
+        },
+        "folds": [
+          {
+            "n_total": 192,
+            "n_scored": 192,
+            "unavailable": 0,
+            "coverage": 1.0,
+            "MAE": 43.270883254707904,
+            "RMSE": 45.763617684875406,
+            "R2": -11.386301253458326,
+            "r2_undefined_reason": null
+          },
+          {
+            "n_total": 192,
+            "n_scored": 192,
+            "unavailable": 0,
+            "coverage": 1.0,
+            "MAE": 37.84884351099357,
+            "RMSE": 40.497457380553406,
+            "R2": -0.8406000026893286,
+            "r2_undefined_reason": null
+          },
+          {
+            "n_total": 192,
+            "n_scored": 192,
+            "unavailable": 0,
+            "coverage": 1.0,
+            "MAE": 40.60675984017863,
+            "RMSE": 44.66640861936004,
+            "R2": -17.029287406498927,
+            "r2_undefined_reason": null
+          }
+        ],
+        "fold_mean": {
+          "MAE": 40.57549553529336,
+          "RMSE": 43.64249456159629,
+          "R2": -9.75206288754886
+        },
+        "fold_std": {
+          "MAE": 2.213648848722312,
+          "RMSE": 2.2685400717890314,
+          "R2": 6.709269768612365
+        },
+        "std_ddof": 0,
+        "R2_defined_folds": 3
+      }
+    }
+  ]
+}

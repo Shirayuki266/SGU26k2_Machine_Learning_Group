@@ -16,7 +16,7 @@ configs/           Cấu hình dự án
 tests/             Kiểm thử
 data/raw/          Dữ liệu gốc (không commit)
 data/processed/    Dữ liệu đã xử lý (không commit)
-artifacts/         Kết quả sinh ra; chỉ allowlist hồ sơ T10/T11 thật, không model lớn/cache
+artifacts/         Kết quả sinh ra; chỉ allowlist hồ sơ T10–T12 thật, không model lớn/cache
 experiments/       CSV tổng hợp thực nghiệm (hồ sơ run trong artifacts/experiments/)
 reports/figures/   Biểu đồ cho báo cáo
 docs/              Tài liệu dự án
@@ -403,3 +403,32 @@ sau full lỗi bị chặn, không xóa lịch sử để chạy vượt budget.
 candidate/fold/refit được track trực tiếp, không ZIP mới. Khi clone, restore
 riêng hai tree T09 như hướng dẫn T10 và giữ index hiện tại. Chưa lưu model để
 inference hoặc kiểm máy sạch; smoke/fixture không phải kết quả chính.
+
+## T12: A/B/C, grouped feature selection và frozen config
+
+Đã so sánh Ridge alpha0.1 cố định trên cùng primary IDs: A reuse T11,
+B33 feature, C chọn 12 nhóm qua train-only CV từ ba k={12,20,28}.
+Validation MAE A/B/C: 10,200529 / 9,968755 / 9,903377; chiều model65/91/24.
+RF A T10 vẫn tốt nhất MAE9,561488 trong pool đã chốt nên được khóa cho
+lần refit tương lai, không fit lại RF hoặc mở test/T13.
+
+Xem [RQ2, run IDs, feature giữ/bỏ và giới hạn](docs/ablation_findings.md),
+[bảng so sánh](reports/ablation/comparison.csv),
+[frozen config](reports/ablation/frozen_model.json).
+C dùng wrapper Pipeline T08 với grouped pilot Ridge selector; một nhóm giữ
+mọi numeric/indicator hoặc dummy OHE cùng nguồn. Factory/helper ở
+[src/beijing_air/feature_selection.py](src/beijing_air/feature_selection.py).
+
+```powershell
+.\.venv\python.exe scripts/run_ablation.py --mode smoke
+.\.venv\python.exe scripts/run_ablation.py --mode full
+.\.venv\python.exe scripts/report_ablation.py --write-report
+.\.venv\python.exe -m pytest tests/test_ablation.py -q --basetemp=.pytest_cache/t12-check
+```
+
+Ngân sách full đã dùng9 pipeline CV (9pilot+9final Ridge) và2 final B/C
+(3 estimator fits), tổng21 estimator fits; A/RF/persistence reuse artifact.
+Runner không fit lại completed cùng signature, chặn full khác config hoặc
+sau lỗi; không xóa lịch sử vượt budget. Hồ sơ T12 track trực tiếp, không ZIP mới.
+Frozen config khóa data/split provenance/features/preprocessing/model/params/
+postprocessing/criteria, **chưa có weights triển khai**; T13 chỉ khi được giao.

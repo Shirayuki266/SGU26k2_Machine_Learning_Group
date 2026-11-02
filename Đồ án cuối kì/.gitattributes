@@ -57,6 +57,20 @@
 /reports/tuning/** text eol=lf
 /reports/figures/tuning/*.png binary
 
+# T12 code/report fingerprints.
+/configs/ablation.json text eol=lf
+/src/beijing_air/feature_selection.py text eol=lf
+/src/beijing_air/ablation.py text eol=lf
+/scripts/run_ablation.py text eol=lf
+/scripts/report_ablation.py text eol=lf
+/tests/test_ablation.py text eol=lf
+/reports/ablation/** text eol=lf
+/reports/figures/ablation/*.png binary
+
 # Frozen T11 copies include T05 samples.py with original CRLF bytes.
 /artifacts/experiments/90f6a2ef7f9d4a41b8570ae09d669c57/artifacts/source/*.py -text whitespace=cr-at-eol
 /artifacts/experiments/c895894bcf5a4ff28982fbb1ca9d69d9/artifacts/source/*.py -text whitespace=cr-at-eol
+
+# T12 frozen source bytes include historical CRLF files.
+/artifacts/experiments/0a616a9fb5134058b3af3cafb1a70e18/artifacts/source/*.py -text whitespace=cr-at-eol
+/artifacts/experiments/1ee4f2f0e07948a187f5889b042df812/artifacts/source/*.py -text whitespace=cr-at-eol

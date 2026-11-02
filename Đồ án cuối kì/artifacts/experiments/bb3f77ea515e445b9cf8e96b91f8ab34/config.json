@@ -1,0 +1,188 @@
+{
+  "task_id": "T12",
+  "reference_run_id": "32e65c5a4cbc489c905cf146b743867f",
+  "parent_run_id": "9ae62221f0ba4fbcbdaaddd5e04c9633",
+  "fold_id": 2,
+  "mode": "full",
+  "kind": "feature_selection",
+  "objective": "Fixed-parameter A/B ablation and train-CV grouped B-to-C selection; freeze deployment by validation.",
+  "hypothesis": "Causal PM2.5 history may improve Ridge A at fixed alpha; grouped coefficient selection may reduce redundant dimensions with little loss, without guaranteed improvement.",
+  "change": null,
+  "model": "ridge",
+  "parameters": {
+    "stage": "fold",
+    "k_groups": 12,
+    "source_parent_run_id": "0a616a9fb5134058b3af3cafb1a70e18"
+  },
+  "feature_set": "C",
+  "preprocessing": {
+    "schema_version": "t08-preprocessing-v1",
+    "numeric": {
+      "imputation_strategy": "median",
+      "keep_empty_features": true,
+      "missing_indicators": "all",
+      "scale": {
+        "ridge": true,
+        "random_forest": false
+      }
+    },
+    "categorical": {
+      "imputation_strategy": "constant",
+      "fill_value": "__MISSING__",
+      "handle_unknown": "ignore",
+      "sparse_output": false
+    },
+    "output": {
+      "format": "pandas",
+      "verbose_feature_names": true
+    },
+    "prediction_postprocessing": {
+      "negative_predictions": "identity",
+      "applies_to": [
+        "persistence",
+        "ridge",
+        "random_forest"
+      ]
+    }
+  },
+  "data": {
+    "fit": {
+      "samples": 154497,
+      "ordered_ids_sha256": "bdfb4789b3179086798eb97db741513cb9505faa005f70f1dfdf5a13db634a50",
+      "stations": [
+        "Aotizhongxin",
+        "Changping",
+        "Dingling",
+        "Dongsi",
+        "Guanyuan",
+        "Gucheng",
+        "Huairou",
+        "Nongzhanguan",
+        "Shunyi",
+        "Tiantan",
+        "Wanliu",
+        "Wanshouxigong"
+      ],
+      "first_target": "2013-03-01 01:00:00",
+      "last_target": "2014-08-31 22:00:00",
+      "unique_target_timestamps": 13149
+    },
+    "evaluation": {
+      "samples": 25541,
+      "ordered_ids_sha256": "a36bd9020af6ded35797dc8ce3ae8bf769a5bfd1ef1636b4d0f0d70e06ff8db9",
+      "stations": [
+        "Aotizhongxin",
+        "Changping",
+        "Dingling",
+        "Dongsi",
+        "Guanyuan",
+        "Gucheng",
+        "Huairou",
+        "Nongzhanguan",
+        "Shunyi",
+        "Tiantan",
+        "Wanliu",
+        "Wanshouxigong"
+      ],
+      "first_target": "2014-09-01 00:00:00",
+      "last_target": "2014-11-30 23:00:00",
+      "unique_target_timestamps": 2182
+    }
+  },
+  "split": {
+    "fold_id": 2,
+    "evaluation_start": "2014-09-01 00:00:00",
+    "evaluation_end_exclusive": "2014-12-01 00:00:00",
+    "fit": {
+      "samples": 154497,
+      "ordered_ids_sha256": "bdfb4789b3179086798eb97db741513cb9505faa005f70f1dfdf5a13db634a50",
+      "stations": [
+        "Aotizhongxin",
+        "Changping",
+        "Dingling",
+        "Dongsi",
+        "Guanyuan",
+        "Gucheng",
+        "Huairou",
+        "Nongzhanguan",
+        "Shunyi",
+        "Tiantan",
+        "Wanliu",
+        "Wanshouxigong"
+      ],
+      "first_target": "2013-03-01 01:00:00",
+      "last_target": "2014-08-31 22:00:00",
+      "unique_target_timestamps": 13149
+    },
+    "evaluation": {
+      "samples": 25541,
+      "ordered_ids_sha256": "a36bd9020af6ded35797dc8ce3ae8bf769a5bfd1ef1636b4d0f0d70e06ff8db9",
+      "stations": [
+        "Aotizhongxin",
+        "Changping",
+        "Dingling",
+        "Dongsi",
+        "Guanyuan",
+        "Gucheng",
+        "Huairou",
+        "Nongzhanguan",
+        "Shunyi",
+        "Tiantan",
+        "Wanliu",
+        "Wanshouxigong"
+      ],
+      "first_target": "2014-09-01 00:00:00",
+      "last_target": "2014-11-30 23:00:00",
+      "unique_target_timestamps": 2182
+    },
+    "purged": {
+      "samples": 12,
+      "ordered_ids_sha256": "d6c4dd73367c6e0559e71d7b8c0bf924b56b7a7905a7ebdf9676a294d955574a",
+      "stations": [
+        "Aotizhongxin",
+        "Changping",
+        "Dingling",
+        "Dongsi",
+        "Guanyuan",
+        "Gucheng",
+        "Huairou",
+        "Nongzhanguan",
+        "Shunyi",
+        "Tiantan",
+        "Wanliu",
+        "Wanshouxigong"
+      ],
+      "first_target": "2014-08-31 23:00:00",
+      "last_target": "2014-08-31 23:00:00",
+      "unique_target_timestamps": 1
+    },
+    "label_availability": {
+      "status": "passed",
+      "fit_samples": 154497,
+      "evaluation_samples": 25541,
+      "latest_fit_target_timestamp": "2014-08-31T22:00:00",
+      "first_evaluation_input_timestamp": "2014-08-31T23:00:00",
+      "planned_label_cutoff": "2014-08-31T23:00:00",
+      "comparison": "<",
+      "fitted": false
+    },
+    "shared_station_boundaries": true,
+    "timestamp_grouping": "unique_target_timestamp"
+  },
+  "time_ranges": null,
+  "sample_counts": null,
+  "seed": null,
+  "budget": {
+    "full_searches": 1,
+    "selector_candidates": 3,
+    "folds": 3,
+    "cv_pipeline_fits": 9,
+    "cv_pilot_estimator_fits": 9,
+    "validation_pipeline_fits": 2,
+    "total_estimator_fits": 21,
+    "RF_fits": 0,
+    "automatic_retries": 0
+  },
+  "is_test": false,
+  "source": "executed_script"
+}
