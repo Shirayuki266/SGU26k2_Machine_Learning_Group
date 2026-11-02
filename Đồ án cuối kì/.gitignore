@@ -51,6 +51,10 @@ artifacts/*
 !reports/quality_full/issues.csv
 !reports/quality_full/stations.csv
 
+# Experiment index is reviewable; run files reuse the ignored artifacts/ root.
+!experiments/experiment_log.csv
+experiments/.experiment_log.lock
+
 # Local editor and OS files
 .vscode/
 .idea/

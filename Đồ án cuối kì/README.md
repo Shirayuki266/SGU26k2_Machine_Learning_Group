@@ -17,6 +17,7 @@ tests/             Kiểm thử
 data/raw/          Dữ liệu gốc (không commit)
 data/processed/    Dữ liệu đã xử lý (không commit)
 artifacts/         Model và kết quả sinh ra (không commit)
+experiments/       CSV tổng hợp thực nghiệm (hồ sơ run trong artifacts/experiments/)
 reports/figures/   Biểu đồ cho báo cáo
 docs/              Tài liệu dự án
 app/               Ứng dụng Streamlit
@@ -116,3 +117,33 @@ Mặc định không ghi đè đầu ra đã có. Chỉ thêm `--overwrite` khi 
 Smoke chỉ đọc 100 dòng đầu mỗi file, không dùng để kết luận chất lượng toàn bộ dữ liệu. Báo cáo full Task 04: [reports/data_quality.md](reports/data_quality.md). Codex hỗ trợ loader, kiểm thử và tài liệu; chưa impute hay huấn luyện.
 
 Commit đề xuất: `feat: merge station data and validate temporal integrity`.
+
+## T04-BỔ SUNG: Experiment Log
+
+`beijing_air.experiment_logging.ExperimentLogger` cung cấp `start_run`,
+`log_metrics`, `log_artifact`, `finish_run` và context manager tự ghi trạng thái
+thành công/thất bại/ngắt, giữ lỗi và traceback. Mỗi run có UUID, config/metrics/
+metadata/notes riêng trong `artifacts/experiments/`; CSV tổng hợp tại
+`experiments/experiment_log.csv` được cập nhật bằng khóa hệ điều hành và thay
+file an toàn. CSV hiện chỉ có header; task này chưa chạy mô hình hoặc thêm metric.
+
+Hướng dẫn API, ví dụ tích hợp baseline/training, null/UTF-8, artifact và phục hồi:
+[docs/experiment_logging.md](docs/experiment_logging.md). Đọc
+[workflow](docs/codex_workflow.md), [kế hoạch dự án](docs/project_plan.md) và
+[kế hoạch giữa kỳ](docs/midterm_plan.md) trước task tiếp theo. Khi bàn giao run,
+đóng gói cả CSV và `artifacts/experiments/` vì hồ sơ run đang được ignore trong Git.
+
+[Quy trình GitHub](docs/github_workflow.md): mỗi task nhỏ dùng một Issue, branch
+và PR; được commit/push branch và mở PR. Người dùng review và merge; không
+merge, bật auto-merge hoặc tự đóng Issue.
+
+Kiểm tra logger và hồi quy T04 bằng dữ liệu tổng hợp, không đọc dữ liệu full:
+
+```powershell
+.\.venv\python.exe -m pytest tests/test_experiment_logging.py -q --basetemp=.pytest_cache/t04-logging
+.\.venv\python.exe -m pytest tests -q -k "not test_saved_full_output_matches_audit_and_raw_checksums" --basetemp=.pytest_cache/t04-logging-regression
+```
+
+Codex hỗ trợ logger, kiểm thử và tài liệu T04-BỔ SUNG. Chưa huấn luyện, tuning,
+feature selection hoặc mở test set. Commit đề xuất:
+`feat: add reproducible experiment logging infrastructure`.
