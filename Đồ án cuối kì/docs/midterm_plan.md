@@ -1,38 +1,72 @@
-# Kế hoạch bàn giao giữa kỳ
+# Kế hoạch và checklist giữa kỳ — MK01/MK02
 
-Trạng thái ngày 02/11/2026: có cấu trúc T01, protocol T02, manifest/audit T03,
-loader và báo cáo chất lượng T04; T04-BỔ SUNG cung cấp Experiment Log trước
-khi chạy baseline. Chưa có kết quả mô hình được xác minh. Log chỉ có header,
-không dựng bảng so sánh hoặc lịch sử chạy để lấp phần thiếu.
+Tên/phạm vi do người dùng chốt ngày 02/11/2026. **MK01 tạo cả DOCX và PPTX;
+MK02 kiểm tra và đóng gói**, không tách nhầm hai mã thành báo cáo và slide.
+T02 chỉ chuẩn bị checklist, chưa tạo các sản phẩm đó.
 
-## Nội dung cần chuẩn bị
+Hiện có T01 xác minh môi trường, đặc tả T02, manifest/audit T03–T04 và logger
+T04-LOG. Chưa có baseline/model/metric xác minh; log chính thức chỉ header.
+Ưu tiên tiến độ thực tế đến T10; có T11/T12 thì bổ sung. Không bắt buộc tuning,
+test cuối hoặc demo và **không mở test để lấy số liệu giữa kỳ**. Phải nêu thiếu,
+không điền bảng giả.
 
-1. Đề tài, thành viên và phân công: nhóm cung cấp thông tin thật; chưa xác minh
-   tên, MSSV hoặc đóng góp trong task này.
-2. Bối cảnh, mục tiêu, input/output và hồi quy: dùng protocol T02, trình bày
-   dự báo đúng t+1 cùng trạm và điều kiện thông tin có tới t.
-3. Nguồn UCI 501, schema, số mẫu và chất lượng: trích manifest/audit hiện có,
-   ghi rõ audit toàn bộ dữ liệu đã thực hiện ở T03–T04; không gọi đó là EDA train.
-4. EDA, preprocessing, đặc trưng: hiện mới có chính sách/thiết kế; chưa có
-   notebook EDA train và pipeline được xác minh, cần task riêng.
-5. Pipeline, baseline, mô hình và thực nghiệm: phân biệt thiết kế với phần đã
-   chạy. Tích hợp logger trước baseline/training; kết quả giữa kỳ dùng validation.
-6. Kết quả và nhận xét: hiện có kết quả audit, chưa có metric mô hình. Chỉ thêm
-   metric/bảng/hình khi có run và artifact thật; ghi run_id hoặc bảng truy vết.
-7. Tiến độ, khó khăn, giới hạn và phần còn lại: dựa trên project_plan.md và
-   báo cáo task; không bắt buộc tuning/test cuối/demo trước giữa kỳ.
-8. Đóng góp thực tế từng người: nhóm xác nhận; không suy từ người chạy script
-   hoặc tác giả hỗ trợ AI thành đóng góp học thuật.
+## 1. MK01 — Nội dung DOCX/PPTX
 
-## Sản phẩm và đóng gói
+| Yêu cầu | CRISP-DM/task | Checklist bằng chứng | Hiện có |
+| --- | --- | --- | --- |
+| Đề tài/thành viên/phân công | Business Understanding/quản lý | [ ] Tên/MSSV/số nhóm/phân công và đóng góp xác nhận | Chưa đủ thông tin nhóm |
+| Bối cảnh/mục tiêu/Input–Output/hồi quy | T02 | [ ] Đúng t+1/cùng trạm, µg/m³, input tới t, giả định số đo t, RQ1/2/3 | Có đặc tả, chưa có DOCX/PPTX |
+| Dữ liệu/nguồn/số mẫu/thuộc tính/target | Data Understanding, T03–T05 | [ ] Trích nguồn/manifest/audit; phân biệt số công bố/audit/supervised thật | Có audit, T05 chưa xác minh triển khai |
+| EDA train | T06 | [ ] Đơn/đa biến, missing/bất thường/ngoại lệ, thời gian/trạm, hình/bảng gốc và quyết định | Chưa có notebook/hình train xác minh |
+| Feature/pipeline | Data Preparation, T07–T08 | [ ] A/B/dictionary/causal tests; train-only/schema/save-load; tách thiết kế/đã chạy | Có thiết kế, chưa có pipeline xác minh |
+| Baseline/model/protocol | Modeling/Evaluation, T09–T10 | [ ] Persistence/fallback, Ridge/RF A, MAE/RMSE/R², cùng IDs, split/CV/test gate | Có thiết kế, chưa có predictions/metric thật |
+| Kết quả/nhận xét bước đầu | T09–T10; T11/T12 nếu có | [ ] Validation/CV có run_id/config/mode/N/thời gian; smoke khác full | Chưa có metric mô hình, ghi thiếu |
+| Vòng thử–nhận xét–sửa | Mọi giai đoạn/T04-LOG | [ ] Giả thuyết/thay đổi, tham chiếu/số liệu/quyết định; giữ kém/thất bại | Chưa có run mô hình, không dựng lịch sử |
+| Tiến độ/khó khăn/kế hoạch | Project plan | [ ] Artifact task hoàn thành, phần còn lại/phụ thuộc/tài nguyên/giới hạn | Có mapping; Issue đóng không đủ bằng chứng |
+| Đóng góp/nguồn/AI disclosure | Tất cả sản phẩm | [ ] Đóng góp thực tế và nguồn/hỗ trợ AI được ghi đúng | Chưa xác minh từng thành viên |
 
-Báo cáo `.docx`, slide `.pptx`, mã `.py`/notebook `.ipynb`, cấu hình/dependencies,
-CSV Experiment Log, file hình gốc, dữ liệu hoặc đường dẫn/hướng dẫn tải,
-model nếu đã huấn luyện và cần bàn giao, README tái lập. Báo cáo và slide chưa
-được tạo trong task logger. Thư mục run đang ignore trong Git: khi có run thật
-phải kèm `artifacts/experiments/` để CSV liên kết được config/metrics/artifact.
+Ô chưa tick là checklist bàn giao **tài liệu MK01**, không phủ nhận source/audit
+đã có. Khi thiếu kết quả nêu rõ thiếu và kế hoạch; không coi đó là đã đủ mọi
+rubric chấm điểm. Chưa có rubric chính thức trong repo, đối chiếu khi được cấp.
 
-Tên ZIP dự kiến: `NhomXX_DuBaoPM25_BacKinh_GiuaKy.zip`; `XX` chờ nhóm xác nhận.
-Không tạo ZIP, kết quả hoặc model giả trong lần bổ sung này. Báo cáo giữa kỳ
-theo CRISP-DM, bao phủ các mục yêu cầu trên và không thay báo cáo cuối kỳ 5 chương.
-Logger được Codex hỗ trợ cài đặt/kiểm thử/tài liệu; nhóm rà soát khi tích hợp.
+DOCX/PPTX theo logic CRISP-DM và bao phủ bảng trên. Giữa kỳ không thay báo cáo
+cuối kỳ 5 chương. Không suy đóng góp từ Git author/người chạy script. Mỗi
+bảng/hình có nguồn audit hoặc run_id; hình gốc có trục/đơn vị/chú thích, không
+gọi hình minh họa là kết quả thực nghiệm.
+
+## 2. MK02 — Đối chiếu và đóng gói
+
+- [ ] DOCX/PPTX MK01 mở được, nhất quán nội dung/phiên bản; bảng/hình đối chiếu
+  artifact/run_id/mode và split train/validation/CV.
+- [ ] Source .py, notebook .ipynb nếu có, config/dependencies và README có lệnh
+  thật; notebook gọi module và tái lập được phần đã triển khai.
+- [ ] Kèm experiments/experiment_log.csv và hồ sơ run thật trong
+  artifacts/experiments/ khi có; link config/metrics/predictions/hình hợp lệ.
+  Chưa có run thì CSV header và báo thiếu, không tạo run mẫu.
+- [ ] Kèm hình/bảng gốc EDA/kết quả và sơ đồ pipeline thực nếu đã có; chỉ mục
+  truy vết tài liệu → audit/run → artifact.
+- [ ] Dataset hoặc nguồn/hướng dẫn tải và kiểm checksum; không tải lại chỉ để
+  đóng gói, không đưa data lớn vào Git.
+- [ ] Model/pipeline đã huấn luyện nếu có và cần bàn giao, kèm load/inference;
+  chưa có model phải ghi rõ, không tạo model giả.
+- [ ] Đối chiếu source–config–log–metric–predictions–hình–DOCX/PPTX–README;
+  ghi kiểm tra thực chạy/kết quả/giới hạn, không báo lệnh chưa chạy pass.
+- [ ] Loại secrets, .venv/cache khỏi gói; artifact không commit có đường dẫn
+  truy cập/cách tạo lại, nguồn và license phù hợp.
+- [ ] Xác nhận nhóm XX, tạo NhomXX_DuBaoPM25_BacKinh_GiuaKy.zip và kiểm tra
+  giải nén/đường dẫn/hướng dẫn sử dụng. Đây là tên mẫu, chưa có ZIP thực tế.
+
+Tuning/test/demo không phải điều kiện hoàn thành MK01/MK02. Nếu nêu T13, ghi
+đó là kế hoạch refit train+validation sau khóa rồi test, chưa phải kết quả.
+Không mở test mới để bổ sung bảng giữa kỳ.
+
+## 3. Hoàn thành và bàn giao
+
+MK01 hoàn thành khi DOCX/PPTX phản ánh đúng tiến độ, nguồn/truy vết và mục thiếu
+rõ ràng. MK02 hoàn thành khi có gói và bằng chứng kiểm tra đối chiếu/tái lập
+cho phần thực có. Trong T02 chưa tạo DOCX/PPTX/model/ZIP, không tick checklist
+thay cho thực hiện MK01/MK02.
+
+Phân công, deadline và Issue MK01/MK02 chưa xác minh, chỉ ghi mã task.
+Theo [quy trình GitHub](github_workflow.md); người dùng merge.
+Codex hỗ trợ cập nhật mapping và checklist.

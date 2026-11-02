@@ -17,15 +17,18 @@ mỗi vòng thực nghiệm bắt đầu từ câu hỏi/giả thuyết, thiết
 và quyết định. Không giả định pipeline đầu tiên là phương án cuối; không làm
 sai có chủ ý để dựng lịch sử cải tiến hoặc tạo metric/kết quả giả.
 
-Đọc [protocol T02](task_02_forecasting_protocol.md) và cấu hình trước khi triển
-khai. Target ghép đúng `(station, timestamp+1h)`; không dùng dòng kế tiếp khi có
+Đọc [chỉ mục T02](task_02_forecasting_protocol.md), [bài toán](problem_definition.md),
+[kế hoạch thực nghiệm](experiment_plan.md) và config trước khi triển khai.
+Target ghép đúng `(station, timestamp+1h)`; không dùng dòng kế tiếp khi có
 giờ khuyết; không impute target. Không dùng IQR để tự xóa nồng độ cao. Raw giữ
 nguyên; audit dữ liệu tách khỏi thực nghiệm mô hình. Dùng lại đầu ra T03–T04
 đã có nếu phù hợp, chỉ chạy lại khi có lý do cụ thể.
 
 Feature chỉ dùng thông tin tới t, tính lag/rolling riêng từng trạm; không
 backfill, centered rolling hoặc dùng tương lai. Imputer, encoder, scaler và
-selector chỉ fit trên train của từng run/fold. Split theo **target timestamp**:
+selector chỉ fit trên training partition của từng run/fold: trong phát triển
+là train; riêng T13 sau khóa mới refit train+validation trước khi chấm test.
+Không fit bất kỳ bước nào trên test. Split theo **target timestamp**:
 train trước 2015-03-01, validation từ 2015-03-01 đến trước 2016-03-01, test từ
 2016-03-01; không tự đổi mốc. Đánh giá cuốn chiếu cho phép dùng quan sát đã có
 tới t. Baseline và model dùng cùng sample IDs khi so sánh.
@@ -38,10 +41,14 @@ tập con của B, sẽ được thiết kế khi có task feature selection. Kh
 đổi protocol T02. Tuning khi được giao dùng expanding-window trong train,
 unique timestamps và target fit đã quan sát trước origin đánh giá. Validation
 dùng chọn cấu hình; test chỉ được đánh giá sau khi khóa lựa chọn và có task
-cho phép, không dùng test để cải tiến.
+cho phép, không dùng test để cải tiến. Theo phạm vi người dùng chốt mới nhất,
+T13 refit toàn pipeline trên train+validation sau khóa; quyết định này thay
+quy định không refit của protocol T02 cũ. MK01 tạo DOCX/PPTX, MK02 đóng gói;
+mapping tên/phạm vi task trong project_plan.md đã được người dùng xác nhận.
 
 ## Thực nghiệm và bàn giao
 
+T04-LOG là tên hiện hành của T04-BỔ SUNG (Issue #6), không tạo logger song song.
 Tích hợp [Experiment Log](experiment_logging.md) trước baseline/training tiếp
 theo. Trước run: đọc kết quả cũ, ghi giả thuyết, lý do, thay đổi, run tham chiếu,
 cấu hình và ngân sách. Sau run: lưu metric/predictions/artifact, so sánh dựa

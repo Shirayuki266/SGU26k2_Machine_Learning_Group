@@ -77,6 +77,29 @@ khởi chạy notebook/server. Kiểm thử xử lý dữ liệu được bổ s
 
 Các thư mục dữ liệu và artifacts giữ `.gitkeep` để bảo toàn cấu trúc trong Git, còn nội dung sinh ra và model nhị phân được bỏ qua.
 
+## T02: đặc tả, CRISP-DM và giữa kỳ
+
+[Problem definition](docs/problem_definition.md) và
+[experiment plan](docs/experiment_plan.md) là đặc tả hiện hành; file T02 cũ
+giữ vai trò chỉ mục truy vết quyết định. `configs/default.json` bổ sung hợp
+đồng dưới đây cho các task sẽ triển khai, chưa tự chạy pipeline/model:
+
+| Hợp đồng | Giá trị đã chốt |
+| --- | --- |
+| Mục tiêu | Hồi quy PM2.5, µg/m³; input tới t khi số đo t sẵn sàng, output đúng t+1 cùng trạm đã quan sát; dự báo cuốn chiếu |
+| Split | Theo target_timestamp: train trước 2015-03-01; validation tới trước 2016-03-01; test từ 2016-03-01, vẫn khóa |
+| Temporal CV | Expanding-window chỉ trong train, unique target timestamps, chung ranh giới trạm; fold fit target phải trước origin đánh giá đầu |
+| Features | A=F0 số đo t/station/lịch; B=F1 thêm lag 1/2/3/6/12/24 giờ và rolling 3/6/12/24 giờ; C chọn từ B trong từng fold |
+| Phương pháp/metric | Persistence có fallback/coverage riêng; Ridge/Random Forest ban đầu A; MAE chính, RMSE/R² bổ sung, cùng sample IDs |
+| Test gate | Khóa phương án bằng train/CV/validation; chỉ T13 mới refit pipeline trên train+validation rồi test, không chọn lại bằng test |
+
+[Project plan](docs/project_plan.md) mapping CRISP-DM với T01–T16 và T04-LOG
+(cùng task logger T04-BỔ SUNG/Issue #6). [Midterm plan](docs/midterm_plan.md)
+chốt MK01 tạo DOCX/PPTX từ tiến độ thật, MK02 đối chiếu và đóng gói; ưu tiên
+kết quả tới T10, T11/T12 nếu có, không mở test lấy số liệu giữa kỳ.
+Chưa có metric mô hình, DOCX/PPTX hoặc gói giữa kỳ được xác minh trong repo.
+Codex hỗ trợ cập nhật tài liệu, chưa triển khai các task tiếp theo.
+
 ## Sự hỗ trợ của AI
 
 Codex hỗ trợ khởi tạo cấu trúc, cấu hình, script kiểm tra import và hướng dẫn môi trường trong Task 01. Nhóm cần rà soát mã và tự xác nhận kết quả chạy; hiện chưa có kết quả thực nghiệm.
