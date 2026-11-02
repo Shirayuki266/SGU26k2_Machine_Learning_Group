@@ -1,0 +1,34 @@
+feature_name,source,source_time_offsets_hours,available_by,meaning_vi,dtype,unit,feature_sets,missing_policy,formula
+PM2.5,PM2.5,[0],origin_t,Số đo PM2.5 tại giờ phát hành t,float64,µg/m³,A;B,preserve_NA,identity
+PM10,PM10,[0],origin_t,Số đo PM10 tại giờ phát hành t,float64,µg/m³,A;B,preserve_NA,identity
+SO2,SO2,[0],origin_t,Số đo SO2 tại giờ phát hành t,float64,µg/m³,A;B,preserve_NA,identity
+NO2,NO2,[0],origin_t,Số đo NO2 tại giờ phát hành t,float64,µg/m³,A;B,preserve_NA,identity
+CO,CO,[0],origin_t,Số đo CO tại giờ phát hành t,float64,µg/m³,A;B,preserve_NA,identity
+O3,O3,[0],origin_t,Số đo O3 tại giờ phát hành t,float64,µg/m³,A;B,preserve_NA,identity
+TEMP,TEMP,[0],origin_t,Số đo TEMP tại giờ phát hành t,float64,°C,A;B,preserve_NA,identity
+PRES,PRES,[0],origin_t,Số đo PRES tại giờ phát hành t,float64,hPa,A;B,preserve_NA,identity
+DEWP,DEWP,[0],origin_t,Số đo DEWP tại giờ phát hành t,float64,°C,A;B,preserve_NA,identity
+RAIN,RAIN,[0],origin_t,Số đo RAIN tại giờ phát hành t,float64,mm,A;B,preserve_NA,identity
+WSPM,WSPM,[0],origin_t,Số đo WSPM tại giờ phát hành t,float64,m/s,A;B,preserve_NA,identity
+station,station,[0],origin_t,Mã trạm,string,category,A;B,preserve_NA,identity
+wd,wd,[0],origin_t,Hướng gió tại t,string,category,A;B,preserve_NA,identity
+target_hour,input_timestamp+1h (known calendar only),no_measurement,origin_t,Giờ dự báo 0–23,int64,calendar,A;B,not_missing,(t+1h).hour
+target_month,input_timestamp+1h (known calendar only),no_measurement,origin_t,Tháng dự báo 1–12,int64,calendar,A;B,not_missing,(t+1h).month
+target_day_of_week,input_timestamp+1h (known calendar only),no_measurement,origin_t,"Thứ giờ dự báo, Monday=0",int64,calendar,A;B,not_missing,(t+1h).day_of_week
+target_hour_sin,target_hour,no_measurement,origin_t,"Chu kỳ target_hour, sin",float64,dimensionless,A;B,not_missing,sin(2*pi*(target_hour-0)/24)
+target_hour_cos,target_hour,no_measurement,origin_t,"Chu kỳ target_hour, cos",float64,dimensionless,A;B,not_missing,cos(2*pi*(target_hour-0)/24)
+target_month_sin,target_month,no_measurement,origin_t,"Chu kỳ target_month, sin",float64,dimensionless,A;B,not_missing,sin(2*pi*(target_month-1)/12)
+target_month_cos,target_month,no_measurement,origin_t,"Chu kỳ target_month, cos",float64,dimensionless,A;B,not_missing,cos(2*pi*(target_month-1)/12)
+pm25_lag_1h,PM2.5 same station,[-1],origin_t,PM2.5 đúng t−1 giờ,float64,µg/m³,B,preserve_NA,"PM2.5(station,t-1h); exact timestamp"
+pm25_lag_3h,PM2.5 same station,[-3],origin_t,PM2.5 đúng t−3 giờ,float64,µg/m³,B,preserve_NA,"PM2.5(station,t-3h); exact timestamp"
+pm25_lag_6h,PM2.5 same station,[-6],origin_t,PM2.5 đúng t−6 giờ,float64,µg/m³,B,preserve_NA,"PM2.5(station,t-6h); exact timestamp"
+pm25_lag_12h,PM2.5 same station,[-12],origin_t,PM2.5 đúng t−12 giờ,float64,µg/m³,B,preserve_NA,"PM2.5(station,t-12h); exact timestamp"
+pm25_lag_24h,PM2.5 same station,[-24],origin_t,PM2.5 đúng t−24 giờ,float64,µg/m³,B,preserve_NA,"PM2.5(station,t-24h); exact timestamp"
+pm25_roll_mean_3h,PM2.5 same station,"[-2,0]",origin_t,"Rolling mean 3 giờ, kết thúc tại t",float64,µg/m³,B,NA unless 3/3 observations present,mean(PM2.5[t-2h:t]); ddof=1 for std
+pm25_roll_std_3h,PM2.5 same station,"[-2,0]",origin_t,"Rolling std 3 giờ, kết thúc tại t",float64,µg/m³,B,NA unless 3/3 observations present,std(PM2.5[t-2h:t]); ddof=1 for std
+pm25_roll_mean_6h,PM2.5 same station,"[-5,0]",origin_t,"Rolling mean 6 giờ, kết thúc tại t",float64,µg/m³,B,NA unless 6/6 observations present,mean(PM2.5[t-5h:t]); ddof=1 for std
+pm25_roll_std_6h,PM2.5 same station,"[-5,0]",origin_t,"Rolling std 6 giờ, kết thúc tại t",float64,µg/m³,B,NA unless 6/6 observations present,std(PM2.5[t-5h:t]); ddof=1 for std
+pm25_roll_mean_12h,PM2.5 same station,"[-11,0]",origin_t,"Rolling mean 12 giờ, kết thúc tại t",float64,µg/m³,B,NA unless 12/12 observations present,mean(PM2.5[t-11h:t]); ddof=1 for std
+pm25_roll_std_12h,PM2.5 same station,"[-11,0]",origin_t,"Rolling std 12 giờ, kết thúc tại t",float64,µg/m³,B,NA unless 12/12 observations present,std(PM2.5[t-11h:t]); ddof=1 for std
+pm25_roll_mean_24h,PM2.5 same station,"[-23,0]",origin_t,"Rolling mean 24 giờ, kết thúc tại t",float64,µg/m³,B,NA unless 24/24 observations present,mean(PM2.5[t-23h:t]); ddof=1 for std
+pm25_roll_std_24h,PM2.5 same station,"[-23,0]",origin_t,"Rolling std 24 giờ, kết thúc tại t",float64,µg/m³,B,NA unless 24/24 observations present,std(PM2.5[t-23h:t]); ddof=1 for std

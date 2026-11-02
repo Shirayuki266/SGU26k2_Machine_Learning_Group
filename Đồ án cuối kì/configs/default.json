@@ -45,12 +45,14 @@
       "legacy_name": "F0",
       "measurements": ["PM2.5", "PM10", "SO2", "NO2", "CO", "O3", "TEMP", "PRES", "DEWP", "RAIN", "WSPM"],
       "categorical": ["station", "wd"],
-      "calendar": ["hour", "month", "day_of_week"]
+      "calendar_reference": "target_timestamp",
+      "calendar": ["target_hour", "target_month", "target_day_of_week"],
+      "cyclic_calendar": {"target_hour": 24, "target_month": 12}
     },
     "B": {
       "legacy_name": "F1",
       "extends": "A",
-      "pm25_lag_hours": [1, 2, 3, 6, 12, 24],
+      "pm25_lag_hours": [1, 3, 6, 12, 24],
       "pm25_rolling_windows_hours": [3, 6, 12, 24],
       "rolling_stats": ["mean", "std"],
       "rolling_std_ddof": 1,
