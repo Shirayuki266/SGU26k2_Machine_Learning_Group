@@ -1,0 +1,20 @@
+{
+  "schema_version": "t08-preprocessing-v1",
+  "numeric": {
+    "imputation_strategy": "median",
+    "keep_empty_features": true,
+    "missing_indicators": "all",
+    "scale": {"ridge": true, "random_forest": false}
+  },
+  "categorical": {
+    "imputation_strategy": "constant",
+    "fill_value": "__MISSING__",
+    "handle_unknown": "ignore",
+    "sparse_output": false
+  },
+  "output": {"format": "pandas", "verbose_feature_names": true},
+  "prediction_postprocessing": {
+    "negative_predictions": "identity",
+    "applies_to": ["persistence", "ridge", "random_forest"]
+  }
+}
