@@ -4,7 +4,7 @@ Dự án học máy dự báo nồng độ PM2.5 tại giờ t+1 của cùng tr�
 
 Nguồn dữ liệu dự kiến do nhóm lựa chọn: [Beijing Multi-Site Air Quality, UCI dataset 501](https://archive.ics.uci.edu/dataset/501/beijing+multi-site+air+quality+data).
 
-Các task sau sẽ triển khai baseline persistence, Ridge và Random Forest; đánh giá bằng MAE (chính), RMSE và R². Train/validation/test được chia theo thời gian; tiền xử lý fit trên train, không dùng test để tuning hay chọn đặc trưng. Target, lag và rolling phải đúng trạm, đúng thời gian và không dùng tương lai.
+Dự án dùng baseline persistence, Ridge và Random Forest; đánh giá bằng MAE (chính), RMSE và R². Train/validation/test được chia theo thời gian; tiền xử lý fit trên train, không dùng test để tuning hay chọn đặc trưng. Target, lag và rolling phải đúng trạm, đúng thời gian và không dùng tương lai. Kết quả T09/T10 và phạm vi đã thực thi nằm trong các phần tương ứng bên dưới.
 
 ## Cấu trúc
 
@@ -16,7 +16,7 @@ configs/           Cấu hình dự án
 tests/             Kiểm thử
 data/raw/          Dữ liệu gốc (không commit)
 data/processed/    Dữ liệu đã xử lý (không commit)
-artifacts/         Model và kết quả sinh ra (không commit)
+artifacts/         Kết quả sinh ra; chỉ allowlist hồ sơ T10 thật, không model lớn/cache
 experiments/       CSV tổng hợp thực nghiệm (hồ sơ run trong artifacts/experiments/)
 reports/figures/   Biểu đồ cho báo cáo
 docs/              Tài liệu dự án
@@ -195,9 +195,10 @@ Commit đề xuất: `feat: merge station data and validate temporal integrity`.
 thành công/thất bại/ngắt, giữ lỗi và traceback. Mỗi run có UUID, config/metrics/
 metadata/notes riêng trong `artifacts/experiments/`; CSV tổng hợp tại
 `experiments/experiment_log.csv` được cập nhật bằng khóa hệ điều hành và thay
-file an toàn. T04-LOG chỉ tạo header; đến T09 đã có smoke/full persistence thật,
-xem [kết quả và bundle](docs/baseline_results.md). Clone mới cần restore run
-trees trước khi ghi run mới để giữ liên kết/lịch sử.
+file an toàn. T04-LOG chỉ tạo header; T09 có smoke/full persistence thật,
+xem [kết quả T09](docs/baseline_results.md). T10 bổ sung Ridge/RF và các run
+trees được track trực tiếp; clone mới dùng [restore T09 cho ledger T10](docs/initial_findings.md)
+trước khi ghi run mới để giữ liên kết/lịch sử.
 
 Hướng dẫn API, ví dụ tích hợp baseline/training, null/UTF-8, artifact và phục hồi:
 [docs/experiment_logging.md](docs/experiment_logging.md). Đọc
@@ -351,3 +352,28 @@ Ridge/RF, tuning hoặc test. Sau clone restore run trees rồi kiểm lại:
 
 Verifier không tạo run mới; không chạy full lại vì budget T09 đã dùng.
 T10 so model trên cùng primary IDs/policy, không buộc thắng persistence.
+
+## T10: Ridge và Random Forest ban đầu, bộ A
+
+Thiết kế cố định ở [initial_models.json](configs/initial_models.json), factory
+pipeline T08, primary train/validation T05. Chạy riêng từng model để giải phóng
+RAM giữa các tiến trình. Lệnh dưới mô tả lượt chạy; runner tái sử dụng run
+completed cùng signature/artifact thay vì fit lại, từ chối full thứ hai khi
+đổi cấu hình. Không xóa log để vượt ngân sách.
+
+```powershell
+.\.venv\python.exe scripts/run_initial_models.py --mode smoke --model ridge
+.\.venv\python.exe scripts/run_initial_models.py --mode smoke --model random_forest
+.\.venv\python.exe scripts/run_initial_models.py --mode full --model ridge
+.\.venv\python.exe scripts/run_initial_models.py --mode full --model random_forest
+.\.venv\python.exe scripts/report_initial_models.py --write-comparison
+.\.venv\python.exe -m pytest tests -q -k "not test_saved_full_output_matches_audit_and_raw_checksums" --basetemp=.pytest_cache/t10-check
+```
+
+[Kết quả, run IDs, nhận xét và giới hạn](docs/initial_findings.md),
+[bảng so sánh từ artifact](reports/initial_models/comparison.csv),
+[hình gốc](reports/figures/initial_models/comparison.png).
+Hồ sơ T10 thật được lưu trực tiếp dưới `artifacts/experiments/<run_id>/` gồm
+config/metadata/metrics, source snapshots và predictions CSV.GZ có checksum;
+không tạo thêm ZIP. Không lưu trọng số ở vòng đầu: fitted pipeline summary
+không dùng để inference. Chưa thực hiện T11/T12 hoặc mở test.

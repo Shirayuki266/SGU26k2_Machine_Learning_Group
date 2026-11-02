@@ -1,0 +1,15 @@
+{
+  "schema_version": "t10-initial-A-v1",
+  "feature_set": "A",
+  "cohort": "primary",
+  "baseline_reference_run_id": "24cef47874a94d9faa7bfcbae29b5c58",
+  "models": {
+    "ridge": {"alpha": 1.0},
+    "random_forest": {"n_estimators": 80, "max_depth": 12, "min_samples_leaf": 2, "max_features": 1.0, "random_state": 42, "n_jobs": 1}
+  },
+  "smoke": {"train_rows_per_station": 256, "validation_rows_per_station": 64, "selection": "chronological_head_after_primary_filter"},
+  "budget": {"max_full_runs_per_model": 1, "smoke_required": true, "tuning": false},
+  "resources": {"blas_threads": 1, "minimum_free_memory_mb": 768, "execution": "sequential"},
+  "save_model_weights": false,
+  "note": "Fixed before scoring in Issue #20. RF intentionally bounded vs old 300/unlimited design due about 1.9 GiB available RAM. No tuning, no clipping; fitted state summary is not deployable model weights."
+}

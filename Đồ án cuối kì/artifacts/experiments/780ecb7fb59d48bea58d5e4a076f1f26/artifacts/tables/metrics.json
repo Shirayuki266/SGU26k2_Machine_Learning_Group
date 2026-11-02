@@ -1,0 +1,33 @@
+{
+  "model": "random_forest",
+  "mode": "full",
+  "run_id": "780ecb7fb59d48bea58d5e4a076f1f26",
+  "train": {
+    "n_total": 204865,
+    "n_scored": 204865,
+    "unavailable": 0,
+    "coverage": 1.0,
+    "MAE": 9.837286915801801,
+    "RMSE": 16.66433522709399,
+    "R2": 0.9553527450212967,
+    "r2_undefined_reason": null,
+    "negative_predictions": 0
+  },
+  "validation": {
+    "n_total": 102479,
+    "n_scored": 102479,
+    "unavailable": 0,
+    "coverage": 1.0,
+    "MAE": 9.56148776684663,
+    "RMSE": 18.964824954952,
+    "R2": 0.9463762678475134,
+    "r2_undefined_reason": null,
+    "negative_predictions": 0
+  },
+  "timing_seconds": {
+    "preflight_before_run": 15.985216900000523,
+    "fit_pipeline": 161.2247430999996,
+    "predict_train": 2.767161200004921,
+    "predict_validation": 1.2323414999991655
+  }
+}

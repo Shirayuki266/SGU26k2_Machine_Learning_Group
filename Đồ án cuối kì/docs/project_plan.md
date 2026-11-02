@@ -40,8 +40,8 @@ Phụ thuộc là trình tự kỹ thuật, không cấp quyền chạy. Chưa c
 | T06 | EDA train: tính chất biến, đơn/đa biến, missing/bất thường/ngoại lệ, chu kỳ thời gian/trạm; notebook, bảng, hình gốc và nhận xét | T05 xác định train | Issue #12; PR #13 đã merge; notebook full kernel sạch, 14 bảng/9 PNG và [quyết định T07/T08](eda_findings.md) |
 | T07 | Feature engineering A/B, lag/rolling đúng trạm/timestamp, dictionary và causal tests | T05–T06 | Issue #14; PR #15 đã merge; A 20/B 33 cột, giữ 205.977 train IDs, [dictionary và missing](feature_dictionary.md), API forecast không cần nhãn |
 | T08 | Pipelines impute/encode/scale Ridge/RF, fit train/fold, save/load/inference | T05, T07 | Issue #16; PR #17 đã merge; [factories/config](preprocessing.md), fixture kiểm train-only/missing/unknown/clone/save-load; chưa fit ML trên dữ liệu dự án |
-| T09 | Persistence + fallback/tỷ lệ fallback, validation MAE/RMSE/R², log/predictions | T05, T04-LOG, T08 | Issue #18; [smoke/full thật và bundle](baseline_results.md), primary MAE 9,736617/RMSE 19,240919/R² 0,944804, khóa validation IDs; bàn giao PR chờ người dùng merge |
-| T10 | Ridge và RF ban đầu A, so baseline cùng validation IDs; config/metric/thời gian/nhận xét/đề xuất | T07(A), T08–T09, T04-LOG | Chưa xác minh hoàn thành/Issue/artifact |
+| T09 | Persistence + fallback/tỷ lệ fallback, validation MAE/RMSE/R², log/predictions | T05, T04-LOG, T08 | Issue #18, PR #19 đã merge; [smoke/full thật](baseline_results.md), primary MAE 9,736617/RMSE 19,240919/R² 0,944804, khóa validation IDs |
+| T10 | Ridge và RF ban đầu A, so baseline cùng validation IDs; config/metric/thời gian/nhận xét/đề xuất | T07(A), T08–T09, T04-LOG | Issue #20; [hai smoke/hai full, artifact và nhận xét](initial_findings.md); validation MAE Ridge 10,200433, RF 9,561488; chờ người dùng review/merge PR |
 | T11 | Tune ít nhất một model bằng expanding-window CV train chung ranh giới trạm; giả thuyết/budget/log từng cấu hình/fold và so trước–sau | T10, T04-LOG | Chưa xác minh hoàn thành/Issue/artifact |
 | T12 | A/B ablation, chọn C từ B trong fold, phân tích và khóa bằng train/CV/validation | T07(B), T08, T10–T11 | Chưa xác minh hoàn thành/Issue/artifact |
 | T13 | Sau khóa refit train+validation rồi test, sai số theo trạm/mùa/nồng độ, diễn giải và trả lời RQ; không tuning test | T12 khóa, T04-LOG | Chưa xác minh hoàn thành/Issue/artifact; test khóa |
@@ -70,11 +70,13 @@ phải kết quả mô hình. Người dùng merge; theo [quy trình GitHub](git
   nếu có, hình gốc, CSV/hồ sơ run, demo, T15 báo cáo 5 chương/slide và T16 gói
   tái lập. Artifact không commit phải có đường dẫn/cách tạo lại.
 
-CSV chính thức có hai run persistence T09 (smoke/full), không có run minh họa;
+CSV chính thức có sáu run completed: hai persistence T09 và bốn Ridge/RF T10
+(mỗi model smoke/full), không có run minh họa;
 T05 có target/split và audit count/date,
 T06 có EDA train, T07 có A/B và registry/missing train theo cấu hình cập nhật
 người dùng chốt (lịch t+1, lag 1/3/6/12/24h). T08 có preprocessing factories
 và kiểm tra fixture; T09 có metric/predictions validation và fallback
-train-only, chưa chạy Ridge/RF/tuning/test. Không nhập audit/fixture vào log
-hoặc dựng lịch sử. T09 không tự triển khai T10 hoặc các task sau.
+train-only; T10 có pipeline fit train primary, predictions/metrics train và
+validation cùng IDs. Chưa tuning/test. Không nhập audit/fixture vào log
+hoặc dựng lịch sử. T10 không tự triển khai T11/T12 hoặc các task sau.
 Codex hỗ trợ mapping; không tự điền tên/MSSV/đóng góp hoặc rubric chưa cung cấp.

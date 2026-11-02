@@ -33,3 +33,16 @@
 /reports/baseline/t09_runs.zip binary
 /reports/figures/baseline/*.png binary
 /experiments/experiment_log.csv -text whitespace=cr-at-eol
+
+# T10 source fingerprints and directly reviewable run artifacts (no ZIP bundle).
+/configs/initial_models.json text eol=lf
+/src/beijing_air/initial_models.py text eol=lf
+/scripts/run_initial_models.py text eol=lf
+/scripts/report_initial_models.py text eol=lf
+/tests/test_initial_models.py text eol=lf
+/reports/initial_models/** text eol=lf
+/reports/figures/initial_models/*.png binary
+/artifacts/experiments/**/artifacts/source/*.py text eol=lf
+/artifacts/experiments/**/*.json text eol=lf
+/artifacts/experiments/**/*.md text eol=lf
+/artifacts/experiments/**/*.gz binary
