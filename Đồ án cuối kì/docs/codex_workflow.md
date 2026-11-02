@@ -84,3 +84,42 @@ kỳ không thay báo cáo cuối kỳ 5 chương; chi tiết ở [kế hoạch 
 File này được bổ sung trong T04-BỔ SUNG từ yêu cầu người dùng; trước đó repo
 chưa có workflow và kế hoạch tổng hợp. Không xem sự hiện diện tài liệu là bằng
 chứng các bước mô hình hóa đã hoàn thành.
+
+## Bổ sung cuối kỳ từ T13 — Issue #30
+
+Các quy định này chỉ áp dụng cho công việc mới từ T13, không thay task hoặc
+lịch sử tới MK02. Đọc [yêu cầu cuối kỳ](final_stage_requirements.md),
+[bài giảng/rubric](course_alignment.md), [thành viên](team_contributions.md)
+và [AI disclosure](ai_disclosure.md) trước task. Chưa giao T13 thì chưa mở
+test/refit, không tự làm poster/video/gói cuối kỳ chỉ vì cập nhật quy định.
+
+Mỗi PR từ T13 bắt buộc có “Bài giảng áp dụng”, “Tiêu chí rubric đáp ứng” và
+“Hỗ trợ AI”. Đọc course_alignment và docs/course_materials/ nếu có. Thiếu
+bài giảng chỉ dùng tên chủ đề05/06/Ensemble/04 do người dùng cung cấp, ghi
+[CẦN BỔ SUNG], không bịa slide/trang/nội dung. Nếu cách học không hợp chuỗi
+thời gian, giữ temporal/train-only/no-IQR mặc định và ghi lý do khác biệt.
+
+Issue thực thi gán thành viên đã được nhóm xác nhận. Trước commit kiểm
+user.name/email và Git author/committer thực tế, nói rõ danh tính cho người
+dùng; không đổi global config, giả tác giả/co-author hoặc sửa lịch sử cho
+đều đóng góp. Commit nhỏ theo việc thật, đều theo tiến độ. Thành viên phải
+đọc/hiểu phần nhận trước merge. Thiếu bảng nhóm để [CẦN BỔ SUNG], không suy
+từ Git hoặc tự phân công; phần trước T13 chỉ ghi đóng góp thực có bằng chứng.
+
+Ngoài MAE/RMSE/R², mọi kết quả đánh giá mới báo % MAE giảm so persistence trên
+cùng mẫu/cohort. Khi nói ổn định phải có fold/std và giới hạn train~2năm,
+đặc biệt cửa sổ evaluation fold đầu thiếu các mùa khác. Phân tích lỗi theo
+trạm/mùa/nồng độ/đợt ô nhiễm cao; giải thích dựa bằng chứng, tách giả thuyết,
+không suy tương quan/importance thành nhân quả. Công thức, trường hợp null
+và test gate ở final_stage_requirements.md; không sửa metrics/run cũ.
+
+Sản phẩm cuối kỳ cần báo cáo5chương, slide, poster, VIDEO DEMO, source/config,
+dataset/link, notebook/model thật/hình/nguồn, README và hướng dẫn; bảng thành
+viên có đủ trường/tổng100%, ZIP mang tên nhóm trưởng theo mẫu của thầy, bản
+in và chia sẻ repo như checklist. Thiếu tên/MSSV/tỷ lệ/kích thước poster để
+[CẦN BỔ SUNG], không tạo thông tin giả hoặc tuyên bố sẵn sàng nộp.
+
+Nếu phát hiện sai sót phần cũ, báo ảnh hưởng và đề xuất Issue/PR sửa riêng;
+không sửa commit/run/log/báo cáo/ZIP giữa kỳ để làm đẹp. Không tự merge PR,
+tự đóng Issue hoặc nộp Classroom. Ngoại lệ merge MK01 trước đó đã dùng xong,
+không mở rộng sang cuối kỳ.
