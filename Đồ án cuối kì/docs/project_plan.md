@@ -1,12 +1,12 @@
 # Kế hoạch dự án và trạng thái kiểm chứng
 
-Cập nhật T04-BỔ SUNG, ngày 02/11/2026. Kế hoạch ban đầu nằm trong
+Cập nhật xác minh T01 và T04-BỔ SUNG, ngày 02/11/2026. Kế hoạch ban đầu nằm trong
 [protocol T02](task_02_forecasting_protocol.md); tài liệu này tổng hợp tiến độ,
 không triển khai hoặc đổi mã các task sau T04.
 
 | Task | Bằng chứng hiện có | Trạng thái trong lần bổ sung này |
 | --- | --- | --- |
-| T01 — Cấu trúc/môi trường | pyproject.toml, src, configs, README | Đã có; chưa xác minh toàn bộ dependency ban đầu |
+| T01 — Cấu trúc/môi trường | pyproject.toml, src, configs, README, [bảng xác minh](t01_environment_verification.md) | Đã cài editable/import đủ 9 dependencies trên Python portable 3.12.10; pip check pass; chưa kiểm tra máy sạch/venv chuẩn |
 | T02 — Đặc tả/kế hoạch | docs/task_02_forecasting_protocol.md | Đã đọc; giữ nguyên protocol và mốc chia |
 | T03 — Tải/audit raw | reports/data_manifest.json, data_audit.md, raw_audit_full.json | Đã có bằng chứng; không tải/audit lại |
 | T04 — Hợp nhất/chất lượng | src/beijing_air/data.py, tests/test_data.py, reports/data_quality.md, quality_full/summary.json | Giữ nguyên; chỉ chạy regression bằng fixture tổng hợp |

@@ -29,6 +29,12 @@ Dependencies được khai báo duy nhất trong `pyproject.toml`: pandas, numpy
 
 Cài Python 3.10 trở lên và Python Launcher (`py`), sau đó mở PowerShell tại thư mục chứa README này:
 
+Các lệnh tạo venv bên dưới dành cho máy có Python cài chuẩn và chưa có `.venv`.
+Nếu đã có `.venv\python.exe` portable như workspace hiện tại, dùng phần portable
+bên dưới; không tạo venv chồng lên thư mục đó. `py -0p` giúp kiểm tra các Python
+đã cài; launcher không tìm thấy Python thì cần cài Python chuẩn trước khi tạo
+venv mới. Dùng đúng interpreter của môi trường khi cài dependencies cho project.
+
 ```powershell
 py -3 -m venv .venv
 .\.venv\Scripts\Activate.ps1
@@ -44,7 +50,26 @@ Nếu PowerShell chặn kích hoạt môi trường, có thể chạy trực ti�
 .\.venv\Scripts\python.exe scripts/check_imports.py
 ```
 
-Mở notebook bằng `python -m jupyter notebook`. Thư mục `tests/` dành cho các kiểm thử khi bổ sung chức năng; Task 01 chưa có logic xử lý dữ liệu cần kiểm thử.
+Với Python portable **đã có** tại `.\.venv\python.exe` của workspace này:
+
+```powershell
+.\.venv\python.exe --version
+.\.venv\python.exe -m pip install "setuptools>=68" wheel
+.\.venv\python.exe -m pip install --no-build-isolation -e .
+.\.venv\python.exe -m pip check
+.\.venv\python.exe scripts/check_imports.py
+```
+
+`--no-build-isolation` là cách cài đã kiểm chứng cho portable khi lệnh `pip install -e .` lỗi
+`Cannot import 'setuptools.build_meta'`. Venv chuẩn dùng lệnh cài mặc định ở trên.
+Không cần tải lại dữ liệu để kiểm tra môi trường. Script `check_imports.py` in
+interpreter, phiên bản package và source path; kiểm tra cả metadata cài đặt để
+không nhầm import từ `src` với cài package thành công. Phiên bản và lệnh kiểm tra
+thực tế nằm trong [bảng xác minh T01](docs/t01_environment_verification.md).
+
+Mở notebook bằng `python -m notebook` với đúng interpreter của môi trường;
+portable dùng `.\.venv\python.exe -m notebook`. Các lệnh kiểm tra T01 không
+khởi chạy notebook/server. Kiểm thử xử lý dữ liệu được bổ sung từ T04.
 
 ## Cấu hình
 
@@ -99,7 +124,7 @@ python scripts/merge_data.py --mode smoke
 python scripts/merge_data.py --mode full
 ```
 
-Nếu dùng Python trong venv mà không kích hoạt, thay `python` bằng `.\.venv\Scripts\python.exe`. Lần chạy Task 04 trong workspace này dùng Python portable tại `.\.venv\python.exe` (được tải để kiểm tra, không phải venv chuẩn và không commit); có thể dùng interpreter đó để chạy các lệnh trên. Interpreter portable hiện chỉ cài dependencies cần cho Task 04 (pandas, numpy, pytest và dependencies phụ), chưa xác nhận toàn bộ dependencies Task 01.
+Nếu dùng Python trong venv mà không kích hoạt, thay `python` bằng `.\.venv\Scripts\python.exe`. Lần chạy Task 04 trong workspace này dùng Python portable tại `.\.venv\python.exe` (được tải để kiểm tra, không phải venv chuẩn và không commit); có thể dùng interpreter đó để chạy các lệnh trên. Ở thời điểm T04, portable chỉ cài pandas, numpy, pytest và dependencies phụ. Trạng thái môi trường mới nhất xem [bảng xác minh T01](docs/t01_environment_verification.md).
 
 Loader trong `src/beijing_air/data.py` đọc các file PRSA2017, kiểm tra inventory/checksum theo manifest, tạo timestamp từ năm/tháng/ngày/giờ, sắp xếp theo `station,timestamp` và xác nhận khóa duy nhất. `No` bị loại khỏi bảng hợp nhất; `source_file` và `source_row` chỉ dùng truy vết, không làm feature. Danh sách đầu vào mô hình phải chọn tường minh từ `FEATURE_COLUMNS`, không lấy tất cả cột trong bảng.
 
