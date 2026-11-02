@@ -3,6 +3,77 @@
   "horizon_hours": 1,
   "mode": "smoke",
   "available_modes": ["smoke", "full"],
+  "problem": {
+    "task_type": "regression",
+    "target_column": "PM2.5",
+    "target_unit": "ug/m3",
+    "group_column": "station",
+    "input_time_column": "input_timestamp",
+    "target_time_column": "target_timestamp",
+    "station_scope": "observed_stations",
+    "current_observation_available": true,
+    "forecast_strategy": "rolling_one_hour"
+  },
+  "split": {
+    "timestamp_column": "target_timestamp",
+    "validation_start": "2015-03-01T00:00:00",
+    "test_start": "2016-03-01T00:00:00",
+    "timestamp_convention": "source_local_naive",
+    "test_locked": true,
+    "final_refit_train_validation": true
+  },
+  "temporal_cv": {
+    "strategy": "expanding_window",
+    "partition": "train",
+    "group_by": "unique_target_timestamp",
+    "fit_target_must_precede_first_origin": true,
+    "folds": [
+      {"fold_id": 1, "evaluation_start": "2014-06-01T00:00:00", "evaluation_end": "2014-09-01T00:00:00"},
+      {"fold_id": 2, "evaluation_start": "2014-09-01T00:00:00", "evaluation_end": "2014-12-01T00:00:00"},
+      {"fold_id": 3, "evaluation_start": "2014-12-01T00:00:00", "evaluation_end": "2015-03-01T00:00:00"}
+    ]
+  },
+  "features": {
+    "A": {
+      "legacy_name": "F0",
+      "measurements": ["PM2.5", "PM10", "SO2", "NO2", "CO", "O3", "TEMP", "PRES", "DEWP", "RAIN", "WSPM"],
+      "categorical": ["station", "wd"],
+      "calendar": ["hour", "month", "day_of_week"]
+    },
+    "B": {
+      "legacy_name": "F1",
+      "extends": "A",
+      "pm25_lag_hours": [1, 2, 3, 6, 12, 24],
+      "pm25_rolling_windows_hours": [3, 6, 12, 24],
+      "rolling_stats": ["mean", "std"],
+      "rolling_std_ddof": 1,
+      "rolling_include_current": true,
+      "rolling_min_periods": "window"
+    },
+    "C": {
+      "extends": "B",
+      "selector_fit_scope": "training_partition_of_each_run_or_fold",
+      "selection_method": null,
+      "selected_features": null
+    }
+  },
+  "evaluation": {
+    "baseline": "persistence",
+    "models": ["ridge", "random_forest"],
+    "initial_parameters": {
+      "ridge": {"alpha": 1.0},
+      "random_forest": {"n_estimators": 300, "max_depth": null, "min_samples_leaf": 1, "max_features": 1.0, "random_state": 42, "n_jobs": 1}
+    },
+    "primary_metric": "MAE",
+    "secondary_metrics": ["RMSE", "R2"],
+    "same_sample_ids": true,
+    "baseline_fallback_order": ["last_observed_same_station", "training_station_median", "training_global_median", "unavailable"]
+  },
+  "experiment_logging": {
+    "infrastructure_task_id": "T04-LOG",
+    "index": "experiments/experiment_log.csv",
+    "runs": "artifacts/experiments"
+  },
   "paths": {
     "raw_data": "data/raw",
     "processed_data": "data/processed",
