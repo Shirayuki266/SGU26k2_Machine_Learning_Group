@@ -221,3 +221,9 @@ Chưa benchmark/train full, đánh giá validation/test, ablation missing flags,
 tuning, selection hoặc triển khai T09/T10. Chưa có pipeline/model fitted
 trên dữ liệu dự án hoặc kết quả trả lời RQ. Codex hỗ trợ source, config,
 kiểm tra và tài liệu; không suy đóng góp học thuật từ người chạy.
+
+T12 đã bổ sung [wrapper C và ablation](ablation_findings.md) bằng cùng factory
+T08 cho B rồi grouped selector, không đổi quy tắc/schema T08 hoặc fingerprint
+T07. Dùng make_ablation_pipeline("C", config, prep, alpha=0.1, k_groups=12)
+trong beijing_air.feature_selection; selector nằm trong pipeline nên fit lại
+đúng train từng fold. Cần đầy đủ B raw inputs khi transform/inference.

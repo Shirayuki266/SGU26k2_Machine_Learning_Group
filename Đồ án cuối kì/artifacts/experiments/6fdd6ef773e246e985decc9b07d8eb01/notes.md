@@ -1,0 +1,1 @@
+Fresh preprocessing/pilot/selector/final Ridge fit only on purged train fold; grouped one-hot/indicators, no holdout.

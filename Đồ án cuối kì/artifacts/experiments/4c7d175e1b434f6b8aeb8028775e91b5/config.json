@@ -1,0 +1,65 @@
+{
+  "task_id": "T12",
+  "reference_run_id": "32e65c5a4cbc489c905cf146b743867f",
+  "parent_run_id": "0a616a9fb5134058b3af3cafb1a70e18",
+  "fold_id": null,
+  "mode": "full",
+  "kind": "feature_selection",
+  "objective": "Fixed-parameter A/B ablation and train-CV grouped B-to-C selection; freeze deployment by validation.",
+  "hypothesis": "Causal PM2.5 history may improve Ridge A at fixed alpha; grouped coefficient selection may reduce redundant dimensions with little loss, without guaranteed improvement.",
+  "change": null,
+  "model": "ridge",
+  "parameters": {
+    "stage": "candidate",
+    "k_groups": 28
+  },
+  "feature_set": "C",
+  "preprocessing": {
+    "schema_version": "t08-preprocessing-v1",
+    "numeric": {
+      "imputation_strategy": "median",
+      "keep_empty_features": true,
+      "missing_indicators": "all",
+      "scale": {
+        "ridge": true,
+        "random_forest": false
+      }
+    },
+    "categorical": {
+      "imputation_strategy": "constant",
+      "fill_value": "__MISSING__",
+      "handle_unknown": "ignore",
+      "sparse_output": false
+    },
+    "output": {
+      "format": "pandas",
+      "verbose_feature_names": true
+    },
+    "prediction_postprocessing": {
+      "negative_predictions": "identity",
+      "applies_to": [
+        "persistence",
+        "ridge",
+        "random_forest"
+      ]
+    }
+  },
+  "data": null,
+  "split": null,
+  "time_ranges": null,
+  "sample_counts": null,
+  "seed": null,
+  "budget": {
+    "full_searches": 1,
+    "selector_candidates": 3,
+    "folds": 3,
+    "cv_pipeline_fits": 9,
+    "cv_pilot_estimator_fits": 9,
+    "validation_pipeline_fits": 2,
+    "total_estimator_fits": 21,
+    "RF_fits": 0,
+    "automatic_retries": 0
+  },
+  "is_test": false,
+  "source": "executed_script"
+}

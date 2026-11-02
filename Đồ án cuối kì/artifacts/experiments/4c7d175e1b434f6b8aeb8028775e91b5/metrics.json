@@ -1,0 +1,62 @@
+{
+  "fold_run_ids": [
+    "099eeddbd0a6400681cfb9f2c4790ac3",
+    "ede2fdc7ba2d4c758a268beb2896661a",
+    "67d7b322e77c42a0934fc67860171369"
+  ],
+  "failed_fold_run_ids": [],
+  "pooled": {
+    "n_total": 76102,
+    "n_scored": 76102,
+    "unavailable": 0,
+    "coverage": 1.0,
+    "MAE": 10.159103521036673,
+    "RMSE": 17.57261120457223,
+    "R2": 0.9499305449111975,
+    "r2_undefined_reason": null
+  },
+  "folds": [
+    {
+      "n_total": 25746,
+      "n_scored": 25746,
+      "unavailable": 0,
+      "coverage": 1.0,
+      "MAE": 9.070000338923451,
+      "RMSE": 14.189999914595827,
+      "R2": 0.9347591702824374,
+      "r2_undefined_reason": null
+    },
+    {
+      "n_total": 25541,
+      "n_scored": 25541,
+      "unavailable": 0,
+      "coverage": 1.0,
+      "MAE": 9.550225704002928,
+      "RMSE": 15.760262182793712,
+      "R2": 0.9675508279556279,
+      "r2_undefined_reason": null
+    },
+    {
+      "n_total": 24815,
+      "n_scored": 24815,
+      "unavailable": 0,
+      "coverage": 1.0,
+      "MAE": 11.915758723597458,
+      "RMSE": 21.964661525998157,
+      "R2": 0.9364770964908123,
+      "r2_undefined_reason": null
+    }
+  ],
+  "fold_mean": {
+    "MAE": 10.17866158884128,
+    "RMSE": 17.30497454112923,
+    "R2": 0.9462623649096259
+  },
+  "fold_std": {
+    "MAE": 1.2438606411759647,
+    "RMSE": 3.3566792117060307,
+    "R2": 0.015069545707819682
+  },
+  "std_ddof": 0,
+  "R2_defined_folds": 3
+}

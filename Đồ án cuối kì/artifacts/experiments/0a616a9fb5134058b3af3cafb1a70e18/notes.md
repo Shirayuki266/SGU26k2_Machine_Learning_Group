@@ -1,0 +1,1 @@
+Fixed Ridge alpha0.1 A(reused)/B/C; selection k by train CV, deployment by validation including existing RF/persistence. No test/T13/weights or extra tuning.

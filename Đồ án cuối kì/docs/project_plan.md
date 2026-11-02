@@ -42,8 +42,8 @@ Phụ thuộc là trình tự kỹ thuật, không cấp quyền chạy. Chưa c
 | T08 | Pipelines impute/encode/scale Ridge/RF, fit train/fold, save/load/inference | T05, T07 | Issue #16; PR #17 đã merge; [factories/config](preprocessing.md), fixture kiểm train-only/missing/unknown/clone/save-load; chưa fit ML trên dữ liệu dự án |
 | T09 | Persistence + fallback/tỷ lệ fallback, validation MAE/RMSE/R², log/predictions | T05, T04-LOG, T08 | Issue #18, PR #19 đã merge; [smoke/full thật](baseline_results.md), primary MAE 9,736617/RMSE 19,240919/R² 0,944804, khóa validation IDs |
 | T10 | Ridge và RF ban đầu A, so baseline cùng validation IDs; config/metric/thời gian/nhận xét/đề xuất | T07(A), T08–T09, T04-LOG | Issue #20, PR #21 đã merge; [hai smoke/hai full và nhận xét](initial_findings.md); validation MAE Ridge 10,200433, RF 9,561488 |
-| T11 | Tune ít nhất một model bằng expanding-window CV train chung ranh giới trạm; giả thuyết/budget/log từng cấu hình/fold và so trước–sau | T10, T04-LOG | Issue #22; [Ridge A 4alpha×3fold +1refit](tuning_findings.md), chọn alpha0.1, validation MAE 10,200529 chưa cải thiện T10; chờ review/merge PR |
-| T12 | A/B ablation, chọn C từ B trong fold, phân tích và khóa bằng train/CV/validation | T07(B), T08, T10–T11 | Chưa xác minh hoàn thành/Issue/artifact |
+| T11 | Tune ít nhất một model bằng expanding-window CV train chung ranh giới trạm; giả thuyết/budget/log từng cấu hình/fold và so trước–sau | T10, T04-LOG | Issue #22, PR #23 đã merge; [Ridge A 4alpha×3fold +1refit](tuning_findings.md), chọn alpha0.1, validation MAE 10,200529 chưa cải thiện T10 |
+| T12 | A/B ablation, chọn C từ B trong fold, phân tích và khóa bằng train/CV/validation | T07(B), T08, T10–T11 | Issue #24; [ablation/RQ2](ablation_findings.md), Ridge A/B/C MAE 10,200529/9,968755/9,903377, C12 nhóm; [frozen](../reports/ablation/frozen_model.json) chọn RF A T10 theo validation, chưa T13; chờ review/merge PR |
 | T13 | Sau khóa refit train+validation rồi test, sai số theo trạm/mùa/nồng độ, diễn giải và trả lời RQ; không tuning test | T12 khóa, T04-LOG | Chưa xác minh hoàn thành/Issue/artifact; test khóa |
 | T14 | Streamlit dùng pipeline/model chọn bằng validation, dự báo t+1, lịch sử/thực tế nếu có, feature causal | T12 khóa lựa chọn, T13 artifact cuối | Chưa xác minh hoàn thành/Issue/artifact |
 | T15 | Báo cáo 5 chương, slide, notebook/README; truy vết artifact, nguồn/AI disclosure | T06–T14/artifact thật | Chưa xác minh hoàn thành/Issue/artifact |
@@ -70,15 +70,16 @@ phải kết quả mô hình. Người dùng merge; theo [quy trình GitHub](git
   nếu có, hình gốc, CSV/hồ sơ run, demo, T15 báo cáo 5 chương/slide và T16 gói
   tái lập. Artifact không commit phải có đường dẫn/cách tạo lại.
 
-CSV chính thức có 29 run completed: hai persistence T09, bốn Ridge/RF T10
-(mỗi model smoke/full), 23 hồ sơ T11 (5 smoke, 18 full search/candidate/fold/refit),
-không có run minh họa; không gọi toàn bộ 29 dòng là 29 model độc lập;
+CSV chính thức có 49 run completed: hai persistence T09, bốn Ridge/RF T10,
+23 hồ sơ T11 và 20 hồ sơ T12 (5 smoke, 15 full search/candidate/fold/final).
+Không có run minh họa; không gọi toàn bộ 49 dòng là 49 model độc lập;
 T05 có target/split và audit count/date,
 T06 có EDA train, T07 có A/B và registry/missing train theo cấu hình cập nhật
 người dùng chốt (lịch t+1, lag 1/3/6/12/24h). T08 có preprocessing factories
 và kiểm tra fixture; T09 có metric/predictions validation và fallback
 train-only; T10 có pipeline fit train primary, predictions/metrics train và
 validation cùng IDs. T11 đã tuning Ridge A trong train CV và refit/validation;
-chưa tuning RF, T12 hoặc test. Không nhập audit/fixture vào log
+T12 đã so Ridge A/B/C cố định alpha, selection trong fold và khóa RF A bằng
+validation; chưa tuning RF hoặc mở test/T13. Không nhập audit/fixture vào log
 hoặc dựng lịch sử; không tự triển khai task sau khi chưa được giao.
 Codex hỗ trợ mapping; không tự điền tên/MSSV/đóng góp hoặc rubric chưa cung cấp.

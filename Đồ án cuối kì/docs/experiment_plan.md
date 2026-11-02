@@ -2,8 +2,9 @@
 
 Phạm vi đã chốt ngày 02/11/2026. T09 có [persistence validation thật](baseline_results.md);
 T10 có [Ridge/RF A smoke/full và so sánh](initial_findings.md); T11 có
-[Ridge A temporal tuning](tuning_findings.md). Chưa feature selection hoặc
-đánh giá test. Đi cùng
+[Ridge A temporal tuning](tuning_findings.md); T12 có [ablation/selection/RQ2](ablation_findings.md)
+và [frozen config](../reports/ablation/frozen_model.json). Chưa refit train+validation
+hoặc đánh giá test/T13. Đi cùng
 [đặc tả bài toán](problem_definition.md) và `configs/default.json`.
 
 ## 1. Vòng thực nghiệm và task quản lý
@@ -142,7 +143,7 @@ dữ liệu thật trong T02. Thiếu dữ liệu thì fail/report, không tự 
 | T09 | Persistence không fit estimator; fallback train-only như mục 3 |
 | T10 | Bộ A; Ridge alpha=1.0; RF n_estimators=80, max_depth=12, min_samples_leaf=2, max_features=1.0, random_state=42, n_jobs=1; cấu hình thực thi ở `configs/initial_models.json`, mỗi họ một cấu hình, không duyệt grid |
 | T11 | Thực thi Issue #22 chỉ Ridge A alpha {0.1,1,10,100} ×3fold; tối đa12fit CV +1selected refit. RF grid cũ là thiết kế chưa chạy, không nằm trong ngân sách T11 hiện tại |
-| T12 | A/B có kiểm soát; chọn C từ B. Nếu tune riêng A/B/C để so sánh phương án tối ưu, phải giữ cùng ngân sách trong từng họ và ghi rõ khác với ablation chỉ đổi feature |
+| T12 | Thực thi Issue #24: Ridge alpha0.1 A reuse T11; C top {12,20,28} raw groups ×3fold, tối đa9 pipeline CV+2 B/C final (21 estimator fits kể pilot). RF/persistence chỉ reuse; không tune riêng A/B/C |
 
 T10/Issue #20 chốt trước metric: giới hạn RF so với thiết kế cũ 300 cây/sâu
 không giới hạn do RAM khả dụng khoảng 1,9 GiB, BLAS một luồng, chạy tuần tự.
