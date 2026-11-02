@@ -39,8 +39,8 @@ Phụ thuộc là trình tự kỹ thuật, không cấp quyền chạy. Chưa c
 | T05 | Target đúng +1 giờ cùng trạm, temporal split và kiểm tra ranh giới | T04, T02 | Issue #1; PR #11 đã merge; samples.py/build_samples.py, tests và [audit split](../reports/sample_split.md) |
 | T06 | EDA train: tính chất biến, đơn/đa biến, missing/bất thường/ngoại lệ, chu kỳ thời gian/trạm; notebook, bảng, hình gốc và nhận xét | T05 xác định train | Issue #12; PR #13 đã merge; notebook full kernel sạch, 14 bảng/9 PNG và [quyết định T07/T08](eda_findings.md) |
 | T07 | Feature engineering A/B, lag/rolling đúng trạm/timestamp, dictionary và causal tests | T05–T06 | Issue #14; PR #15 đã merge; A 20/B 33 cột, giữ 205.977 train IDs, [dictionary và missing](feature_dictionary.md), API forecast không cần nhãn |
-| T08 | Pipelines impute/encode/scale Ridge/RF, fit train/fold, save/load/inference | T05, T07 | Issue #16; [factories/config/quyết định](preprocessing.md), fixture nhỏ kiểm train-only/missing/unknown/clone/save-load; chưa fit dữ liệu dự án, bàn giao PR chờ người dùng merge |
-| T09 | Persistence + fallback/tỷ lệ fallback, validation MAE/RMSE/R², log/predictions | T05, T04-LOG | Chưa xác minh hoàn thành/Issue/artifact |
+| T08 | Pipelines impute/encode/scale Ridge/RF, fit train/fold, save/load/inference | T05, T07 | Issue #16; PR #17 đã merge; [factories/config](preprocessing.md), fixture kiểm train-only/missing/unknown/clone/save-load; chưa fit ML trên dữ liệu dự án |
+| T09 | Persistence + fallback/tỷ lệ fallback, validation MAE/RMSE/R², log/predictions | T05, T04-LOG, T08 | Issue #18; [smoke/full thật và bundle](baseline_results.md), primary MAE 9,736617/RMSE 19,240919/R² 0,944804, khóa validation IDs; bàn giao PR chờ người dùng merge |
 | T10 | Ridge và RF ban đầu A, so baseline cùng validation IDs; config/metric/thời gian/nhận xét/đề xuất | T07(A), T08–T09, T04-LOG | Chưa xác minh hoàn thành/Issue/artifact |
 | T11 | Tune ít nhất một model bằng expanding-window CV train chung ranh giới trạm; giả thuyết/budget/log từng cấu hình/fold và so trước–sau | T10, T04-LOG | Chưa xác minh hoàn thành/Issue/artifact |
 | T12 | A/B ablation, chọn C từ B trong fold, phân tích và khóa bằng train/CV/validation | T07(B), T08, T10–T11 | Chưa xác minh hoàn thành/Issue/artifact |
@@ -51,7 +51,8 @@ Phụ thuộc là trình tự kỹ thuật, không cấp quyền chạy. Chưa c
 | MK01 | DOCX/PPTX giữa kỳ: bài toán/dữ liệu/EDA/pipeline/baseline/model, kết quả/vòng thử–nhận xét–sửa, khó khăn/kế hoạch/đóng góp | Ưu tiên tới T10; T11/T12 nếu có | Chưa có DOCX/PPTX xác minh; không mở test |
 | MK02 | Đối chiếu source/log/hình/DOCX/PPTX/README; ZIP NhomXX_DuBaoPM25_BacKinh_GiuaKy.zip, tài nguyên hoặc hướng dẫn tải/chạy | MK01 và artifact hiện có | Chưa có gói xác minh; XX/thành viên cần cung cấp |
 
-Trạng thái GitHub được đọc lúc bắt đầu T02. Không thay trạng thái Issue đã
+Các hàng T08/T09 được xác minh khi bắt đầu T09; mốc cũ giữ bằng chứng đã ghi.
+Không thay trạng thái Issue đã
 đóng hoặc tự gán số Issue từ mã task. T03/T04 có báo cáo audit sẵn có, không
 phải kết quả mô hình. Người dùng merge; theo [quy trình GitHub](github_workflow.md).
 
@@ -69,10 +70,11 @@ phải kết quả mô hình. Người dùng merge; theo [quy trình GitHub](git
   nếu có, hình gốc, CSV/hồ sơ run, demo, T15 báo cáo 5 chương/slide và T16 gói
   tái lập. Artifact không commit phải có đường dẫn/cách tạo lại.
 
-CSV chính thức hiện chỉ header; T05 có target/split và audit count/date,
+CSV chính thức có hai run persistence T09 (smoke/full), không có run minh họa;
+T05 có target/split và audit count/date,
 T06 có EDA train, T07 có A/B và registry/missing train theo cấu hình cập nhật
 người dùng chốt (lịch t+1, lag 1/3/6/12/24h). T08 có preprocessing factories
-và kiểm tra bằng fixture, chưa fit dữ liệu dự án/baseline/model/metric.
-Không nhập audit hoặc fixture vào log mô hình hoặc dựng lịch sử. T08 không
-tự triển khai T09/T10 hoặc các task sau.
+và kiểm tra fixture; T09 có metric/predictions validation và fallback
+train-only, chưa chạy Ridge/RF/tuning/test. Không nhập audit/fixture vào log
+hoặc dựng lịch sử. T09 không tự triển khai T10 hoặc các task sau.
 Codex hỗ trợ mapping; không tự điền tên/MSSV/đóng góp hoặc rubric chưa cung cấp.

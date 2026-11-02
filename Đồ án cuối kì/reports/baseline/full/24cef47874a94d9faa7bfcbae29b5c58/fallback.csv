@@ -1,0 +1,5 @@
+cohort,prediction_source,samples,fraction
+primary,persistence,102479,1.0
+operational,last_observed_same_station,805,0.0077938172277246896
+operational,persistence,102479,0.9921771374906813
+operational,training_station_median,3,2.9045281594005055e-05

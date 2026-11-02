@@ -1,0 +1,12 @@
+{
+  "schema_version": "t09-persistence-v1",
+  "max_history_age_hours": 24,
+  "age_limit_inclusive": true,
+  "train_statistic": "median",
+  "train_statistic_scope": "T05_operational_train_origins",
+  "smoke_rows_per_station": 168,
+  "headline_cohort": "primary",
+  "residual_definition": "y_pred_minus_y_true",
+  "budget": {"smoke_before_full": true, "max_full_runs": 1},
+  "note": "Age limit fixed before validation metrics; no tuning or prediction clipping. Smoke is execution evidence only."
+}

@@ -195,7 +195,9 @@ Commit đề xuất: `feat: merge station data and validate temporal integrity`.
 thành công/thất bại/ngắt, giữ lỗi và traceback. Mỗi run có UUID, config/metrics/
 metadata/notes riêng trong `artifacts/experiments/`; CSV tổng hợp tại
 `experiments/experiment_log.csv` được cập nhật bằng khóa hệ điều hành và thay
-file an toàn. CSV hiện chỉ có header; task này chưa chạy mô hình hoặc thêm metric.
+file an toàn. T04-LOG chỉ tạo header; đến T09 đã có smoke/full persistence thật,
+xem [kết quả và bundle](docs/baseline_results.md). Clone mới cần restore run
+trees trước khi ghi run mới để giữ liên kết/lịch sử.
 
 Hướng dẫn API, ví dụ tích hợp baseline/training, null/UTF-8, artifact và phục hồi:
 [docs/experiment_logging.md](docs/experiment_logging.md). Đọc
@@ -322,3 +324,30 @@ T08 chỉ fit fixture TEST_ONLY nhỏ để kiểm tra, không fit trên dữ li
 không mở validation/test, train full hoặc ghi run/metric vào Experiment Log.
 Task training sau phải fit/clone toàn pipeline trong train từng run/fold;
 inference chỉ load/predict với cùng schema/config.
+
+## T09: persistence baseline thực tế trên validation
+
+Đã chạy smoke, sau đó **một full baseline** với logger và validation IDs T05.
+Primary N=102.479: **MAE=9,736617 µg/m³, RMSE=19,240919 µg/m³,
+R²=0,944804**. Operational N=103.287: MAE=9,903556, RMSE=20,060564,
+R²=0,939982; fallback 808 (0,782286%), coverage 100%. Smoke không dùng làm
+số liệu chính thức.
+
+Full run `24cef47874a94d9faa7bfcbae29b5c58`; smoke tham chiếu
+`5a6c965f64754a2ea9508e554fd92092`. Fallback chốt trước metric: số đo gần
+nhất cùng trạm tuổi ≤24h, sau đó median trạm/global từ train. Không tương
+lai/clipping/impute target. Seed thực=null vì không dùng RNG; config giữ 42.
+
+[Kết quả, nhận xét, T10 và restore](docs/baseline_results.md),
+[validation anchor](reports/evaluation/validation_manifest.json),
+[bundle run đầy đủ](reports/baseline/t09_runs.zip),
+[checksum](reports/baseline/t09_runs.json). Raw/dataset giữ nguyên; chưa chạy
+Ridge/RF, tuning hoặc test. Sau clone restore run trees rồi kiểm lại:
+
+```powershell
+.\.venv\python.exe scripts/verify_baseline.py --run-id 5a6c965f64754a2ea9508e554fd92092 24cef47874a94d9faa7bfcbae29b5c58
+.\.venv\python.exe -m pytest tests/test_baseline.py -q --basetemp=.pytest_cache/t09-baseline
+```
+
+Verifier không tạo run mới; không chạy full lại vì budget T09 đã dùng.
+T10 so model trên cùng primary IDs/policy, không buộc thắng persistence.

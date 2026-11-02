@@ -28,7 +28,10 @@ ra/audit T03–T04. CSV được theo dõi trong Git; toàn bộ hồ sơ run n�
 `artifacts/experiments/`**, hoặc lưu chúng cùng nhau ở kho artifact. Chỉ CSV trong
 Git sẽ không chứa các file được liên kết. Không import báo cáo audit thành run mô hình.
 
-Hiện CSV chính thức chỉ có header: chưa có baseline, model hay metric thực nghiệm.
+Tại T04-LOG, CSV chính thức chỉ có header. Đến T09 đã có hai run persistence
+smoke/full thật; [kết quả và bundle](baseline_results.md) có predictions,
+config/metrics/metadata/notes và restore sau clone. Smoke không là số liệu
+chính thức.
 Fixture kiểm thử nằm hoàn toàn trong thư mục tạm, ghi `is_test=True` và
 `task_id=TEST_ONLY_...`; không đưa các run đó vào CSV chính thức.
 
@@ -173,6 +176,11 @@ ghi registry khi crash có thể cần đối chiếu thủ công. Cơ chế nà
 cục bộ, chưa xác minh trên network filesystem hoặc nhiều máy. Nhánh POSIX chưa
 được thực thi trong phiên Windows này. Không suy ra khả năng tái lập chỉ từ
 việc có log: cần giữ mã, dữ liệu/checksum và môi trường phù hợp.
+
+T09 bổ sung guard tại start_run: CSV có run nhưng thiếu config/metrics/
+metadata/notes thì dừng trước khi tạo run mới hoặc dựng lại CSV. Clone chỉ
+có tracked CSV cần restore bundle trước, không rebuild_index để bỏ các dòng
+chưa có tree. Guard không đổi metric cũ hoặc schema logger.
 
 ## Kiểm tra task
 

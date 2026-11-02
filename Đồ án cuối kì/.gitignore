@@ -75,6 +75,10 @@ reports/features_smoke*/
 reports/features_full_*/
 reports/.features-*/
 
+# T09 reviewable metrics/diagnostics and compressed real-run delivery bundle.
+!reports/baseline/**/*.csv
+!reports/baseline/t09_runs.zip
+
 # Experiment index is reviewable; run files reuse the ignored artifacts/ root.
 !experiments/experiment_log.csv
 experiments/.experiment_log.lock
