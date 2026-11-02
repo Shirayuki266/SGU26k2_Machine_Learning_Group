@@ -14,3 +14,8 @@
 /scripts/verify_features.py text eol=lf
 /tests/test_features.py text eol=lf
 /reports/features_full/** text eol=lf
+
+# T08 portable sklearn transformer and configuration.
+/src/beijing_air/preprocessing.py text eol=lf
+/configs/preprocessing.json text eol=lf
+/tests/test_preprocessing.py text eol=lf

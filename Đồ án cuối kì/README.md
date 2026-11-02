@@ -296,3 +296,29 @@ schema, missing history, quy ước ranh giới và lệnh tái lập. API một
 báo chỉ cần buffer quan sát cùng trạm đến t, không cần target tại t+1.
 Chưa fit preprocessing/model hoặc chọn C. T06 giữ nguyên artifact lịch sử;
 verifier EDA kiểm config cũ từ Git khi chỉ phần features được cập nhật.
+
+## T08: preprocessing cho Ridge và Random Forest
+
+`beijing_air.preprocessing` có `make_preprocessor` và
+`make_regression_pipeline`, trả pipeline **chưa fit** từ registry A/B T07.
+Numeric dùng median train, giữ cột toàn NA và có missing indicator cho mọi
+cột; categorical dùng token thiếu, one-hot station/wd và unknown=ignore.
+Ridge scale numeric đã impute; RF không scale. Output có feature names và
+giữ sample index; pipeline clone/joblib được cho CV/inference.
+
+[Quyết định, API và giới hạn](docs/preprocessing.md),
+[config preprocessing/prediction policy](configs/preprocessing.json).
+Config A/B/model vẫn ở `configs/default.json`; không đổi artifact T05–T07.
+Policy chung: giữ dự báo âm, không clipping riêng model. Numeric missing
+flags/OHE giữ binary 0/1; missing categorical chưa từng gặp ở train có thể
+thành vector toàn 0 giống category mới, được mô tả và kiểm tra trong tài liệu.
+
+```powershell
+.\.venv\python.exe -m pytest tests/test_preprocessing.py -q --basetemp=.pytest_cache/t08-preprocessing
+.\.venv\python.exe -m pip check
+```
+
+T08 chỉ fit fixture TEST_ONLY nhỏ để kiểm tra, không fit trên dữ liệu dự án,
+không mở validation/test, train full hoặc ghi run/metric vào Experiment Log.
+Task training sau phải fit/clone toàn pipeline trong train từng run/fold;
+inference chỉ load/predict với cùng schema/config.

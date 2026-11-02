@@ -42,11 +42,16 @@ hợp đồng thực thi; chưa chạy ablation hoặc khẳng định các cộ
 Lịch sử lấy trên timeline quan sát T04 trước khi chọn IDs T05, không nén các
 origin bị loại do thiếu target thành các giờ liên tiếp.
 
-T08 dùng Pipeline/ColumnTransformer: median train cho số, most_frequent hoặc
-mã thiếu định trước cho categorical, encoder xử lý category chưa thấy;
-Ridge scale số và one-hot categorical, RF impute/encode, không bắt buộc scale.
+T08 đã có [factories/config](preprocessing.md) Pipeline/ColumnTransformer:
+median train cho số, keep_empty_features và indicator mọi numeric; categorical
+dùng token thiếu định trước và one-hot unknown=ignore. Ridge scale numeric đã
+impute; RF không scale; indicator/OHE giữ binary. Policy dự báo âm là identity
+chung cho persistence/Ridge/RF, không clipping. Chỉ fit fixture TEST_ONLY nhỏ,
+chưa fit pipeline trên dataset dự án hoặc chạy model full.
 Fit imputer/encoder/scaler **trong train của từng run/fold**; save/load phải
 giữ đúng thứ tự/schema feature. Không xóa nồng độ cao bằng IQR hoặc impute target.
+Thay policy hậu xử lý phải chốt trước hoặc qua validation, ghi log và áp dụng
+nhất quán cho các model, không chọn bằng test hoặc clipping riêng từng model.
 
 C có thể dùng mutual information hoặc SelectFromModel; T12 chốt phương pháp
 và ngân sách trên train/CV/validation trước test. Hiện `selection_method` và
