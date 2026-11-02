@@ -8,7 +8,8 @@ Hiện có T01 xác minh môi trường, đặc tả T02, manifest/audit T03–T
 T04-LOG, target/split và count/date audit T05, EDA train T06 có bảng/PNG gốc,
 T07 có feature A/B nhân quả, registry và missing train; T08 có factories
 preprocessing và kiểm tra fixture. T09 có [baseline full validation thật](baseline_results.md),
-predictions/log/metric/hình/bundle; chưa chạy Ridge/RF hoặc đánh giá test.
+predictions/log/metric/hình/bundle; T10 có [Ridge/RF A full](initial_findings.md),
+so persistence cùng IDs, chi phí và nhận xét. Chưa đánh giá test.
 Ưu tiên tiến độ thực tế đến T10; có T11/T12 thì bổ sung. Không bắt buộc tuning,
 test cuối hoặc demo và **không mở test để lấy số liệu giữa kỳ**. Phải nêu thiếu,
 không điền bảng giả.
@@ -21,10 +22,10 @@ không điền bảng giả.
 | Bối cảnh/mục tiêu/Input–Output/hồi quy | T02 | [ ] Đúng t+1/cùng trạm, µg/m³, input tới t, giả định số đo t, RQ1/2/3 | Có đặc tả, chưa có DOCX/PPTX |
 | Dữ liệu/nguồn/số mẫu/thuộc tính/target | Data Understanding, T03–T05 | [ ] Trích nguồn/manifest/audit; phân biệt số công bố/audit/supervised thật | Có audit raw/T04 và manifest/số mẫu supervised T05; chưa có DOCX/PPTX |
 | EDA train | T06 | [ ] Đơn/đa biến, missing/bất thường/ngoại lệ, thời gian/trạm, hình/bảng gốc và quyết định | Có notebook full kernel sạch, 14 bảng/9 PNG và [nhận xét T07/T08](eda_findings.md); chưa đưa vào DOCX/PPTX |
-| Feature/pipeline | Data Preparation, T07–T08 | [ ] A/B/dictionary/causal tests; train-only/schema/save-load; tách thiết kế/đã chạy | Có A/B T07 và [factories T08](preprocessing.md) đã kiểm clone/train-only/save-load trên fixture; chưa fit dataset dự án hoặc đưa vào DOCX/PPTX |
-| Baseline/model/protocol | Modeling/Evaluation, T09–T10 | [ ] Persistence/fallback, Ridge/RF A, MAE/RMSE/R², cùng IDs, split/CV/test gate | Có persistence T09 full, primary N=102.479, MAE=9,736617; thiếu Ridge/RF A |
-| Kết quả/nhận xét bước đầu | T09–T10; T11/T12 nếu có | [ ] Validation/CV có run_id/config/mode/N/thời gian; smoke khác full | Có [run/metric/predictions/hình T09](baseline_results.md); chưa đưa vào DOCX/PPTX, thiếu model ML |
-| Vòng thử–nhận xét–sửa | Mọi giai đoạn/T04-LOG | [ ] Giả thuyết/thay đổi, tham chiếu/số liệu/quyết định; giữ kém/thất bại | Có smoke→full kiểm thực thi T09; không xem chênh metric hai tập khác nhau là cải tiến; chưa có vòng ML |
+| Feature/pipeline | Data Preparation, T07–T08 | [ ] A/B/dictionary/causal tests; train-only/schema/save-load; tách thiết kế/đã chạy | Có A/B T07 và [factories T08](preprocessing.md), kiểm fixture clone/train-only/save-load; T10 đã fit pipeline A trên train dự án, chưa lưu model triển khai hoặc đưa vào DOCX/PPTX |
+| Baseline/model/protocol | Modeling/Evaluation, T09–T10 | [ ] Persistence/fallback, Ridge/RF A, MAE/RMSE/R², cùng IDs, split/CV/test gate | Có persistence/Ridge/RF full, cùng primary N=102.479; MAE 9,736617/10,200433/9,561488; chưa đưa vào DOCX/PPTX |
+| Kết quả/nhận xét bước đầu | T09–T10; T11/T12 nếu có | [ ] Validation/CV có run_id/config/mode/N/thời gian; smoke khác full | Có [T09](baseline_results.md) và [T10](initial_findings.md) với bảng/hình/chi phí/gap; chưa đưa vào DOCX/PPTX |
+| Vòng thử–nhận xét–sửa | Mọi giai đoạn/T04-LOG | [ ] Giả thuyết/thay đổi, tham chiếu/số liệu/quyết định; giữ kém/thất bại | T10 giữ cả Ridge MAE kém và RF cải thiện nhỏ so baseline, đề xuất T11/T12 chưa chạy; smoke chỉ kiểm thực thi, không coi khác mẫu là cải tiến |
 | Tiến độ/khó khăn/kế hoạch | Project plan | [ ] Artifact task hoàn thành, phần còn lại/phụ thuộc/tài nguyên/giới hạn | Có mapping; Issue đóng không đủ bằng chứng |
 | Đóng góp/nguồn/AI disclosure | Tất cả sản phẩm | [ ] Đóng góp thực tế và nguồn/hỗ trợ AI được ghi đúng | Chưa xác minh từng thành viên |
 

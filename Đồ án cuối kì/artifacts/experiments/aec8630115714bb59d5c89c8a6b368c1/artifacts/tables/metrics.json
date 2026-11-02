@@ -1,0 +1,33 @@
+{
+  "model": "ridge",
+  "mode": "full",
+  "run_id": "aec8630115714bb59d5c89c8a6b368c1",
+  "train": {
+    "n_total": 204865,
+    "n_scored": 204865,
+    "unavailable": 0,
+    "coverage": 1.0,
+    "MAE": 11.286319820860166,
+    "RMSE": 19.923726413396565,
+    "R2": 0.9361795422842271,
+    "r2_undefined_reason": null,
+    "negative_predictions": 4179
+  },
+  "validation": {
+    "n_total": 102479,
+    "n_scored": 102479,
+    "unavailable": 0,
+    "coverage": 1.0,
+    "MAE": 10.20043250848654,
+    "RMSE": 18.907140439263582,
+    "R2": 0.9467019818688767,
+    "r2_undefined_reason": null,
+    "negative_predictions": 2685
+  },
+  "timing_seconds": {
+    "preflight_before_run": 17.12385340000037,
+    "fit_pipeline": 2.9633662999985972,
+    "predict_train": 0.9504343000007793,
+    "predict_validation": 0.36786449999635806
+  }
+}

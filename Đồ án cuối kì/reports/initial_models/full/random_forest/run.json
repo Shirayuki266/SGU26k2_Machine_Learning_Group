@@ -1,0 +1,7 @@
+{
+  "run_id": "780ecb7fb59d48bea58d5e4a076f1f26",
+  "mode": "full",
+  "model": "random_forest",
+  "official": true,
+  "weights_saved": false
+}

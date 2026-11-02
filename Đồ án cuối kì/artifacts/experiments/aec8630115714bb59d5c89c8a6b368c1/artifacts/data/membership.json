@@ -1,0 +1,48 @@
+{
+  "selected": {
+    "train": {
+      "rows": 204865,
+      "ordered_ids_sha256": "4bce8e5dc4505432d8b26ff1d7bf3b7971be01bb443ee640a0ba0b7d8ca6838e",
+      "first_target": "2013-03-01 01:00:00",
+      "last_target": "2015-02-28 23:00:00"
+    },
+    "validation": {
+      "rows": 102479,
+      "ordered_ids_sha256": "534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7",
+      "first_target": "2015-03-01 00:00:00",
+      "last_target": "2016-02-29 23:00:00"
+    }
+  },
+  "anchor": {
+    "schema_version": "validation-cohorts-v1",
+    "split": "validation",
+    "test_locked": true,
+    "t05_snapshot_id": "2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc",
+    "files": {
+      "validation_samples": {
+        "path": "data/processed/samples_full/validation.csv",
+        "sha256": "eed8f0a497b352540705640ccf1a10d3db9084af88653184aa2e0b4abbbfa173",
+        "bytes": 26281009
+      },
+      "validation_ids": {
+        "path": "data/processed/samples_full/sample_ids/validation.csv",
+        "sha256": "4102afaecae6eb3f56434b0b1f93d53f90a914edad304496a429bfdad14f5a8c",
+        "bytes": 12333889
+      }
+    },
+    "cohorts": {
+      "operational": {
+        "samples": 103287,
+        "ordered_sample_ids_sha256": "bd15e19b4ce89a5025e5f36f547fc4d3f56953e334d38da3bc8390270dd6444a"
+      },
+      "primary": {
+        "samples": 102479,
+        "ordered_sample_ids_sha256": "534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7"
+      }
+    },
+    "order": "T05 station/input_timestamp order",
+    "primary_filter": "is_primary == true",
+    "operational_filter": "all retained T05 validation IDs",
+    "comparison_rule": "same IDs/order; no dropping rows for missing features; report prediction coverage"
+  }
+}

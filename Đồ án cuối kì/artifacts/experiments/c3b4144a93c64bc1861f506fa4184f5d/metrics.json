@@ -1,0 +1,45 @@
+{
+  "train_primary": {
+    "n_total": 3072,
+    "n_scored": 3072,
+    "unavailable": 0,
+    "coverage": 1.0,
+    "MAE": 6.684200676375165,
+    "RMSE": 13.20706984984435,
+    "R2": 0.9807026352670327,
+    "r2_undefined_reason": null,
+    "negative_predictions": 0
+  },
+  "validation_primary": {
+    "n_total": 768,
+    "n_scored": 768,
+    "unavailable": 0,
+    "coverage": 1.0,
+    "MAE": 8.961040930019493,
+    "RMSE": 15.298052306027369,
+    "R2": 0.8488416329591688,
+    "r2_undefined_reason": null,
+    "negative_predictions": 0
+  },
+  "timing_seconds": {
+    "preflight_before_run": 10.272395200001483,
+    "fit_pipeline": 2.284500999994634,
+    "predict_train": 0.12709520000498742,
+    "predict_validation": 0.07907179999892833
+  },
+  "available_memory_mb_before_data": 1180.23828125,
+  "official_full_result": false,
+  "test_csv_accessed": false,
+  "validation_baseline": {
+    "n_total": 768,
+    "n_scored": 768,
+    "unavailable": 0,
+    "coverage": 1.0,
+    "MAE": 9.524739583333334,
+    "RMSE": 15.721079598742575,
+    "R2": 0.8403662772191625,
+    "r2_undefined_reason": null
+  },
+  "generalization_gap_MAE": 2.2768402536443277,
+  "validation_delta_MAE_vs_persistence": -0.5636986533138408
+}

@@ -83,6 +83,19 @@ reports/.features-*/
 !experiments/experiment_log.csv
 experiments/.experiment_log.lock
 
+# T10 small comparison table; actual run directories are allowlisted by UUID.
+!reports/initial_models/**/*.csv
+!artifacts/experiments/
+artifacts/experiments/*
+!artifacts/experiments/918f7e6185db4904a3362d44facca68d/
+!artifacts/experiments/c3b4144a93c64bc1861f506fa4184f5d/
+!artifacts/experiments/aec8630115714bb59d5c89c8a6b368c1/
+!artifacts/experiments/780ecb7fb59d48bea58d5e4a076f1f26/
+!artifacts/experiments/918f7e6185db4904a3362d44facca68d/**/*.gz
+!artifacts/experiments/c3b4144a93c64bc1861f506fa4184f5d/**/*.gz
+!artifacts/experiments/aec8630115714bb59d5c89c8a6b368c1/**/*.gz
+!artifacts/experiments/780ecb7fb59d48bea58d5e4a076f1f26/**/*.gz
+
 # Local editor and OS files
 .vscode/
 .idea/

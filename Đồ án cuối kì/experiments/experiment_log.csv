@@ -1253,3 +1253,2923 @@ Primary N=1998, MAE=10.821321, RMSE=16.705915, R²=0.9656214053905998. Operation
 Fallback=18/2016 (0.8929%); coverage=100.0000%; history limit <= 24h, otherwise train medians. Primary has no missing-current fallback; do not mix denominators. Numeric units µg/m³.
 
 No randomness (actual seed null; project seed retained in config). No test, clipping, learned model or threshold tuning. Compare T10 Ridge/RF A on identical primary validation IDs; improvement is a research question, not a required outcome.","T10: initial Ridge and Random Forest A on frozen IDs, same metrics/prediction policy; log all outcomes.",,../artifacts/experiments/5a6c965f64754a2ea9508e554fd92092/config.json,../artifacts/experiments/5a6c965f64754a2ea9508e554fd92092/metrics.json,../artifacts/experiments/5a6c965f64754a2ea9508e554fd92092/metadata.json,../artifacts/experiments/5a6c965f64754a2ea9508e554fd92092/notes.md
+780ecb7fb59d48bea58d5e4a076f1f26,completed,T10,24cef47874a94d9faa7bfcbae29b5c58,,,full,train,Benchmark initial A models against persistence on identical primary validation IDs.,"Current measurements/weather/calendar may improve persistence, but no model is required to win.","Initial fixed configuration; RF bounded for resources, not selected from validation scores.",random_forest,"{
+  ""signature"": {
+    ""design"": {
+      ""schema_version"": ""t10-initial-A-v1"",
+      ""feature_set"": ""A"",
+      ""cohort"": ""primary"",
+      ""baseline_reference_run_id"": ""24cef47874a94d9faa7bfcbae29b5c58"",
+      ""models"": {
+        ""ridge"": {
+          ""alpha"": 1.0
+        },
+        ""random_forest"": {
+          ""n_estimators"": 80,
+          ""max_depth"": 12,
+          ""min_samples_leaf"": 2,
+          ""max_features"": 1.0,
+          ""random_state"": 42,
+          ""n_jobs"": 1
+        }
+      },
+      ""smoke"": {
+        ""train_rows_per_station"": 256,
+        ""validation_rows_per_station"": 64,
+        ""selection"": ""chronological_head_after_primary_filter""
+      },
+      ""budget"": {
+        ""max_full_runs_per_model"": 1,
+        ""smoke_required"": true,
+        ""tuning"": false
+      },
+      ""resources"": {
+        ""blas_threads"": 1,
+        ""minimum_free_memory_mb"": 768,
+        ""execution"": ""sequential""
+      },
+      ""save_model_weights"": false,
+      ""note"": ""Fixed before scoring in Issue #20. RF intentionally bounded vs old 300/unlimited design due about 1.9 GiB available RAM. No tuning, no clipping; fitted state summary is not deployable model weights.""
+    },
+    ""model"": ""random_forest"",
+    ""effective_model_parameters"": {
+      ""bootstrap"": true,
+      ""ccp_alpha"": 0.0,
+      ""criterion"": ""squared_error"",
+      ""max_depth"": 12,
+      ""max_features"": 1.0,
+      ""max_leaf_nodes"": null,
+      ""max_samples"": null,
+      ""min_impurity_decrease"": 0.0,
+      ""min_samples_leaf"": 2,
+      ""min_samples_split"": 2,
+      ""min_weight_fraction_leaf"": 0.0,
+      ""monotonic_cst"": null,
+      ""n_estimators"": 80,
+      ""n_jobs"": 1,
+      ""oob_score"": false,
+      ""random_state"": 42,
+      ""verbose"": 0,
+      ""warm_start"": false
+    },
+    ""features"": {
+      ""legacy_name"": ""F0"",
+      ""measurements"": [
+        ""PM2.5"",
+        ""PM10"",
+        ""SO2"",
+        ""NO2"",
+        ""CO"",
+        ""O3"",
+        ""TEMP"",
+        ""PRES"",
+        ""DEWP"",
+        ""RAIN"",
+        ""WSPM""
+      ],
+      ""categorical"": [
+        ""station"",
+        ""wd""
+      ],
+      ""calendar_reference"": ""target_timestamp"",
+      ""calendar"": [
+        ""target_hour"",
+        ""target_month"",
+        ""target_day_of_week""
+      ],
+      ""cyclic_calendar"": {
+        ""target_hour"": 24,
+        ""target_month"": 12
+      }
+    },
+    ""preprocessing"": {
+      ""schema_version"": ""t08-preprocessing-v1"",
+      ""numeric"": {
+        ""imputation_strategy"": ""median"",
+        ""keep_empty_features"": true,
+        ""missing_indicators"": ""all"",
+        ""scale"": {
+          ""ridge"": true,
+          ""random_forest"": false
+        }
+      },
+      ""categorical"": {
+        ""imputation_strategy"": ""constant"",
+        ""fill_value"": ""__MISSING__"",
+        ""handle_unknown"": ""ignore"",
+        ""sparse_output"": false
+      },
+      ""output"": {
+        ""format"": ""pandas"",
+        ""verbose_feature_names"": true
+      },
+      ""prediction_postprocessing"": {
+        ""negative_predictions"": ""identity"",
+        ""applies_to"": [
+          ""persistence"",
+          ""ridge"",
+          ""random_forest""
+        ]
+      }
+    },
+    ""source_sha256"": {
+      ""initial_models.py"": ""88fba57cf8f13c12f168310ce8bc6e37a96c8ef604e9f7db064d29b30d86da4b"",
+      ""features.py"": ""ccb40348855216057b1c10ab34a67a3da467979fb51417df5b6782f265996210"",
+      ""preprocessing.py"": ""3e121c4f6f5226b3764f053f1ceafdc9087ff3bbc97382dcc75242044b5d241f"",
+      ""metrics.py"": ""c282e54515b5ad25fa9b67c576c8d082da9833878d65ac89e22ac7714b221769"",
+      ""evaluation.py"": ""903dad88d32507360c18e67d7c0559bea069a94e6859978244c442196d5ec27a"",
+      ""run_initial_models.py"": ""57c76f73ca281c871cba659b63e7bf3aa1f9c18f232556173de561bf315159d7""
+    },
+    ""provenance"": {
+      ""split_manifest"": ""reports/splits_full/split_manifest.json"",
+      ""split_manifest_sha256"": ""6d3ac3f05da50324a65c34c1e1601b5df45fefc3d2e6d0e834d43a27062d0e42"",
+      ""t05_snapshot_id"": ""2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc"",
+      ""input_files_read"": [
+        {
+          ""path"": ""data/processed/samples_full/train.csv"",
+          ""sha256"": ""ebc89c94b576f009705446da7c4bec079f750755e5755e5041b6a93f09226d46"",
+          ""bytes"": 51395102
+        },
+        {
+          ""path"": ""data/processed/samples_full/sample_ids/train.csv"",
+          ""sha256"": ""336d58dda970536fb0c7dc1739529fe2f1bcb4200a5f32e2f3d40cca1279d8bf"",
+          ""bytes"": 24598381
+        }
+      ],
+      ""source_mode"": ""full"",
+      ""validation_start"": ""2015-03-01T00:00:00"",
+      ""validation_files"": {
+        ""validation_samples"": {
+          ""path"": ""data/processed/samples_full/validation.csv"",
+          ""sha256"": ""eed8f0a497b352540705640ccf1a10d3db9084af88653184aa2e0b4abbbfa173"",
+          ""bytes"": 26281009
+        },
+        ""validation_ids"": {
+          ""path"": ""data/processed/samples_full/sample_ids/validation.csv"",
+          ""sha256"": ""4102afaecae6eb3f56434b0b1f93d53f90a914edad304496a429bfdad14f5a8c"",
+          ""bytes"": 12333889
+        }
+      },
+      ""validation_membership"": {
+        ""operational"": {
+          ""samples"": 103287,
+          ""ordered_sample_ids_sha256"": ""bd15e19b4ce89a5025e5f36f547fc4d3f56953e334d38da3bc8390270dd6444a""
+        },
+        ""primary"": {
+          ""samples"": 102479,
+          ""ordered_sample_ids_sha256"": ""534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7""
+        }
+      },
+      ""label_availability"": {
+        ""status"": ""passed"",
+        ""fit_samples"": 205977,
+        ""evaluation_samples"": 103287,
+        ""latest_fit_target_timestamp"": ""2015-02-28T23:00:00"",
+        ""first_evaluation_input_timestamp"": ""2015-02-28T23:00:00"",
+        ""planned_label_cutoff"": ""2015-02-28T23:00:00"",
+        ""comparison"": ""<="",
+        ""fitted"": false
+      }
+    },
+    ""anchor_sha256"": ""b9646da98017bc0b02f622ee928df0b70185e8a6312a2a9512329d4d04057e7f"",
+    ""baseline_predictions_sha256"": ""88c03c51dab835b49aca831bcf6fb3404ee2334886c80748530014174a6a2fc3""
+  },
+  ""effective_project_config"": {
+    ""seed"": 42,
+    ""horizon_hours"": 1,
+    ""mode"": ""smoke"",
+    ""available_modes"": [
+      ""smoke"",
+      ""full""
+    ],
+    ""problem"": {
+      ""task_type"": ""regression"",
+      ""target_column"": ""PM2.5"",
+      ""target_unit"": ""ug/m3"",
+      ""group_column"": ""station"",
+      ""input_time_column"": ""input_timestamp"",
+      ""target_time_column"": ""target_timestamp"",
+      ""station_scope"": ""observed_stations"",
+      ""current_observation_available"": true,
+      ""forecast_strategy"": ""rolling_one_hour""
+    },
+    ""split"": {
+      ""timestamp_column"": ""target_timestamp"",
+      ""validation_start"": ""2015-03-01T00:00:00"",
+      ""test_start"": ""2016-03-01T00:00:00"",
+      ""timestamp_convention"": ""source_local_naive"",
+      ""test_locked"": true,
+      ""final_refit_train_validation"": true
+    },
+    ""sample_construction"": {
+      ""target_value_column"": ""target_pm25"",
+      ""sample_id_scheme"": ""pm25-h1-v1"",
+      ""target_missing_policy"": ""drop"",
+      ""origin_missing_policy"": ""retain_operational_flag_primary"",
+      ""holdout_label_rule"": ""at_or_before_first_origin""
+    },
+    ""temporal_cv"": {
+      ""strategy"": ""expanding_window"",
+      ""partition"": ""train"",
+      ""group_by"": ""unique_target_timestamp"",
+      ""fit_target_must_precede_first_origin"": true,
+      ""folds"": [
+        {
+          ""fold_id"": 1,
+          ""evaluation_start"": ""2014-06-01T00:00:00"",
+          ""evaluation_end"": ""2014-09-01T00:00:00""
+        },
+        {
+          ""fold_id"": 2,
+          ""evaluation_start"": ""2014-09-01T00:00:00"",
+          ""evaluation_end"": ""2014-12-01T00:00:00""
+        },
+        {
+          ""fold_id"": 3,
+          ""evaluation_start"": ""2014-12-01T00:00:00"",
+          ""evaluation_end"": ""2015-03-01T00:00:00""
+        }
+      ]
+    },
+    ""features"": {
+      ""A"": {
+        ""legacy_name"": ""F0"",
+        ""measurements"": [
+          ""PM2.5"",
+          ""PM10"",
+          ""SO2"",
+          ""NO2"",
+          ""CO"",
+          ""O3"",
+          ""TEMP"",
+          ""PRES"",
+          ""DEWP"",
+          ""RAIN"",
+          ""WSPM""
+        ],
+        ""categorical"": [
+          ""station"",
+          ""wd""
+        ],
+        ""calendar_reference"": ""target_timestamp"",
+        ""calendar"": [
+          ""target_hour"",
+          ""target_month"",
+          ""target_day_of_week""
+        ],
+        ""cyclic_calendar"": {
+          ""target_hour"": 24,
+          ""target_month"": 12
+        }
+      },
+      ""B"": {
+        ""legacy_name"": ""F1"",
+        ""extends"": ""A"",
+        ""pm25_lag_hours"": [
+          1,
+          3,
+          6,
+          12,
+          24
+        ],
+        ""pm25_rolling_windows_hours"": [
+          3,
+          6,
+          12,
+          24
+        ],
+        ""rolling_stats"": [
+          ""mean"",
+          ""std""
+        ],
+        ""rolling_std_ddof"": 1,
+        ""rolling_include_current"": true,
+        ""rolling_min_periods"": ""window""
+      },
+      ""C"": {
+        ""extends"": ""B"",
+        ""selector_fit_scope"": ""training_partition_of_each_run_or_fold"",
+        ""selection_method"": null,
+        ""selected_features"": null
+      }
+    },
+    ""evaluation"": {
+      ""baseline"": ""persistence"",
+      ""models"": [
+        ""ridge"",
+        ""random_forest""
+      ],
+      ""initial_parameters"": {
+        ""ridge"": {
+          ""alpha"": 1.0
+        },
+        ""random_forest"": {
+          ""n_estimators"": 80,
+          ""max_depth"": 12,
+          ""min_samples_leaf"": 2,
+          ""max_features"": 1.0,
+          ""random_state"": 42,
+          ""n_jobs"": 1
+        }
+      },
+      ""primary_metric"": ""MAE"",
+      ""secondary_metrics"": [
+        ""RMSE"",
+        ""R2""
+      ],
+      ""same_sample_ids"": true,
+      ""baseline_fallback_order"": [
+        ""last_observed_same_station"",
+        ""training_station_median"",
+        ""training_global_median"",
+        ""unavailable""
+      ]
+    },
+    ""experiment_logging"": {
+      ""infrastructure_task_id"": ""T04-LOG"",
+      ""index"": ""experiments/experiment_log.csv"",
+      ""runs"": ""artifacts/experiments""
+    },
+    ""paths"": {
+      ""raw_data"": ""data/raw"",
+      ""processed_data"": ""data/processed"",
+      ""artifacts"": ""artifacts"",
+      ""figures"": ""reports/figures""
+    }
+  },
+  ""smoke_reference_run_id"": ""c3b4144a93c64bc1861f506fa4184f5d"",
+  ""configured_seed"": 42,
+  ""weights_saved"": false
+}",A,"{
+  ""schema_version"": ""t08-preprocessing-v1"",
+  ""numeric"": {
+    ""imputation_strategy"": ""median"",
+    ""keep_empty_features"": true,
+    ""missing_indicators"": ""all"",
+    ""scale"": {
+      ""ridge"": true,
+      ""random_forest"": false
+    }
+  },
+  ""categorical"": {
+    ""imputation_strategy"": ""constant"",
+    ""fill_value"": ""__MISSING__"",
+    ""handle_unknown"": ""ignore"",
+    ""sparse_output"": false
+  },
+  ""output"": {
+    ""format"": ""pandas"",
+    ""verbose_feature_names"": true
+  },
+  ""prediction_postprocessing"": {
+    ""negative_predictions"": ""identity"",
+    ""applies_to"": [
+      ""persistence"",
+      ""ridge"",
+      ""random_forest""
+    ]
+  }
+}","{
+  ""provenance"": {
+    ""split_manifest"": ""reports/splits_full/split_manifest.json"",
+    ""split_manifest_sha256"": ""6d3ac3f05da50324a65c34c1e1601b5df45fefc3d2e6d0e834d43a27062d0e42"",
+    ""t05_snapshot_id"": ""2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc"",
+    ""input_files_read"": [
+      {
+        ""path"": ""data/processed/samples_full/train.csv"",
+        ""sha256"": ""ebc89c94b576f009705446da7c4bec079f750755e5755e5041b6a93f09226d46"",
+        ""bytes"": 51395102
+      },
+      {
+        ""path"": ""data/processed/samples_full/sample_ids/train.csv"",
+        ""sha256"": ""336d58dda970536fb0c7dc1739529fe2f1bcb4200a5f32e2f3d40cca1279d8bf"",
+        ""bytes"": 24598381
+      }
+    ],
+    ""source_mode"": ""full"",
+    ""validation_start"": ""2015-03-01T00:00:00"",
+    ""validation_files"": {
+      ""validation_samples"": {
+        ""path"": ""data/processed/samples_full/validation.csv"",
+        ""sha256"": ""eed8f0a497b352540705640ccf1a10d3db9084af88653184aa2e0b4abbbfa173"",
+        ""bytes"": 26281009
+      },
+      ""validation_ids"": {
+        ""path"": ""data/processed/samples_full/sample_ids/validation.csv"",
+        ""sha256"": ""4102afaecae6eb3f56434b0b1f93d53f90a914edad304496a429bfdad14f5a8c"",
+        ""bytes"": 12333889
+      }
+    },
+    ""validation_membership"": {
+      ""operational"": {
+        ""samples"": 103287,
+        ""ordered_sample_ids_sha256"": ""bd15e19b4ce89a5025e5f36f547fc4d3f56953e334d38da3bc8390270dd6444a""
+      },
+      ""primary"": {
+        ""samples"": 102479,
+        ""ordered_sample_ids_sha256"": ""534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7""
+      }
+    },
+    ""label_availability"": {
+      ""status"": ""passed"",
+      ""fit_samples"": 205977,
+      ""evaluation_samples"": 103287,
+      ""latest_fit_target_timestamp"": ""2015-02-28T23:00:00"",
+      ""first_evaluation_input_timestamp"": ""2015-02-28T23:00:00"",
+      ""planned_label_cutoff"": ""2015-02-28T23:00:00"",
+      ""comparison"": ""<="",
+      ""fitted"": false
+    }
+  },
+  ""validation_anchor"": {
+    ""schema_version"": ""validation-cohorts-v1"",
+    ""split"": ""validation"",
+    ""test_locked"": true,
+    ""t05_snapshot_id"": ""2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc"",
+    ""files"": {
+      ""validation_samples"": {
+        ""path"": ""data/processed/samples_full/validation.csv"",
+        ""sha256"": ""eed8f0a497b352540705640ccf1a10d3db9084af88653184aa2e0b4abbbfa173"",
+        ""bytes"": 26281009
+      },
+      ""validation_ids"": {
+        ""path"": ""data/processed/samples_full/sample_ids/validation.csv"",
+        ""sha256"": ""4102afaecae6eb3f56434b0b1f93d53f90a914edad304496a429bfdad14f5a8c"",
+        ""bytes"": 12333889
+      }
+    },
+    ""cohorts"": {
+      ""operational"": {
+        ""samples"": 103287,
+        ""ordered_sample_ids_sha256"": ""bd15e19b4ce89a5025e5f36f547fc4d3f56953e334d38da3bc8390270dd6444a""
+      },
+      ""primary"": {
+        ""samples"": 102479,
+        ""ordered_sample_ids_sha256"": ""534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7""
+      }
+    },
+    ""order"": ""T05 station/input_timestamp order"",
+    ""primary_filter"": ""is_primary == true"",
+    ""operational_filter"": ""all retained T05 validation IDs"",
+    ""comparison_rule"": ""same IDs/order; no dropping rows for missing features; report prediction coverage""
+  },
+  ""selected_membership"": {
+    ""train"": {
+      ""rows"": 204865,
+      ""ordered_ids_sha256"": ""4bce8e5dc4505432d8b26ff1d7bf3b7971be01bb443ee640a0ba0b7d8ca6838e"",
+      ""first_target"": ""2013-03-01 01:00:00"",
+      ""last_target"": ""2015-02-28 23:00:00""
+    },
+    ""validation"": {
+      ""rows"": 102479,
+      ""ordered_ids_sha256"": ""534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7"",
+      ""first_target"": ""2015-03-01 00:00:00"",
+      ""last_target"": ""2016-02-29 23:00:00""
+    }
+  },
+  ""selection"": ""all primary IDs""
+}","{
+  ""timestamp_column"": ""target_timestamp"",
+  ""validation_start"": ""2015-03-01T00:00:00"",
+  ""test_start"": ""2016-03-01T00:00:00"",
+  ""timestamp_convention"": ""source_local_naive"",
+  ""test_locked"": true,
+  ""final_refit_train_validation"": true,
+  ""training"": ""train primary only"",
+  ""evaluation"": ""validation primary only""
+}",,"{
+  ""train"": 204865,
+  ""validation"": 102479
+}",42,"{
+  ""max_full_runs_per_model"": 1,
+  ""smoke_required"": true,
+  ""tuning"": false
+}",false,executed_script,2026-11-02T15:08:47.060184+00:00,2026-11-02T15:11:38.481042+00:00,UTC,171.420858,"{
+  ""commit"": ""5e823afb1d6e98c01d3f44679f15eb4e36bf6886"",
+  ""branch"": ""feature/t10-initial-regressors"",
+  ""dirty"": true,
+  ""available"": true
+}","{
+  ""python"": ""3.12.10"",
+  ""platform"": ""Windows-11-10.0.22631-SP0"",
+  ""packages"": {
+    ""Jinja2"": ""3.1.6"",
+    ""MarkupSafe"": ""3.0.4"",
+    ""PyYAML"": ""6.0.3"",
+    ""Pygments"": ""2.21.0"",
+    ""Send2Trash"": ""2.1.0"",
+    ""altair"": ""6.3.0"",
+    ""anyio"": ""4.16.0"",
+    ""argon2-cffi"": ""25.1.0"",
+    ""argon2-cffi-bindings"": ""26.1.0"",
+    ""arrow"": ""1.4.0"",
+    ""asttokens"": ""3.0.2"",
+    ""async-lru"": ""2.4.0"",
+    ""attrs"": ""26.1.0"",
+    ""babel"": ""2.18.0"",
+    ""beautifulsoup4"": ""4.15.0"",
+    ""beijing-air-quality"": ""0.1.0"",
+    ""bleach"": ""6.4.0"",
+    ""certifi"": ""2026.10.23"",
+    ""cffi"": ""2.1.1"",
+    ""charset-normalizer"": ""3.5.2"",
+    ""click"": ""8.5.0"",
+    ""cloudpickle"": ""3.1.2"",
+    ""colorama"": ""0.4.6"",
+    ""comm"": ""0.2.3"",
+    ""contourpy"": ""1.4.0"",
+    ""cycler"": ""0.12.1"",
+    ""debugpy"": ""1.8.22"",
+    ""defusedxml"": ""0.7.1"",
+    ""executing"": ""2.3.0"",
+    ""fastjsonschema"": ""2.22.3"",
+    ""fonttools"": ""4.68.0"",
+    ""fqdn"": ""1.6.0"",
+    ""h11"": ""0.16.0"",
+    ""httpcore"": ""1.0.9"",
+    ""httpx"": ""0.28.1"",
+    ""idna"": ""3.20"",
+    ""iniconfig"": ""2.3.1"",
+    ""ipykernel"": ""7.4.0"",
+    ""ipython"": ""9.18.0"",
+    ""ipython_pygments_lexers"": ""1.1.1"",
+    ""ipywidgets"": ""8.1.9"",
+    ""isoduration"": ""20.11.0"",
+    ""itsdangerous"": ""2.2.0"",
+    ""jedi"": ""0.20.1"",
+    ""joblib"": ""1.6.0"",
+    ""json5"": ""0.17.3"",
+    ""jsonpointer"": ""3.7"",
+    ""jsonschema"": ""4.26.0"",
+    ""jsonschema-specifications"": ""2025.9.1"",
+    ""jupyter"": ""1.1.1"",
+    ""jupyter-console"": ""6.6.3"",
+    ""jupyter-events"": ""0.12.1"",
+    ""jupyter-lsp"": ""2.3.1"",
+    ""jupyter_builder"": ""1.2.4"",
+    ""jupyter_client"": ""8.10.0"",
+    ""jupyter_core"": ""5.9.1"",
+    ""jupyter_server"": ""2.21.1"",
+    ""jupyter_server_terminals"": ""0.5.4"",
+    ""jupyterlab"": ""4.6.5"",
+    ""jupyterlab_pygments"": ""0.3.0"",
+    ""jupyterlab_server"": ""2.28.1"",
+    ""jupyterlab_widgets"": ""3.0.17"",
+    ""kiwisolver"": ""1.5.1"",
+    ""lark"": ""1.3.1"",
+    ""matplotlib"": ""3.11.2"",
+    ""matplotlib-inline"": ""0.2.2"",
+    ""mistune"": ""3.4.0"",
+    ""narwhals"": ""2.28.0"",
+    ""nbclient"": ""0.11.0"",
+    ""nbconvert"": ""7.17.2"",
+    ""nbformat"": ""5.11.1"",
+    ""nest-asyncio2"": ""1.7.4"",
+    ""notebook"": ""7.6.4"",
+    ""notebook_shim"": ""0.2.4"",
+    ""numpy"": ""2.5.4"",
+    ""packaging"": ""26.3"",
+    ""pandas"": ""3.0.6"",
+    ""pandocfilters"": ""1.5.1"",
+    ""parso"": ""0.8.7"",
+    ""pillow"": ""13.0.0"",
+    ""pip"": ""26.2.1"",
+    ""platformdirs"": ""4.14.3"",
+    ""pluggy"": ""1.6.0"",
+    ""prometheus_client"": ""0.26.0"",
+    ""prompt_toolkit"": ""3.0.53"",
+    ""protobuf"": ""7.36.2"",
+    ""psutil"": ""7.2.2"",
+    ""pure_eval"": ""0.2.4"",
+    ""pyarrow"": ""26.0.0"",
+    ""pycparser"": ""3.12"",
+    ""pydeck"": ""0.9.3"",
+    ""pyparsing"": ""3.3.3"",
+    ""pytest"": ""9.1.1"",
+    ""python-dateutil"": ""2.9.0.post0"",
+    ""python-json-logger"": ""4.2.0"",
+    ""python-multipart"": ""0.0.33"",
+    ""pywinpty"": ""3.1.2"",
+    ""pyzmq"": ""27.2.0"",
+    ""referencing"": ""0.37.0"",
+    ""requests"": ""2.34.2"",
+    ""rfc3339-validator"": ""0.1.4"",
+    ""rfc3986-validator"": ""0.1.1"",
+    ""rfc3987-syntax"": ""1.1.0"",
+    ""rpds-py"": ""2026.9.1"",
+    ""scikit-learn"": ""1.9.1"",
+    ""scipy"": ""1.18.1"",
+    ""seaborn"": ""0.13.2"",
+    ""setuptools"": ""84.2.1"",
+    ""six"": ""1.17.0"",
+    ""soupsieve"": ""3.0.4"",
+    ""stack-data"": ""0.6.3"",
+    ""starlette"": ""1.10.0"",
+    ""streamlit"": ""1.66.1"",
+    ""terminado"": ""0.18.1"",
+    ""threadpoolctl"": ""3.7.0"",
+    ""tinycss2"": ""1.5.1"",
+    ""tornado"": ""6.6"",
+    ""traitlets"": ""5.16.1"",
+    ""typing_extensions"": ""4.16.0"",
+    ""tzdata"": ""2026.5"",
+    ""uri-template"": ""1.3.0"",
+    ""urllib3"": ""2.8.0"",
+    ""uvicorn"": ""0.54.0"",
+    ""watchdog"": ""6.0.0"",
+    ""wcwidth"": ""0.9.4"",
+    ""webcolors"": ""25.10.0"",
+    ""webencodings"": ""0.6.1"",
+    ""websocket-client"": ""1.9.2"",
+    ""websockets"": ""17.4"",
+    ""wheel"": ""0.48.0"",
+    ""widgetsnbextension"": ""4.0.16""
+  }
+}","{
+  ""train_primary"": {
+    ""n_total"": 204865,
+    ""n_scored"": 204865,
+    ""unavailable"": 0,
+    ""coverage"": 1.0,
+    ""MAE"": 9.837286915801801,
+    ""RMSE"": 16.66433522709399,
+    ""R2"": 0.9553527450212967,
+    ""r2_undefined_reason"": null,
+    ""negative_predictions"": 0
+  },
+  ""validation_primary"": {
+    ""n_total"": 102479,
+    ""n_scored"": 102479,
+    ""unavailable"": 0,
+    ""coverage"": 1.0,
+    ""MAE"": 9.56148776684663,
+    ""RMSE"": 18.964824954952,
+    ""R2"": 0.9463762678475134,
+    ""r2_undefined_reason"": null,
+    ""negative_predictions"": 0
+  },
+  ""timing_seconds"": {
+    ""preflight_before_run"": 15.985216900000523,
+    ""fit_pipeline"": 161.2247430999996,
+    ""predict_train"": 2.767161200004921,
+    ""predict_validation"": 1.2323414999991655
+  },
+  ""available_memory_mb_before_data"": 1077.4765625,
+  ""official_full_result"": true,
+  ""test_csv_accessed"": false,
+  ""validation_baseline"": {
+    ""n_total"": 102479,
+    ""n_scored"": 102479,
+    ""unavailable"": 0,
+    ""coverage"": 1.0,
+    ""MAE"": 9.736617258169966,
+    ""RMSE"": 19.240919249995102,
+    ""R2"": 0.9448035694053172,
+    ""r2_undefined_reason"": null
+  },
+  ""generalization_gap_MAE"": -0.275799148955171,
+  ""validation_delta_MAE_vs_persistence"": -0.17512949132333588
+}","[
+  {
+    ""path"": ""../artifacts/experiments/780ecb7fb59d48bea58d5e4a076f1f26/artifacts/source/initial_models.py"",
+    ""sha256"": ""88fba57cf8f13c12f168310ce8bc6e37a96c8ef604e9f7db064d29b30d86da4b"",
+    ""size_bytes"": 9707
+  },
+  {
+    ""path"": ""../artifacts/experiments/780ecb7fb59d48bea58d5e4a076f1f26/artifacts/source/features.py"",
+    ""sha256"": ""ccb40348855216057b1c10ab34a67a3da467979fb51417df5b6782f265996210"",
+    ""size_bytes"": 13172
+  },
+  {
+    ""path"": ""../artifacts/experiments/780ecb7fb59d48bea58d5e4a076f1f26/artifacts/source/preprocessing.py"",
+    ""sha256"": ""3e121c4f6f5226b3764f053f1ceafdc9087ff3bbc97382dcc75242044b5d241f"",
+    ""size_bytes"": 8439
+  },
+  {
+    ""path"": ""../artifacts/experiments/780ecb7fb59d48bea58d5e4a076f1f26/artifacts/source/metrics.py"",
+    ""sha256"": ""c282e54515b5ad25fa9b67c576c8d082da9833878d65ac89e22ac7714b221769"",
+    ""size_bytes"": 3114
+  },
+  {
+    ""path"": ""../artifacts/experiments/780ecb7fb59d48bea58d5e4a076f1f26/artifacts/source/evaluation.py"",
+    ""sha256"": ""903dad88d32507360c18e67d7c0559bea069a94e6859978244c442196d5ec27a"",
+    ""size_bytes"": 7261
+  },
+  {
+    ""path"": ""../artifacts/experiments/780ecb7fb59d48bea58d5e4a076f1f26/artifacts/source/run_initial_models.py"",
+    ""sha256"": ""57c76f73ca281c871cba659b63e7bf3aa1f9c18f232556173de561bf315159d7"",
+    ""size_bytes"": 13188
+  },
+  {
+    ""path"": ""../artifacts/experiments/780ecb7fb59d48bea58d5e4a076f1f26/artifacts/data/membership.json"",
+    ""sha256"": ""f0e1360e3436b6bf45ebd9aa17f3ccdbde02c949fca11f5866c36f1fe5c88555"",
+    ""size_bytes"": 1754
+  },
+  {
+    ""path"": ""../artifacts/experiments/780ecb7fb59d48bea58d5e4a076f1f26/artifacts/predictions/train.csv.gz"",
+    ""sha256"": ""971b97a86157e06a9ba11ebdd3c5714f654c63fa12552c377014ca680635ff49"",
+    ""size_bytes"": 14158442
+  },
+  {
+    ""path"": ""../artifacts/experiments/780ecb7fb59d48bea58d5e4a076f1f26/artifacts/predictions/validation.csv.gz"",
+    ""sha256"": ""4e55689bd95553e4232d6eeed3965b5200455dc87d2a06e071bb3affab42ea2a"",
+    ""size_bytes"": 7102533
+  },
+  {
+    ""path"": ""../artifacts/experiments/780ecb7fb59d48bea58d5e4a076f1f26/artifacts/model/fitted_pipeline_state.json"",
+    ""sha256"": ""f880f8a236253181028c584592abfe56cdf774f846e1a0ecba626ff276e3261e"",
+    ""size_bytes"": 6073
+  },
+  {
+    ""path"": ""../artifacts/experiments/780ecb7fb59d48bea58d5e4a076f1f26/artifacts/tables/metrics.json"",
+    ""sha256"": ""a94ba4a4c0683bfa202c4b8a4bce2bf0f7966d6a66ca0edd73da5ce3a118a6c7"",
+    ""size_bytes"": 822
+  }
+]","FULL random_forest, feature A, primary only. Train N=204865, validation N=102479. MAE train=9.837287, validation=9.561488; validation RMSE=18.964825, R2=0.9463762678475134. Persistence MAE on exactly these IDs=9.736617; delta=-0.175129. Train error is in-sample, not CV. No clipping, test or tuning. Weights intentionally not saved; fitted state is a summary, not a deployable model. Evaluate gap/cost before proposing future T11/T12; no requirement to beat persistence.",Report initial outcome including worse scores; future tuning/ablation only when explicitly assigned.,,../artifacts/experiments/780ecb7fb59d48bea58d5e4a076f1f26/config.json,../artifacts/experiments/780ecb7fb59d48bea58d5e4a076f1f26/metrics.json,../artifacts/experiments/780ecb7fb59d48bea58d5e4a076f1f26/metadata.json,../artifacts/experiments/780ecb7fb59d48bea58d5e4a076f1f26/notes.md
+918f7e6185db4904a3362d44facca68d,completed,T10,24cef47874a94d9faa7bfcbae29b5c58,,,smoke,train,Benchmark initial A models against persistence on identical primary validation IDs.,"Current measurements/weather/calendar may improve persistence, but no model is required to win.","Initial fixed configuration; RF bounded for resources, not selected from validation scores.",ridge,"{
+  ""signature"": {
+    ""design"": {
+      ""schema_version"": ""t10-initial-A-v1"",
+      ""feature_set"": ""A"",
+      ""cohort"": ""primary"",
+      ""baseline_reference_run_id"": ""24cef47874a94d9faa7bfcbae29b5c58"",
+      ""models"": {
+        ""ridge"": {
+          ""alpha"": 1.0
+        },
+        ""random_forest"": {
+          ""n_estimators"": 80,
+          ""max_depth"": 12,
+          ""min_samples_leaf"": 2,
+          ""max_features"": 1.0,
+          ""random_state"": 42,
+          ""n_jobs"": 1
+        }
+      },
+      ""smoke"": {
+        ""train_rows_per_station"": 256,
+        ""validation_rows_per_station"": 64,
+        ""selection"": ""chronological_head_after_primary_filter""
+      },
+      ""budget"": {
+        ""max_full_runs_per_model"": 1,
+        ""smoke_required"": true,
+        ""tuning"": false
+      },
+      ""resources"": {
+        ""blas_threads"": 1,
+        ""minimum_free_memory_mb"": 768,
+        ""execution"": ""sequential""
+      },
+      ""save_model_weights"": false,
+      ""note"": ""Fixed before scoring in Issue #20. RF intentionally bounded vs old 300/unlimited design due about 1.9 GiB available RAM. No tuning, no clipping; fitted state summary is not deployable model weights.""
+    },
+    ""model"": ""ridge"",
+    ""effective_model_parameters"": {
+      ""alpha"": 1.0,
+      ""copy_X"": true,
+      ""fit_intercept"": true,
+      ""max_iter"": null,
+      ""positive"": false,
+      ""random_state"": null,
+      ""solver"": ""auto"",
+      ""tol"": 0.0001
+    },
+    ""features"": {
+      ""legacy_name"": ""F0"",
+      ""measurements"": [
+        ""PM2.5"",
+        ""PM10"",
+        ""SO2"",
+        ""NO2"",
+        ""CO"",
+        ""O3"",
+        ""TEMP"",
+        ""PRES"",
+        ""DEWP"",
+        ""RAIN"",
+        ""WSPM""
+      ],
+      ""categorical"": [
+        ""station"",
+        ""wd""
+      ],
+      ""calendar_reference"": ""target_timestamp"",
+      ""calendar"": [
+        ""target_hour"",
+        ""target_month"",
+        ""target_day_of_week""
+      ],
+      ""cyclic_calendar"": {
+        ""target_hour"": 24,
+        ""target_month"": 12
+      }
+    },
+    ""preprocessing"": {
+      ""schema_version"": ""t08-preprocessing-v1"",
+      ""numeric"": {
+        ""imputation_strategy"": ""median"",
+        ""keep_empty_features"": true,
+        ""missing_indicators"": ""all"",
+        ""scale"": {
+          ""ridge"": true,
+          ""random_forest"": false
+        }
+      },
+      ""categorical"": {
+        ""imputation_strategy"": ""constant"",
+        ""fill_value"": ""__MISSING__"",
+        ""handle_unknown"": ""ignore"",
+        ""sparse_output"": false
+      },
+      ""output"": {
+        ""format"": ""pandas"",
+        ""verbose_feature_names"": true
+      },
+      ""prediction_postprocessing"": {
+        ""negative_predictions"": ""identity"",
+        ""applies_to"": [
+          ""persistence"",
+          ""ridge"",
+          ""random_forest""
+        ]
+      }
+    },
+    ""source_sha256"": {
+      ""initial_models.py"": ""88fba57cf8f13c12f168310ce8bc6e37a96c8ef604e9f7db064d29b30d86da4b"",
+      ""features.py"": ""ccb40348855216057b1c10ab34a67a3da467979fb51417df5b6782f265996210"",
+      ""preprocessing.py"": ""3e121c4f6f5226b3764f053f1ceafdc9087ff3bbc97382dcc75242044b5d241f"",
+      ""metrics.py"": ""c282e54515b5ad25fa9b67c576c8d082da9833878d65ac89e22ac7714b221769"",
+      ""evaluation.py"": ""903dad88d32507360c18e67d7c0559bea069a94e6859978244c442196d5ec27a"",
+      ""run_initial_models.py"": ""57c76f73ca281c871cba659b63e7bf3aa1f9c18f232556173de561bf315159d7""
+    },
+    ""provenance"": {
+      ""split_manifest"": ""reports/splits_full/split_manifest.json"",
+      ""split_manifest_sha256"": ""6d3ac3f05da50324a65c34c1e1601b5df45fefc3d2e6d0e834d43a27062d0e42"",
+      ""t05_snapshot_id"": ""2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc"",
+      ""input_files_read"": [
+        {
+          ""path"": ""data/processed/samples_full/train.csv"",
+          ""sha256"": ""ebc89c94b576f009705446da7c4bec079f750755e5755e5041b6a93f09226d46"",
+          ""bytes"": 51395102
+        },
+        {
+          ""path"": ""data/processed/samples_full/sample_ids/train.csv"",
+          ""sha256"": ""336d58dda970536fb0c7dc1739529fe2f1bcb4200a5f32e2f3d40cca1279d8bf"",
+          ""bytes"": 24598381
+        }
+      ],
+      ""source_mode"": ""full"",
+      ""validation_start"": ""2015-03-01T00:00:00"",
+      ""validation_files"": {
+        ""validation_samples"": {
+          ""path"": ""data/processed/samples_full/validation.csv"",
+          ""sha256"": ""eed8f0a497b352540705640ccf1a10d3db9084af88653184aa2e0b4abbbfa173"",
+          ""bytes"": 26281009
+        },
+        ""validation_ids"": {
+          ""path"": ""data/processed/samples_full/sample_ids/validation.csv"",
+          ""sha256"": ""4102afaecae6eb3f56434b0b1f93d53f90a914edad304496a429bfdad14f5a8c"",
+          ""bytes"": 12333889
+        }
+      },
+      ""validation_membership"": {
+        ""operational"": {
+          ""samples"": 103287,
+          ""ordered_sample_ids_sha256"": ""bd15e19b4ce89a5025e5f36f547fc4d3f56953e334d38da3bc8390270dd6444a""
+        },
+        ""primary"": {
+          ""samples"": 102479,
+          ""ordered_sample_ids_sha256"": ""534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7""
+        }
+      },
+      ""label_availability"": {
+        ""status"": ""passed"",
+        ""fit_samples"": 205977,
+        ""evaluation_samples"": 103287,
+        ""latest_fit_target_timestamp"": ""2015-02-28T23:00:00"",
+        ""first_evaluation_input_timestamp"": ""2015-02-28T23:00:00"",
+        ""planned_label_cutoff"": ""2015-02-28T23:00:00"",
+        ""comparison"": ""<="",
+        ""fitted"": false
+      }
+    },
+    ""anchor_sha256"": ""b9646da98017bc0b02f622ee928df0b70185e8a6312a2a9512329d4d04057e7f"",
+    ""baseline_predictions_sha256"": ""88c03c51dab835b49aca831bcf6fb3404ee2334886c80748530014174a6a2fc3""
+  },
+  ""effective_project_config"": {
+    ""seed"": 42,
+    ""horizon_hours"": 1,
+    ""mode"": ""smoke"",
+    ""available_modes"": [
+      ""smoke"",
+      ""full""
+    ],
+    ""problem"": {
+      ""task_type"": ""regression"",
+      ""target_column"": ""PM2.5"",
+      ""target_unit"": ""ug/m3"",
+      ""group_column"": ""station"",
+      ""input_time_column"": ""input_timestamp"",
+      ""target_time_column"": ""target_timestamp"",
+      ""station_scope"": ""observed_stations"",
+      ""current_observation_available"": true,
+      ""forecast_strategy"": ""rolling_one_hour""
+    },
+    ""split"": {
+      ""timestamp_column"": ""target_timestamp"",
+      ""validation_start"": ""2015-03-01T00:00:00"",
+      ""test_start"": ""2016-03-01T00:00:00"",
+      ""timestamp_convention"": ""source_local_naive"",
+      ""test_locked"": true,
+      ""final_refit_train_validation"": true
+    },
+    ""sample_construction"": {
+      ""target_value_column"": ""target_pm25"",
+      ""sample_id_scheme"": ""pm25-h1-v1"",
+      ""target_missing_policy"": ""drop"",
+      ""origin_missing_policy"": ""retain_operational_flag_primary"",
+      ""holdout_label_rule"": ""at_or_before_first_origin""
+    },
+    ""temporal_cv"": {
+      ""strategy"": ""expanding_window"",
+      ""partition"": ""train"",
+      ""group_by"": ""unique_target_timestamp"",
+      ""fit_target_must_precede_first_origin"": true,
+      ""folds"": [
+        {
+          ""fold_id"": 1,
+          ""evaluation_start"": ""2014-06-01T00:00:00"",
+          ""evaluation_end"": ""2014-09-01T00:00:00""
+        },
+        {
+          ""fold_id"": 2,
+          ""evaluation_start"": ""2014-09-01T00:00:00"",
+          ""evaluation_end"": ""2014-12-01T00:00:00""
+        },
+        {
+          ""fold_id"": 3,
+          ""evaluation_start"": ""2014-12-01T00:00:00"",
+          ""evaluation_end"": ""2015-03-01T00:00:00""
+        }
+      ]
+    },
+    ""features"": {
+      ""A"": {
+        ""legacy_name"": ""F0"",
+        ""measurements"": [
+          ""PM2.5"",
+          ""PM10"",
+          ""SO2"",
+          ""NO2"",
+          ""CO"",
+          ""O3"",
+          ""TEMP"",
+          ""PRES"",
+          ""DEWP"",
+          ""RAIN"",
+          ""WSPM""
+        ],
+        ""categorical"": [
+          ""station"",
+          ""wd""
+        ],
+        ""calendar_reference"": ""target_timestamp"",
+        ""calendar"": [
+          ""target_hour"",
+          ""target_month"",
+          ""target_day_of_week""
+        ],
+        ""cyclic_calendar"": {
+          ""target_hour"": 24,
+          ""target_month"": 12
+        }
+      },
+      ""B"": {
+        ""legacy_name"": ""F1"",
+        ""extends"": ""A"",
+        ""pm25_lag_hours"": [
+          1,
+          3,
+          6,
+          12,
+          24
+        ],
+        ""pm25_rolling_windows_hours"": [
+          3,
+          6,
+          12,
+          24
+        ],
+        ""rolling_stats"": [
+          ""mean"",
+          ""std""
+        ],
+        ""rolling_std_ddof"": 1,
+        ""rolling_include_current"": true,
+        ""rolling_min_periods"": ""window""
+      },
+      ""C"": {
+        ""extends"": ""B"",
+        ""selector_fit_scope"": ""training_partition_of_each_run_or_fold"",
+        ""selection_method"": null,
+        ""selected_features"": null
+      }
+    },
+    ""evaluation"": {
+      ""baseline"": ""persistence"",
+      ""models"": [
+        ""ridge"",
+        ""random_forest""
+      ],
+      ""initial_parameters"": {
+        ""ridge"": {
+          ""alpha"": 1.0
+        },
+        ""random_forest"": {
+          ""n_estimators"": 300,
+          ""max_depth"": null,
+          ""min_samples_leaf"": 1,
+          ""max_features"": 1.0,
+          ""random_state"": 42,
+          ""n_jobs"": 1
+        }
+      },
+      ""primary_metric"": ""MAE"",
+      ""secondary_metrics"": [
+        ""RMSE"",
+        ""R2""
+      ],
+      ""same_sample_ids"": true,
+      ""baseline_fallback_order"": [
+        ""last_observed_same_station"",
+        ""training_station_median"",
+        ""training_global_median"",
+        ""unavailable""
+      ]
+    },
+    ""experiment_logging"": {
+      ""infrastructure_task_id"": ""T04-LOG"",
+      ""index"": ""experiments/experiment_log.csv"",
+      ""runs"": ""artifacts/experiments""
+    },
+    ""paths"": {
+      ""raw_data"": ""data/raw"",
+      ""processed_data"": ""data/processed"",
+      ""artifacts"": ""artifacts"",
+      ""figures"": ""reports/figures""
+    }
+  },
+  ""smoke_reference_run_id"": null,
+  ""configured_seed"": 42,
+  ""weights_saved"": false
+}",A,"{
+  ""schema_version"": ""t08-preprocessing-v1"",
+  ""numeric"": {
+    ""imputation_strategy"": ""median"",
+    ""keep_empty_features"": true,
+    ""missing_indicators"": ""all"",
+    ""scale"": {
+      ""ridge"": true,
+      ""random_forest"": false
+    }
+  },
+  ""categorical"": {
+    ""imputation_strategy"": ""constant"",
+    ""fill_value"": ""__MISSING__"",
+    ""handle_unknown"": ""ignore"",
+    ""sparse_output"": false
+  },
+  ""output"": {
+    ""format"": ""pandas"",
+    ""verbose_feature_names"": true
+  },
+  ""prediction_postprocessing"": {
+    ""negative_predictions"": ""identity"",
+    ""applies_to"": [
+      ""persistence"",
+      ""ridge"",
+      ""random_forest""
+    ]
+  }
+}","{
+  ""provenance"": {
+    ""split_manifest"": ""reports/splits_full/split_manifest.json"",
+    ""split_manifest_sha256"": ""6d3ac3f05da50324a65c34c1e1601b5df45fefc3d2e6d0e834d43a27062d0e42"",
+    ""t05_snapshot_id"": ""2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc"",
+    ""input_files_read"": [
+      {
+        ""path"": ""data/processed/samples_full/train.csv"",
+        ""sha256"": ""ebc89c94b576f009705446da7c4bec079f750755e5755e5041b6a93f09226d46"",
+        ""bytes"": 51395102
+      },
+      {
+        ""path"": ""data/processed/samples_full/sample_ids/train.csv"",
+        ""sha256"": ""336d58dda970536fb0c7dc1739529fe2f1bcb4200a5f32e2f3d40cca1279d8bf"",
+        ""bytes"": 24598381
+      }
+    ],
+    ""source_mode"": ""full"",
+    ""validation_start"": ""2015-03-01T00:00:00"",
+    ""validation_files"": {
+      ""validation_samples"": {
+        ""path"": ""data/processed/samples_full/validation.csv"",
+        ""sha256"": ""eed8f0a497b352540705640ccf1a10d3db9084af88653184aa2e0b4abbbfa173"",
+        ""bytes"": 26281009
+      },
+      ""validation_ids"": {
+        ""path"": ""data/processed/samples_full/sample_ids/validation.csv"",
+        ""sha256"": ""4102afaecae6eb3f56434b0b1f93d53f90a914edad304496a429bfdad14f5a8c"",
+        ""bytes"": 12333889
+      }
+    },
+    ""validation_membership"": {
+      ""operational"": {
+        ""samples"": 103287,
+        ""ordered_sample_ids_sha256"": ""bd15e19b4ce89a5025e5f36f547fc4d3f56953e334d38da3bc8390270dd6444a""
+      },
+      ""primary"": {
+        ""samples"": 102479,
+        ""ordered_sample_ids_sha256"": ""534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7""
+      }
+    },
+    ""label_availability"": {
+      ""status"": ""passed"",
+      ""fit_samples"": 205977,
+      ""evaluation_samples"": 103287,
+      ""latest_fit_target_timestamp"": ""2015-02-28T23:00:00"",
+      ""first_evaluation_input_timestamp"": ""2015-02-28T23:00:00"",
+      ""planned_label_cutoff"": ""2015-02-28T23:00:00"",
+      ""comparison"": ""<="",
+      ""fitted"": false
+    }
+  },
+  ""validation_anchor"": {
+    ""schema_version"": ""validation-cohorts-v1"",
+    ""split"": ""validation"",
+    ""test_locked"": true,
+    ""t05_snapshot_id"": ""2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc"",
+    ""files"": {
+      ""validation_samples"": {
+        ""path"": ""data/processed/samples_full/validation.csv"",
+        ""sha256"": ""eed8f0a497b352540705640ccf1a10d3db9084af88653184aa2e0b4abbbfa173"",
+        ""bytes"": 26281009
+      },
+      ""validation_ids"": {
+        ""path"": ""data/processed/samples_full/sample_ids/validation.csv"",
+        ""sha256"": ""4102afaecae6eb3f56434b0b1f93d53f90a914edad304496a429bfdad14f5a8c"",
+        ""bytes"": 12333889
+      }
+    },
+    ""cohorts"": {
+      ""operational"": {
+        ""samples"": 103287,
+        ""ordered_sample_ids_sha256"": ""bd15e19b4ce89a5025e5f36f547fc4d3f56953e334d38da3bc8390270dd6444a""
+      },
+      ""primary"": {
+        ""samples"": 102479,
+        ""ordered_sample_ids_sha256"": ""534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7""
+      }
+    },
+    ""order"": ""T05 station/input_timestamp order"",
+    ""primary_filter"": ""is_primary == true"",
+    ""operational_filter"": ""all retained T05 validation IDs"",
+    ""comparison_rule"": ""same IDs/order; no dropping rows for missing features; report prediction coverage""
+  },
+  ""selected_membership"": {
+    ""train"": {
+      ""rows"": 3072,
+      ""ordered_ids_sha256"": ""40550acc93f2121f9a69417f4c334af76d0562db323ee446f57c6df43e975dd2"",
+      ""first_target"": ""2013-03-01 01:00:00"",
+      ""last_target"": ""2013-03-12 15:00:00""
+    },
+    ""validation"": {
+      ""rows"": 768,
+      ""ordered_ids_sha256"": ""3586259ee6b765e0e04c5ac08f46e49a2c7b8171b81643d76d6846e80f5570ec"",
+      ""first_target"": ""2015-03-01 00:00:00"",
+      ""last_target"": ""2015-03-03 21:00:00""
+    }
+  },
+  ""selection"": {
+    ""train_rows_per_station"": 256,
+    ""validation_rows_per_station"": 64,
+    ""selection"": ""chronological_head_after_primary_filter""
+  }
+}","{
+  ""timestamp_column"": ""target_timestamp"",
+  ""validation_start"": ""2015-03-01T00:00:00"",
+  ""test_start"": ""2016-03-01T00:00:00"",
+  ""timestamp_convention"": ""source_local_naive"",
+  ""test_locked"": true,
+  ""final_refit_train_validation"": true,
+  ""training"": ""train primary only"",
+  ""evaluation"": ""validation primary only""
+}",,"{
+  ""train"": 3072,
+  ""validation"": 768
+}",,"{
+  ""max_full_runs_per_model"": 1,
+  ""smoke_required"": true,
+  ""tuning"": false
+}",false,executed_script,2026-11-02T15:04:01.988898+00:00,2026-11-02T15:04:03.753802+00:00,UTC,1.764904,"{
+  ""commit"": ""5e823afb1d6e98c01d3f44679f15eb4e36bf6886"",
+  ""branch"": ""feature/t10-initial-regressors"",
+  ""dirty"": true,
+  ""available"": true
+}","{
+  ""python"": ""3.12.10"",
+  ""platform"": ""Windows-11-10.0.22631-SP0"",
+  ""packages"": {
+    ""Jinja2"": ""3.1.6"",
+    ""MarkupSafe"": ""3.0.4"",
+    ""PyYAML"": ""6.0.3"",
+    ""Pygments"": ""2.21.0"",
+    ""Send2Trash"": ""2.1.0"",
+    ""altair"": ""6.3.0"",
+    ""anyio"": ""4.16.0"",
+    ""argon2-cffi"": ""25.1.0"",
+    ""argon2-cffi-bindings"": ""26.1.0"",
+    ""arrow"": ""1.4.0"",
+    ""asttokens"": ""3.0.2"",
+    ""async-lru"": ""2.4.0"",
+    ""attrs"": ""26.1.0"",
+    ""babel"": ""2.18.0"",
+    ""beautifulsoup4"": ""4.15.0"",
+    ""beijing-air-quality"": ""0.1.0"",
+    ""bleach"": ""6.4.0"",
+    ""certifi"": ""2026.10.23"",
+    ""cffi"": ""2.1.1"",
+    ""charset-normalizer"": ""3.5.2"",
+    ""click"": ""8.5.0"",
+    ""cloudpickle"": ""3.1.2"",
+    ""colorama"": ""0.4.6"",
+    ""comm"": ""0.2.3"",
+    ""contourpy"": ""1.4.0"",
+    ""cycler"": ""0.12.1"",
+    ""debugpy"": ""1.8.22"",
+    ""defusedxml"": ""0.7.1"",
+    ""executing"": ""2.3.0"",
+    ""fastjsonschema"": ""2.22.3"",
+    ""fonttools"": ""4.68.0"",
+    ""fqdn"": ""1.6.0"",
+    ""h11"": ""0.16.0"",
+    ""httpcore"": ""1.0.9"",
+    ""httpx"": ""0.28.1"",
+    ""idna"": ""3.20"",
+    ""iniconfig"": ""2.3.1"",
+    ""ipykernel"": ""7.4.0"",
+    ""ipython"": ""9.18.0"",
+    ""ipython_pygments_lexers"": ""1.1.1"",
+    ""ipywidgets"": ""8.1.9"",
+    ""isoduration"": ""20.11.0"",
+    ""itsdangerous"": ""2.2.0"",
+    ""jedi"": ""0.20.1"",
+    ""joblib"": ""1.6.0"",
+    ""json5"": ""0.17.3"",
+    ""jsonpointer"": ""3.7"",
+    ""jsonschema"": ""4.26.0"",
+    ""jsonschema-specifications"": ""2025.9.1"",
+    ""jupyter"": ""1.1.1"",
+    ""jupyter-console"": ""6.6.3"",
+    ""jupyter-events"": ""0.12.1"",
+    ""jupyter-lsp"": ""2.3.1"",
+    ""jupyter_builder"": ""1.2.4"",
+    ""jupyter_client"": ""8.10.0"",
+    ""jupyter_core"": ""5.9.1"",
+    ""jupyter_server"": ""2.21.1"",
+    ""jupyter_server_terminals"": ""0.5.4"",
+    ""jupyterlab"": ""4.6.5"",
+    ""jupyterlab_pygments"": ""0.3.0"",
+    ""jupyterlab_server"": ""2.28.1"",
+    ""jupyterlab_widgets"": ""3.0.17"",
+    ""kiwisolver"": ""1.5.1"",
+    ""lark"": ""1.3.1"",
+    ""matplotlib"": ""3.11.2"",
+    ""matplotlib-inline"": ""0.2.2"",
+    ""mistune"": ""3.4.0"",
+    ""narwhals"": ""2.28.0"",
+    ""nbclient"": ""0.11.0"",
+    ""nbconvert"": ""7.17.2"",
+    ""nbformat"": ""5.11.1"",
+    ""nest-asyncio2"": ""1.7.4"",
+    ""notebook"": ""7.6.4"",
+    ""notebook_shim"": ""0.2.4"",
+    ""numpy"": ""2.5.4"",
+    ""packaging"": ""26.3"",
+    ""pandas"": ""3.0.6"",
+    ""pandocfilters"": ""1.5.1"",
+    ""parso"": ""0.8.7"",
+    ""pillow"": ""13.0.0"",
+    ""pip"": ""26.2.1"",
+    ""platformdirs"": ""4.14.3"",
+    ""pluggy"": ""1.6.0"",
+    ""prometheus_client"": ""0.26.0"",
+    ""prompt_toolkit"": ""3.0.53"",
+    ""protobuf"": ""7.36.2"",
+    ""psutil"": ""7.2.2"",
+    ""pure_eval"": ""0.2.4"",
+    ""pyarrow"": ""26.0.0"",
+    ""pycparser"": ""3.12"",
+    ""pydeck"": ""0.9.3"",
+    ""pyparsing"": ""3.3.3"",
+    ""pytest"": ""9.1.1"",
+    ""python-dateutil"": ""2.9.0.post0"",
+    ""python-json-logger"": ""4.2.0"",
+    ""python-multipart"": ""0.0.33"",
+    ""pywinpty"": ""3.1.2"",
+    ""pyzmq"": ""27.2.0"",
+    ""referencing"": ""0.37.0"",
+    ""requests"": ""2.34.2"",
+    ""rfc3339-validator"": ""0.1.4"",
+    ""rfc3986-validator"": ""0.1.1"",
+    ""rfc3987-syntax"": ""1.1.0"",
+    ""rpds-py"": ""2026.9.1"",
+    ""scikit-learn"": ""1.9.1"",
+    ""scipy"": ""1.18.1"",
+    ""seaborn"": ""0.13.2"",
+    ""setuptools"": ""84.2.1"",
+    ""six"": ""1.17.0"",
+    ""soupsieve"": ""3.0.4"",
+    ""stack-data"": ""0.6.3"",
+    ""starlette"": ""1.10.0"",
+    ""streamlit"": ""1.66.1"",
+    ""terminado"": ""0.18.1"",
+    ""threadpoolctl"": ""3.7.0"",
+    ""tinycss2"": ""1.5.1"",
+    ""tornado"": ""6.6"",
+    ""traitlets"": ""5.16.1"",
+    ""typing_extensions"": ""4.16.0"",
+    ""tzdata"": ""2026.5"",
+    ""uri-template"": ""1.3.0"",
+    ""urllib3"": ""2.8.0"",
+    ""uvicorn"": ""0.54.0"",
+    ""watchdog"": ""6.0.0"",
+    ""wcwidth"": ""0.9.4"",
+    ""webcolors"": ""25.10.0"",
+    ""webencodings"": ""0.6.1"",
+    ""websocket-client"": ""1.9.2"",
+    ""websockets"": ""17.4"",
+    ""wheel"": ""0.48.0"",
+    ""widgetsnbextension"": ""4.0.16""
+  }
+}","{
+  ""train_primary"": {
+    ""n_total"": 3072,
+    ""n_scored"": 3072,
+    ""unavailable"": 0,
+    ""coverage"": 1.0,
+    ""MAE"": 14.603912093569145,
+    ""RMSE"": 27.237230201587153,
+    ""R2"": 0.9179249910777197,
+    ""r2_undefined_reason"": null,
+    ""negative_predictions"": 143
+  },
+  ""validation_primary"": {
+    ""n_total"": 768,
+    ""n_scored"": 768,
+    ""unavailable"": 0,
+    ""coverage"": 1.0,
+    ""MAE"": 14.565440155826233,
+    ""RMSE"": 18.440431929883097,
+    ""R2"": 0.7803647275120527,
+    ""r2_undefined_reason"": null,
+    ""negative_predictions"": 213
+  },
+  ""timing_seconds"": {
+    ""preflight_before_run"": 11.095278799999505,
+    ""fit_pipeline"": 0.197418399999151,
+    ""predict_train"": 0.06845659999817144,
+    ""predict_validation"": 0.05740420000074664
+  },
+  ""available_memory_mb_before_data"": 1040.96484375,
+  ""official_full_result"": false,
+  ""test_csv_accessed"": false,
+  ""validation_baseline"": {
+    ""n_total"": 768,
+    ""n_scored"": 768,
+    ""unavailable"": 0,
+    ""coverage"": 1.0,
+    ""MAE"": 9.524739583333334,
+    ""RMSE"": 15.721079598742575,
+    ""R2"": 0.8403662772191625,
+    ""r2_undefined_reason"": null
+  },
+  ""generalization_gap_MAE"": -0.03847193774291213,
+  ""validation_delta_MAE_vs_persistence"": 5.040700572492899
+}","[
+  {
+    ""path"": ""../artifacts/experiments/918f7e6185db4904a3362d44facca68d/artifacts/source/initial_models.py"",
+    ""sha256"": ""88fba57cf8f13c12f168310ce8bc6e37a96c8ef604e9f7db064d29b30d86da4b"",
+    ""size_bytes"": 9707
+  },
+  {
+    ""path"": ""../artifacts/experiments/918f7e6185db4904a3362d44facca68d/artifacts/source/features.py"",
+    ""sha256"": ""ccb40348855216057b1c10ab34a67a3da467979fb51417df5b6782f265996210"",
+    ""size_bytes"": 13172
+  },
+  {
+    ""path"": ""../artifacts/experiments/918f7e6185db4904a3362d44facca68d/artifacts/source/preprocessing.py"",
+    ""sha256"": ""3e121c4f6f5226b3764f053f1ceafdc9087ff3bbc97382dcc75242044b5d241f"",
+    ""size_bytes"": 8439
+  },
+  {
+    ""path"": ""../artifacts/experiments/918f7e6185db4904a3362d44facca68d/artifacts/source/metrics.py"",
+    ""sha256"": ""c282e54515b5ad25fa9b67c576c8d082da9833878d65ac89e22ac7714b221769"",
+    ""size_bytes"": 3114
+  },
+  {
+    ""path"": ""../artifacts/experiments/918f7e6185db4904a3362d44facca68d/artifacts/source/evaluation.py"",
+    ""sha256"": ""903dad88d32507360c18e67d7c0559bea069a94e6859978244c442196d5ec27a"",
+    ""size_bytes"": 7261
+  },
+  {
+    ""path"": ""../artifacts/experiments/918f7e6185db4904a3362d44facca68d/artifacts/source/run_initial_models.py"",
+    ""sha256"": ""57c76f73ca281c871cba659b63e7bf3aa1f9c18f232556173de561bf315159d7"",
+    ""size_bytes"": 13188
+  },
+  {
+    ""path"": ""../artifacts/experiments/918f7e6185db4904a3362d44facca68d/artifacts/data/membership.json"",
+    ""sha256"": ""e50d6c279ca322799b7e00885b745c6677bbdddace96ad1ed5c4e714e1074a83"",
+    ""size_bytes"": 1749
+  },
+  {
+    ""path"": ""../artifacts/experiments/918f7e6185db4904a3362d44facca68d/artifacts/predictions/train.csv.gz"",
+    ""sha256"": ""c5c76539113453051119ff6c344b31282f188d94c500964a1a850db033a2e023"",
+    ""size_bytes"": 213388
+  },
+  {
+    ""path"": ""../artifacts/experiments/918f7e6185db4904a3362d44facca68d/artifacts/predictions/validation.csv.gz"",
+    ""sha256"": ""1c32104f250751b14a957019dedda14e6f93b0221d4c5d5340660f4fa7802906"",
+    ""size_bytes"": 51613
+  },
+  {
+    ""path"": ""../artifacts/experiments/918f7e6185db4904a3362d44facca68d/artifacts/model/fitted_pipeline_state.json"",
+    ""sha256"": ""c37be9512adfabd9140531c2cc2fe13cc2dd4b6bec31c40d4084b9b1bb8f9c52"",
+    ""size_bytes"": 6253
+  },
+  {
+    ""path"": ""../artifacts/experiments/918f7e6185db4904a3362d44facca68d/artifacts/tables/metrics.json"",
+    ""sha256"": ""5d32bc4e981d0d5764171a93929a6a26183c0fcf8aa979c7ae14bfced789562d"",
+    ""size_bytes"": 819
+  }
+]","SMOKE ridge, feature A, primary only. Train N=3072, validation N=768. MAE train=14.603912, validation=14.565440; validation RMSE=18.440432, R2=0.7803647275120527. Persistence MAE on exactly these IDs=9.524740; delta=5.040701. Train error is in-sample, not CV. No clipping, test or tuning. Weights intentionally not saved; fitted state is a summary, not a deployable model. Evaluate gap/cost before proposing future T11/T12; no requirement to beat persistence.",Report initial outcome including worse scores; future tuning/ablation only when explicitly assigned.,,../artifacts/experiments/918f7e6185db4904a3362d44facca68d/config.json,../artifacts/experiments/918f7e6185db4904a3362d44facca68d/metrics.json,../artifacts/experiments/918f7e6185db4904a3362d44facca68d/metadata.json,../artifacts/experiments/918f7e6185db4904a3362d44facca68d/notes.md
+aec8630115714bb59d5c89c8a6b368c1,completed,T10,24cef47874a94d9faa7bfcbae29b5c58,,,full,train,Benchmark initial A models against persistence on identical primary validation IDs.,"Current measurements/weather/calendar may improve persistence, but no model is required to win.","Initial fixed configuration; RF bounded for resources, not selected from validation scores.",ridge,"{
+  ""signature"": {
+    ""design"": {
+      ""schema_version"": ""t10-initial-A-v1"",
+      ""feature_set"": ""A"",
+      ""cohort"": ""primary"",
+      ""baseline_reference_run_id"": ""24cef47874a94d9faa7bfcbae29b5c58"",
+      ""models"": {
+        ""ridge"": {
+          ""alpha"": 1.0
+        },
+        ""random_forest"": {
+          ""n_estimators"": 80,
+          ""max_depth"": 12,
+          ""min_samples_leaf"": 2,
+          ""max_features"": 1.0,
+          ""random_state"": 42,
+          ""n_jobs"": 1
+        }
+      },
+      ""smoke"": {
+        ""train_rows_per_station"": 256,
+        ""validation_rows_per_station"": 64,
+        ""selection"": ""chronological_head_after_primary_filter""
+      },
+      ""budget"": {
+        ""max_full_runs_per_model"": 1,
+        ""smoke_required"": true,
+        ""tuning"": false
+      },
+      ""resources"": {
+        ""blas_threads"": 1,
+        ""minimum_free_memory_mb"": 768,
+        ""execution"": ""sequential""
+      },
+      ""save_model_weights"": false,
+      ""note"": ""Fixed before scoring in Issue #20. RF intentionally bounded vs old 300/unlimited design due about 1.9 GiB available RAM. No tuning, no clipping; fitted state summary is not deployable model weights.""
+    },
+    ""model"": ""ridge"",
+    ""effective_model_parameters"": {
+      ""alpha"": 1.0,
+      ""copy_X"": true,
+      ""fit_intercept"": true,
+      ""max_iter"": null,
+      ""positive"": false,
+      ""random_state"": null,
+      ""solver"": ""auto"",
+      ""tol"": 0.0001
+    },
+    ""features"": {
+      ""legacy_name"": ""F0"",
+      ""measurements"": [
+        ""PM2.5"",
+        ""PM10"",
+        ""SO2"",
+        ""NO2"",
+        ""CO"",
+        ""O3"",
+        ""TEMP"",
+        ""PRES"",
+        ""DEWP"",
+        ""RAIN"",
+        ""WSPM""
+      ],
+      ""categorical"": [
+        ""station"",
+        ""wd""
+      ],
+      ""calendar_reference"": ""target_timestamp"",
+      ""calendar"": [
+        ""target_hour"",
+        ""target_month"",
+        ""target_day_of_week""
+      ],
+      ""cyclic_calendar"": {
+        ""target_hour"": 24,
+        ""target_month"": 12
+      }
+    },
+    ""preprocessing"": {
+      ""schema_version"": ""t08-preprocessing-v1"",
+      ""numeric"": {
+        ""imputation_strategy"": ""median"",
+        ""keep_empty_features"": true,
+        ""missing_indicators"": ""all"",
+        ""scale"": {
+          ""ridge"": true,
+          ""random_forest"": false
+        }
+      },
+      ""categorical"": {
+        ""imputation_strategy"": ""constant"",
+        ""fill_value"": ""__MISSING__"",
+        ""handle_unknown"": ""ignore"",
+        ""sparse_output"": false
+      },
+      ""output"": {
+        ""format"": ""pandas"",
+        ""verbose_feature_names"": true
+      },
+      ""prediction_postprocessing"": {
+        ""negative_predictions"": ""identity"",
+        ""applies_to"": [
+          ""persistence"",
+          ""ridge"",
+          ""random_forest""
+        ]
+      }
+    },
+    ""source_sha256"": {
+      ""initial_models.py"": ""88fba57cf8f13c12f168310ce8bc6e37a96c8ef604e9f7db064d29b30d86da4b"",
+      ""features.py"": ""ccb40348855216057b1c10ab34a67a3da467979fb51417df5b6782f265996210"",
+      ""preprocessing.py"": ""3e121c4f6f5226b3764f053f1ceafdc9087ff3bbc97382dcc75242044b5d241f"",
+      ""metrics.py"": ""c282e54515b5ad25fa9b67c576c8d082da9833878d65ac89e22ac7714b221769"",
+      ""evaluation.py"": ""903dad88d32507360c18e67d7c0559bea069a94e6859978244c442196d5ec27a"",
+      ""run_initial_models.py"": ""57c76f73ca281c871cba659b63e7bf3aa1f9c18f232556173de561bf315159d7""
+    },
+    ""provenance"": {
+      ""split_manifest"": ""reports/splits_full/split_manifest.json"",
+      ""split_manifest_sha256"": ""6d3ac3f05da50324a65c34c1e1601b5df45fefc3d2e6d0e834d43a27062d0e42"",
+      ""t05_snapshot_id"": ""2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc"",
+      ""input_files_read"": [
+        {
+          ""path"": ""data/processed/samples_full/train.csv"",
+          ""sha256"": ""ebc89c94b576f009705446da7c4bec079f750755e5755e5041b6a93f09226d46"",
+          ""bytes"": 51395102
+        },
+        {
+          ""path"": ""data/processed/samples_full/sample_ids/train.csv"",
+          ""sha256"": ""336d58dda970536fb0c7dc1739529fe2f1bcb4200a5f32e2f3d40cca1279d8bf"",
+          ""bytes"": 24598381
+        }
+      ],
+      ""source_mode"": ""full"",
+      ""validation_start"": ""2015-03-01T00:00:00"",
+      ""validation_files"": {
+        ""validation_samples"": {
+          ""path"": ""data/processed/samples_full/validation.csv"",
+          ""sha256"": ""eed8f0a497b352540705640ccf1a10d3db9084af88653184aa2e0b4abbbfa173"",
+          ""bytes"": 26281009
+        },
+        ""validation_ids"": {
+          ""path"": ""data/processed/samples_full/sample_ids/validation.csv"",
+          ""sha256"": ""4102afaecae6eb3f56434b0b1f93d53f90a914edad304496a429bfdad14f5a8c"",
+          ""bytes"": 12333889
+        }
+      },
+      ""validation_membership"": {
+        ""operational"": {
+          ""samples"": 103287,
+          ""ordered_sample_ids_sha256"": ""bd15e19b4ce89a5025e5f36f547fc4d3f56953e334d38da3bc8390270dd6444a""
+        },
+        ""primary"": {
+          ""samples"": 102479,
+          ""ordered_sample_ids_sha256"": ""534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7""
+        }
+      },
+      ""label_availability"": {
+        ""status"": ""passed"",
+        ""fit_samples"": 205977,
+        ""evaluation_samples"": 103287,
+        ""latest_fit_target_timestamp"": ""2015-02-28T23:00:00"",
+        ""first_evaluation_input_timestamp"": ""2015-02-28T23:00:00"",
+        ""planned_label_cutoff"": ""2015-02-28T23:00:00"",
+        ""comparison"": ""<="",
+        ""fitted"": false
+      }
+    },
+    ""anchor_sha256"": ""b9646da98017bc0b02f622ee928df0b70185e8a6312a2a9512329d4d04057e7f"",
+    ""baseline_predictions_sha256"": ""88c03c51dab835b49aca831bcf6fb3404ee2334886c80748530014174a6a2fc3""
+  },
+  ""effective_project_config"": {
+    ""seed"": 42,
+    ""horizon_hours"": 1,
+    ""mode"": ""smoke"",
+    ""available_modes"": [
+      ""smoke"",
+      ""full""
+    ],
+    ""problem"": {
+      ""task_type"": ""regression"",
+      ""target_column"": ""PM2.5"",
+      ""target_unit"": ""ug/m3"",
+      ""group_column"": ""station"",
+      ""input_time_column"": ""input_timestamp"",
+      ""target_time_column"": ""target_timestamp"",
+      ""station_scope"": ""observed_stations"",
+      ""current_observation_available"": true,
+      ""forecast_strategy"": ""rolling_one_hour""
+    },
+    ""split"": {
+      ""timestamp_column"": ""target_timestamp"",
+      ""validation_start"": ""2015-03-01T00:00:00"",
+      ""test_start"": ""2016-03-01T00:00:00"",
+      ""timestamp_convention"": ""source_local_naive"",
+      ""test_locked"": true,
+      ""final_refit_train_validation"": true
+    },
+    ""sample_construction"": {
+      ""target_value_column"": ""target_pm25"",
+      ""sample_id_scheme"": ""pm25-h1-v1"",
+      ""target_missing_policy"": ""drop"",
+      ""origin_missing_policy"": ""retain_operational_flag_primary"",
+      ""holdout_label_rule"": ""at_or_before_first_origin""
+    },
+    ""temporal_cv"": {
+      ""strategy"": ""expanding_window"",
+      ""partition"": ""train"",
+      ""group_by"": ""unique_target_timestamp"",
+      ""fit_target_must_precede_first_origin"": true,
+      ""folds"": [
+        {
+          ""fold_id"": 1,
+          ""evaluation_start"": ""2014-06-01T00:00:00"",
+          ""evaluation_end"": ""2014-09-01T00:00:00""
+        },
+        {
+          ""fold_id"": 2,
+          ""evaluation_start"": ""2014-09-01T00:00:00"",
+          ""evaluation_end"": ""2014-12-01T00:00:00""
+        },
+        {
+          ""fold_id"": 3,
+          ""evaluation_start"": ""2014-12-01T00:00:00"",
+          ""evaluation_end"": ""2015-03-01T00:00:00""
+        }
+      ]
+    },
+    ""features"": {
+      ""A"": {
+        ""legacy_name"": ""F0"",
+        ""measurements"": [
+          ""PM2.5"",
+          ""PM10"",
+          ""SO2"",
+          ""NO2"",
+          ""CO"",
+          ""O3"",
+          ""TEMP"",
+          ""PRES"",
+          ""DEWP"",
+          ""RAIN"",
+          ""WSPM""
+        ],
+        ""categorical"": [
+          ""station"",
+          ""wd""
+        ],
+        ""calendar_reference"": ""target_timestamp"",
+        ""calendar"": [
+          ""target_hour"",
+          ""target_month"",
+          ""target_day_of_week""
+        ],
+        ""cyclic_calendar"": {
+          ""target_hour"": 24,
+          ""target_month"": 12
+        }
+      },
+      ""B"": {
+        ""legacy_name"": ""F1"",
+        ""extends"": ""A"",
+        ""pm25_lag_hours"": [
+          1,
+          3,
+          6,
+          12,
+          24
+        ],
+        ""pm25_rolling_windows_hours"": [
+          3,
+          6,
+          12,
+          24
+        ],
+        ""rolling_stats"": [
+          ""mean"",
+          ""std""
+        ],
+        ""rolling_std_ddof"": 1,
+        ""rolling_include_current"": true,
+        ""rolling_min_periods"": ""window""
+      },
+      ""C"": {
+        ""extends"": ""B"",
+        ""selector_fit_scope"": ""training_partition_of_each_run_or_fold"",
+        ""selection_method"": null,
+        ""selected_features"": null
+      }
+    },
+    ""evaluation"": {
+      ""baseline"": ""persistence"",
+      ""models"": [
+        ""ridge"",
+        ""random_forest""
+      ],
+      ""initial_parameters"": {
+        ""ridge"": {
+          ""alpha"": 1.0
+        },
+        ""random_forest"": {
+          ""n_estimators"": 300,
+          ""max_depth"": null,
+          ""min_samples_leaf"": 1,
+          ""max_features"": 1.0,
+          ""random_state"": 42,
+          ""n_jobs"": 1
+        }
+      },
+      ""primary_metric"": ""MAE"",
+      ""secondary_metrics"": [
+        ""RMSE"",
+        ""R2""
+      ],
+      ""same_sample_ids"": true,
+      ""baseline_fallback_order"": [
+        ""last_observed_same_station"",
+        ""training_station_median"",
+        ""training_global_median"",
+        ""unavailable""
+      ]
+    },
+    ""experiment_logging"": {
+      ""infrastructure_task_id"": ""T04-LOG"",
+      ""index"": ""experiments/experiment_log.csv"",
+      ""runs"": ""artifacts/experiments""
+    },
+    ""paths"": {
+      ""raw_data"": ""data/raw"",
+      ""processed_data"": ""data/processed"",
+      ""artifacts"": ""artifacts"",
+      ""figures"": ""reports/figures""
+    }
+  },
+  ""smoke_reference_run_id"": ""918f7e6185db4904a3362d44facca68d"",
+  ""configured_seed"": 42,
+  ""weights_saved"": false
+}",A,"{
+  ""schema_version"": ""t08-preprocessing-v1"",
+  ""numeric"": {
+    ""imputation_strategy"": ""median"",
+    ""keep_empty_features"": true,
+    ""missing_indicators"": ""all"",
+    ""scale"": {
+      ""ridge"": true,
+      ""random_forest"": false
+    }
+  },
+  ""categorical"": {
+    ""imputation_strategy"": ""constant"",
+    ""fill_value"": ""__MISSING__"",
+    ""handle_unknown"": ""ignore"",
+    ""sparse_output"": false
+  },
+  ""output"": {
+    ""format"": ""pandas"",
+    ""verbose_feature_names"": true
+  },
+  ""prediction_postprocessing"": {
+    ""negative_predictions"": ""identity"",
+    ""applies_to"": [
+      ""persistence"",
+      ""ridge"",
+      ""random_forest""
+    ]
+  }
+}","{
+  ""provenance"": {
+    ""split_manifest"": ""reports/splits_full/split_manifest.json"",
+    ""split_manifest_sha256"": ""6d3ac3f05da50324a65c34c1e1601b5df45fefc3d2e6d0e834d43a27062d0e42"",
+    ""t05_snapshot_id"": ""2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc"",
+    ""input_files_read"": [
+      {
+        ""path"": ""data/processed/samples_full/train.csv"",
+        ""sha256"": ""ebc89c94b576f009705446da7c4bec079f750755e5755e5041b6a93f09226d46"",
+        ""bytes"": 51395102
+      },
+      {
+        ""path"": ""data/processed/samples_full/sample_ids/train.csv"",
+        ""sha256"": ""336d58dda970536fb0c7dc1739529fe2f1bcb4200a5f32e2f3d40cca1279d8bf"",
+        ""bytes"": 24598381
+      }
+    ],
+    ""source_mode"": ""full"",
+    ""validation_start"": ""2015-03-01T00:00:00"",
+    ""validation_files"": {
+      ""validation_samples"": {
+        ""path"": ""data/processed/samples_full/validation.csv"",
+        ""sha256"": ""eed8f0a497b352540705640ccf1a10d3db9084af88653184aa2e0b4abbbfa173"",
+        ""bytes"": 26281009
+      },
+      ""validation_ids"": {
+        ""path"": ""data/processed/samples_full/sample_ids/validation.csv"",
+        ""sha256"": ""4102afaecae6eb3f56434b0b1f93d53f90a914edad304496a429bfdad14f5a8c"",
+        ""bytes"": 12333889
+      }
+    },
+    ""validation_membership"": {
+      ""operational"": {
+        ""samples"": 103287,
+        ""ordered_sample_ids_sha256"": ""bd15e19b4ce89a5025e5f36f547fc4d3f56953e334d38da3bc8390270dd6444a""
+      },
+      ""primary"": {
+        ""samples"": 102479,
+        ""ordered_sample_ids_sha256"": ""534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7""
+      }
+    },
+    ""label_availability"": {
+      ""status"": ""passed"",
+      ""fit_samples"": 205977,
+      ""evaluation_samples"": 103287,
+      ""latest_fit_target_timestamp"": ""2015-02-28T23:00:00"",
+      ""first_evaluation_input_timestamp"": ""2015-02-28T23:00:00"",
+      ""planned_label_cutoff"": ""2015-02-28T23:00:00"",
+      ""comparison"": ""<="",
+      ""fitted"": false
+    }
+  },
+  ""validation_anchor"": {
+    ""schema_version"": ""validation-cohorts-v1"",
+    ""split"": ""validation"",
+    ""test_locked"": true,
+    ""t05_snapshot_id"": ""2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc"",
+    ""files"": {
+      ""validation_samples"": {
+        ""path"": ""data/processed/samples_full/validation.csv"",
+        ""sha256"": ""eed8f0a497b352540705640ccf1a10d3db9084af88653184aa2e0b4abbbfa173"",
+        ""bytes"": 26281009
+      },
+      ""validation_ids"": {
+        ""path"": ""data/processed/samples_full/sample_ids/validation.csv"",
+        ""sha256"": ""4102afaecae6eb3f56434b0b1f93d53f90a914edad304496a429bfdad14f5a8c"",
+        ""bytes"": 12333889
+      }
+    },
+    ""cohorts"": {
+      ""operational"": {
+        ""samples"": 103287,
+        ""ordered_sample_ids_sha256"": ""bd15e19b4ce89a5025e5f36f547fc4d3f56953e334d38da3bc8390270dd6444a""
+      },
+      ""primary"": {
+        ""samples"": 102479,
+        ""ordered_sample_ids_sha256"": ""534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7""
+      }
+    },
+    ""order"": ""T05 station/input_timestamp order"",
+    ""primary_filter"": ""is_primary == true"",
+    ""operational_filter"": ""all retained T05 validation IDs"",
+    ""comparison_rule"": ""same IDs/order; no dropping rows for missing features; report prediction coverage""
+  },
+  ""selected_membership"": {
+    ""train"": {
+      ""rows"": 204865,
+      ""ordered_ids_sha256"": ""4bce8e5dc4505432d8b26ff1d7bf3b7971be01bb443ee640a0ba0b7d8ca6838e"",
+      ""first_target"": ""2013-03-01 01:00:00"",
+      ""last_target"": ""2015-02-28 23:00:00""
+    },
+    ""validation"": {
+      ""rows"": 102479,
+      ""ordered_ids_sha256"": ""534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7"",
+      ""first_target"": ""2015-03-01 00:00:00"",
+      ""last_target"": ""2016-02-29 23:00:00""
+    }
+  },
+  ""selection"": ""all primary IDs""
+}","{
+  ""timestamp_column"": ""target_timestamp"",
+  ""validation_start"": ""2015-03-01T00:00:00"",
+  ""test_start"": ""2016-03-01T00:00:00"",
+  ""timestamp_convention"": ""source_local_naive"",
+  ""test_locked"": true,
+  ""final_refit_train_validation"": true,
+  ""training"": ""train primary only"",
+  ""evaluation"": ""validation primary only""
+}",,"{
+  ""train"": 204865,
+  ""validation"": 102479
+}",,"{
+  ""max_full_runs_per_model"": 1,
+  ""smoke_required"": true,
+  ""tuning"": false
+}",false,executed_script,2026-11-02T15:07:59.543710+00:00,2026-11-02T15:08:10.076025+00:00,UTC,10.532315,"{
+  ""commit"": ""5e823afb1d6e98c01d3f44679f15eb4e36bf6886"",
+  ""branch"": ""feature/t10-initial-regressors"",
+  ""dirty"": true,
+  ""available"": true
+}","{
+  ""python"": ""3.12.10"",
+  ""platform"": ""Windows-11-10.0.22631-SP0"",
+  ""packages"": {
+    ""Jinja2"": ""3.1.6"",
+    ""MarkupSafe"": ""3.0.4"",
+    ""PyYAML"": ""6.0.3"",
+    ""Pygments"": ""2.21.0"",
+    ""Send2Trash"": ""2.1.0"",
+    ""altair"": ""6.3.0"",
+    ""anyio"": ""4.16.0"",
+    ""argon2-cffi"": ""25.1.0"",
+    ""argon2-cffi-bindings"": ""26.1.0"",
+    ""arrow"": ""1.4.0"",
+    ""asttokens"": ""3.0.2"",
+    ""async-lru"": ""2.4.0"",
+    ""attrs"": ""26.1.0"",
+    ""babel"": ""2.18.0"",
+    ""beautifulsoup4"": ""4.15.0"",
+    ""beijing-air-quality"": ""0.1.0"",
+    ""bleach"": ""6.4.0"",
+    ""certifi"": ""2026.10.23"",
+    ""cffi"": ""2.1.1"",
+    ""charset-normalizer"": ""3.5.2"",
+    ""click"": ""8.5.0"",
+    ""cloudpickle"": ""3.1.2"",
+    ""colorama"": ""0.4.6"",
+    ""comm"": ""0.2.3"",
+    ""contourpy"": ""1.4.0"",
+    ""cycler"": ""0.12.1"",
+    ""debugpy"": ""1.8.22"",
+    ""defusedxml"": ""0.7.1"",
+    ""executing"": ""2.3.0"",
+    ""fastjsonschema"": ""2.22.3"",
+    ""fonttools"": ""4.68.0"",
+    ""fqdn"": ""1.6.0"",
+    ""h11"": ""0.16.0"",
+    ""httpcore"": ""1.0.9"",
+    ""httpx"": ""0.28.1"",
+    ""idna"": ""3.20"",
+    ""iniconfig"": ""2.3.1"",
+    ""ipykernel"": ""7.4.0"",
+    ""ipython"": ""9.18.0"",
+    ""ipython_pygments_lexers"": ""1.1.1"",
+    ""ipywidgets"": ""8.1.9"",
+    ""isoduration"": ""20.11.0"",
+    ""itsdangerous"": ""2.2.0"",
+    ""jedi"": ""0.20.1"",
+    ""joblib"": ""1.6.0"",
+    ""json5"": ""0.17.3"",
+    ""jsonpointer"": ""3.7"",
+    ""jsonschema"": ""4.26.0"",
+    ""jsonschema-specifications"": ""2025.9.1"",
+    ""jupyter"": ""1.1.1"",
+    ""jupyter-console"": ""6.6.3"",
+    ""jupyter-events"": ""0.12.1"",
+    ""jupyter-lsp"": ""2.3.1"",
+    ""jupyter_builder"": ""1.2.4"",
+    ""jupyter_client"": ""8.10.0"",
+    ""jupyter_core"": ""5.9.1"",
+    ""jupyter_server"": ""2.21.1"",
+    ""jupyter_server_terminals"": ""0.5.4"",
+    ""jupyterlab"": ""4.6.5"",
+    ""jupyterlab_pygments"": ""0.3.0"",
+    ""jupyterlab_server"": ""2.28.1"",
+    ""jupyterlab_widgets"": ""3.0.17"",
+    ""kiwisolver"": ""1.5.1"",
+    ""lark"": ""1.3.1"",
+    ""matplotlib"": ""3.11.2"",
+    ""matplotlib-inline"": ""0.2.2"",
+    ""mistune"": ""3.4.0"",
+    ""narwhals"": ""2.28.0"",
+    ""nbclient"": ""0.11.0"",
+    ""nbconvert"": ""7.17.2"",
+    ""nbformat"": ""5.11.1"",
+    ""nest-asyncio2"": ""1.7.4"",
+    ""notebook"": ""7.6.4"",
+    ""notebook_shim"": ""0.2.4"",
+    ""numpy"": ""2.5.4"",
+    ""packaging"": ""26.3"",
+    ""pandas"": ""3.0.6"",
+    ""pandocfilters"": ""1.5.1"",
+    ""parso"": ""0.8.7"",
+    ""pillow"": ""13.0.0"",
+    ""pip"": ""26.2.1"",
+    ""platformdirs"": ""4.14.3"",
+    ""pluggy"": ""1.6.0"",
+    ""prometheus_client"": ""0.26.0"",
+    ""prompt_toolkit"": ""3.0.53"",
+    ""protobuf"": ""7.36.2"",
+    ""psutil"": ""7.2.2"",
+    ""pure_eval"": ""0.2.4"",
+    ""pyarrow"": ""26.0.0"",
+    ""pycparser"": ""3.12"",
+    ""pydeck"": ""0.9.3"",
+    ""pyparsing"": ""3.3.3"",
+    ""pytest"": ""9.1.1"",
+    ""python-dateutil"": ""2.9.0.post0"",
+    ""python-json-logger"": ""4.2.0"",
+    ""python-multipart"": ""0.0.33"",
+    ""pywinpty"": ""3.1.2"",
+    ""pyzmq"": ""27.2.0"",
+    ""referencing"": ""0.37.0"",
+    ""requests"": ""2.34.2"",
+    ""rfc3339-validator"": ""0.1.4"",
+    ""rfc3986-validator"": ""0.1.1"",
+    ""rfc3987-syntax"": ""1.1.0"",
+    ""rpds-py"": ""2026.9.1"",
+    ""scikit-learn"": ""1.9.1"",
+    ""scipy"": ""1.18.1"",
+    ""seaborn"": ""0.13.2"",
+    ""setuptools"": ""84.2.1"",
+    ""six"": ""1.17.0"",
+    ""soupsieve"": ""3.0.4"",
+    ""stack-data"": ""0.6.3"",
+    ""starlette"": ""1.10.0"",
+    ""streamlit"": ""1.66.1"",
+    ""terminado"": ""0.18.1"",
+    ""threadpoolctl"": ""3.7.0"",
+    ""tinycss2"": ""1.5.1"",
+    ""tornado"": ""6.6"",
+    ""traitlets"": ""5.16.1"",
+    ""typing_extensions"": ""4.16.0"",
+    ""tzdata"": ""2026.5"",
+    ""uri-template"": ""1.3.0"",
+    ""urllib3"": ""2.8.0"",
+    ""uvicorn"": ""0.54.0"",
+    ""watchdog"": ""6.0.0"",
+    ""wcwidth"": ""0.9.4"",
+    ""webcolors"": ""25.10.0"",
+    ""webencodings"": ""0.6.1"",
+    ""websocket-client"": ""1.9.2"",
+    ""websockets"": ""17.4"",
+    ""wheel"": ""0.48.0"",
+    ""widgetsnbextension"": ""4.0.16""
+  }
+}","{
+  ""train_primary"": {
+    ""n_total"": 204865,
+    ""n_scored"": 204865,
+    ""unavailable"": 0,
+    ""coverage"": 1.0,
+    ""MAE"": 11.286319820860166,
+    ""RMSE"": 19.923726413396565,
+    ""R2"": 0.9361795422842271,
+    ""r2_undefined_reason"": null,
+    ""negative_predictions"": 4179
+  },
+  ""validation_primary"": {
+    ""n_total"": 102479,
+    ""n_scored"": 102479,
+    ""unavailable"": 0,
+    ""coverage"": 1.0,
+    ""MAE"": 10.20043250848654,
+    ""RMSE"": 18.907140439263582,
+    ""R2"": 0.9467019818688767,
+    ""r2_undefined_reason"": null,
+    ""negative_predictions"": 2685
+  },
+  ""timing_seconds"": {
+    ""preflight_before_run"": 17.12385340000037,
+    ""fit_pipeline"": 2.9633662999985972,
+    ""predict_train"": 0.9504343000007793,
+    ""predict_validation"": 0.36786449999635806
+  },
+  ""available_memory_mb_before_data"": 1030.87109375,
+  ""official_full_result"": true,
+  ""test_csv_accessed"": false,
+  ""validation_baseline"": {
+    ""n_total"": 102479,
+    ""n_scored"": 102479,
+    ""unavailable"": 0,
+    ""coverage"": 1.0,
+    ""MAE"": 9.736617258169966,
+    ""RMSE"": 19.240919249995102,
+    ""R2"": 0.9448035694053172,
+    ""r2_undefined_reason"": null
+  },
+  ""generalization_gap_MAE"": -1.085887312373627,
+  ""validation_delta_MAE_vs_persistence"": 0.4638152503165731
+}","[
+  {
+    ""path"": ""../artifacts/experiments/aec8630115714bb59d5c89c8a6b368c1/artifacts/source/initial_models.py"",
+    ""sha256"": ""88fba57cf8f13c12f168310ce8bc6e37a96c8ef604e9f7db064d29b30d86da4b"",
+    ""size_bytes"": 9707
+  },
+  {
+    ""path"": ""../artifacts/experiments/aec8630115714bb59d5c89c8a6b368c1/artifacts/source/features.py"",
+    ""sha256"": ""ccb40348855216057b1c10ab34a67a3da467979fb51417df5b6782f265996210"",
+    ""size_bytes"": 13172
+  },
+  {
+    ""path"": ""../artifacts/experiments/aec8630115714bb59d5c89c8a6b368c1/artifacts/source/preprocessing.py"",
+    ""sha256"": ""3e121c4f6f5226b3764f053f1ceafdc9087ff3bbc97382dcc75242044b5d241f"",
+    ""size_bytes"": 8439
+  },
+  {
+    ""path"": ""../artifacts/experiments/aec8630115714bb59d5c89c8a6b368c1/artifacts/source/metrics.py"",
+    ""sha256"": ""c282e54515b5ad25fa9b67c576c8d082da9833878d65ac89e22ac7714b221769"",
+    ""size_bytes"": 3114
+  },
+  {
+    ""path"": ""../artifacts/experiments/aec8630115714bb59d5c89c8a6b368c1/artifacts/source/evaluation.py"",
+    ""sha256"": ""903dad88d32507360c18e67d7c0559bea069a94e6859978244c442196d5ec27a"",
+    ""size_bytes"": 7261
+  },
+  {
+    ""path"": ""../artifacts/experiments/aec8630115714bb59d5c89c8a6b368c1/artifacts/source/run_initial_models.py"",
+    ""sha256"": ""57c76f73ca281c871cba659b63e7bf3aa1f9c18f232556173de561bf315159d7"",
+    ""size_bytes"": 13188
+  },
+  {
+    ""path"": ""../artifacts/experiments/aec8630115714bb59d5c89c8a6b368c1/artifacts/data/membership.json"",
+    ""sha256"": ""f0e1360e3436b6bf45ebd9aa17f3ccdbde02c949fca11f5866c36f1fe5c88555"",
+    ""size_bytes"": 1754
+  },
+  {
+    ""path"": ""../artifacts/experiments/aec8630115714bb59d5c89c8a6b368c1/artifacts/predictions/train.csv.gz"",
+    ""sha256"": ""040811ec150de34e1421c8c6b30874eb8f93b4bea9e70b079d91d1eabbd54bd2"",
+    ""size_bytes"": 14206448
+  },
+  {
+    ""path"": ""../artifacts/experiments/aec8630115714bb59d5c89c8a6b368c1/artifacts/predictions/validation.csv.gz"",
+    ""sha256"": ""5882953c1e26237f0525b06c7786c4a7e6c349bb7e01f10716d89251c9800506"",
+    ""size_bytes"": 7121448
+  },
+  {
+    ""path"": ""../artifacts/experiments/aec8630115714bb59d5c89c8a6b368c1/artifacts/model/fitted_pipeline_state.json"",
+    ""sha256"": ""f9e20b301b24d6ee376ef82e237d720516463248306c611c546ceb470e3bf0bd"",
+    ""size_bytes"": 6534
+  },
+  {
+    ""path"": ""../artifacts/experiments/aec8630115714bb59d5c89c8a6b368c1/artifacts/tables/metrics.json"",
+    ""sha256"": ""d7e880c4e50f608ca2880562b6c56e7d85f3a84c5453b7c6ea74df5f367211a2"",
+    ""size_bytes"": 828
+  }
+]","FULL ridge, feature A, primary only. Train N=204865, validation N=102479. MAE train=11.286320, validation=10.200433; validation RMSE=18.907140, R2=0.9467019818688767. Persistence MAE on exactly these IDs=9.736617; delta=0.463815. Train error is in-sample, not CV. No clipping, test or tuning. Weights intentionally not saved; fitted state is a summary, not a deployable model. Evaluate gap/cost before proposing future T11/T12; no requirement to beat persistence.",Report initial outcome including worse scores; future tuning/ablation only when explicitly assigned.,,../artifacts/experiments/aec8630115714bb59d5c89c8a6b368c1/config.json,../artifacts/experiments/aec8630115714bb59d5c89c8a6b368c1/metrics.json,../artifacts/experiments/aec8630115714bb59d5c89c8a6b368c1/metadata.json,../artifacts/experiments/aec8630115714bb59d5c89c8a6b368c1/notes.md
+c3b4144a93c64bc1861f506fa4184f5d,completed,T10,24cef47874a94d9faa7bfcbae29b5c58,,,smoke,train,Benchmark initial A models against persistence on identical primary validation IDs.,"Current measurements/weather/calendar may improve persistence, but no model is required to win.","Initial fixed configuration; RF bounded for resources, not selected from validation scores.",random_forest,"{
+  ""signature"": {
+    ""design"": {
+      ""schema_version"": ""t10-initial-A-v1"",
+      ""feature_set"": ""A"",
+      ""cohort"": ""primary"",
+      ""baseline_reference_run_id"": ""24cef47874a94d9faa7bfcbae29b5c58"",
+      ""models"": {
+        ""ridge"": {
+          ""alpha"": 1.0
+        },
+        ""random_forest"": {
+          ""n_estimators"": 80,
+          ""max_depth"": 12,
+          ""min_samples_leaf"": 2,
+          ""max_features"": 1.0,
+          ""random_state"": 42,
+          ""n_jobs"": 1
+        }
+      },
+      ""smoke"": {
+        ""train_rows_per_station"": 256,
+        ""validation_rows_per_station"": 64,
+        ""selection"": ""chronological_head_after_primary_filter""
+      },
+      ""budget"": {
+        ""max_full_runs_per_model"": 1,
+        ""smoke_required"": true,
+        ""tuning"": false
+      },
+      ""resources"": {
+        ""blas_threads"": 1,
+        ""minimum_free_memory_mb"": 768,
+        ""execution"": ""sequential""
+      },
+      ""save_model_weights"": false,
+      ""note"": ""Fixed before scoring in Issue #20. RF intentionally bounded vs old 300/unlimited design due about 1.9 GiB available RAM. No tuning, no clipping; fitted state summary is not deployable model weights.""
+    },
+    ""model"": ""random_forest"",
+    ""effective_model_parameters"": {
+      ""bootstrap"": true,
+      ""ccp_alpha"": 0.0,
+      ""criterion"": ""squared_error"",
+      ""max_depth"": 12,
+      ""max_features"": 1.0,
+      ""max_leaf_nodes"": null,
+      ""max_samples"": null,
+      ""min_impurity_decrease"": 0.0,
+      ""min_samples_leaf"": 2,
+      ""min_samples_split"": 2,
+      ""min_weight_fraction_leaf"": 0.0,
+      ""monotonic_cst"": null,
+      ""n_estimators"": 80,
+      ""n_jobs"": 1,
+      ""oob_score"": false,
+      ""random_state"": 42,
+      ""verbose"": 0,
+      ""warm_start"": false
+    },
+    ""features"": {
+      ""legacy_name"": ""F0"",
+      ""measurements"": [
+        ""PM2.5"",
+        ""PM10"",
+        ""SO2"",
+        ""NO2"",
+        ""CO"",
+        ""O3"",
+        ""TEMP"",
+        ""PRES"",
+        ""DEWP"",
+        ""RAIN"",
+        ""WSPM""
+      ],
+      ""categorical"": [
+        ""station"",
+        ""wd""
+      ],
+      ""calendar_reference"": ""target_timestamp"",
+      ""calendar"": [
+        ""target_hour"",
+        ""target_month"",
+        ""target_day_of_week""
+      ],
+      ""cyclic_calendar"": {
+        ""target_hour"": 24,
+        ""target_month"": 12
+      }
+    },
+    ""preprocessing"": {
+      ""schema_version"": ""t08-preprocessing-v1"",
+      ""numeric"": {
+        ""imputation_strategy"": ""median"",
+        ""keep_empty_features"": true,
+        ""missing_indicators"": ""all"",
+        ""scale"": {
+          ""ridge"": true,
+          ""random_forest"": false
+        }
+      },
+      ""categorical"": {
+        ""imputation_strategy"": ""constant"",
+        ""fill_value"": ""__MISSING__"",
+        ""handle_unknown"": ""ignore"",
+        ""sparse_output"": false
+      },
+      ""output"": {
+        ""format"": ""pandas"",
+        ""verbose_feature_names"": true
+      },
+      ""prediction_postprocessing"": {
+        ""negative_predictions"": ""identity"",
+        ""applies_to"": [
+          ""persistence"",
+          ""ridge"",
+          ""random_forest""
+        ]
+      }
+    },
+    ""source_sha256"": {
+      ""initial_models.py"": ""88fba57cf8f13c12f168310ce8bc6e37a96c8ef604e9f7db064d29b30d86da4b"",
+      ""features.py"": ""ccb40348855216057b1c10ab34a67a3da467979fb51417df5b6782f265996210"",
+      ""preprocessing.py"": ""3e121c4f6f5226b3764f053f1ceafdc9087ff3bbc97382dcc75242044b5d241f"",
+      ""metrics.py"": ""c282e54515b5ad25fa9b67c576c8d082da9833878d65ac89e22ac7714b221769"",
+      ""evaluation.py"": ""903dad88d32507360c18e67d7c0559bea069a94e6859978244c442196d5ec27a"",
+      ""run_initial_models.py"": ""57c76f73ca281c871cba659b63e7bf3aa1f9c18f232556173de561bf315159d7""
+    },
+    ""provenance"": {
+      ""split_manifest"": ""reports/splits_full/split_manifest.json"",
+      ""split_manifest_sha256"": ""6d3ac3f05da50324a65c34c1e1601b5df45fefc3d2e6d0e834d43a27062d0e42"",
+      ""t05_snapshot_id"": ""2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc"",
+      ""input_files_read"": [
+        {
+          ""path"": ""data/processed/samples_full/train.csv"",
+          ""sha256"": ""ebc89c94b576f009705446da7c4bec079f750755e5755e5041b6a93f09226d46"",
+          ""bytes"": 51395102
+        },
+        {
+          ""path"": ""data/processed/samples_full/sample_ids/train.csv"",
+          ""sha256"": ""336d58dda970536fb0c7dc1739529fe2f1bcb4200a5f32e2f3d40cca1279d8bf"",
+          ""bytes"": 24598381
+        }
+      ],
+      ""source_mode"": ""full"",
+      ""validation_start"": ""2015-03-01T00:00:00"",
+      ""validation_files"": {
+        ""validation_samples"": {
+          ""path"": ""data/processed/samples_full/validation.csv"",
+          ""sha256"": ""eed8f0a497b352540705640ccf1a10d3db9084af88653184aa2e0b4abbbfa173"",
+          ""bytes"": 26281009
+        },
+        ""validation_ids"": {
+          ""path"": ""data/processed/samples_full/sample_ids/validation.csv"",
+          ""sha256"": ""4102afaecae6eb3f56434b0b1f93d53f90a914edad304496a429bfdad14f5a8c"",
+          ""bytes"": 12333889
+        }
+      },
+      ""validation_membership"": {
+        ""operational"": {
+          ""samples"": 103287,
+          ""ordered_sample_ids_sha256"": ""bd15e19b4ce89a5025e5f36f547fc4d3f56953e334d38da3bc8390270dd6444a""
+        },
+        ""primary"": {
+          ""samples"": 102479,
+          ""ordered_sample_ids_sha256"": ""534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7""
+        }
+      },
+      ""label_availability"": {
+        ""status"": ""passed"",
+        ""fit_samples"": 205977,
+        ""evaluation_samples"": 103287,
+        ""latest_fit_target_timestamp"": ""2015-02-28T23:00:00"",
+        ""first_evaluation_input_timestamp"": ""2015-02-28T23:00:00"",
+        ""planned_label_cutoff"": ""2015-02-28T23:00:00"",
+        ""comparison"": ""<="",
+        ""fitted"": false
+      }
+    },
+    ""anchor_sha256"": ""b9646da98017bc0b02f622ee928df0b70185e8a6312a2a9512329d4d04057e7f"",
+    ""baseline_predictions_sha256"": ""88c03c51dab835b49aca831bcf6fb3404ee2334886c80748530014174a6a2fc3""
+  },
+  ""effective_project_config"": {
+    ""seed"": 42,
+    ""horizon_hours"": 1,
+    ""mode"": ""smoke"",
+    ""available_modes"": [
+      ""smoke"",
+      ""full""
+    ],
+    ""problem"": {
+      ""task_type"": ""regression"",
+      ""target_column"": ""PM2.5"",
+      ""target_unit"": ""ug/m3"",
+      ""group_column"": ""station"",
+      ""input_time_column"": ""input_timestamp"",
+      ""target_time_column"": ""target_timestamp"",
+      ""station_scope"": ""observed_stations"",
+      ""current_observation_available"": true,
+      ""forecast_strategy"": ""rolling_one_hour""
+    },
+    ""split"": {
+      ""timestamp_column"": ""target_timestamp"",
+      ""validation_start"": ""2015-03-01T00:00:00"",
+      ""test_start"": ""2016-03-01T00:00:00"",
+      ""timestamp_convention"": ""source_local_naive"",
+      ""test_locked"": true,
+      ""final_refit_train_validation"": true
+    },
+    ""sample_construction"": {
+      ""target_value_column"": ""target_pm25"",
+      ""sample_id_scheme"": ""pm25-h1-v1"",
+      ""target_missing_policy"": ""drop"",
+      ""origin_missing_policy"": ""retain_operational_flag_primary"",
+      ""holdout_label_rule"": ""at_or_before_first_origin""
+    },
+    ""temporal_cv"": {
+      ""strategy"": ""expanding_window"",
+      ""partition"": ""train"",
+      ""group_by"": ""unique_target_timestamp"",
+      ""fit_target_must_precede_first_origin"": true,
+      ""folds"": [
+        {
+          ""fold_id"": 1,
+          ""evaluation_start"": ""2014-06-01T00:00:00"",
+          ""evaluation_end"": ""2014-09-01T00:00:00""
+        },
+        {
+          ""fold_id"": 2,
+          ""evaluation_start"": ""2014-09-01T00:00:00"",
+          ""evaluation_end"": ""2014-12-01T00:00:00""
+        },
+        {
+          ""fold_id"": 3,
+          ""evaluation_start"": ""2014-12-01T00:00:00"",
+          ""evaluation_end"": ""2015-03-01T00:00:00""
+        }
+      ]
+    },
+    ""features"": {
+      ""A"": {
+        ""legacy_name"": ""F0"",
+        ""measurements"": [
+          ""PM2.5"",
+          ""PM10"",
+          ""SO2"",
+          ""NO2"",
+          ""CO"",
+          ""O3"",
+          ""TEMP"",
+          ""PRES"",
+          ""DEWP"",
+          ""RAIN"",
+          ""WSPM""
+        ],
+        ""categorical"": [
+          ""station"",
+          ""wd""
+        ],
+        ""calendar_reference"": ""target_timestamp"",
+        ""calendar"": [
+          ""target_hour"",
+          ""target_month"",
+          ""target_day_of_week""
+        ],
+        ""cyclic_calendar"": {
+          ""target_hour"": 24,
+          ""target_month"": 12
+        }
+      },
+      ""B"": {
+        ""legacy_name"": ""F1"",
+        ""extends"": ""A"",
+        ""pm25_lag_hours"": [
+          1,
+          3,
+          6,
+          12,
+          24
+        ],
+        ""pm25_rolling_windows_hours"": [
+          3,
+          6,
+          12,
+          24
+        ],
+        ""rolling_stats"": [
+          ""mean"",
+          ""std""
+        ],
+        ""rolling_std_ddof"": 1,
+        ""rolling_include_current"": true,
+        ""rolling_min_periods"": ""window""
+      },
+      ""C"": {
+        ""extends"": ""B"",
+        ""selector_fit_scope"": ""training_partition_of_each_run_or_fold"",
+        ""selection_method"": null,
+        ""selected_features"": null
+      }
+    },
+    ""evaluation"": {
+      ""baseline"": ""persistence"",
+      ""models"": [
+        ""ridge"",
+        ""random_forest""
+      ],
+      ""initial_parameters"": {
+        ""ridge"": {
+          ""alpha"": 1.0
+        },
+        ""random_forest"": {
+          ""n_estimators"": 80,
+          ""max_depth"": 12,
+          ""min_samples_leaf"": 2,
+          ""max_features"": 1.0,
+          ""random_state"": 42,
+          ""n_jobs"": 1
+        }
+      },
+      ""primary_metric"": ""MAE"",
+      ""secondary_metrics"": [
+        ""RMSE"",
+        ""R2""
+      ],
+      ""same_sample_ids"": true,
+      ""baseline_fallback_order"": [
+        ""last_observed_same_station"",
+        ""training_station_median"",
+        ""training_global_median"",
+        ""unavailable""
+      ]
+    },
+    ""experiment_logging"": {
+      ""infrastructure_task_id"": ""T04-LOG"",
+      ""index"": ""experiments/experiment_log.csv"",
+      ""runs"": ""artifacts/experiments""
+    },
+    ""paths"": {
+      ""raw_data"": ""data/raw"",
+      ""processed_data"": ""data/processed"",
+      ""artifacts"": ""artifacts"",
+      ""figures"": ""reports/figures""
+    }
+  },
+  ""smoke_reference_run_id"": null,
+  ""configured_seed"": 42,
+  ""weights_saved"": false
+}",A,"{
+  ""schema_version"": ""t08-preprocessing-v1"",
+  ""numeric"": {
+    ""imputation_strategy"": ""median"",
+    ""keep_empty_features"": true,
+    ""missing_indicators"": ""all"",
+    ""scale"": {
+      ""ridge"": true,
+      ""random_forest"": false
+    }
+  },
+  ""categorical"": {
+    ""imputation_strategy"": ""constant"",
+    ""fill_value"": ""__MISSING__"",
+    ""handle_unknown"": ""ignore"",
+    ""sparse_output"": false
+  },
+  ""output"": {
+    ""format"": ""pandas"",
+    ""verbose_feature_names"": true
+  },
+  ""prediction_postprocessing"": {
+    ""negative_predictions"": ""identity"",
+    ""applies_to"": [
+      ""persistence"",
+      ""ridge"",
+      ""random_forest""
+    ]
+  }
+}","{
+  ""provenance"": {
+    ""split_manifest"": ""reports/splits_full/split_manifest.json"",
+    ""split_manifest_sha256"": ""6d3ac3f05da50324a65c34c1e1601b5df45fefc3d2e6d0e834d43a27062d0e42"",
+    ""t05_snapshot_id"": ""2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc"",
+    ""input_files_read"": [
+      {
+        ""path"": ""data/processed/samples_full/train.csv"",
+        ""sha256"": ""ebc89c94b576f009705446da7c4bec079f750755e5755e5041b6a93f09226d46"",
+        ""bytes"": 51395102
+      },
+      {
+        ""path"": ""data/processed/samples_full/sample_ids/train.csv"",
+        ""sha256"": ""336d58dda970536fb0c7dc1739529fe2f1bcb4200a5f32e2f3d40cca1279d8bf"",
+        ""bytes"": 24598381
+      }
+    ],
+    ""source_mode"": ""full"",
+    ""validation_start"": ""2015-03-01T00:00:00"",
+    ""validation_files"": {
+      ""validation_samples"": {
+        ""path"": ""data/processed/samples_full/validation.csv"",
+        ""sha256"": ""eed8f0a497b352540705640ccf1a10d3db9084af88653184aa2e0b4abbbfa173"",
+        ""bytes"": 26281009
+      },
+      ""validation_ids"": {
+        ""path"": ""data/processed/samples_full/sample_ids/validation.csv"",
+        ""sha256"": ""4102afaecae6eb3f56434b0b1f93d53f90a914edad304496a429bfdad14f5a8c"",
+        ""bytes"": 12333889
+      }
+    },
+    ""validation_membership"": {
+      ""operational"": {
+        ""samples"": 103287,
+        ""ordered_sample_ids_sha256"": ""bd15e19b4ce89a5025e5f36f547fc4d3f56953e334d38da3bc8390270dd6444a""
+      },
+      ""primary"": {
+        ""samples"": 102479,
+        ""ordered_sample_ids_sha256"": ""534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7""
+      }
+    },
+    ""label_availability"": {
+      ""status"": ""passed"",
+      ""fit_samples"": 205977,
+      ""evaluation_samples"": 103287,
+      ""latest_fit_target_timestamp"": ""2015-02-28T23:00:00"",
+      ""first_evaluation_input_timestamp"": ""2015-02-28T23:00:00"",
+      ""planned_label_cutoff"": ""2015-02-28T23:00:00"",
+      ""comparison"": ""<="",
+      ""fitted"": false
+    }
+  },
+  ""validation_anchor"": {
+    ""schema_version"": ""validation-cohorts-v1"",
+    ""split"": ""validation"",
+    ""test_locked"": true,
+    ""t05_snapshot_id"": ""2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc"",
+    ""files"": {
+      ""validation_samples"": {
+        ""path"": ""data/processed/samples_full/validation.csv"",
+        ""sha256"": ""eed8f0a497b352540705640ccf1a10d3db9084af88653184aa2e0b4abbbfa173"",
+        ""bytes"": 26281009
+      },
+      ""validation_ids"": {
+        ""path"": ""data/processed/samples_full/sample_ids/validation.csv"",
+        ""sha256"": ""4102afaecae6eb3f56434b0b1f93d53f90a914edad304496a429bfdad14f5a8c"",
+        ""bytes"": 12333889
+      }
+    },
+    ""cohorts"": {
+      ""operational"": {
+        ""samples"": 103287,
+        ""ordered_sample_ids_sha256"": ""bd15e19b4ce89a5025e5f36f547fc4d3f56953e334d38da3bc8390270dd6444a""
+      },
+      ""primary"": {
+        ""samples"": 102479,
+        ""ordered_sample_ids_sha256"": ""534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7""
+      }
+    },
+    ""order"": ""T05 station/input_timestamp order"",
+    ""primary_filter"": ""is_primary == true"",
+    ""operational_filter"": ""all retained T05 validation IDs"",
+    ""comparison_rule"": ""same IDs/order; no dropping rows for missing features; report prediction coverage""
+  },
+  ""selected_membership"": {
+    ""train"": {
+      ""rows"": 3072,
+      ""ordered_ids_sha256"": ""40550acc93f2121f9a69417f4c334af76d0562db323ee446f57c6df43e975dd2"",
+      ""first_target"": ""2013-03-01 01:00:00"",
+      ""last_target"": ""2013-03-12 15:00:00""
+    },
+    ""validation"": {
+      ""rows"": 768,
+      ""ordered_ids_sha256"": ""3586259ee6b765e0e04c5ac08f46e49a2c7b8171b81643d76d6846e80f5570ec"",
+      ""first_target"": ""2015-03-01 00:00:00"",
+      ""last_target"": ""2015-03-03 21:00:00""
+    }
+  },
+  ""selection"": {
+    ""train_rows_per_station"": 256,
+    ""validation_rows_per_station"": 64,
+    ""selection"": ""chronological_head_after_primary_filter""
+  }
+}","{
+  ""timestamp_column"": ""target_timestamp"",
+  ""validation_start"": ""2015-03-01T00:00:00"",
+  ""test_start"": ""2016-03-01T00:00:00"",
+  ""timestamp_convention"": ""source_local_naive"",
+  ""test_locked"": true,
+  ""final_refit_train_validation"": true,
+  ""training"": ""train primary only"",
+  ""evaluation"": ""validation primary only""
+}",,"{
+  ""train"": 3072,
+  ""validation"": 768
+}",42,"{
+  ""max_full_runs_per_model"": 1,
+  ""smoke_required"": true,
+  ""tuning"": false
+}",false,executed_script,2026-11-02T15:07:11.240918+00:00,2026-11-02T15:07:15.368088+00:00,UTC,4.12717,"{
+  ""commit"": ""5e823afb1d6e98c01d3f44679f15eb4e36bf6886"",
+  ""branch"": ""feature/t10-initial-regressors"",
+  ""dirty"": true,
+  ""available"": true
+}","{
+  ""python"": ""3.12.10"",
+  ""platform"": ""Windows-11-10.0.22631-SP0"",
+  ""packages"": {
+    ""Jinja2"": ""3.1.6"",
+    ""MarkupSafe"": ""3.0.4"",
+    ""PyYAML"": ""6.0.3"",
+    ""Pygments"": ""2.21.0"",
+    ""Send2Trash"": ""2.1.0"",
+    ""altair"": ""6.3.0"",
+    ""anyio"": ""4.16.0"",
+    ""argon2-cffi"": ""25.1.0"",
+    ""argon2-cffi-bindings"": ""26.1.0"",
+    ""arrow"": ""1.4.0"",
+    ""asttokens"": ""3.0.2"",
+    ""async-lru"": ""2.4.0"",
+    ""attrs"": ""26.1.0"",
+    ""babel"": ""2.18.0"",
+    ""beautifulsoup4"": ""4.15.0"",
+    ""beijing-air-quality"": ""0.1.0"",
+    ""bleach"": ""6.4.0"",
+    ""certifi"": ""2026.10.23"",
+    ""cffi"": ""2.1.1"",
+    ""charset-normalizer"": ""3.5.2"",
+    ""click"": ""8.5.0"",
+    ""cloudpickle"": ""3.1.2"",
+    ""colorama"": ""0.4.6"",
+    ""comm"": ""0.2.3"",
+    ""contourpy"": ""1.4.0"",
+    ""cycler"": ""0.12.1"",
+    ""debugpy"": ""1.8.22"",
+    ""defusedxml"": ""0.7.1"",
+    ""executing"": ""2.3.0"",
+    ""fastjsonschema"": ""2.22.3"",
+    ""fonttools"": ""4.68.0"",
+    ""fqdn"": ""1.6.0"",
+    ""h11"": ""0.16.0"",
+    ""httpcore"": ""1.0.9"",
+    ""httpx"": ""0.28.1"",
+    ""idna"": ""3.20"",
+    ""iniconfig"": ""2.3.1"",
+    ""ipykernel"": ""7.4.0"",
+    ""ipython"": ""9.18.0"",
+    ""ipython_pygments_lexers"": ""1.1.1"",
+    ""ipywidgets"": ""8.1.9"",
+    ""isoduration"": ""20.11.0"",
+    ""itsdangerous"": ""2.2.0"",
+    ""jedi"": ""0.20.1"",
+    ""joblib"": ""1.6.0"",
+    ""json5"": ""0.17.3"",
+    ""jsonpointer"": ""3.7"",
+    ""jsonschema"": ""4.26.0"",
+    ""jsonschema-specifications"": ""2025.9.1"",
+    ""jupyter"": ""1.1.1"",
+    ""jupyter-console"": ""6.6.3"",
+    ""jupyter-events"": ""0.12.1"",
+    ""jupyter-lsp"": ""2.3.1"",
+    ""jupyter_builder"": ""1.2.4"",
+    ""jupyter_client"": ""8.10.0"",
+    ""jupyter_core"": ""5.9.1"",
+    ""jupyter_server"": ""2.21.1"",
+    ""jupyter_server_terminals"": ""0.5.4"",
+    ""jupyterlab"": ""4.6.5"",
+    ""jupyterlab_pygments"": ""0.3.0"",
+    ""jupyterlab_server"": ""2.28.1"",
+    ""jupyterlab_widgets"": ""3.0.17"",
+    ""kiwisolver"": ""1.5.1"",
+    ""lark"": ""1.3.1"",
+    ""matplotlib"": ""3.11.2"",
+    ""matplotlib-inline"": ""0.2.2"",
+    ""mistune"": ""3.4.0"",
+    ""narwhals"": ""2.28.0"",
+    ""nbclient"": ""0.11.0"",
+    ""nbconvert"": ""7.17.2"",
+    ""nbformat"": ""5.11.1"",
+    ""nest-asyncio2"": ""1.7.4"",
+    ""notebook"": ""7.6.4"",
+    ""notebook_shim"": ""0.2.4"",
+    ""numpy"": ""2.5.4"",
+    ""packaging"": ""26.3"",
+    ""pandas"": ""3.0.6"",
+    ""pandocfilters"": ""1.5.1"",
+    ""parso"": ""0.8.7"",
+    ""pillow"": ""13.0.0"",
+    ""pip"": ""26.2.1"",
+    ""platformdirs"": ""4.14.3"",
+    ""pluggy"": ""1.6.0"",
+    ""prometheus_client"": ""0.26.0"",
+    ""prompt_toolkit"": ""3.0.53"",
+    ""protobuf"": ""7.36.2"",
+    ""psutil"": ""7.2.2"",
+    ""pure_eval"": ""0.2.4"",
+    ""pyarrow"": ""26.0.0"",
+    ""pycparser"": ""3.12"",
+    ""pydeck"": ""0.9.3"",
+    ""pyparsing"": ""3.3.3"",
+    ""pytest"": ""9.1.1"",
+    ""python-dateutil"": ""2.9.0.post0"",
+    ""python-json-logger"": ""4.2.0"",
+    ""python-multipart"": ""0.0.33"",
+    ""pywinpty"": ""3.1.2"",
+    ""pyzmq"": ""27.2.0"",
+    ""referencing"": ""0.37.0"",
+    ""requests"": ""2.34.2"",
+    ""rfc3339-validator"": ""0.1.4"",
+    ""rfc3986-validator"": ""0.1.1"",
+    ""rfc3987-syntax"": ""1.1.0"",
+    ""rpds-py"": ""2026.9.1"",
+    ""scikit-learn"": ""1.9.1"",
+    ""scipy"": ""1.18.1"",
+    ""seaborn"": ""0.13.2"",
+    ""setuptools"": ""84.2.1"",
+    ""six"": ""1.17.0"",
+    ""soupsieve"": ""3.0.4"",
+    ""stack-data"": ""0.6.3"",
+    ""starlette"": ""1.10.0"",
+    ""streamlit"": ""1.66.1"",
+    ""terminado"": ""0.18.1"",
+    ""threadpoolctl"": ""3.7.0"",
+    ""tinycss2"": ""1.5.1"",
+    ""tornado"": ""6.6"",
+    ""traitlets"": ""5.16.1"",
+    ""typing_extensions"": ""4.16.0"",
+    ""tzdata"": ""2026.5"",
+    ""uri-template"": ""1.3.0"",
+    ""urllib3"": ""2.8.0"",
+    ""uvicorn"": ""0.54.0"",
+    ""watchdog"": ""6.0.0"",
+    ""wcwidth"": ""0.9.4"",
+    ""webcolors"": ""25.10.0"",
+    ""webencodings"": ""0.6.1"",
+    ""websocket-client"": ""1.9.2"",
+    ""websockets"": ""17.4"",
+    ""wheel"": ""0.48.0"",
+    ""widgetsnbextension"": ""4.0.16""
+  }
+}","{
+  ""train_primary"": {
+    ""n_total"": 3072,
+    ""n_scored"": 3072,
+    ""unavailable"": 0,
+    ""coverage"": 1.0,
+    ""MAE"": 6.684200676375165,
+    ""RMSE"": 13.20706984984435,
+    ""R2"": 0.9807026352670327,
+    ""r2_undefined_reason"": null,
+    ""negative_predictions"": 0
+  },
+  ""validation_primary"": {
+    ""n_total"": 768,
+    ""n_scored"": 768,
+    ""unavailable"": 0,
+    ""coverage"": 1.0,
+    ""MAE"": 8.961040930019493,
+    ""RMSE"": 15.298052306027369,
+    ""R2"": 0.8488416329591688,
+    ""r2_undefined_reason"": null,
+    ""negative_predictions"": 0
+  },
+  ""timing_seconds"": {
+    ""preflight_before_run"": 10.272395200001483,
+    ""fit_pipeline"": 2.284500999994634,
+    ""predict_train"": 0.12709520000498742,
+    ""predict_validation"": 0.07907179999892833
+  },
+  ""available_memory_mb_before_data"": 1180.23828125,
+  ""official_full_result"": false,
+  ""test_csv_accessed"": false,
+  ""validation_baseline"": {
+    ""n_total"": 768,
+    ""n_scored"": 768,
+    ""unavailable"": 0,
+    ""coverage"": 1.0,
+    ""MAE"": 9.524739583333334,
+    ""RMSE"": 15.721079598742575,
+    ""R2"": 0.8403662772191625,
+    ""r2_undefined_reason"": null
+  },
+  ""generalization_gap_MAE"": 2.2768402536443277,
+  ""validation_delta_MAE_vs_persistence"": -0.5636986533138408
+}","[
+  {
+    ""path"": ""../artifacts/experiments/c3b4144a93c64bc1861f506fa4184f5d/artifacts/source/initial_models.py"",
+    ""sha256"": ""88fba57cf8f13c12f168310ce8bc6e37a96c8ef604e9f7db064d29b30d86da4b"",
+    ""size_bytes"": 9707
+  },
+  {
+    ""path"": ""../artifacts/experiments/c3b4144a93c64bc1861f506fa4184f5d/artifacts/source/features.py"",
+    ""sha256"": ""ccb40348855216057b1c10ab34a67a3da467979fb51417df5b6782f265996210"",
+    ""size_bytes"": 13172
+  },
+  {
+    ""path"": ""../artifacts/experiments/c3b4144a93c64bc1861f506fa4184f5d/artifacts/source/preprocessing.py"",
+    ""sha256"": ""3e121c4f6f5226b3764f053f1ceafdc9087ff3bbc97382dcc75242044b5d241f"",
+    ""size_bytes"": 8439
+  },
+  {
+    ""path"": ""../artifacts/experiments/c3b4144a93c64bc1861f506fa4184f5d/artifacts/source/metrics.py"",
+    ""sha256"": ""c282e54515b5ad25fa9b67c576c8d082da9833878d65ac89e22ac7714b221769"",
+    ""size_bytes"": 3114
+  },
+  {
+    ""path"": ""../artifacts/experiments/c3b4144a93c64bc1861f506fa4184f5d/artifacts/source/evaluation.py"",
+    ""sha256"": ""903dad88d32507360c18e67d7c0559bea069a94e6859978244c442196d5ec27a"",
+    ""size_bytes"": 7261
+  },
+  {
+    ""path"": ""../artifacts/experiments/c3b4144a93c64bc1861f506fa4184f5d/artifacts/source/run_initial_models.py"",
+    ""sha256"": ""57c76f73ca281c871cba659b63e7bf3aa1f9c18f232556173de561bf315159d7"",
+    ""size_bytes"": 13188
+  },
+  {
+    ""path"": ""../artifacts/experiments/c3b4144a93c64bc1861f506fa4184f5d/artifacts/data/membership.json"",
+    ""sha256"": ""e50d6c279ca322799b7e00885b745c6677bbdddace96ad1ed5c4e714e1074a83"",
+    ""size_bytes"": 1749
+  },
+  {
+    ""path"": ""../artifacts/experiments/c3b4144a93c64bc1861f506fa4184f5d/artifacts/predictions/train.csv.gz"",
+    ""sha256"": ""7f7d2ca0fad98ff8207dac3d955306c33b772cb8c5c500f620e168ea42af4d4c"",
+    ""size_bytes"": 213717
+  },
+  {
+    ""path"": ""../artifacts/experiments/c3b4144a93c64bc1861f506fa4184f5d/artifacts/predictions/validation.csv.gz"",
+    ""sha256"": ""c1d4511b595e2004c7728e7e18416ba625dd267cde1baa134f158012bce181d7"",
+    ""size_bytes"": 51169
+  },
+  {
+    ""path"": ""../artifacts/experiments/c3b4144a93c64bc1861f506fa4184f5d/artifacts/model/fitted_pipeline_state.json"",
+    ""sha256"": ""3ae62258bf92f3f9d84cd1a8913be9879033a9b7cec2f21e1dc82ba75b69dfd4"",
+    ""size_bytes"": 5916
+  },
+  {
+    ""path"": ""../artifacts/experiments/c3b4144a93c64bc1861f506fa4184f5d/artifacts/tables/metrics.json"",
+    ""sha256"": ""633dec5c3bf042c1bc303dd3ca44ccdc16401219a5cef7601ad29f509ea07d26"",
+    ""size_bytes"": 820
+  }
+]","SMOKE random_forest, feature A, primary only. Train N=3072, validation N=768. MAE train=6.684201, validation=8.961041; validation RMSE=15.298052, R2=0.8488416329591688. Persistence MAE on exactly these IDs=9.524740; delta=-0.563699. Train error is in-sample, not CV. No clipping, test or tuning. Weights intentionally not saved; fitted state is a summary, not a deployable model. Evaluate gap/cost before proposing future T11/T12; no requirement to beat persistence.",Report initial outcome including worse scores; future tuning/ablation only when explicitly assigned.,,../artifacts/experiments/c3b4144a93c64bc1861f506fa4184f5d/config.json,../artifacts/experiments/c3b4144a93c64bc1861f506fa4184f5d/metrics.json,../artifacts/experiments/c3b4144a93c64bc1861f506fa4184f5d/metadata.json,../artifacts/experiments/c3b4144a93c64bc1861f506fa4184f5d/notes.md

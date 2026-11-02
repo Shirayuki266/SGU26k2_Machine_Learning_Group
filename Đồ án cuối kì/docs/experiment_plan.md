@@ -1,7 +1,8 @@
 # T02 — Kế hoạch thực nghiệm theo CRISP-DM
 
 Phạm vi đã chốt ngày 02/11/2026. T09 có [persistence validation thật](baseline_results.md);
-chưa chạy Ridge/RF, tuning, feature selection hoặc đánh giá test. Đi cùng
+T10 có [Ridge/RF A smoke/full và so sánh](initial_findings.md). Chưa tuning,
+feature selection hoặc đánh giá test. Đi cùng
 [đặc tả bài toán](problem_definition.md) và `configs/default.json`.
 
 ## 1. Vòng thực nghiệm và task quản lý
@@ -138,7 +139,15 @@ dữ liệu thật trong T02. Thiếu dữ liệu thì fail/report, không tự 
 | Giai đoạn | Cấu hình/ngân sách thiết kế |
 | --- | --- |
 | T09 | Persistence không fit estimator; fallback train-only như mục 3 |
-| T10 | Bộ A; Ridge alpha=1.0; RF n_estimators=300, max_depth=null, min_samples_leaf=1, max_features=1.0, random_state=42, n_jobs=1 như config; mỗi họ một cấu hình, không duyệt grid |
+| T10 | Bộ A; Ridge alpha=1.0; RF n_estimators=80, max_depth=12, min_samples_leaf=2, max_features=1.0, random_state=42, n_jobs=1; cấu hình thực thi ở `configs/initial_models.json`, mỗi họ một cấu hình, không duyệt grid |
+
+T10/Issue #20 chốt trước metric: giới hạn RF so với thiết kế cũ 300 cây/sâu
+không giới hạn do RAM khả dụng khoảng 1,9 GiB, BLAS một luồng, chạy tuần tự.
+Không sửa `default.json` để bảo toàn fingerprint artifact T06/T07; runner T10
+ghi cả config hiệu lực và tham số estimator thực tế. Không lưu trọng số ở vòng
+đầu; lưu predictions và fitted pipeline summary, không xem summary là model
+triển khai. Smoke dùng tối đa 256 train/64 validation mẫu primary đầu mỗi trạm;
+full dùng toàn bộ primary, không tự giảm dữ liệu khi thiếu RAM.
 | T11 | Tinh chỉnh ít nhất một họ được giao; giữ grid cũ: Ridge alpha {0.1,1,10,100}; RF n_estimators=300, max_depth {null,15}, min_samples_leaf {1,5}, max_features {1.0,0.7} |
 | T12 | A/B có kiểm soát; chọn C từ B. Nếu tune riêng A/B/C để so sánh phương án tối ưu, phải giữ cùng ngân sách trong từng họ và ghi rõ khác với ablation chỉ đổi feature |
 
