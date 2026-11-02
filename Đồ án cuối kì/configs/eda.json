@@ -1,0 +1,10 @@
+{
+  "task_id": "T06",
+  "split_manifest": "reports/splits_full/split_manifest.json",
+  "cohort": "operational",
+  "seed": 42,
+  "smoke_rows_per_station": 336,
+  "autocorrelation_lags_hours": [1, 2, 3, 6, 12, 24, 48, 72, 168],
+  "figure_dpi": 150,
+  "note": "Train-only descriptive EDA; smoke is an execution check, not research evidence. No fit, imputation, clipping, or model metrics."
+}
