@@ -1,0 +1,1 @@
+smoke bounded Ridge A search; selected alpha=1.0 only by train CV. Refit=None. All failures retained. Smoke is not official; no test/RF tuning/T12/weights.

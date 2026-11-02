@@ -1,0 +1,31 @@
+{
+  "train_primary": {
+    "n_total": 204865,
+    "n_scored": 204865,
+    "unavailable": 0,
+    "coverage": 1.0,
+    "MAE": 11.28626211185184,
+    "RMSE": 19.92371866784375,
+    "R2": 0.9361795919059314,
+    "r2_undefined_reason": null,
+    "negative_predictions": 4179
+  },
+  "validation_primary": {
+    "n_total": 102479,
+    "n_scored": 102479,
+    "unavailable": 0,
+    "coverage": 1.0,
+    "MAE": 10.200529345095717,
+    "RMSE": 18.907197877209306,
+    "R2": 0.9467016580406031,
+    "r2_undefined_reason": null,
+    "negative_predictions": 2684
+  },
+  "timing_seconds": {
+    "fit_pipeline": 1.7714784999989206,
+    "predict_train": 0.7960402000026079,
+    "predict_validation": 0.4130347999962396
+  },
+  "test_csv_accessed": false,
+  "selection_source": "train_cv_only"
+}

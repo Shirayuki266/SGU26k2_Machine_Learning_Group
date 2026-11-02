@@ -1,0 +1,15 @@
+{
+  "schema_version": "t11-ridge-A-v1",
+  "model": "ridge",
+  "feature_set": "A",
+  "cohort": "primary",
+  "reference_run_id": "aec8630115714bb59d5c89c8a6b368c1",
+  "alphas": [0.1, 1.0, 10.0, 100.0],
+  "selection": {"metric": "pooled_MAE", "tie_tolerance": 1e-12, "tie_break": "larger_alpha", "std_ddof": 0, "failed_candidate": "exclude_unless_all_three_folds_completed"},
+  "budget": {"full_searches": 1, "candidates": 4, "folds": 3, "cv_fits": 12, "refits": 1, "automatic_retries": 0, "rf_fits": 0},
+  "smoke": {"alphas": [1.0], "train_rows_per_station": 64, "evaluation_rows_per_station": 16, "selection": "chronological_head_within_each_fold", "refit_validation": false},
+  "resources": {"blas_threads": 1, "minimum_free_memory_mb": 768, "execution": "sequential"},
+  "save_model_weights": false,
+  "hypothesis": "Ridge alpha=1 has worse validation MAE than persistence in T10. Changing regularization may improve temporal CV generalization; improvement is not guaranteed and negative MAE gap is not proof of overfitting.",
+  "resource_reason": "Tune only Ridge with the existing four-alpha grid: T10 fit about 3 seconds vs RF 161 seconds, limited free RAM. RF tuning deferred, not silently added. No feature or clipping change."
+}

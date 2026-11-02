@@ -9,7 +9,8 @@ T04-LOG, target/split và count/date audit T05, EDA train T06 có bảng/PNG g�
 T07 có feature A/B nhân quả, registry và missing train; T08 có factories
 preprocessing và kiểm tra fixture. T09 có [baseline full validation thật](baseline_results.md),
 predictions/log/metric/hình/bundle; T10 có [Ridge/RF A full](initial_findings.md),
-so persistence cùng IDs, chi phí và nhận xét. Chưa đánh giá test.
+so persistence cùng IDs, chi phí và nhận xét. T11 có [Ridge A temporal tuning](tuning_findings.md),
+alpha0.1 từ CV chưa cải thiện validation so T10; chưa đánh giá test.
 Ưu tiên tiến độ thực tế đến T10; có T11/T12 thì bổ sung. Không bắt buộc tuning,
 test cuối hoặc demo và **không mở test để lấy số liệu giữa kỳ**. Phải nêu thiếu,
 không điền bảng giả.
@@ -25,7 +26,7 @@ không điền bảng giả.
 | Feature/pipeline | Data Preparation, T07–T08 | [ ] A/B/dictionary/causal tests; train-only/schema/save-load; tách thiết kế/đã chạy | Có A/B T07 và [factories T08](preprocessing.md), kiểm fixture clone/train-only/save-load; T10 đã fit pipeline A trên train dự án, chưa lưu model triển khai hoặc đưa vào DOCX/PPTX |
 | Baseline/model/protocol | Modeling/Evaluation, T09–T10 | [ ] Persistence/fallback, Ridge/RF A, MAE/RMSE/R², cùng IDs, split/CV/test gate | Có persistence/Ridge/RF full, cùng primary N=102.479; MAE 9,736617/10,200433/9,561488; chưa đưa vào DOCX/PPTX |
 | Kết quả/nhận xét bước đầu | T09–T10; T11/T12 nếu có | [ ] Validation/CV có run_id/config/mode/N/thời gian; smoke khác full | Có [T09](baseline_results.md) và [T10](initial_findings.md) với bảng/hình/chi phí/gap; chưa đưa vào DOCX/PPTX |
-| Vòng thử–nhận xét–sửa | Mọi giai đoạn/T04-LOG | [ ] Giả thuyết/thay đổi, tham chiếu/số liệu/quyết định; giữ kém/thất bại | T10 giữ cả Ridge MAE kém và RF cải thiện nhỏ so baseline, đề xuất T11/T12 chưa chạy; smoke chỉ kiểm thực thi, không coi khác mẫu là cải tiến |
+| Vòng thử–nhận xét–sửa | Mọi giai đoạn/T04-LOG | [ ] Giả thuyết/thay đổi, tham chiếu/số liệu/quyết định; giữ kém/thất bại | T10 và T11 có config tham chiếu/log thật; T11 chọn bằng CV nhưng validation không cải thiện, giữ kết quả; T12 chưa chạy, smoke chỉ kiểm thực thi |
 | Tiến độ/khó khăn/kế hoạch | Project plan | [ ] Artifact task hoàn thành, phần còn lại/phụ thuộc/tài nguyên/giới hạn | Có mapping; Issue đóng không đủ bằng chứng |
 | Đóng góp/nguồn/AI disclosure | Tất cả sản phẩm | [ ] Đóng góp thực tế và nguồn/hỗ trợ AI được ghi đúng | Chưa xác minh từng thành viên |
 

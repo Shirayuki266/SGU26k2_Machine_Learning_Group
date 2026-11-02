@@ -1,0 +1,166 @@
+{
+  "task_id": "T11",
+  "reference_run_id": "aec8630115714bb59d5c89c8a6b368c1",
+  "parent_run_id": "c895894bcf5a4ff28982fbb1ca9d69d9",
+  "fold_id": null,
+  "mode": "full",
+  "kind": "train",
+  "objective": "Select Ridge alpha by purged temporal CV within train; evaluate validation only after selection.",
+  "hypothesis": "Ridge alpha=1 has worse validation MAE than persistence in T10. Changing regularization may improve temporal CV generalization; improvement is not guaranteed and negative MAE gap is not proof of overfitting.",
+  "change": null,
+  "model": "ridge",
+  "parameters": {
+    "stage": "selected_refit",
+    "alpha": 0.1,
+    "selected_candidate_run_id": "80a499da1e8c4d02a3db2a698b5e5769",
+    "selection_locked_before_validation": true,
+    "actual_model_parameters": {
+      "alpha": 0.1,
+      "copy_X": true,
+      "fit_intercept": true,
+      "max_iter": null,
+      "positive": false,
+      "random_state": null,
+      "solver": "auto",
+      "tol": 0.0001
+    }
+  },
+  "feature_set": "A",
+  "preprocessing": {
+    "schema_version": "t08-preprocessing-v1",
+    "numeric": {
+      "imputation_strategy": "median",
+      "keep_empty_features": true,
+      "missing_indicators": "all",
+      "scale": {
+        "ridge": true,
+        "random_forest": false
+      }
+    },
+    "categorical": {
+      "imputation_strategy": "constant",
+      "fill_value": "__MISSING__",
+      "handle_unknown": "ignore",
+      "sparse_output": false
+    },
+    "output": {
+      "format": "pandas",
+      "verbose_feature_names": true
+    },
+    "prediction_postprocessing": {
+      "negative_predictions": "identity",
+      "applies_to": [
+        "persistence",
+        "ridge",
+        "random_forest"
+      ]
+    }
+  },
+  "data": {
+    "provenance": {
+      "split_manifest": "reports/splits_full/split_manifest.json",
+      "split_manifest_sha256": "6d3ac3f05da50324a65c34c1e1601b5df45fefc3d2e6d0e834d43a27062d0e42",
+      "t05_snapshot_id": "2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc",
+      "input_files_read": [
+        {
+          "path": "data/processed/samples_full/train.csv",
+          "sha256": "ebc89c94b576f009705446da7c4bec079f750755e5755e5041b6a93f09226d46",
+          "bytes": 51395102
+        },
+        {
+          "path": "data/processed/samples_full/sample_ids/train.csv",
+          "sha256": "336d58dda970536fb0c7dc1739529fe2f1bcb4200a5f32e2f3d40cca1279d8bf",
+          "bytes": 24598381
+        }
+      ],
+      "source_mode": "full",
+      "validation_start": "2015-03-01T00:00:00",
+      "validation_files": {
+        "validation_samples": {
+          "path": "data/processed/samples_full/validation.csv",
+          "sha256": "eed8f0a497b352540705640ccf1a10d3db9084af88653184aa2e0b4abbbfa173",
+          "bytes": 26281009
+        },
+        "validation_ids": {
+          "path": "data/processed/samples_full/sample_ids/validation.csv",
+          "sha256": "4102afaecae6eb3f56434b0b1f93d53f90a914edad304496a429bfdad14f5a8c",
+          "bytes": 12333889
+        }
+      },
+      "validation_membership": {
+        "operational": {
+          "samples": 103287,
+          "ordered_sample_ids_sha256": "bd15e19b4ce89a5025e5f36f547fc4d3f56953e334d38da3bc8390270dd6444a"
+        },
+        "primary": {
+          "samples": 102479,
+          "ordered_sample_ids_sha256": "534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7"
+        }
+      },
+      "label_availability": {
+        "status": "passed",
+        "fit_samples": 205977,
+        "evaluation_samples": 103287,
+        "latest_fit_target_timestamp": "2015-02-28T23:00:00",
+        "first_evaluation_input_timestamp": "2015-02-28T23:00:00",
+        "planned_label_cutoff": "2015-02-28T23:00:00",
+        "comparison": "<=",
+        "fitted": false
+      }
+    },
+    "validation_anchor": {
+      "schema_version": "validation-cohorts-v1",
+      "split": "validation",
+      "test_locked": true,
+      "t05_snapshot_id": "2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc",
+      "files": {
+        "validation_samples": {
+          "path": "data/processed/samples_full/validation.csv",
+          "sha256": "eed8f0a497b352540705640ccf1a10d3db9084af88653184aa2e0b4abbbfa173",
+          "bytes": 26281009
+        },
+        "validation_ids": {
+          "path": "data/processed/samples_full/sample_ids/validation.csv",
+          "sha256": "4102afaecae6eb3f56434b0b1f93d53f90a914edad304496a429bfdad14f5a8c",
+          "bytes": 12333889
+        }
+      },
+      "cohorts": {
+        "operational": {
+          "samples": 103287,
+          "ordered_sample_ids_sha256": "bd15e19b4ce89a5025e5f36f547fc4d3f56953e334d38da3bc8390270dd6444a"
+        },
+        "primary": {
+          "samples": 102479,
+          "ordered_sample_ids_sha256": "534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7"
+        }
+      },
+      "order": "T05 station/input_timestamp order",
+      "primary_filter": "is_primary == true",
+      "operational_filter": "all retained T05 validation IDs",
+      "comparison_rule": "same IDs/order; no dropping rows for missing features; report prediction coverage"
+    }
+  },
+  "split": {
+    "fit": "all primary train",
+    "evaluation": "frozen primary validation",
+    "test_locked": true
+  },
+  "time_ranges": null,
+  "sample_counts": {
+    "train": 204865,
+    "validation": 102479
+  },
+  "seed": null,
+  "budget": {
+    "full_searches": 1,
+    "candidates": 4,
+    "folds": 3,
+    "cv_fits": 12,
+    "refits": 1,
+    "automatic_retries": 0,
+    "rf_fits": 0
+  },
+  "is_test": false,
+  "source": "executed_script"
+}

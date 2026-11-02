@@ -1,0 +1,14 @@
+{
+  "selection": {
+    "selected_candidate_run_id": "80a499da1e8c4d02a3db2a698b5e5769",
+    "alpha": 0.1,
+    "selection_metric": "pooled_MAE",
+    "selected_score": 10.405534178754428,
+    "selection_locked_before_validation": true,
+    "locked_at": "2026-11-02T15:41:01.227449+00:00"
+  },
+  "attempted_candidates": 4,
+  "attempted_cv_fits": 12,
+  "failed_candidates": 0,
+  "available_memory_mb_before_data": 2945.83984375
+}

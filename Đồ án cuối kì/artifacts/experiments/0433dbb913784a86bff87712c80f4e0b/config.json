@@ -1,0 +1,63 @@
+{
+  "task_id": "T11",
+  "reference_run_id": "aec8630115714bb59d5c89c8a6b368c1",
+  "parent_run_id": "90f6a2ef7f9d4a41b8570ae09d669c57",
+  "fold_id": null,
+  "mode": "smoke",
+  "kind": "tuning",
+  "objective": "Select Ridge alpha by purged temporal CV within train; evaluate validation only after selection.",
+  "hypothesis": "Ridge alpha=1 has worse validation MAE than persistence in T10. Changing regularization may improve temporal CV generalization; improvement is not guaranteed and negative MAE gap is not proof of overfitting.",
+  "change": null,
+  "model": "ridge",
+  "parameters": {
+    "stage": "candidate",
+    "alpha": 1.0
+  },
+  "feature_set": "A",
+  "preprocessing": {
+    "schema_version": "t08-preprocessing-v1",
+    "numeric": {
+      "imputation_strategy": "median",
+      "keep_empty_features": true,
+      "missing_indicators": "all",
+      "scale": {
+        "ridge": true,
+        "random_forest": false
+      }
+    },
+    "categorical": {
+      "imputation_strategy": "constant",
+      "fill_value": "__MISSING__",
+      "handle_unknown": "ignore",
+      "sparse_output": false
+    },
+    "output": {
+      "format": "pandas",
+      "verbose_feature_names": true
+    },
+    "prediction_postprocessing": {
+      "negative_predictions": "identity",
+      "applies_to": [
+        "persistence",
+        "ridge",
+        "random_forest"
+      ]
+    }
+  },
+  "data": null,
+  "split": null,
+  "time_ranges": null,
+  "sample_counts": null,
+  "seed": null,
+  "budget": {
+    "full_searches": 1,
+    "candidates": 4,
+    "folds": 3,
+    "cv_fits": 12,
+    "refits": 1,
+    "automatic_retries": 0,
+    "rf_fits": 0
+  },
+  "is_test": false,
+  "source": "executed_script"
+}

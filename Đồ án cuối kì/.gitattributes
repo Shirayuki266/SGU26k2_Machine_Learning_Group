@@ -46,3 +46,17 @@
 /artifacts/experiments/**/*.json text eol=lf
 /artifacts/experiments/**/*.md text eol=lf
 /artifacts/experiments/**/*.gz binary
+
+# T11 temporal search fingerprints and derived reports.
+/configs/tuning.json text eol=lf
+/src/beijing_air/temporal_cv.py text eol=lf
+/src/beijing_air/tuning.py text eol=lf
+/scripts/run_tuning.py text eol=lf
+/scripts/report_tuning.py text eol=lf
+/tests/test_tuning.py text eol=lf
+/reports/tuning/** text eol=lf
+/reports/figures/tuning/*.png binary
+
+# Frozen T11 copies include T05 samples.py with original CRLF bytes.
+/artifacts/experiments/90f6a2ef7f9d4a41b8570ae09d669c57/artifacts/source/*.py -text whitespace=cr-at-eol
+/artifacts/experiments/c895894bcf5a4ff28982fbb1ca9d69d9/artifacts/source/*.py -text whitespace=cr-at-eol
