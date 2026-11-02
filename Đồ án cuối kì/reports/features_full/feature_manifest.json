@@ -1,0 +1,181 @@
+{
+  "task_id": "T07",
+  "artifact_type": "causal_feature_preparation",
+  "schema_version": "t07-ab-v1",
+  "status": "complete",
+  "model_experiment_run": false,
+  "mode": "full",
+  "created_at": "2026-11-02T12:39:44.576530+00:00",
+  "signature": {
+    "task_id": "T07",
+    "schema_version": "t07-ab-v1",
+    "mode": "full",
+    "output_tag": null,
+    "features": {
+      "A": {
+        "legacy_name": "F0",
+        "measurements": [
+          "PM2.5",
+          "PM10",
+          "SO2",
+          "NO2",
+          "CO",
+          "O3",
+          "TEMP",
+          "PRES",
+          "DEWP",
+          "RAIN",
+          "WSPM"
+        ],
+        "categorical": [
+          "station",
+          "wd"
+        ],
+        "calendar_reference": "target_timestamp",
+        "calendar": [
+          "target_hour",
+          "target_month",
+          "target_day_of_week"
+        ],
+        "cyclic_calendar": {
+          "target_hour": 24,
+          "target_month": 12
+        }
+      },
+      "B": {
+        "legacy_name": "F1",
+        "extends": "A",
+        "pm25_lag_hours": [
+          1,
+          3,
+          6,
+          12,
+          24
+        ],
+        "pm25_rolling_windows_hours": [
+          3,
+          6,
+          12,
+          24
+        ],
+        "rolling_stats": [
+          "mean",
+          "std"
+        ],
+        "rolling_std_ddof": 1,
+        "rolling_include_current": true,
+        "rolling_min_periods": "window"
+      },
+      "C": {
+        "extends": "B",
+        "selector_fit_scope": "training_partition_of_each_run_or_fold",
+        "selection_method": null,
+        "selected_features": null
+      }
+    },
+    "seed": 42,
+    "horizon_hours": 1,
+    "split": {
+      "timestamp_column": "target_timestamp",
+      "validation_start": "2015-03-01T00:00:00",
+      "test_start": "2016-03-01T00:00:00",
+      "timestamp_convention": "source_local_naive",
+      "test_locked": true,
+      "final_refit_train_validation": true
+    },
+    "smoke_rows_per_station": null,
+    "train_provenance": {
+      "split_manifest": "reports/splits_full/split_manifest.json",
+      "split_manifest_sha256": "6d3ac3f05da50324a65c34c1e1601b5df45fefc3d2e6d0e834d43a27062d0e42",
+      "t05_snapshot_id": "2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc",
+      "input_files_read": [
+        {
+          "path": "data/processed/samples_full/train.csv",
+          "sha256": "ebc89c94b576f009705446da7c4bec079f750755e5755e5041b6a93f09226d46",
+          "bytes": 51395102
+        },
+        {
+          "path": "data/processed/samples_full/sample_ids/train.csv",
+          "sha256": "336d58dda970536fb0c7dc1739529fe2f1bcb4200a5f32e2f3d40cca1279d8bf",
+          "bytes": 24598381
+        }
+      ],
+      "source_mode": "full",
+      "validation_start": "2015-03-01T00:00:00"
+    },
+    "history_scope": {
+      "method": "T04_load_station_data_bounded_prefix",
+      "raw_sha256": {
+        "PRSA_Data_Aotizhongxin_20130301-20170228.csv": "a94fbcfc71708b6ffdc033360163d91efb7f675e496f6b5860929aa96b96351b",
+        "PRSA_Data_Changping_20130301-20170228.csv": "a2e21402a6d95fb7043f87959e6e3dcbecb957aac356a6f8028a85b047c772e7",
+        "PRSA_Data_Dingling_20130301-20170228.csv": "3d8dff81f18a80d9f455876a785642bffe1e9b9924ec1e6b7ce8cca790432eeb",
+        "PRSA_Data_Dongsi_20130301-20170228.csv": "9c0020214425e5ee2a64d42f97a1f632e1d8f6b53ad50edd85a686cc7999f27e",
+        "PRSA_Data_Guanyuan_20130301-20170228.csv": "59390fee3b032597b387491f5230e7edb90a8558e30217ebd6d9befbe669fbf9",
+        "PRSA_Data_Gucheng_20130301-20170228.csv": "10ae48801ea55869fee56a48b885fb1127859c130551888d71673f34216ba951",
+        "PRSA_Data_Huairou_20130301-20170228.csv": "812dcbe848b3ba2c2d25731064797bff803c46eb0c602156a1fa044df136dc26",
+        "PRSA_Data_Nongzhanguan_20130301-20170228.csv": "572cf87b65ef543cd55d3a711b28474def224a46b0ec3fc8add8aaf13b67a487",
+        "PRSA_Data_Shunyi_20130301-20170228.csv": "520b59e4ead3b0cfe7f1ed673e30275de8441e999db6f413d5172d2277b8c15a",
+        "PRSA_Data_Tiantan_20130301-20170228.csv": "0743e34799cf1ee36195b73321b91baa5625276532e7263c588f68cdef3b4daa",
+        "PRSA_Data_Wanliu_20130301-20170228.csv": "0b1a6d754a07f0def2f55434ddfa3870dcd0063b7f766a6f66b6c11bb05a377a",
+        "PRSA_Data_Wanshouxigong_20130301-20170228.csv": "ab1d6a356d6997a45f6d657ad47de1e05a4a08d4a7015b38a329a90665ab74d0"
+      },
+      "raw_values_scope": "train_origin_prefix_only; full raw files hashed for identity",
+      "quality_summary_sha256": "e5f9a5481984fe79300961209b7ff6724fbf0081f538e89662eb8407c829eea0",
+      "stations_audit_sha256": "b2a80cf556a8438a6b9cb2d86383165589fd91f1198e79a7437b2d12ac14f744",
+      "rows_per_station": 17519,
+      "observation_rows": 210228,
+      "first_timestamp": "2013-03-01 00:00:00",
+      "last_timestamp": "2015-02-28 22:00:00"
+    },
+    "module_sha256": "ccb40348855216057b1c10ab34a67a3da467979fb51417df5b6782f265996210",
+    "script_sha256": "17818a14d4da16e468244b0b97b4f0af1722435d7c525c1972de87541659a591"
+  },
+  "snapshot_id": "1b01fe65f7bbff32d1273afd704241687b6f220dd867ee681446978db8139a51",
+  "rows": 205977,
+  "primary_rows": 204865,
+  "feature_counts": {
+    "A": 20,
+    "B": 33
+  },
+  "input_timestamp_min": "2013-03-01 00:00:00",
+  "input_timestamp_max": "2015-02-28 22:00:00",
+  "target_timestamp_min": "2013-03-01 01:00:00",
+  "target_timestamp_max": "2015-02-28 23:00:00",
+  "python_version": "3.12.10",
+  "pandas_version": "3.0.6",
+  "sample_membership_unchanged": true,
+  "test_csv_accessed": false,
+  "fit_performed": false,
+  "files": {
+    "train_A": {
+      "path": "data/processed/features_full/train_A.csv",
+      "sha256": "74f09ed120bd728cd8d8d339c7070c5726776e5b769e9e131eee9525c65ae3cd",
+      "bytes": 43465036
+    },
+    "train_B": {
+      "path": "data/processed/features_full/train_B.csv",
+      "sha256": "42ee245c9e8b1e1eac4467df1a6c6a82e8582fbb9518f926cd95f654ecbbfcdd",
+      "bytes": 74690923
+    },
+    "sample_metadata": {
+      "path": "data/processed/features_full/sample_metadata.csv",
+      "sha256": "003d9c7225afebdf00dbe47ecf580ef00e962b3c2d09c2e4fa1444f715df11b3",
+      "bytes": 25834249
+    },
+    "feature_registry": {
+      "path": "reports/features_full/feature_registry.csv",
+      "sha256": "be0b50edac2f0eb288b0f1b7a530a3f2bc01e630f82e88ce1df17cbf99ba9e8b",
+      "bytes": 4660
+    },
+    "missing_summary": {
+      "path": "reports/features_full/missing_summary.csv",
+      "sha256": "8682cc73c6fd10c59d43f0ca554f5896a2a69cea31abbde68c33bb7ec67de4f8",
+      "bytes": 4731
+    },
+    "station_missing_summary": {
+      "path": "reports/features_full/station_missing_summary.csv",
+      "sha256": "ef0a3b8d769d451a51528e35dca21ccc5ef0f2c7bac5b4a1d22adee3e9d823e9",
+      "bytes": 59261
+    }
+  }
+}

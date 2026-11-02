@@ -24,8 +24,8 @@ nguyên; ngân sách tuning đầy đủ phải được ghi riêng trước khi
 
 | Bộ | Hợp đồng | So sánh chính |
 | --- | --- | --- |
-| A, tên cũ F0 | Số đo giờ t gồm PM2.5(t), wd, station; hour/month/day_of_week biết tại t | T10 Ridge/RF ban đầu so persistence |
-| B, tên cũ F1 | A + PM2.5 lag 1/2/3/6/12/24 giờ và rolling mean/std 3/6/12/24 giờ | T12 A→B đo giá trị lịch sử |
+| A, tên cũ F0 | Số đo giờ t gồm PM2.5(t), wd, station; lịch t+1 biết trước và sin/cos giờ/tháng (20 cột, T07) | T10 Ridge/RF ban đầu so persistence |
+| B, tên cũ F1 | A + PM2.5 lag 1/3/6/12/24 giờ và rolling mean/std 3/6/12/24 giờ (33 cột, T07) | T12 A→B đo giá trị lịch sử |
 | C | Tập con được chọn từ B; lưu phương pháp, số/tên feature thật | T12 B→C đo giá trị feature selection |
 
 Danh sách cột chính xác ở config. Không dùng `No`, provenance hoặc biến tương
@@ -34,6 +34,13 @@ trạm, không dùng dòng trước thay giờ trước. Rolling w gồm t−(w�
 có thể chứa PM2.5(t), dùng đủ w giờ có quan sát; std theo quy ước mẫu `ddof=1`.
 Thiếu giờ/giá trị làm feature thiếu, không backfill, centered rolling hoặc nội
 suy từ tương lai. Kiểm tra sửa quan sát sau t không đổi feature tại t.
+
+T07 cập nhật theo yêu cầu người dùng: bỏ lag 2h và chuyển lịch origin sang
+forecast timestamp t+1. Sin/cos giờ/tháng dựa trên chu kỳ train T06, tính bằng
+công thức cố định không fit. [Registry/dictionary](feature_dictionary.md) là
+hợp đồng thực thi; chưa chạy ablation hoặc khẳng định các cột này hiệu quả hơn.
+Lịch sử lấy trên timeline quan sát T04 trước khi chọn IDs T05, không nén các
+origin bị loại do thiếu target thành các giờ liên tiếp.
 
 T08 dùng Pipeline/ColumnTransformer: median train cho số, most_frequent hoặc
 mã thiếu định trước cho categorical, encoder xử lý category chưa thấy;

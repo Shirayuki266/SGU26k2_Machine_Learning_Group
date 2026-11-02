@@ -1,5 +1,11 @@
 # T06 — EDA train và quyết định cho T07/T08
 
+Ghi chú sau T07: đây là kết quả/thiết kế tại thời điểm T06, giữ nguyên bảng,
+hình và manifest. Người dùng đã chốt T07 bỏ lag 2h, dùng lịch giờ dự báo t+1
+và cho phép sin/cos giờ/tháng có cơ sở; cấu hình thực thi hiện hành ở
+[feature dictionary](feature_dictionary.md). Verifier dùng config T06 từ
+Git để kiểm provenance lịch sử khi chỉ phần features được cập nhật.
+
 ## Phạm vi và nguồn bằng chứng
 
 Issue #12; T05/PR #11 đã merge. Phân tích ngày 02/11/2026 bằng

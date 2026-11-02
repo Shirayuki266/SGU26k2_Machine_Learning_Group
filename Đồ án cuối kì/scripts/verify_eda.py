@@ -4,9 +4,11 @@ import argparse
 import ast
 import base64
 import hashlib
+import json
 from io import StringIO
 from pathlib import Path
 import sys
+import subprocess
 
 import nbformat
 import pandas as pd
@@ -14,6 +16,26 @@ from pandas.testing import assert_frame_equal
 
 from beijing_air import eda
 from beijing_air.data import sha256
+
+
+def verify_original_default_config(root, manifest):
+    """Keep T06 evidence immutable when a later task advances feature design."""
+    current_path = root / "configs/default.json"
+    if sha256(current_path) == manifest["default_config_sha256"]:
+        return
+    head = manifest["git_head_at_execution"]
+    if len(head) != 40 or any(c not in "0123456789abcdef" for c in head):
+        raise ValueError("Invalid historical Git reference")
+    prefix = subprocess.check_output(["git", "rev-parse", "--show-prefix"], cwd=root).decode("utf-8").strip()
+    original = subprocess.check_output(["git", "show", f"{head}:{prefix}configs/default.json"], cwd=root)
+    normalized = original.replace(b"\r\n", b"\n")
+    candidates = [original, normalized, normalized.replace(b"\n", b"\r\n")]
+    assert manifest["default_config_sha256"] in {hashlib.sha256(x).hexdigest() for x in candidates}
+    historical, current = json.loads(original.decode("utf-8-sig")), eda.read_json(current_path)
+    historical.pop("features")
+    current.pop("features")
+    assert current == historical, "Non-feature protocol changed since T06; inspect historical evidence"
+    print("NOTE: feature config advanced after T06; original config verified from Git, frozen EDA evidence unchanged")
 
 
 def main():
@@ -27,8 +49,9 @@ def main():
     assert manifest["status"] == "complete" and manifest["task_id"] == "T06"
     assert not manifest["model_experiment_run"] and not manifest["test_accessed"]
     for key, path in (("module_sha256", Path(eda.__file__)), ("eda_config_sha256", root / "configs/eda.json"),
-                      ("default_config_sha256", root / "configs/default.json"), ("quality_config_sha256", root / "configs/data_quality.json")):
+                      ("quality_config_sha256", root / "configs/data_quality.json")):
         assert sha256(path) == manifest[key], f"Code/config changed: {path}"
+    verify_original_default_config(root, manifest)
     for info in manifest["files"]:
         path = eda.project_path(root, info["path"])
         assert path.stat().st_size == info["bytes"] and sha256(path) == info["sha256"], path

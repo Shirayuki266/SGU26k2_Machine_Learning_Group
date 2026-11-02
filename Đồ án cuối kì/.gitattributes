@@ -7,3 +7,10 @@
 /notebooks/01_train_eda.ipynb text eol=lf
 /reports/eda_train/** text eol=lf
 /reports/figures/eda_train/*.png binary
+
+# T07 reproducible source and small audit outputs.
+/src/beijing_air/features.py text eol=lf
+/scripts/build_features.py text eol=lf
+/scripts/verify_features.py text eol=lf
+/tests/test_features.py text eol=lf
+/reports/features_full/** text eol=lf

@@ -5,7 +5,8 @@ MK02 kiểm tra và đóng gói**, không tách nhầm hai mã thành báo cáo 
 T02 chỉ chuẩn bị checklist, chưa tạo các sản phẩm đó.
 
 Hiện có T01 xác minh môi trường, đặc tả T02, manifest/audit T03–T04 và logger
-T04-LOG, target/split và count/date audit T05, EDA train T06 có bảng/PNG gốc.
+T04-LOG, target/split và count/date audit T05, EDA train T06 có bảng/PNG gốc,
+T07 có feature A/B nhân quả, registry và missing train.
 Chưa có baseline/model/metric
 xác minh; log chính thức chỉ header.
 Ưu tiên tiến độ thực tế đến T10; có T11/T12 thì bổ sung. Không bắt buộc tuning,
@@ -20,7 +21,7 @@ không điền bảng giả.
 | Bối cảnh/mục tiêu/Input–Output/hồi quy | T02 | [ ] Đúng t+1/cùng trạm, µg/m³, input tới t, giả định số đo t, RQ1/2/3 | Có đặc tả, chưa có DOCX/PPTX |
 | Dữ liệu/nguồn/số mẫu/thuộc tính/target | Data Understanding, T03–T05 | [ ] Trích nguồn/manifest/audit; phân biệt số công bố/audit/supervised thật | Có audit raw/T04 và manifest/số mẫu supervised T05; chưa có DOCX/PPTX |
 | EDA train | T06 | [ ] Đơn/đa biến, missing/bất thường/ngoại lệ, thời gian/trạm, hình/bảng gốc và quyết định | Có notebook full kernel sạch, 14 bảng/9 PNG và [nhận xét T07/T08](eda_findings.md); chưa đưa vào DOCX/PPTX |
-| Feature/pipeline | Data Preparation, T07–T08 | [ ] A/B/dictionary/causal tests; train-only/schema/save-load; tách thiết kế/đã chạy | Có thiết kế, chưa có pipeline xác minh |
+| Feature/pipeline | Data Preparation, T07–T08 | [ ] A/B/dictionary/causal tests; train-only/schema/save-load; tách thiết kế/đã chạy | Có A/B T07, [dictionary/missing/API](feature_dictionary.md) và causal tests; chưa fit pipeline T08 hoặc đưa vào DOCX/PPTX |
 | Baseline/model/protocol | Modeling/Evaluation, T09–T10 | [ ] Persistence/fallback, Ridge/RF A, MAE/RMSE/R², cùng IDs, split/CV/test gate | Có thiết kế, chưa có predictions/metric thật |
 | Kết quả/nhận xét bước đầu | T09–T10; T11/T12 nếu có | [ ] Validation/CV có run_id/config/mode/N/thời gian; smoke khác full | Chưa có metric mô hình, ghi thiếu |
 | Vòng thử–nhận xét–sửa | Mọi giai đoạn/T04-LOG | [ ] Giả thuyết/thay đổi, tham chiếu/số liệu/quyết định; giữ kém/thất bại | Chưa có run mô hình, không dựng lịch sử |

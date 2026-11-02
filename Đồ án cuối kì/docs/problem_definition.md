@@ -34,15 +34,17 @@ Không tải/audit lại hoặc dùng số thống kê toàn dataset để fit t
 | Thành phần | Nội dung và ràng buộc |
 | --- | --- |
 | Quan trắc tại t | PM2.5, PM10, SO2, NO2, CO, O3, TEMP, PRES, DEWP, RAIN, WSPM; wd là categorical |
-| Trạm/lịch | station là categorical; hour, month, day_of_week từ input timestamp |
+| Trạm/lịch | station/wd categorical; target_hour, target_month, target_day_of_week từ t+1 biết trước; sin/cos giờ/tháng theo T07 |
 | Lịch sử | Lag/rolling PM2.5 theo timestamp, cùng trạm, chỉ tới t; bộ B trong kế hoạch |
 | Output | PM2.5 tại đúng t+1 cùng trạm, µg/m³; không phân lớp nồng độ làm mục tiêu chính |
 | Loại khỏi feature | No, source_file, source_row, target/giá trị tương lai và target_timestamp dùng làm khóa/split |
 
 `FEATURE_COLUMNS` của loader T04 là danh sách cột được phép xem xét, không phải
 ma trận feature được chọn tự động. T07 chọn tường minh theo config và ghi feature
-dictionary; không đưa tất cả cột hoặc provenance vào mô hình. Encoding lịch chu
-kỳ nếu thử phải được ghi là thay đổi có chủ đích, không âm thầm thêm vào bộ A.
+dictionary; không đưa tất cả cột hoặc provenance vào mô hình. T07 đã được người
+dùng chốt lịch giờ dự báo t+1 và lag 1/3/6/12/24h (thay thiết kế cũ có 2h).
+Sin/cos giờ/tháng được thêm có chủ đích dựa trên EDA train; đây là thiết kế
+feature, chưa có bằng chứng metric cải thiện. Chi tiết [dictionary](feature_dictionary.md).
 
 ## 3. Câu hỏi nghiên cứu đã chốt
 

@@ -69,6 +69,12 @@ reports/eda_train_*/
 reports/figures/eda_train_smoke*/
 reports/figures/eda_train_*/
 
+# T07 train feature audits; matrices stay in ignored data/processed.
+!reports/features_full/*.csv
+reports/features_smoke*/
+reports/features_full_*/
+reports/.features-*/
+
 # Experiment index is reviewable; run files reuse the ignored artifacts/ root.
 !experiments/experiment_log.csv
 experiments/.experiment_log.lock

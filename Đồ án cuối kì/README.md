@@ -89,7 +89,7 @@ giữ vai trò chỉ mục truy vết quyết định. `configs/default.json` b�
 | Mục tiêu | Hồi quy PM2.5, µg/m³; input tới t khi số đo t sẵn sàng, output đúng t+1 cùng trạm đã quan sát; dự báo cuốn chiếu |
 | Split | Theo target_timestamp: train trước 2015-03-01; validation tới trước 2016-03-01; test từ 2016-03-01, vẫn khóa |
 | Temporal CV | Expanding-window chỉ trong train, unique target timestamps, chung ranh giới trạm; fold fit target phải trước origin đánh giá đầu |
-| Features | A=F0 số đo t/station/lịch; B=F1 thêm lag 1/2/3/6/12/24 giờ và rolling 3/6/12/24 giờ; C chọn từ B trong từng fold |
+| Features | A=F0 số đo t, station/wd, lịch t+1 và sin/cos giờ/tháng; B=F1 thêm lag 1/3/6/12/24 giờ và rolling 3/6/12/24 giờ; C chọn từ B trong từng fold |
 | Phương pháp/metric | Persistence có fallback/coverage riêng; Ridge/Random Forest ban đầu A; MAE chính, RMSE/R² bổ sung, cùng sample IDs |
 | Test gate | Khóa phương án bằng train/CV/validation; chỉ T13 mới refit pipeline trên train+validation rồi test, không chọn lại bằng test |
 
@@ -267,3 +267,32 @@ Smoke/reproduce và cache kernel giữ local. Trên clone mới, tái tạo trai
 rồi truyền split manifest tương ứng; xem hướng dẫn trong `docs/eda_findings.md`.
 Không mở CSV validation/test cho EDA, không impute, tạo feature hoặc fit model.
 Các đợt ô nhiễm cao được giữ; audit này không thêm run/metric vào Experiment Log.
+
+## T07: feature A/B có tính nhân quả
+
+`beijing_air.features` tạo A (20 cột) và B (33 cột) từ quan sát thực tế,
+giữ ID/order T05, để missing nguyên trạng. Lịch là giờ dự báo t+1 biết tại t;
+B thêm lag đúng t−1/3/6/12/24h cùng trạm và rolling mean/std 3/6/12/24h
+kết thúc tại t, `min_periods=window`, `ddof=1`. T07 cập nhật có chủ đích
+thiết kế cũ: bỏ lag 2h, chuyển lịch origin sang lịch forecast, thêm sin/cos
+giờ/tháng dựa trên chu kỳ EDA train; chưa chứng minh cải thiện dự báo.
+
+```powershell
+.\.venv\python.exe scripts/build_features.py --mode smoke
+.\.venv\python.exe scripts/build_features.py --mode full
+.\.venv\python.exe scripts/verify_features.py
+.\.venv\python.exe -m pytest tests/test_features.py -q --basetemp=.pytest_cache/t07-features
+```
+
+Ma trận train và metadata nằm trong `data/processed/features_full/` (ignore);
+registry, bảng missing và manifest nhỏ ở `reports/features_full/`.
+Chạy lại cùng input/config/code kiểm checksum và giữ output; thay đổi phải
+dùng `--output-tag reproduce`. Chỉ parse prefix raw đến origin train cuối
+bằng loader T04 để không mất lịch sử những origin bị T05 loại do thiếu nhãn;
+không ghi lại raw/dữ liệu hợp nhất/audit T04 và không mở CSV validation/test.
+
+[Dictionary/API một lần dự báo](docs/feature_dictionary.md) giải thích
+schema, missing history, quy ước ranh giới và lệnh tái lập. API một lần dự
+báo chỉ cần buffer quan sát cùng trạm đến t, không cần target tại t+1.
+Chưa fit preprocessing/model hoặc chọn C. T06 giữ nguyên artifact lịch sử;
+verifier EDA kiểm config cũ từ Git khi chỉ phần features được cập nhật.

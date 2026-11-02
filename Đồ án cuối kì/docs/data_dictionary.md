@@ -34,7 +34,7 @@ Chỉ ghép `year/month/day/hour` thành timestamp trong bộ nhớ để kiểm
 | `station` | Mã trạm/categorical và khóa nhóm; lag/rolling không nối qua trạm |
 | Các số đo và `wd` tại t | Ứng viên feature khi đã có tại origin; bộ A chọn tường minh theo config, `wd` là categorical |
 | `PM2.5` | Cùng cột raw nhưng vai trò theo thời gian: giá trị t là feature/persistence, giá trị đúng t+1 cùng trạm mới là target |
-| `input_timestamp/target_timestamp` | Trường supervised sẽ tạo ở T05, chưa phải cột raw; split dựa target_timestamp, không lấy dòng kế tiếp thay +1 giờ |
+| `input_timestamp/target_timestamp` | T05 đã tạo trong bảng supervised, không phải cột raw; split dựa target_timestamp; T07 chỉ dùng lịch biết trước của t+1, không lấy số đo tương lai |
 | `source_file/source_row` | T04 thêm để truy vết, không thuộc schema raw/feature/target |
 
 CSV là văn bản; audit phân loại giá trị không thiếu thành integer/real/string,
@@ -42,6 +42,9 @@ không khẳng định đó là pandas dtype. Khi nạp pandas, cột số có m
 thành float/nullable; không dùng thay đổi dtype để suy ra thay đổi đơn vị hoặc
 impute dữ liệu. Bộ A/B/C, cohort và target theo
 [problem_definition.md](problem_definition.md), [experiment_plan.md](experiment_plan.md).
+Feature thực thi T07 có [registry/dictionary](feature_dictionary.md): giữ
+sample ID, số đo tới t và lịch t+1 biết trước; không đưa thành phần thời gian
+raw hoặc toàn bộ cột số vào feature một cách tự động.
 
 License: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Trích dẫn chính thức: Chen, S. (2017). Beijing Multi-Site Air Quality [Dataset]. UCI Machine Learning Repository. [DOI: 10.24432/C5RK5G](https://doi.org/10.24432/C5RK5G).
 

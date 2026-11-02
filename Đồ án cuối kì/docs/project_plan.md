@@ -37,8 +37,8 @@ Phụ thuộc là trình tự kỹ thuật, không cấp quyền chạy. Chưa c
 | T04 | Ghép trạm, audit chất lượng, giữ raw/chưa impute | T03 | Issue #5; có src/beijing_air/data.py, tests/test_data.py, reports/data_quality.md; không audit lại |
 | T04-LOG | Logger, CSV, hồ sơ run và kiểm thử | T01–T04; trước model | Tên hiện hành của T04-BỔ SUNG, cùng Issue #6/PR #7 đã merge; không tạo hệ thống song song |
 | T05 | Target đúng +1 giờ cùng trạm, temporal split và kiểm tra ranh giới | T04, T02 | Issue #1; PR #11 đã merge; samples.py/build_samples.py, tests và [audit split](../reports/sample_split.md) |
-| T06 | EDA train: tính chất biến, đơn/đa biến, missing/bất thường/ngoại lệ, chu kỳ thời gian/trạm; notebook, bảng, hình gốc và nhận xét | T05 xác định train | Issue #12; notebook full chạy kernel sạch, 14 bảng/9 PNG và [quyết định T07/T08](eda_findings.md); đang bàn giao PR, người dùng merge |
-| T07 | Feature engineering A/B, lag/rolling đúng trạm/timestamp, dictionary và causal tests | T05–T06 | Chưa xác minh hoàn thành/Issue/artifact |
+| T06 | EDA train: tính chất biến, đơn/đa biến, missing/bất thường/ngoại lệ, chu kỳ thời gian/trạm; notebook, bảng, hình gốc và nhận xét | T05 xác định train | Issue #12; PR #13 đã merge; notebook full kernel sạch, 14 bảng/9 PNG và [quyết định T07/T08](eda_findings.md) |
+| T07 | Feature engineering A/B, lag/rolling đúng trạm/timestamp, dictionary và causal tests | T05–T06 | Issue #14; A 20/B 33 cột, giữ 205.977 train IDs, [dictionary và missing](feature_dictionary.md), API forecast không cần nhãn; bàn giao PR chờ người dùng merge |
 | T08 | Pipelines impute/encode/scale Ridge/RF, fit train/fold, save/load/inference | T05, T07 | Chưa xác minh hoàn thành/Issue/artifact |
 | T09 | Persistence + fallback/tỷ lệ fallback, validation MAE/RMSE/R², log/predictions | T05, T04-LOG | Chưa xác minh hoàn thành/Issue/artifact |
 | T10 | Ridge và RF ban đầu A, so baseline cùng validation IDs; config/metric/thời gian/nhận xét/đề xuất | T07(A), T08–T09, T04-LOG | Chưa xác minh hoàn thành/Issue/artifact |
@@ -70,7 +70,8 @@ phải kết quả mô hình. Người dùng merge; theo [quy trình GitHub](git
   tái lập. Artifact không commit phải có đường dẫn/cách tạo lại.
 
 CSV chính thức hiện chỉ header; T05 có target/split và audit count/date,
-T06 có EDA train cùng quyết định chuyển giao. Chưa triển khai features,
-preprocessing/baseline/model/metric. Không nhập audit dữ liệu vào log mô hình
-hoặc dựng lịch sử. T06 không tự triển khai task sau.
+T06 có EDA train, T07 có A/B và registry/missing train theo cấu hình cập nhật
+người dùng chốt (lịch t+1, lag 1/3/6/12/24h). Chưa triển khai preprocessing,
+baseline/model/metric. Không nhập audit dữ liệu vào log mô hình hoặc dựng
+lịch sử. T07 không tự triển khai T08 hoặc các task sau.
 Codex hỗ trợ mapping; không tự điền tên/MSSV/đóng góp hoặc rubric chưa cung cấp.
