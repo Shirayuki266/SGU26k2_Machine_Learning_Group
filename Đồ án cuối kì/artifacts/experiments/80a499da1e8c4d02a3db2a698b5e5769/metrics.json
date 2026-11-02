@@ -1,0 +1,66 @@
+{
+  "fold_run_ids": [
+    "0e18db006aea4fd39531a4fbf51da136",
+    "31dda181a3de4773b8d587c73296a6fc",
+    "0710ea61b9ba41e58ab302d6fe8c27a1"
+  ],
+  "failed_fold_run_ids": [],
+  "timing_seconds_successful_folds": {
+    "fit_pipeline": 4.3930760999937775,
+    "predict_evaluation": 0.3272819999983767
+  },
+  "pooled": {
+    "n_total": 76102,
+    "n_scored": 76102,
+    "unavailable": 0,
+    "coverage": 1.0,
+    "MAE": 10.405534178754428,
+    "RMSE": 18.08060833105341,
+    "R2": 0.9469938402448626,
+    "r2_undefined_reason": null
+  },
+  "folds": [
+    {
+      "n_total": 25746,
+      "n_scored": 25746,
+      "unavailable": 0,
+      "coverage": 1.0,
+      "MAE": 9.263715173346135,
+      "RMSE": 14.495222078224543,
+      "R2": 0.9319223686263937,
+      "r2_undefined_reason": null
+    },
+    {
+      "n_total": 25541,
+      "n_scored": 25541,
+      "unavailable": 0,
+      "coverage": 1.0,
+      "MAE": 9.823373758921043,
+      "RMSE": 16.30883424407084,
+      "R2": 0.9652525785694107,
+      "r2_undefined_reason": null
+    },
+    {
+      "n_total": 24815,
+      "n_scored": 24815,
+      "unavailable": 0,
+      "coverage": 1.0,
+      "MAE": 12.189383922707936,
+      "RMSE": 22.60088952848712,
+      "R2": 0.9327437923577047,
+      "r2_undefined_reason": null
+    }
+  ],
+  "fold_mean": {
+    "MAE": 10.425490951658372,
+    "RMSE": 17.8016486169275,
+    "R2": 0.9433062465178365
+  },
+  "fold_std": {
+    "MAE": 1.2680150480417471,
+    "RMSE": 3.4734068067165333,
+    "R2": 0.01552202310965639
+  },
+  "std_ddof": 0,
+  "R2_defined_folds": 3
+}

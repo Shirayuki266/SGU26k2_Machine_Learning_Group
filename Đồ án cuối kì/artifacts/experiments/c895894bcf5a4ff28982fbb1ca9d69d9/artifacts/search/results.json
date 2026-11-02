@@ -1,0 +1,285 @@
+{
+  "mode": "full",
+  "parent_run_id": "c895894bcf5a4ff28982fbb1ca9d69d9",
+  "candidates": [
+    {
+      "run_id": "80a499da1e8c4d02a3db2a698b5e5769",
+      "alpha": 0.1,
+      "status": "completed",
+      "fold_run_ids": [
+        "0e18db006aea4fd39531a4fbf51da136",
+        "31dda181a3de4773b8d587c73296a6fc",
+        "0710ea61b9ba41e58ab302d6fe8c27a1"
+      ],
+      "failed_fold_run_ids": [],
+      "summary": {
+        "pooled": {
+          "n_total": 76102,
+          "n_scored": 76102,
+          "unavailable": 0,
+          "coverage": 1.0,
+          "MAE": 10.405534178754428,
+          "RMSE": 18.08060833105341,
+          "R2": 0.9469938402448626,
+          "r2_undefined_reason": null
+        },
+        "folds": [
+          {
+            "n_total": 25746,
+            "n_scored": 25746,
+            "unavailable": 0,
+            "coverage": 1.0,
+            "MAE": 9.263715173346135,
+            "RMSE": 14.495222078224543,
+            "R2": 0.9319223686263937,
+            "r2_undefined_reason": null
+          },
+          {
+            "n_total": 25541,
+            "n_scored": 25541,
+            "unavailable": 0,
+            "coverage": 1.0,
+            "MAE": 9.823373758921043,
+            "RMSE": 16.30883424407084,
+            "R2": 0.9652525785694107,
+            "r2_undefined_reason": null
+          },
+          {
+            "n_total": 24815,
+            "n_scored": 24815,
+            "unavailable": 0,
+            "coverage": 1.0,
+            "MAE": 12.189383922707936,
+            "RMSE": 22.60088952848712,
+            "R2": 0.9327437923577047,
+            "r2_undefined_reason": null
+          }
+        ],
+        "fold_mean": {
+          "MAE": 10.425490951658372,
+          "RMSE": 17.8016486169275,
+          "R2": 0.9433062465178365
+        },
+        "fold_std": {
+          "MAE": 1.2680150480417471,
+          "RMSE": 3.4734068067165333,
+          "R2": 0.01552202310965639
+        },
+        "std_ddof": 0,
+        "R2_defined_folds": 3
+      }
+    },
+    {
+      "run_id": "a321e59292894860b419b112c8f7ef33",
+      "alpha": 1.0,
+      "status": "completed",
+      "fold_run_ids": [
+        "25967a7e77c44c5faafba8fa4c73d1dd",
+        "09c83b0a21dc4767bf0848cba3b204fd",
+        "8f0cbec3f67142f6bfc69b1d29732287"
+      ],
+      "failed_fold_run_ids": [],
+      "summary": {
+        "pooled": {
+          "n_total": 76102,
+          "n_scored": 76102,
+          "unavailable": 0,
+          "coverage": 1.0,
+          "MAE": 10.412704237474934,
+          "RMSE": 18.086351324171833,
+          "R2": 0.9469601619137953,
+          "r2_undefined_reason": null
+        },
+        "folds": [
+          {
+            "n_total": 25746,
+            "n_scored": 25746,
+            "unavailable": 0,
+            "coverage": 1.0,
+            "MAE": 9.263732306494743,
+            "RMSE": 14.495278536979919,
+            "R2": 0.9319218383018769,
+            "r2_undefined_reason": null
+          },
+          {
+            "n_total": 25541,
+            "n_scored": 25541,
+            "unavailable": 0,
+            "coverage": 1.0,
+            "MAE": 9.823421765216137,
+            "RMSE": 16.308832038595146,
+            "R2": 0.9652525879673343,
+            "r2_undefined_reason": null
+          },
+          {
+            "n_total": 24815,
+            "n_scored": 24815,
+            "unavailable": 0,
+            "coverage": 1.0,
+            "MAE": 12.211305686557262,
+            "RMSE": 22.614941356860594,
+            "R2": 0.9326601348999416,
+            "r2_undefined_reason": null
+          }
+        ],
+        "fold_mean": {
+          "MAE": 10.432819919422714,
+          "RMSE": 17.806350644145223,
+          "R2": 0.9432781870563843
+        },
+        "fold_std": {
+          "MAE": 1.2781684266887736,
+          "RMSE": 3.479861353331444,
+          "R2": 0.015541170955734509
+        },
+        "std_ddof": 0,
+        "R2_defined_folds": 3
+      }
+    },
+    {
+      "run_id": "09bf32c86d834aa5a7796d0ed8740a32",
+      "alpha": 10.0,
+      "status": "completed",
+      "fold_run_ids": [
+        "f232ff1fadd544b29cc1a472d9b1e939",
+        "fdc8ea02edf8428ca109d17fed4539c8",
+        "a23222577b16407dadcf11ff53dd76ec"
+      ],
+      "failed_fold_run_ids": [],
+      "summary": {
+        "pooled": {
+          "n_total": 76102,
+          "n_scored": 76102,
+          "unavailable": 0,
+          "coverage": 1.0,
+          "MAE": 10.415655224653143,
+          "RMSE": 18.08894278623911,
+          "R2": 0.9469449614376848,
+          "r2_undefined_reason": null
+        },
+        "folds": [
+          {
+            "n_total": 25746,
+            "n_scored": 25746,
+            "unavailable": 0,
+            "coverage": 1.0,
+            "MAE": 9.264338922957197,
+            "RMSE": 14.495956804731115,
+            "R2": 0.9319154670821939,
+            "r2_undefined_reason": null
+          },
+          {
+            "n_total": 25541,
+            "n_scored": 25541,
+            "unavailable": 0,
+            "coverage": 1.0,
+            "MAE": 9.824236241151642,
+            "RMSE": 16.309449605151084,
+            "R2": 0.9652499563569508,
+            "r2_undefined_reason": null
+          },
+          {
+            "n_total": 24815,
+            "n_scored": 24815,
+            "unavailable": 0,
+            "coverage": 1.0,
+            "MAE": 12.218888017765202,
+            "RMSE": 22.620387668822758,
+            "R2": 0.9326276963391379,
+            "r2_undefined_reason": null
+          }
+        ],
+        "fold_mean": {
+          "MAE": 10.435821060624681,
+          "RMSE": 17.808598026234986,
+          "R2": 0.9432643732594275
+        },
+        "fold_std": {
+          "MAE": 1.2813709017988255,
+          "RMSE": 3.482066312567868,
+          "R2": 0.01554887382271756
+        },
+        "std_ddof": 0,
+        "R2_defined_folds": 3
+      }
+    },
+    {
+      "run_id": "23ead96b6d554aba9cb429f03e7d9801",
+      "alpha": 100.0,
+      "status": "completed",
+      "fold_run_ids": [
+        "dc6f29e8873a46d5a50211f5cf253466",
+        "a56930ab555241fbb560a1d950bd2f03",
+        "ae59476594294ee78cd5e4875951ba61"
+      ],
+      "failed_fold_run_ids": [],
+      "summary": {
+        "pooled": {
+          "n_total": 76102,
+          "n_scored": 76102,
+          "unavailable": 0,
+          "coverage": 1.0,
+          "MAE": 10.42127162974558,
+          "RMSE": 18.09190137185109,
+          "R2": 0.9469276048997999,
+          "r2_undefined_reason": null
+        },
+        "folds": [
+          {
+            "n_total": 25746,
+            "n_scored": 25746,
+            "unavailable": 0,
+            "coverage": 1.0,
+            "MAE": 9.273193167502985,
+            "RMSE": 14.504125632565339,
+            "R2": 0.9318387108469157,
+            "r2_undefined_reason": null
+          },
+          {
+            "n_total": 25541,
+            "n_scored": 25541,
+            "unavailable": 0,
+            "coverage": 1.0,
+            "MAE": 9.834741474332553,
+            "RMSE": 16.317110877419402,
+            "R2": 0.9652173014137063,
+            "r2_undefined_reason": null
+          },
+          {
+            "n_total": 24815,
+            "n_scored": 24815,
+            "unavailable": 0,
+            "coverage": 1.0,
+            "MAE": 12.216113249262076,
+            "RMSE": 22.616524047975474,
+            "R2": 0.9326507091018472,
+            "r2_undefined_reason": null
+          }
+        ],
+        "fold_mean": {
+          "MAE": 10.441349297032538,
+          "RMSE": 17.812586852653407,
+          "R2": 0.9432355737874897
+        },
+        "fold_std": {
+          "MAE": 1.2757153391531215,
+          "RMSE": 3.476596832820259,
+          "R2": 0.015546963205427663
+        },
+        "std_ddof": 0,
+        "R2_defined_folds": 3
+      }
+    }
+  ],
+  "selection": {
+    "selected_candidate_run_id": "80a499da1e8c4d02a3db2a698b5e5769",
+    "alpha": 0.1,
+    "selection_metric": "pooled_MAE",
+    "selected_score": 10.405534178754428,
+    "selection_locked_before_validation": true,
+    "locked_at": "2026-11-02T15:41:01.227449+00:00"
+  },
+  "refit_run_id": "32e65c5a4cbc489c905cf146b743867f",
+  "test_csv_accessed": false,
+  "official_full_search": true
+}

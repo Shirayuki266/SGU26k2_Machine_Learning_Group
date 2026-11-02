@@ -1,0 +1,1 @@
+Selected only by pooled train CV MAE: alpha=0.1; one refit on full primary train, validation once. No clipping, test or serialized weights.

@@ -16,7 +16,7 @@ configs/           Cấu hình dự án
 tests/             Kiểm thử
 data/raw/          Dữ liệu gốc (không commit)
 data/processed/    Dữ liệu đã xử lý (không commit)
-artifacts/         Kết quả sinh ra; chỉ allowlist hồ sơ T10 thật, không model lớn/cache
+artifacts/         Kết quả sinh ra; chỉ allowlist hồ sơ T10/T11 thật, không model lớn/cache
 experiments/       CSV tổng hợp thực nghiệm (hồ sơ run trong artifacts/experiments/)
 reports/figures/   Biểu đồ cho báo cáo
 docs/              Tài liệu dự án
@@ -376,4 +376,30 @@ completed cùng signature/artifact thay vì fit lại, từ chối full thứ ha
 Hồ sơ T10 thật được lưu trực tiếp dưới `artifacts/experiments/<run_id>/` gồm
 config/metadata/metrics, source snapshots và predictions CSV.GZ có checksum;
 không tạo thêm ZIP. Không lưu trọng số ở vòng đầu: fitted pipeline summary
-không dùng để inference. Chưa thực hiện T11/T12 hoặc mở test.
+không dùng để inference. Phạm vi T10 chưa tuning/test; kết quả T11 ở phần sau.
+
+## T11: tuning Ridge A bằng temporal CV trong train
+
+[Config](configs/tuning.json) cố định bốn alpha `{0.1,1,10,100}` và ba cửa sổ
+CV T02. Mỗi fold fit lại toàn Pipeline T08, purge nhãn fit để target có trước
+origin eval đầu. Chọn pooled CV MAE trong train, khóa selection trước khi đọc
+validation, rồi một selected refit trên toàn primary train; không test/RF tuning/T12.
+
+Đã chạy smoke rồi full với 12 fit CV +1 refit. Alpha0.1 được chọn nhưng validation
+MAE 10,200529 hơi kém Ridge T10 10,200433: chưa cải thiện validation. Chi tiết
+run IDs, mean/std, chi phí và giới hạn ở [tuning_findings](docs/tuning_findings.md),
+[bảng candidates](reports/tuning/candidates.csv), [trước-sau](reports/tuning/before_after.csv)
+và [hình](reports/figures/tuning/comparison.png).
+
+```powershell
+.\.venv\python.exe scripts/run_tuning.py --mode smoke
+.\.venv\python.exe scripts/run_tuning.py --mode full
+.\.venv\python.exe scripts/report_tuning.py --write-report
+.\.venv\python.exe -m pytest tests/test_tuning.py -q --basetemp=.pytest_cache/t11-check
+```
+
+Runner tái sử dụng completed cùng signature/artifact; full khác cấu hình hoặc
+sau full lỗi bị chặn, không xóa lịch sử để chạy vượt budget. Hồ sơ search,
+candidate/fold/refit được track trực tiếp, không ZIP mới. Khi clone, restore
+riêng hai tree T09 như hướng dẫn T10 và giữ index hiện tại. Chưa lưu model để
+inference hoặc kiểm máy sạch; smoke/fixture không phải kết quả chính.

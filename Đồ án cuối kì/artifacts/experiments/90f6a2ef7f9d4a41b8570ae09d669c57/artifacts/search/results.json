@@ -1,0 +1,84 @@
+{
+  "mode": "smoke",
+  "parent_run_id": "90f6a2ef7f9d4a41b8570ae09d669c57",
+  "candidates": [
+    {
+      "run_id": "0433dbb913784a86bff87712c80f4e0b",
+      "alpha": 1.0,
+      "status": "completed",
+      "fold_run_ids": [
+        "c945c4cd8f8f43cd8b73cce1d47d8cbb",
+        "5c9d7691b919413b968ae3b0df86a256",
+        "968ceea039a64b1d87e26bedfcb4ef68"
+      ],
+      "failed_fold_run_ids": [],
+      "summary": {
+        "pooled": {
+          "n_total": 576,
+          "n_scored": 576,
+          "unavailable": 0,
+          "coverage": 1.0,
+          "MAE": 12.601275486047468,
+          "RMSE": 15.205706377422535,
+          "R2": 0.8618946885040542,
+          "r2_undefined_reason": null
+        },
+        "folds": [
+          {
+            "n_total": 192,
+            "n_scored": 192,
+            "unavailable": 0,
+            "coverage": 1.0,
+            "MAE": 7.4045575379540125,
+            "RMSE": 10.08147823846807,
+            "R2": 0.3988963363890583,
+            "r2_undefined_reason": null
+          },
+          {
+            "n_total": 192,
+            "n_scored": 192,
+            "unavailable": 0,
+            "coverage": 1.0,
+            "MAE": 13.064998507780592,
+            "RMSE": 15.407343026009986,
+            "R2": 0.7335845495065061,
+            "r2_undefined_reason": null
+          },
+          {
+            "n_total": 192,
+            "n_scored": 192,
+            "unavailable": 0,
+            "coverage": 1.0,
+            "MAE": 17.334270412407808,
+            "RMSE": 18.83130629338606,
+            "R2": -2.2046262602492646,
+            "r2_undefined_reason": null
+          }
+        ],
+        "fold_mean": {
+          "MAE": 12.60127548604747,
+          "RMSE": 14.77337585262137,
+          "R2": -0.3573817914512334
+        },
+        "fold_std": {
+          "MAE": 4.06702829454442,
+          "RMSE": 3.6001211581795634,
+          "R2": 1.3133260944712417
+        },
+        "std_ddof": 0,
+        "R2_defined_folds": 3
+      }
+    }
+  ],
+  "selection": {
+    "selected_candidate_run_id": "0433dbb913784a86bff87712c80f4e0b",
+    "alpha": 1.0,
+    "selection_metric": "pooled_MAE",
+    "selected_score": 12.601275486047468,
+    "selection_locked_before_validation": true,
+    "locked_at": "2026-11-02T15:39:18.246871+00:00"
+  },
+  "refit_run_id": null,
+  "test_csv_accessed": false,
+  "official_full_search": false
+}

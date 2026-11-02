@@ -1,0 +1,1 @@
+Three folds completed. Rank by pooled MAE, report unweighted fold mean/std ddof0 separately; never rank by validation.

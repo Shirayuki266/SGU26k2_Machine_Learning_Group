@@ -1,0 +1,1 @@
+alpha=10.0, fold=2, fresh T08 pipeline fit on past only; strict purged boundary, no holdout.
