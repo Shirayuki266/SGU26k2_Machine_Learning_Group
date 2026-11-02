@@ -1,0 +1,45 @@
+{
+  "task_id": "MK02",
+  "checked_at": "2026-11-02T21:44:52.073857+00:00",
+  "status": "DRAFT_CHECKED",
+  "ready_to_submit": false,
+  "zip_sha256": "4c9339e2be2ba9a0d4ee04be3bd78e79cabe2937e89763360987ce88f906e57c",
+  "zip_bytes": 222322322,
+  "files_including_manifest": 677,
+  "zip_crc_paths_checksums": "PASS",
+  "excel_links": "PASS",
+  "evidence": {
+    "ledger_sha256": "a03912f43bea36b6c23544d531d6405097797942de17659a6d6e87edb2823e56",
+    "runs": 49,
+    "artifacts_checked": 200,
+    "prediction_files_recomputed": 43,
+    "model_fit_performed": false,
+    "test_samples_accessed": false
+  },
+  "office": {
+    "docx_paragraphs": 135,
+    "docx_tables": 19,
+    "pptx_slides": 15,
+    "office_crc": "PASS",
+    "cross_document_MAE_values": "PASS",
+    "placeholder_draft_labels": "PASS",
+    "traceability_sources": "PASS",
+    "ledger_unchanged": true,
+    "model_fit_performed": false,
+    "test_samples_accessed": false
+  },
+  "common_validation_ids": "PASS: six full runs, same ordered primary IDs",
+  "ledger_unchanged": "a03912f43bea36b6c23544d531d6405097797942de17659a6d6e87edb2823e56",
+  "model_fit_performed": false,
+  "test_samples_accessed": false,
+  "missing": [
+    "Số nhóm",
+    "Trường/khoa",
+    "Lớp học phần",
+    "Giảng viên",
+    "Họ tên–MSSV",
+    "Phân công/đóng góp có xác nhận",
+    "Rubric/yêu cầu riêng của thầy",
+    "Hạn nộp chính thức"
+  ]
+}

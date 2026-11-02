@@ -444,4 +444,21 @@ NhomXX/[CẦN BỔ SUNG] nghĩa là **bản nháp, chưa sẵn sàng nộp**.
 
 Cài optional dependencies với pip install -e ".[midterm]", chạy scripts/build_midterm.py,
 render bằng scripts/render_midterm.ps1 (LibreOffice +PowerPoint), kiểm scripts/verify_midterm.py.
-MK02 sẽ đóng gói riêng và người dùng merge PR MK02; không nộp Classroom.
+MK01 đã merge PR #28. MK02 đóng gói riêng và người dùng merge PR MK02; không nộp Classroom.
+
+## MK02: gói giữa kỳ đã kiểm, còn thông tin nhóm
+
+[Checklist và cách chạy từ ZIP](docs/submission_checklist.md),
+[QA thực tế](reports/submission/qa.json), [manifest/SHA từng file](reports/submission/submission_manifest.json)
+và [kiểm ZIP](reports/submission/verification.json).
+ZIP cục bộ: reports/submission/NhomXX_DuBaoPM25_BacKinh_GiuaKy.zip; vì chứa predictions
+thật nên lớn, không commit binary ZIP vào Git. Không có link upload công khai;
+người dùng lấy file trên máy làm việc và tự nộp sau review.
+
+Từ root đồ án đã có artifact đầy đủ, chạy .venv/python.exe scripts/package_midterm.py,
+rồi scripts/verify_submission.py với ZIP, --extract-to thư mục mới và --output file QA riêng.
+Gói có 49 hồ sơ thật/200 artifact, 43 predictions tính lại; Excel liên kết JSON và CSV
+chuẩn giữ nguyên. Python cách ly cài/import/pip check/Office pass; EDA train chạy13cell,
+14bảng/9PNG kiểm lại, 14bảng khớp lịch sử. Minh chứng EDA mới mang tag mk02_clean_20261103_01,
+không thêm dòng model log. Chưa kiểm venv chuẩn/OS mới hoặc tái huấn luyện full;
+chưa có serialized model weights. **BẢN NHÁP: nhóm/rubric còn [CẦN BỔ SUNG]**.
