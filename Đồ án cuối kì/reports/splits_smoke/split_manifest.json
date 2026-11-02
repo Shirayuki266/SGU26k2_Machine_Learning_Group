@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "task_id": "T05",
+  "artifact_type": "data_preparation_audit",
+  "snapshot_id": "32b77db6bb3f97f4eeca3cebd15f7cf6950a3d47718d8d1218aba2dacd48d9e1",
+  "status": "complete",
+  "mode": "smoke",
+  "created_at": "2026-11-02T11:32:20.512678+00:00",
+  "signature": {
+    "merged_sha256": "33cffb844c3551ba7e36311abb64d52f8b3e639557ff4b3e03ef13201724507f",
+    "quality_summary_sha256": "6b70cd4a0becd9793cd9b6bf65d809d435b93614b0876cb9bd537af92932ecad",
+    "raw_manifest_sha256": "bcc2dd85bc2966bffad18d5c625de81eb26642aca16cd91c40a58df9467c0aaf",
+    "mode": "smoke",
+    "seed": 42,
+    "output_tag": null,
+    "horizon_hours": 1,
+    "problem": {
+      "task_type": "regression",
+      "target_column": "PM2.5",
+      "target_unit": "ug/m3",
+      "group_column": "station",
+      "input_time_column": "input_timestamp",
+      "target_time_column": "target_timestamp",
+      "station_scope": "observed_stations",
+      "current_observation_available": true,
+      "forecast_strategy": "rolling_one_hour"
+    },
+    "split": {
+      "timestamp_column": "target_timestamp",
+      "validation_start": "2015-03-01T00:00:00",
+      "test_start": "2016-03-01T00:00:00",
+      "timestamp_convention": "source_local_naive",
+      "test_locked": true,
+      "final_refit_train_validation": true
+    },
+    "sample_construction": {
+      "target_value_column": "target_pm25",
+      "sample_id_scheme": "pm25-h1-v1",
+      "target_missing_policy": "drop",
+      "origin_missing_policy": "retain_operational_flag_primary",
+      "holdout_label_rule": "at_or_before_first_origin"
+    },
+    "module_sha256": "163d7b6511140d2123c0e3646c1977a31def999d53e1f2e2d06f5a0cdeb9476c",
+    "script_sha256": "e5c78b22bc8b526bc523deb418f2fc61977e3c09a43bdf792fcbe496ed5557b6"
+  },
+  "source": "data/processed/merged_unimputed_smoke.csv",
+  "raw_manifest": "reports/data_manifest.json",
+  "t04_summary": "reports/quality_smoke/summary.json",
+  "config": "configs/default.json",
+  "python_version": "3.12.10",
+  "pandas_version": "3.0.6",
+  "input_scope": "T04 smoke prefix; terminal exclusions are prefix-relative",
+  "totals": {
+    "input_rows": 1200,
+    "retained_operational": 1179,
+    "retained_primary": 1179,
+    "excluded_total": 21,
+    "missing_origin_pm25_total": 9,
+    "retained_missing_origin_pm25": 0,
+    "excluded_end_of_series": 12,
+    "excluded_missing_target_timestamp": 0,
+    "excluded_missing_target_value": 9
+  },
+  "split_summary": [
+    {
+      "cohort": "operational",
+      "split": "train",
+      "samples": 1179,
+      "stations": 12,
+      "input_timestamp_min": "2013-03-01T00:00:00",
+      "input_timestamp_max": "2013-03-05T02:00:00",
+      "target_timestamp_min": "2013-03-01T01:00:00",
+      "target_timestamp_max": "2013-03-05T03:00:00"
+    },
+    {
+      "cohort": "operational",
+      "split": "validation",
+      "samples": 0,
+      "stations": 0,
+      "input_timestamp_min": null,
+      "input_timestamp_max": null,
+      "target_timestamp_min": null,
+      "target_timestamp_max": null
+    },
+    {
+      "cohort": "operational",
+      "split": "test",
+      "samples": 0,
+      "stations": 0,
+      "input_timestamp_min": null,
+      "input_timestamp_max": null,
+      "target_timestamp_min": null,
+      "target_timestamp_max": null
+    },
+    {
+      "cohort": "primary",
+      "split": "train",
+      "samples": 1179,
+      "stations": 12,
+      "input_timestamp_min": "2013-03-01T00:00:00",
+      "input_timestamp_max": "2013-03-05T02:00:00",
+      "target_timestamp_min": "2013-03-01T01:00:00",
+      "target_timestamp_max": "2013-03-05T03:00:00"
+    },
+    {
+      "cohort": "primary",
+      "split": "validation",
+      "samples": 0,
+      "stations": 0,
+      "input_timestamp_min": null,
+      "input_timestamp_max": null,
+      "target_timestamp_min": null,
+      "target_timestamp_max": null
+    },
+    {
+      "cohort": "primary",
+      "split": "test",
+      "samples": 0,
+      "stations": 0,
+      "input_timestamp_min": null,
+      "input_timestamp_max": null,
+      "target_timestamp_min": null,
+      "target_timestamp_max": null
+    }
+  ],
+  "membership": {
+    "train": {
+      "operational": {
+        "samples": 1179,
+        "ordered_sample_ids_sha256": "673c91bfdb555ce52b1286af523946fbfcd94a9da62ccf1cf8cbab9d100098e0"
+      },
+      "primary": {
+        "samples": 1179,
+        "ordered_sample_ids_sha256": "673c91bfdb555ce52b1286af523946fbfcd94a9da62ccf1cf8cbab9d100098e0"
+      }
+    },
+    "validation": {
+      "operational": {
+        "samples": 0,
+        "ordered_sample_ids_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "primary": {
+        "samples": 0,
+        "ordered_sample_ids_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "test": {
+      "operational": {
+        "samples": 0,
+        "ordered_sample_ids_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "primary": {
+        "samples": 0,
+        "ordered_sample_ids_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  "label_availability": {
+    "operational/train_to_validation": {
+      "status": "not_evaluated_empty_partition",
+      "fitted": false
+    },
+    "operational/train_validation_to_test_prospective": {
+      "status": "not_evaluated_empty_partition",
+      "fitted": false
+    },
+    "primary/train_to_validation": {
+      "status": "not_evaluated_empty_partition",
+      "fitted": false
+    },
+    "primary/train_validation_to_test_prospective": {
+      "status": "not_evaluated_empty_partition",
+      "fitted": false
+    }
+  },
+  "files": {
+    "train_samples": {
+      "path": "data/processed/samples_smoke/train.csv",
+      "sha256": "21642ce553c3cd33550cc384fc72c78b9b7bffb591b3f3b709aa176c69a61fe4",
+      "bytes": 289382
+    },
+    "train_ids": {
+      "path": "data/processed/samples_smoke/sample_ids/train.csv",
+      "sha256": "f527ac40f67486882ddc240cfb8809df43872ac541f586fda0e9e6daeb66d12f",
+      "bytes": 140867
+    },
+    "validation_samples": {
+      "path": "data/processed/samples_smoke/validation.csv",
+      "sha256": "8f5fe8258c5f75dcc5bfb47f1e36df914618fa382be5690017ba80bf58a345b4",
+      "bytes": 176
+    },
+    "validation_ids": {
+      "path": "data/processed/samples_smoke/sample_ids/validation.csv",
+      "sha256": "c51b750827c0de8861857e57926b93378355d42131ac361657d01f72ebfd18aa",
+      "bytes": 62
+    },
+    "test_samples": {
+      "path": "data/processed/samples_smoke/test.csv",
+      "sha256": "8f5fe8258c5f75dcc5bfb47f1e36df914618fa382be5690017ba80bf58a345b4",
+      "bytes": 176
+    },
+    "test_ids": {
+      "path": "data/processed/samples_smoke/sample_ids/test.csv",
+      "sha256": "c51b750827c0de8861857e57926b93378355d42131ac361657d01f72ebfd18aa",
+      "bytes": 62
+    },
+    "excluded_samples": {
+      "path": "data/processed/samples_smoke/excluded_samples.csv",
+      "sha256": "1182ec31b9eabdf4ba6e29a92ca78b3f0a00209420dd4a97b361e874dcd8d436",
+      "bytes": 2940
+    },
+    "exclusion_summary.csv": {
+      "path": "reports/splits_smoke/exclusion_summary.csv",
+      "sha256": "6d8d9b71c8e29d53737aee72a20dd0e561f106eb779331246247721b7c2eb3d5",
+      "bytes": 592
+    },
+    "split_summary.csv": {
+      "path": "reports/splits_smoke/split_summary.csv",
+      "sha256": "1867791213b3f8dcf5f8e517570d0ff92fbffc64c0696292d2483df5cdccc737",
+      "bytes": 424
+    },
+    "station_split_summary.csv": {
+      "path": "reports/splits_smoke/station_split_summary.csv",
+      "sha256": "06eb42e072e7cc5c13372499d164f1d3029076f33b0ad53f6005eb8792a730a5",
+      "bytes": 4470
+    }
+  },
+  "test_use": "target construction and count/date audit only; no exploration, fit or metrics",
+  "model_experiment_run": false
+}

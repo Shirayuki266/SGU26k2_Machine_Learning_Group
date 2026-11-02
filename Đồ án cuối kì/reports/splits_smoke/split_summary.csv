@@ -1,0 +1,7 @@
+cohort,split,samples,stations,input_timestamp_min,input_timestamp_max,target_timestamp_min,target_timestamp_max
+operational,train,1179,12,2013-03-01T00:00:00,2013-03-05T02:00:00,2013-03-01T01:00:00,2013-03-05T03:00:00
+operational,validation,0,0,,,,
+operational,test,0,0,,,,
+primary,train,1179,12,2013-03-01T00:00:00,2013-03-05T02:00:00,2013-03-01T01:00:00,2013-03-05T03:00:00
+primary,validation,0,0,,,,
+primary,test,0,0,,,,

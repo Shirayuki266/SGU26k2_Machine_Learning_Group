@@ -1,0 +1,13 @@
+station,input_rows,retained_operational,retained_primary,excluded_total,missing_origin_pm25_total,retained_missing_origin_pm25,excluded_end_of_series,excluded_missing_target_timestamp,excluded_missing_target_value
+Aotizhongxin,100,99,99,1,0,0,1,0,0
+Changping,100,99,99,1,0,0,1,0,0
+Dingling,100,99,99,1,0,0,1,0,0
+Dongsi,100,99,99,1,0,0,1,0,0
+Guanyuan,100,99,99,1,0,0,1,0,0
+Gucheng,100,99,99,1,0,0,1,0,0
+Huairou,100,90,90,10,9,0,1,0,9
+Nongzhanguan,100,99,99,1,0,0,1,0,0
+Shunyi,100,99,99,1,0,0,1,0,0
+Tiantan,100,99,99,1,0,0,1,0,0
+Wanliu,100,99,99,1,0,0,1,0,0
+Wanshouxigong,100,99,99,1,0,0,1,0,0
