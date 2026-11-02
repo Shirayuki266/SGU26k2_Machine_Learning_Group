@@ -1,7 +1,7 @@
 # T02 — Kế hoạch thực nghiệm theo CRISP-DM
 
-Phạm vi đã chốt ngày 02/11/2026. Đây là thiết kế cho T05 trở đi, **chưa chạy**
-baseline, training, tuning, feature selection hoặc đánh giá test. Đi cùng
+Phạm vi đã chốt ngày 02/11/2026. T09 có [persistence validation thật](baseline_results.md);
+chưa chạy Ridge/RF, tuning, feature selection hoặc đánh giá test. Đi cùng
 [đặc tả bài toán](problem_definition.md) và `configs/default.json`.
 
 ## 1. Vòng thực nghiệm và task quản lý
@@ -68,7 +68,7 @@ y_true, y_pred, split, run_id và cờ fallback nếu có.
 
 T09 bổ sung cohort vận hành mở rộng gồm mọi mẫu có target quan sát được, kể
 cả khi PM2.5(t) thiếu. Khi thiếu PM2.5(t), fallback theo
-thứ tự **giá trị PM2.5 đã quan sát gần nhất cùng trạm đến t → median trạm của
+thứ tự **giá trị PM2.5 đã quan sát gần nhất cùng trạm đến t, tuổi ≤24h inclusive → median trạm của
 training partition → median toàn training partition → không có dự báo**.
 Không dùng giá trị tương lai; trong phát triển không tính median từ
 validation/test. Trong CV tính median trên fold fit; khi T13 được phép refit,
@@ -78,6 +78,13 @@ số không dự báo và coverage. Cohort chính và cohort có fallback báo r
 không trộn hai mẫu số để tuyên bố cải thiện. Khi so sánh ML trên cohort vận
 hành cũng phải dùng cùng IDs và chính sách coverage. T09 khóa cách xử lý thiếu
 trước khi chấm, không thay đổi sau khi nhìn metric.
+
+Tuổi 24h chốt ở T09/Issue #18 trước metric; median lấy từ PM2.5(t) của
+operational origin train T05, bỏ qua NA.
+[Validation anchor](../reports/evaluation/validation_manifest.json) khóa
+102.479 primary / 103.287 operational IDs cùng order/hash cho model sau;
+không drop vì feature thiếu. Metric dùng chung, R² tính toàn cohort,
+undefined trả null/lý do. Không so smoke/full như cải tiến model.
 
 ## 4. Temporal split và dự báo cuốn chiếu
 

@@ -196,6 +196,18 @@ class ExperimentLogger:
         }
         _json(record)
         with self._locked():
+            # A clone can contain the tracked index without the ignored run
+            # trees. Refuse to rebuild that index around a new run and silently
+            # erase its history; restore the delivered artifacts first.
+            if self.csv_path.is_file():
+                with self.csv_path.open(encoding="utf-8", newline="") as stream:
+                    for indexed in csv.DictReader(stream):
+                        previous = self._run_dir(indexed["run_id"])
+                        if any(not (previous / name).is_file() for name in
+                               ("config.json", "metadata.json", "metrics.json", "notes.md")):
+                            raise FileNotFoundError(
+                                "Indexed run files are missing; restore the run bundle before starting a new run. "
+                                "Existing experiment history was not changed.")
             directory = self._run_dir(run_id)
             directory.mkdir(parents=True, exist_ok=False)
             _atomic_text(directory / "config.json", _json(config))

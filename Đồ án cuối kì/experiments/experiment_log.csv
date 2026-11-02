@@ -1,1 +1,1255 @@
 run_id,status,task_id,reference_run_id,parent_run_id,fold_id,mode,kind,objective,hypothesis,change,model,parameters,feature_set,preprocessing,data,split,time_ranges,sample_counts,seed,budget,is_test,source,started_at,ended_at,timezone,duration_seconds,git,environment,metrics,artifacts,notes,decision,error,config_path,metrics_path,metadata_path,notes_path
+24cef47874a94d9faa7bfcbae29b5c58,completed,T09,5a6c965f64754a2ea9508e554fd92092,,,full,baseline,"Xác định mốc MAE/RMSE/R² cho PM2.5 đúng t+1, cùng trạm, trên validation IDs cố định.",PM2.5(t) là mốc dự báo một giờ cần kiểm chứng; chưa yêu cầu Ridge/RF phải thắng.,Expand verified smoke protocol to full validation; smoke/full metrics are not directly comparable.,persistence,"{
+  ""signature"": {
+    ""baseline_config"": {
+      ""schema_version"": ""t09-persistence-v1"",
+      ""max_history_age_hours"": 24,
+      ""age_limit_inclusive"": true,
+      ""train_statistic"": ""median"",
+      ""train_statistic_scope"": ""T05_operational_train_origins"",
+      ""smoke_rows_per_station"": 168,
+      ""headline_cohort"": ""primary"",
+      ""residual_definition"": ""y_pred_minus_y_true"",
+      ""budget"": {
+        ""smoke_before_full"": true,
+        ""max_full_runs"": 1
+      },
+      ""note"": ""Age limit fixed before validation metrics; no tuning or prediction clipping. Smoke is execution evidence only.""
+    },
+    ""split_manifest_sha256"": ""6d3ac3f05da50324a65c34c1e1601b5df45fefc3d2e6d0e834d43a27062d0e42"",
+    ""anchor_sha256"": ""b9646da98017bc0b02f622ee928df0b70185e8a6312a2a9512329d4d04057e7f"",
+    ""source_sha256"": {
+      ""baseline.py"": ""ea0787f928f1893a7429f0ecb84de2d630215d1facb668ebda64b9b2754e1572"",
+      ""evaluation.py"": ""903dad88d32507360c18e67d7c0559bea069a94e6859978244c442196d5ec27a"",
+      ""metrics.py"": ""c282e54515b5ad25fa9b67c576c8d082da9833878d65ac89e22ac7714b221769"",
+      ""run_baseline.py"": ""75fa263fa30e9499c367e3263ce2c52de0342f64f9e96e99208390f81e6681a9""
+    },
+    ""prediction_policy"": {
+      ""negative_predictions"": ""identity"",
+      ""applies_to"": [
+        ""persistence"",
+        ""ridge"",
+        ""random_forest""
+      ]
+    },
+    ""fallback_order"": [
+      ""last_observed_same_station"",
+      ""training_station_median"",
+      ""training_global_median"",
+      ""unavailable""
+    ]
+  },
+  ""project_config"": {
+    ""seed"": 42,
+    ""horizon_hours"": 1,
+    ""mode"": ""smoke"",
+    ""available_modes"": [
+      ""smoke"",
+      ""full""
+    ],
+    ""problem"": {
+      ""task_type"": ""regression"",
+      ""target_column"": ""PM2.5"",
+      ""target_unit"": ""ug/m3"",
+      ""group_column"": ""station"",
+      ""input_time_column"": ""input_timestamp"",
+      ""target_time_column"": ""target_timestamp"",
+      ""station_scope"": ""observed_stations"",
+      ""current_observation_available"": true,
+      ""forecast_strategy"": ""rolling_one_hour""
+    },
+    ""split"": {
+      ""timestamp_column"": ""target_timestamp"",
+      ""validation_start"": ""2015-03-01T00:00:00"",
+      ""test_start"": ""2016-03-01T00:00:00"",
+      ""timestamp_convention"": ""source_local_naive"",
+      ""test_locked"": true,
+      ""final_refit_train_validation"": true
+    },
+    ""sample_construction"": {
+      ""target_value_column"": ""target_pm25"",
+      ""sample_id_scheme"": ""pm25-h1-v1"",
+      ""target_missing_policy"": ""drop"",
+      ""origin_missing_policy"": ""retain_operational_flag_primary"",
+      ""holdout_label_rule"": ""at_or_before_first_origin""
+    },
+    ""temporal_cv"": {
+      ""strategy"": ""expanding_window"",
+      ""partition"": ""train"",
+      ""group_by"": ""unique_target_timestamp"",
+      ""fit_target_must_precede_first_origin"": true,
+      ""folds"": [
+        {
+          ""fold_id"": 1,
+          ""evaluation_start"": ""2014-06-01T00:00:00"",
+          ""evaluation_end"": ""2014-09-01T00:00:00""
+        },
+        {
+          ""fold_id"": 2,
+          ""evaluation_start"": ""2014-09-01T00:00:00"",
+          ""evaluation_end"": ""2014-12-01T00:00:00""
+        },
+        {
+          ""fold_id"": 3,
+          ""evaluation_start"": ""2014-12-01T00:00:00"",
+          ""evaluation_end"": ""2015-03-01T00:00:00""
+        }
+      ]
+    },
+    ""features"": {
+      ""A"": {
+        ""legacy_name"": ""F0"",
+        ""measurements"": [
+          ""PM2.5"",
+          ""PM10"",
+          ""SO2"",
+          ""NO2"",
+          ""CO"",
+          ""O3"",
+          ""TEMP"",
+          ""PRES"",
+          ""DEWP"",
+          ""RAIN"",
+          ""WSPM""
+        ],
+        ""categorical"": [
+          ""station"",
+          ""wd""
+        ],
+        ""calendar_reference"": ""target_timestamp"",
+        ""calendar"": [
+          ""target_hour"",
+          ""target_month"",
+          ""target_day_of_week""
+        ],
+        ""cyclic_calendar"": {
+          ""target_hour"": 24,
+          ""target_month"": 12
+        }
+      },
+      ""B"": {
+        ""legacy_name"": ""F1"",
+        ""extends"": ""A"",
+        ""pm25_lag_hours"": [
+          1,
+          3,
+          6,
+          12,
+          24
+        ],
+        ""pm25_rolling_windows_hours"": [
+          3,
+          6,
+          12,
+          24
+        ],
+        ""rolling_stats"": [
+          ""mean"",
+          ""std""
+        ],
+        ""rolling_std_ddof"": 1,
+        ""rolling_include_current"": true,
+        ""rolling_min_periods"": ""window""
+      },
+      ""C"": {
+        ""extends"": ""B"",
+        ""selector_fit_scope"": ""training_partition_of_each_run_or_fold"",
+        ""selection_method"": null,
+        ""selected_features"": null
+      }
+    },
+    ""evaluation"": {
+      ""baseline"": ""persistence"",
+      ""models"": [
+        ""ridge"",
+        ""random_forest""
+      ],
+      ""initial_parameters"": {
+        ""ridge"": {
+          ""alpha"": 1.0
+        },
+        ""random_forest"": {
+          ""n_estimators"": 300,
+          ""max_depth"": null,
+          ""min_samples_leaf"": 1,
+          ""max_features"": 1.0,
+          ""random_state"": 42,
+          ""n_jobs"": 1
+        }
+      },
+      ""primary_metric"": ""MAE"",
+      ""secondary_metrics"": [
+        ""RMSE"",
+        ""R2""
+      ],
+      ""same_sample_ids"": true,
+      ""baseline_fallback_order"": [
+        ""last_observed_same_station"",
+        ""training_station_median"",
+        ""training_global_median"",
+        ""unavailable""
+      ]
+    },
+    ""experiment_logging"": {
+      ""infrastructure_task_id"": ""T04-LOG"",
+      ""index"": ""experiments/experiment_log.csv"",
+      ""runs"": ""artifacts/experiments""
+    },
+    ""paths"": {
+      ""raw_data"": ""data/raw"",
+      ""processed_data"": ""data/processed"",
+      ""artifacts"": ""artifacts"",
+      ""figures"": ""reports/figures""
+    }
+  },
+  ""configured_seed"": 42,
+  ""randomness_used"": false
+}",PM2.5(t); bounded same-station history only on missing current value,"{
+  ""applied"": false,
+  ""fallback_statistics"": ""train-origin medians only"",
+  ""config"": {
+    ""schema_version"": ""t08-preprocessing-v1"",
+    ""numeric"": {
+      ""imputation_strategy"": ""median"",
+      ""keep_empty_features"": true,
+      ""missing_indicators"": ""all"",
+      ""scale"": {
+        ""ridge"": true,
+        ""random_forest"": false
+      }
+    },
+    ""categorical"": {
+      ""imputation_strategy"": ""constant"",
+      ""fill_value"": ""__MISSING__"",
+      ""handle_unknown"": ""ignore"",
+      ""sparse_output"": false
+    },
+    ""output"": {
+      ""format"": ""pandas"",
+      ""verbose_feature_names"": true
+    },
+    ""prediction_postprocessing"": {
+      ""negative_predictions"": ""identity"",
+      ""applies_to"": [
+        ""persistence"",
+        ""ridge"",
+        ""random_forest""
+      ]
+    }
+  }
+}","{
+  ""provenance"": {
+    ""split_manifest"": ""reports/splits_full/split_manifest.json"",
+    ""split_manifest_sha256"": ""6d3ac3f05da50324a65c34c1e1601b5df45fefc3d2e6d0e834d43a27062d0e42"",
+    ""t05_snapshot_id"": ""2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc"",
+    ""input_files_read"": [
+      {
+        ""path"": ""data/processed/samples_full/train.csv"",
+        ""sha256"": ""ebc89c94b576f009705446da7c4bec079f750755e5755e5041b6a93f09226d46"",
+        ""bytes"": 51395102
+      },
+      {
+        ""path"": ""data/processed/samples_full/sample_ids/train.csv"",
+        ""sha256"": ""336d58dda970536fb0c7dc1739529fe2f1bcb4200a5f32e2f3d40cca1279d8bf"",
+        ""bytes"": 24598381
+      }
+    ],
+    ""source_mode"": ""full"",
+    ""validation_start"": ""2015-03-01T00:00:00"",
+    ""validation_files"": {
+      ""validation_samples"": {
+        ""path"": ""data/processed/samples_full/validation.csv"",
+        ""sha256"": ""eed8f0a497b352540705640ccf1a10d3db9084af88653184aa2e0b4abbbfa173"",
+        ""bytes"": 26281009
+      },
+      ""validation_ids"": {
+        ""path"": ""data/processed/samples_full/sample_ids/validation.csv"",
+        ""sha256"": ""4102afaecae6eb3f56434b0b1f93d53f90a914edad304496a429bfdad14f5a8c"",
+        ""bytes"": 12333889
+      }
+    },
+    ""validation_membership"": {
+      ""operational"": {
+        ""samples"": 103287,
+        ""ordered_sample_ids_sha256"": ""bd15e19b4ce89a5025e5f36f547fc4d3f56953e334d38da3bc8390270dd6444a""
+      },
+      ""primary"": {
+        ""samples"": 102479,
+        ""ordered_sample_ids_sha256"": ""534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7""
+      }
+    },
+    ""label_availability"": {
+      ""status"": ""passed"",
+      ""fit_samples"": 205977,
+      ""evaluation_samples"": 103287,
+      ""latest_fit_target_timestamp"": ""2015-02-28T23:00:00"",
+      ""first_evaluation_input_timestamp"": ""2015-02-28T23:00:00"",
+      ""planned_label_cutoff"": ""2015-02-28T23:00:00"",
+      ""comparison"": ""<="",
+      ""fitted"": false
+    }
+  },
+  ""history_scope"": {
+    ""raw_sha256"": {
+      ""PRSA_Data_Aotizhongxin_20130301-20170228.csv"": ""a94fbcfc71708b6ffdc033360163d91efb7f675e496f6b5860929aa96b96351b"",
+      ""PRSA_Data_Changping_20130301-20170228.csv"": ""a2e21402a6d95fb7043f87959e6e3dcbecb957aac356a6f8028a85b047c772e7"",
+      ""PRSA_Data_Dingling_20130301-20170228.csv"": ""3d8dff81f18a80d9f455876a785642bffe1e9b9924ec1e6b7ce8cca790432eeb"",
+      ""PRSA_Data_Dongsi_20130301-20170228.csv"": ""9c0020214425e5ee2a64d42f97a1f632e1d8f6b53ad50edd85a686cc7999f27e"",
+      ""PRSA_Data_Guanyuan_20130301-20170228.csv"": ""59390fee3b032597b387491f5230e7edb90a8558e30217ebd6d9befbe669fbf9"",
+      ""PRSA_Data_Gucheng_20130301-20170228.csv"": ""10ae48801ea55869fee56a48b885fb1127859c130551888d71673f34216ba951"",
+      ""PRSA_Data_Huairou_20130301-20170228.csv"": ""812dcbe848b3ba2c2d25731064797bff803c46eb0c602156a1fa044df136dc26"",
+      ""PRSA_Data_Nongzhanguan_20130301-20170228.csv"": ""572cf87b65ef543cd55d3a711b28474def224a46b0ec3fc8add8aaf13b67a487"",
+      ""PRSA_Data_Shunyi_20130301-20170228.csv"": ""520b59e4ead3b0cfe7f1ed673e30275de8441e999db6f413d5172d2277b8c15a"",
+      ""PRSA_Data_Tiantan_20130301-20170228.csv"": ""0743e34799cf1ee36195b73321b91baa5625276532e7263c588f68cdef3b4daa"",
+      ""PRSA_Data_Wanliu_20130301-20170228.csv"": ""0b1a6d754a07f0def2f55434ddfa3870dcd0063b7f766a6f66b6c11bb05a377a"",
+      ""PRSA_Data_Wanshouxigong_20130301-20170228.csv"": ""ab1d6a356d6997a45f6d657ad47de1e05a4a08d4a7015b38a329a90665ab74d0""
+    },
+    ""rows"": 315636,
+    ""rows_per_station"": 26303,
+    ""first_timestamp"": ""2013-03-01 00:00:00"",
+    ""last_timestamp"": ""2016-02-29 22:00:00"",
+    ""values_scope"": ""observations through selected validation origins only"",
+    ""hash_scope"": ""full raw byte identity, no test CSV/IDs opened"",
+    ""test_csv_accessed"": false
+  },
+  ""validation_anchor"": {
+    ""schema_version"": ""validation-cohorts-v1"",
+    ""split"": ""validation"",
+    ""test_locked"": true,
+    ""t05_snapshot_id"": ""2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc"",
+    ""files"": {
+      ""validation_samples"": {
+        ""path"": ""data/processed/samples_full/validation.csv"",
+        ""sha256"": ""eed8f0a497b352540705640ccf1a10d3db9084af88653184aa2e0b4abbbfa173"",
+        ""bytes"": 26281009
+      },
+      ""validation_ids"": {
+        ""path"": ""data/processed/samples_full/sample_ids/validation.csv"",
+        ""sha256"": ""4102afaecae6eb3f56434b0b1f93d53f90a914edad304496a429bfdad14f5a8c"",
+        ""bytes"": 12333889
+      }
+    },
+    ""cohorts"": {
+      ""operational"": {
+        ""samples"": 103287,
+        ""ordered_sample_ids_sha256"": ""bd15e19b4ce89a5025e5f36f547fc4d3f56953e334d38da3bc8390270dd6444a""
+      },
+      ""primary"": {
+        ""samples"": 102479,
+        ""ordered_sample_ids_sha256"": ""534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7""
+      }
+    },
+    ""order"": ""T05 station/input_timestamp order"",
+    ""primary_filter"": ""is_primary == true"",
+    ""operational_filter"": ""all retained T05 validation IDs"",
+    ""comparison_rule"": ""same IDs/order; no dropping rows for missing features; report prediction coverage""
+  }
+}","{
+  ""timestamp_column"": ""target_timestamp"",
+  ""validation_start"": ""2015-03-01T00:00:00"",
+  ""test_start"": ""2016-03-01T00:00:00"",
+  ""timestamp_convention"": ""source_local_naive"",
+  ""test_locked"": true,
+  ""final_refit_train_validation"": true,
+  ""evaluation"": ""validation"",
+  ""headline_cohort"": ""primary""
+}","{
+  ""train"": {
+    ""input_timestamp_min"": ""2013-03-01 00:00:00"",
+    ""input_timestamp_max"": ""2015-02-28 22:00:00"",
+    ""target_timestamp_min"": ""2013-03-01 01:00:00"",
+    ""target_timestamp_max"": ""2015-02-28 23:00:00""
+  },
+  ""validation"": {
+    ""input_timestamp_min"": ""2015-02-28 23:00:00"",
+    ""input_timestamp_max"": ""2016-02-29 22:00:00"",
+    ""target_timestamp_min"": ""2015-03-01 00:00:00"",
+    ""target_timestamp_max"": ""2016-02-29 23:00:00""
+  }
+}","{
+  ""train_operational"": 205977,
+  ""validation_operational"": 103287,
+  ""validation_primary"": 102479
+}",,"{
+  ""smoke_before_full"": true,
+  ""max_full_runs"": 1
+}",false,executed_script,2026-11-02T13:50:16.657110+00:00,2026-11-02T13:50:21.675943+00:00,UTC,5.018833,"{
+  ""commit"": ""8c9f98d07bcdd5d3b237fa2438c571b0a09f20e3"",
+  ""branch"": ""feature/t09-persistence-baseline"",
+  ""dirty"": true,
+  ""available"": true
+}","{
+  ""python"": ""3.12.10"",
+  ""platform"": ""Windows-11-10.0.22631-SP0"",
+  ""packages"": {
+    ""Jinja2"": ""3.1.6"",
+    ""MarkupSafe"": ""3.0.4"",
+    ""PyYAML"": ""6.0.3"",
+    ""Pygments"": ""2.21.0"",
+    ""Send2Trash"": ""2.1.0"",
+    ""altair"": ""6.3.0"",
+    ""anyio"": ""4.16.0"",
+    ""argon2-cffi"": ""25.1.0"",
+    ""argon2-cffi-bindings"": ""26.1.0"",
+    ""arrow"": ""1.4.0"",
+    ""asttokens"": ""3.0.2"",
+    ""async-lru"": ""2.4.0"",
+    ""attrs"": ""26.1.0"",
+    ""babel"": ""2.18.0"",
+    ""beautifulsoup4"": ""4.15.0"",
+    ""beijing-air-quality"": ""0.1.0"",
+    ""bleach"": ""6.4.0"",
+    ""certifi"": ""2026.10.23"",
+    ""cffi"": ""2.1.1"",
+    ""charset-normalizer"": ""3.5.2"",
+    ""click"": ""8.5.0"",
+    ""cloudpickle"": ""3.1.2"",
+    ""colorama"": ""0.4.6"",
+    ""comm"": ""0.2.3"",
+    ""contourpy"": ""1.4.0"",
+    ""cycler"": ""0.12.1"",
+    ""debugpy"": ""1.8.22"",
+    ""defusedxml"": ""0.7.1"",
+    ""executing"": ""2.3.0"",
+    ""fastjsonschema"": ""2.22.3"",
+    ""fonttools"": ""4.68.0"",
+    ""fqdn"": ""1.6.0"",
+    ""h11"": ""0.16.0"",
+    ""httpcore"": ""1.0.9"",
+    ""httpx"": ""0.28.1"",
+    ""idna"": ""3.20"",
+    ""iniconfig"": ""2.3.1"",
+    ""ipykernel"": ""7.4.0"",
+    ""ipython"": ""9.18.0"",
+    ""ipython_pygments_lexers"": ""1.1.1"",
+    ""ipywidgets"": ""8.1.9"",
+    ""isoduration"": ""20.11.0"",
+    ""itsdangerous"": ""2.2.0"",
+    ""jedi"": ""0.20.1"",
+    ""joblib"": ""1.6.0"",
+    ""json5"": ""0.17.3"",
+    ""jsonpointer"": ""3.7"",
+    ""jsonschema"": ""4.26.0"",
+    ""jsonschema-specifications"": ""2025.9.1"",
+    ""jupyter"": ""1.1.1"",
+    ""jupyter-console"": ""6.6.3"",
+    ""jupyter-events"": ""0.12.1"",
+    ""jupyter-lsp"": ""2.3.1"",
+    ""jupyter_builder"": ""1.2.4"",
+    ""jupyter_client"": ""8.10.0"",
+    ""jupyter_core"": ""5.9.1"",
+    ""jupyter_server"": ""2.21.1"",
+    ""jupyter_server_terminals"": ""0.5.4"",
+    ""jupyterlab"": ""4.6.5"",
+    ""jupyterlab_pygments"": ""0.3.0"",
+    ""jupyterlab_server"": ""2.28.1"",
+    ""jupyterlab_widgets"": ""3.0.17"",
+    ""kiwisolver"": ""1.5.1"",
+    ""lark"": ""1.3.1"",
+    ""matplotlib"": ""3.11.2"",
+    ""matplotlib-inline"": ""0.2.2"",
+    ""mistune"": ""3.4.0"",
+    ""narwhals"": ""2.28.0"",
+    ""nbclient"": ""0.11.0"",
+    ""nbconvert"": ""7.17.2"",
+    ""nbformat"": ""5.11.1"",
+    ""nest-asyncio2"": ""1.7.4"",
+    ""notebook"": ""7.6.4"",
+    ""notebook_shim"": ""0.2.4"",
+    ""numpy"": ""2.5.4"",
+    ""packaging"": ""26.3"",
+    ""pandas"": ""3.0.6"",
+    ""pandocfilters"": ""1.5.1"",
+    ""parso"": ""0.8.7"",
+    ""pillow"": ""13.0.0"",
+    ""pip"": ""26.2.1"",
+    ""platformdirs"": ""4.14.3"",
+    ""pluggy"": ""1.6.0"",
+    ""prometheus_client"": ""0.26.0"",
+    ""prompt_toolkit"": ""3.0.53"",
+    ""protobuf"": ""7.36.2"",
+    ""psutil"": ""7.2.2"",
+    ""pure_eval"": ""0.2.4"",
+    ""pyarrow"": ""26.0.0"",
+    ""pycparser"": ""3.12"",
+    ""pydeck"": ""0.9.3"",
+    ""pyparsing"": ""3.3.3"",
+    ""pytest"": ""9.1.1"",
+    ""python-dateutil"": ""2.9.0.post0"",
+    ""python-json-logger"": ""4.2.0"",
+    ""python-multipart"": ""0.0.33"",
+    ""pywinpty"": ""3.1.2"",
+    ""pyzmq"": ""27.2.0"",
+    ""referencing"": ""0.37.0"",
+    ""requests"": ""2.34.2"",
+    ""rfc3339-validator"": ""0.1.4"",
+    ""rfc3986-validator"": ""0.1.1"",
+    ""rfc3987-syntax"": ""1.1.0"",
+    ""rpds-py"": ""2026.9.1"",
+    ""scikit-learn"": ""1.9.1"",
+    ""scipy"": ""1.18.1"",
+    ""seaborn"": ""0.13.2"",
+    ""setuptools"": ""84.2.1"",
+    ""six"": ""1.17.0"",
+    ""soupsieve"": ""3.0.4"",
+    ""stack-data"": ""0.6.3"",
+    ""starlette"": ""1.10.0"",
+    ""streamlit"": ""1.66.1"",
+    ""terminado"": ""0.18.1"",
+    ""threadpoolctl"": ""3.7.0"",
+    ""tinycss2"": ""1.5.1"",
+    ""tornado"": ""6.6"",
+    ""traitlets"": ""5.16.1"",
+    ""typing_extensions"": ""4.16.0"",
+    ""tzdata"": ""2026.5"",
+    ""uri-template"": ""1.3.0"",
+    ""urllib3"": ""2.8.0"",
+    ""uvicorn"": ""0.54.0"",
+    ""watchdog"": ""6.0.0"",
+    ""wcwidth"": ""0.9.4"",
+    ""webcolors"": ""25.10.0"",
+    ""webencodings"": ""0.6.1"",
+    ""websocket-client"": ""1.9.2"",
+    ""websockets"": ""17.4"",
+    ""wheel"": ""0.48.0"",
+    ""widgetsnbextension"": ""4.0.16""
+  }
+}","{
+  ""validation_primary"": {
+    ""n_total"": 102479,
+    ""n_scored"": 102479,
+    ""unavailable"": 0,
+    ""coverage"": 1.0,
+    ""MAE"": 9.736617258169966,
+    ""RMSE"": 19.240919249995102,
+    ""R2"": 0.9448035694053172,
+    ""r2_undefined_reason"": null,
+    ""fallback_count"": 0,
+    ""fallback_rate"": 0.0
+  },
+  ""validation_operational"": {
+    ""n_total"": 103287,
+    ""n_scored"": 103287,
+    ""unavailable"": 0,
+    ""coverage"": 1.0,
+    ""MAE"": 9.903556110643159,
+    ""RMSE"": 20.060563693233078,
+    ""R2"": 0.9399817098014319,
+    ""r2_undefined_reason"": null,
+    ""fallback_count"": 808,
+    ""fallback_rate"": 0.007822862509318695
+  },
+  ""timing_seconds"": {
+    ""preflight"": 8.717571700006374,
+    ""fallback_statistics_fit"": 0.07140259999869158,
+    ""predict"": 1.3691187000003993,
+    ""evaluate"": 0.13775990000431193,
+    ""diagnostics_and_plot"": 1.5746643000020413
+  },
+  ""test_csv_accessed"": false,
+  ""official_full_result"": true
+}","[
+  {
+    ""path"": ""../artifacts/experiments/24cef47874a94d9faa7bfcbae29b5c58/artifacts/source/baseline.py"",
+    ""sha256"": ""ea0787f928f1893a7429f0ecb84de2d630215d1facb668ebda64b9b2754e1572"",
+    ""size_bytes"": 5064
+  },
+  {
+    ""path"": ""../artifacts/experiments/24cef47874a94d9faa7bfcbae29b5c58/artifacts/source/evaluation.py"",
+    ""sha256"": ""903dad88d32507360c18e67d7c0559bea069a94e6859978244c442196d5ec27a"",
+    ""size_bytes"": 7261
+  },
+  {
+    ""path"": ""../artifacts/experiments/24cef47874a94d9faa7bfcbae29b5c58/artifacts/source/metrics.py"",
+    ""sha256"": ""c282e54515b5ad25fa9b67c576c8d082da9833878d65ac89e22ac7714b221769"",
+    ""size_bytes"": 3114
+  },
+  {
+    ""path"": ""../artifacts/experiments/24cef47874a94d9faa7bfcbae29b5c58/artifacts/source/run_baseline.py"",
+    ""sha256"": ""75fa263fa30e9499c367e3263ce2c52de0342f64f9e96e99208390f81e6681a9"",
+    ""size_bytes"": 16051
+  },
+  {
+    ""path"": ""../artifacts/experiments/24cef47874a94d9faa7bfcbae29b5c58/artifacts/data/validation_manifest.json"",
+    ""sha256"": ""b9646da98017bc0b02f622ee928df0b70185e8a6312a2a9512329d4d04057e7f"",
+    ""size_bytes"": 1195
+  },
+  {
+    ""path"": ""../artifacts/experiments/24cef47874a94d9faa7bfcbae29b5c58/artifacts/data/evaluation_ids.csv"",
+    ""sha256"": ""4102afaecae6eb3f56434b0b1f93d53f90a914edad304496a429bfdad14f5a8c"",
+    ""size_bytes"": 12333889
+  },
+  {
+    ""path"": ""../artifacts/experiments/24cef47874a94d9faa7bfcbae29b5c58/artifacts/model/baseline_state.json"",
+    ""sha256"": ""77726627d3b04686729238a94784ba8c55f3a30d3f9aab6893e5dfd6b43d1225"",
+    ""size_bytes"": 429
+  },
+  {
+    ""path"": ""../artifacts/experiments/24cef47874a94d9faa7bfcbae29b5c58/artifacts/predictions/validation.csv"",
+    ""sha256"": ""88c03c51dab835b49aca831bcf6fb3404ee2334886c80748530014174a6a2fc3"",
+    ""size_bytes"": 24571628
+  },
+  {
+    ""path"": ""../artifacts/experiments/24cef47874a94d9faa7bfcbae29b5c58/artifacts/tables/metrics.csv"",
+    ""sha256"": ""ef9124acd0e571d16e819e2557e45ceea16c84eb6733929b55b22e1f4723947c"",
+    ""size_bytes"": 431
+  },
+  {
+    ""path"": ""../artifacts/experiments/24cef47874a94d9faa7bfcbae29b5c58/artifacts/tables/fallback.csv"",
+    ""sha256"": ""05a5b4dc0f94dcf9c7a1278f0de4e072f7f4e507b97eddc925afab93a7cf185f"",
+    ""size_bytes"": 249
+  },
+  {
+    ""path"": ""../artifacts/experiments/24cef47874a94d9faa7bfcbae29b5c58/artifacts/tables/station_metrics.csv"",
+    ""sha256"": ""98021e4e0387006419a3a9b5a89b184801374d8292f6c292e6ebb0e9404aab7b"",
+    ""size_bytes"": 2340
+  },
+  {
+    ""path"": ""../artifacts/experiments/24cef47874a94d9faa7bfcbae29b5c58/artifacts/tables/month_metrics.csv"",
+    ""sha256"": ""d81c5ec8ac06ee3e471ef21ae74f85899c61fc0eeffb3dfcdb551649112d4c9e"",
+    ""size_bytes"": 2316
+  },
+  {
+    ""path"": ""../artifacts/experiments/24cef47874a94d9faa7bfcbae29b5c58/artifacts/tables/largest_errors.csv"",
+    ""sha256"": ""4b5e3e475bc1445836eb11153d48bc7c9836ae576ee20702e87ba9e75fa5fb11"",
+    ""size_bytes"": 5146
+  },
+  {
+    ""path"": ""../artifacts/experiments/24cef47874a94d9faa7bfcbae29b5c58/artifacts/figures/validation_errors.png"",
+    ""sha256"": ""fd3f363940994953c73231e7b768914de230a05bcb9b24094573351fe0ccfaf0"",
+    ""size_bytes"": 269840
+  }
+]","FULL — headline primary cohort.
+
+Primary N=102479, MAE=9.736617, RMSE=19.240919, R²=0.9448035694053172. Operational N=103287, MAE=9.903556, RMSE=20.060564, R²=0.9399817098014319.
+
+Fallback=808/103287 (0.7823%); coverage=100.0000%; history limit <= 24h, otherwise train medians. Primary has no missing-current fallback; do not mix denominators. Numeric units µg/m³.
+
+No randomness (actual seed null; project seed retained in config). No test, clipping, learned model or threshold tuning. Compare T10 Ridge/RF A on identical primary validation IDs; improvement is a research question, not a required outcome.","T10: initial Ridge and Random Forest A on frozen IDs, same metrics/prediction policy; log all outcomes.",,../artifacts/experiments/24cef47874a94d9faa7bfcbae29b5c58/config.json,../artifacts/experiments/24cef47874a94d9faa7bfcbae29b5c58/metrics.json,../artifacts/experiments/24cef47874a94d9faa7bfcbae29b5c58/metadata.json,../artifacts/experiments/24cef47874a94d9faa7bfcbae29b5c58/notes.md
+5a6c965f64754a2ea9508e554fd92092,completed,T09,,,,smoke,baseline,"Xác định mốc MAE/RMSE/R² cho PM2.5 đúng t+1, cùng trạm, trên validation IDs cố định.",PM2.5(t) là mốc dự báo một giờ cần kiểm chứng; chưa yêu cầu Ridge/RF phải thắng.,Initial smoke execution,persistence,"{
+  ""signature"": {
+    ""baseline_config"": {
+      ""schema_version"": ""t09-persistence-v1"",
+      ""max_history_age_hours"": 24,
+      ""age_limit_inclusive"": true,
+      ""train_statistic"": ""median"",
+      ""train_statistic_scope"": ""T05_operational_train_origins"",
+      ""smoke_rows_per_station"": 168,
+      ""headline_cohort"": ""primary"",
+      ""residual_definition"": ""y_pred_minus_y_true"",
+      ""budget"": {
+        ""smoke_before_full"": true,
+        ""max_full_runs"": 1
+      },
+      ""note"": ""Age limit fixed before validation metrics; no tuning or prediction clipping. Smoke is execution evidence only.""
+    },
+    ""split_manifest_sha256"": ""6d3ac3f05da50324a65c34c1e1601b5df45fefc3d2e6d0e834d43a27062d0e42"",
+    ""anchor_sha256"": ""b9646da98017bc0b02f622ee928df0b70185e8a6312a2a9512329d4d04057e7f"",
+    ""source_sha256"": {
+      ""baseline.py"": ""ea0787f928f1893a7429f0ecb84de2d630215d1facb668ebda64b9b2754e1572"",
+      ""evaluation.py"": ""903dad88d32507360c18e67d7c0559bea069a94e6859978244c442196d5ec27a"",
+      ""metrics.py"": ""c282e54515b5ad25fa9b67c576c8d082da9833878d65ac89e22ac7714b221769"",
+      ""run_baseline.py"": ""75fa263fa30e9499c367e3263ce2c52de0342f64f9e96e99208390f81e6681a9""
+    },
+    ""prediction_policy"": {
+      ""negative_predictions"": ""identity"",
+      ""applies_to"": [
+        ""persistence"",
+        ""ridge"",
+        ""random_forest""
+      ]
+    },
+    ""fallback_order"": [
+      ""last_observed_same_station"",
+      ""training_station_median"",
+      ""training_global_median"",
+      ""unavailable""
+    ]
+  },
+  ""project_config"": {
+    ""seed"": 42,
+    ""horizon_hours"": 1,
+    ""mode"": ""smoke"",
+    ""available_modes"": [
+      ""smoke"",
+      ""full""
+    ],
+    ""problem"": {
+      ""task_type"": ""regression"",
+      ""target_column"": ""PM2.5"",
+      ""target_unit"": ""ug/m3"",
+      ""group_column"": ""station"",
+      ""input_time_column"": ""input_timestamp"",
+      ""target_time_column"": ""target_timestamp"",
+      ""station_scope"": ""observed_stations"",
+      ""current_observation_available"": true,
+      ""forecast_strategy"": ""rolling_one_hour""
+    },
+    ""split"": {
+      ""timestamp_column"": ""target_timestamp"",
+      ""validation_start"": ""2015-03-01T00:00:00"",
+      ""test_start"": ""2016-03-01T00:00:00"",
+      ""timestamp_convention"": ""source_local_naive"",
+      ""test_locked"": true,
+      ""final_refit_train_validation"": true
+    },
+    ""sample_construction"": {
+      ""target_value_column"": ""target_pm25"",
+      ""sample_id_scheme"": ""pm25-h1-v1"",
+      ""target_missing_policy"": ""drop"",
+      ""origin_missing_policy"": ""retain_operational_flag_primary"",
+      ""holdout_label_rule"": ""at_or_before_first_origin""
+    },
+    ""temporal_cv"": {
+      ""strategy"": ""expanding_window"",
+      ""partition"": ""train"",
+      ""group_by"": ""unique_target_timestamp"",
+      ""fit_target_must_precede_first_origin"": true,
+      ""folds"": [
+        {
+          ""fold_id"": 1,
+          ""evaluation_start"": ""2014-06-01T00:00:00"",
+          ""evaluation_end"": ""2014-09-01T00:00:00""
+        },
+        {
+          ""fold_id"": 2,
+          ""evaluation_start"": ""2014-09-01T00:00:00"",
+          ""evaluation_end"": ""2014-12-01T00:00:00""
+        },
+        {
+          ""fold_id"": 3,
+          ""evaluation_start"": ""2014-12-01T00:00:00"",
+          ""evaluation_end"": ""2015-03-01T00:00:00""
+        }
+      ]
+    },
+    ""features"": {
+      ""A"": {
+        ""legacy_name"": ""F0"",
+        ""measurements"": [
+          ""PM2.5"",
+          ""PM10"",
+          ""SO2"",
+          ""NO2"",
+          ""CO"",
+          ""O3"",
+          ""TEMP"",
+          ""PRES"",
+          ""DEWP"",
+          ""RAIN"",
+          ""WSPM""
+        ],
+        ""categorical"": [
+          ""station"",
+          ""wd""
+        ],
+        ""calendar_reference"": ""target_timestamp"",
+        ""calendar"": [
+          ""target_hour"",
+          ""target_month"",
+          ""target_day_of_week""
+        ],
+        ""cyclic_calendar"": {
+          ""target_hour"": 24,
+          ""target_month"": 12
+        }
+      },
+      ""B"": {
+        ""legacy_name"": ""F1"",
+        ""extends"": ""A"",
+        ""pm25_lag_hours"": [
+          1,
+          3,
+          6,
+          12,
+          24
+        ],
+        ""pm25_rolling_windows_hours"": [
+          3,
+          6,
+          12,
+          24
+        ],
+        ""rolling_stats"": [
+          ""mean"",
+          ""std""
+        ],
+        ""rolling_std_ddof"": 1,
+        ""rolling_include_current"": true,
+        ""rolling_min_periods"": ""window""
+      },
+      ""C"": {
+        ""extends"": ""B"",
+        ""selector_fit_scope"": ""training_partition_of_each_run_or_fold"",
+        ""selection_method"": null,
+        ""selected_features"": null
+      }
+    },
+    ""evaluation"": {
+      ""baseline"": ""persistence"",
+      ""models"": [
+        ""ridge"",
+        ""random_forest""
+      ],
+      ""initial_parameters"": {
+        ""ridge"": {
+          ""alpha"": 1.0
+        },
+        ""random_forest"": {
+          ""n_estimators"": 300,
+          ""max_depth"": null,
+          ""min_samples_leaf"": 1,
+          ""max_features"": 1.0,
+          ""random_state"": 42,
+          ""n_jobs"": 1
+        }
+      },
+      ""primary_metric"": ""MAE"",
+      ""secondary_metrics"": [
+        ""RMSE"",
+        ""R2""
+      ],
+      ""same_sample_ids"": true,
+      ""baseline_fallback_order"": [
+        ""last_observed_same_station"",
+        ""training_station_median"",
+        ""training_global_median"",
+        ""unavailable""
+      ]
+    },
+    ""experiment_logging"": {
+      ""infrastructure_task_id"": ""T04-LOG"",
+      ""index"": ""experiments/experiment_log.csv"",
+      ""runs"": ""artifacts/experiments""
+    },
+    ""paths"": {
+      ""raw_data"": ""data/raw"",
+      ""processed_data"": ""data/processed"",
+      ""artifacts"": ""artifacts"",
+      ""figures"": ""reports/figures""
+    }
+  },
+  ""configured_seed"": 42,
+  ""randomness_used"": false
+}",PM2.5(t); bounded same-station history only on missing current value,"{
+  ""applied"": false,
+  ""fallback_statistics"": ""train-origin medians only"",
+  ""config"": {
+    ""schema_version"": ""t08-preprocessing-v1"",
+    ""numeric"": {
+      ""imputation_strategy"": ""median"",
+      ""keep_empty_features"": true,
+      ""missing_indicators"": ""all"",
+      ""scale"": {
+        ""ridge"": true,
+        ""random_forest"": false
+      }
+    },
+    ""categorical"": {
+      ""imputation_strategy"": ""constant"",
+      ""fill_value"": ""__MISSING__"",
+      ""handle_unknown"": ""ignore"",
+      ""sparse_output"": false
+    },
+    ""output"": {
+      ""format"": ""pandas"",
+      ""verbose_feature_names"": true
+    },
+    ""prediction_postprocessing"": {
+      ""negative_predictions"": ""identity"",
+      ""applies_to"": [
+        ""persistence"",
+        ""ridge"",
+        ""random_forest""
+      ]
+    }
+  }
+}","{
+  ""provenance"": {
+    ""split_manifest"": ""reports/splits_full/split_manifest.json"",
+    ""split_manifest_sha256"": ""6d3ac3f05da50324a65c34c1e1601b5df45fefc3d2e6d0e834d43a27062d0e42"",
+    ""t05_snapshot_id"": ""2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc"",
+    ""input_files_read"": [
+      {
+        ""path"": ""data/processed/samples_full/train.csv"",
+        ""sha256"": ""ebc89c94b576f009705446da7c4bec079f750755e5755e5041b6a93f09226d46"",
+        ""bytes"": 51395102
+      },
+      {
+        ""path"": ""data/processed/samples_full/sample_ids/train.csv"",
+        ""sha256"": ""336d58dda970536fb0c7dc1739529fe2f1bcb4200a5f32e2f3d40cca1279d8bf"",
+        ""bytes"": 24598381
+      }
+    ],
+    ""source_mode"": ""full"",
+    ""validation_start"": ""2015-03-01T00:00:00"",
+    ""validation_files"": {
+      ""validation_samples"": {
+        ""path"": ""data/processed/samples_full/validation.csv"",
+        ""sha256"": ""eed8f0a497b352540705640ccf1a10d3db9084af88653184aa2e0b4abbbfa173"",
+        ""bytes"": 26281009
+      },
+      ""validation_ids"": {
+        ""path"": ""data/processed/samples_full/sample_ids/validation.csv"",
+        ""sha256"": ""4102afaecae6eb3f56434b0b1f93d53f90a914edad304496a429bfdad14f5a8c"",
+        ""bytes"": 12333889
+      }
+    },
+    ""validation_membership"": {
+      ""operational"": {
+        ""samples"": 103287,
+        ""ordered_sample_ids_sha256"": ""bd15e19b4ce89a5025e5f36f547fc4d3f56953e334d38da3bc8390270dd6444a""
+      },
+      ""primary"": {
+        ""samples"": 102479,
+        ""ordered_sample_ids_sha256"": ""534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7""
+      }
+    },
+    ""label_availability"": {
+      ""status"": ""passed"",
+      ""fit_samples"": 205977,
+      ""evaluation_samples"": 103287,
+      ""latest_fit_target_timestamp"": ""2015-02-28T23:00:00"",
+      ""first_evaluation_input_timestamp"": ""2015-02-28T23:00:00"",
+      ""planned_label_cutoff"": ""2015-02-28T23:00:00"",
+      ""comparison"": ""<="",
+      ""fitted"": false
+    }
+  },
+  ""history_scope"": {
+    ""raw_sha256"": {
+      ""PRSA_Data_Aotizhongxin_20130301-20170228.csv"": ""a94fbcfc71708b6ffdc033360163d91efb7f675e496f6b5860929aa96b96351b"",
+      ""PRSA_Data_Changping_20130301-20170228.csv"": ""a2e21402a6d95fb7043f87959e6e3dcbecb957aac356a6f8028a85b047c772e7"",
+      ""PRSA_Data_Dingling_20130301-20170228.csv"": ""3d8dff81f18a80d9f455876a785642bffe1e9b9924ec1e6b7ce8cca790432eeb"",
+      ""PRSA_Data_Dongsi_20130301-20170228.csv"": ""9c0020214425e5ee2a64d42f97a1f632e1d8f6b53ad50edd85a686cc7999f27e"",
+      ""PRSA_Data_Guanyuan_20130301-20170228.csv"": ""59390fee3b032597b387491f5230e7edb90a8558e30217ebd6d9befbe669fbf9"",
+      ""PRSA_Data_Gucheng_20130301-20170228.csv"": ""10ae48801ea55869fee56a48b885fb1127859c130551888d71673f34216ba951"",
+      ""PRSA_Data_Huairou_20130301-20170228.csv"": ""812dcbe848b3ba2c2d25731064797bff803c46eb0c602156a1fa044df136dc26"",
+      ""PRSA_Data_Nongzhanguan_20130301-20170228.csv"": ""572cf87b65ef543cd55d3a711b28474def224a46b0ec3fc8add8aaf13b67a487"",
+      ""PRSA_Data_Shunyi_20130301-20170228.csv"": ""520b59e4ead3b0cfe7f1ed673e30275de8441e999db6f413d5172d2277b8c15a"",
+      ""PRSA_Data_Tiantan_20130301-20170228.csv"": ""0743e34799cf1ee36195b73321b91baa5625276532e7263c588f68cdef3b4daa"",
+      ""PRSA_Data_Wanliu_20130301-20170228.csv"": ""0b1a6d754a07f0def2f55434ddfa3870dcd0063b7f766a6f66b6c11bb05a377a"",
+      ""PRSA_Data_Wanshouxigong_20130301-20170228.csv"": ""ab1d6a356d6997a45f6d657ad47de1e05a4a08d4a7015b38a329a90665ab74d0""
+    },
+    ""rows"": 212328,
+    ""rows_per_station"": 17694,
+    ""first_timestamp"": ""2013-03-01 00:00:00"",
+    ""last_timestamp"": ""2015-03-08 05:00:00"",
+    ""values_scope"": ""observations through selected validation origins only"",
+    ""hash_scope"": ""full raw byte identity, no test CSV/IDs opened"",
+    ""test_csv_accessed"": false
+  },
+  ""validation_anchor"": {
+    ""schema_version"": ""validation-cohorts-v1"",
+    ""split"": ""validation"",
+    ""test_locked"": true,
+    ""t05_snapshot_id"": ""2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc"",
+    ""files"": {
+      ""validation_samples"": {
+        ""path"": ""data/processed/samples_full/validation.csv"",
+        ""sha256"": ""eed8f0a497b352540705640ccf1a10d3db9084af88653184aa2e0b4abbbfa173"",
+        ""bytes"": 26281009
+      },
+      ""validation_ids"": {
+        ""path"": ""data/processed/samples_full/sample_ids/validation.csv"",
+        ""sha256"": ""4102afaecae6eb3f56434b0b1f93d53f90a914edad304496a429bfdad14f5a8c"",
+        ""bytes"": 12333889
+      }
+    },
+    ""cohorts"": {
+      ""operational"": {
+        ""samples"": 103287,
+        ""ordered_sample_ids_sha256"": ""bd15e19b4ce89a5025e5f36f547fc4d3f56953e334d38da3bc8390270dd6444a""
+      },
+      ""primary"": {
+        ""samples"": 102479,
+        ""ordered_sample_ids_sha256"": ""534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7""
+      }
+    },
+    ""order"": ""T05 station/input_timestamp order"",
+    ""primary_filter"": ""is_primary == true"",
+    ""operational_filter"": ""all retained T05 validation IDs"",
+    ""comparison_rule"": ""same IDs/order; no dropping rows for missing features; report prediction coverage""
+  }
+}","{
+  ""timestamp_column"": ""target_timestamp"",
+  ""validation_start"": ""2015-03-01T00:00:00"",
+  ""test_start"": ""2016-03-01T00:00:00"",
+  ""timestamp_convention"": ""source_local_naive"",
+  ""test_locked"": true,
+  ""final_refit_train_validation"": true,
+  ""evaluation"": ""validation"",
+  ""headline_cohort"": ""primary""
+}","{
+  ""train"": {
+    ""input_timestamp_min"": ""2013-03-01 00:00:00"",
+    ""input_timestamp_max"": ""2015-02-28 22:00:00"",
+    ""target_timestamp_min"": ""2013-03-01 01:00:00"",
+    ""target_timestamp_max"": ""2015-02-28 23:00:00""
+  },
+  ""validation"": {
+    ""input_timestamp_min"": ""2015-02-28 23:00:00"",
+    ""input_timestamp_max"": ""2015-03-08 05:00:00"",
+    ""target_timestamp_min"": ""2015-03-01 00:00:00"",
+    ""target_timestamp_max"": ""2015-03-08 06:00:00""
+  }
+}","{
+  ""train_operational"": 205977,
+  ""validation_operational"": 2016,
+  ""validation_primary"": 1998
+}",,"{
+  ""smoke_before_full"": true,
+  ""max_full_runs"": 1
+}",false,executed_script,2026-11-02T13:47:35.785831+00:00,2026-11-02T13:47:38.298043+00:00,UTC,2.512212,"{
+  ""commit"": ""8c9f98d07bcdd5d3b237fa2438c571b0a09f20e3"",
+  ""branch"": ""feature/t09-persistence-baseline"",
+  ""dirty"": true,
+  ""available"": true
+}","{
+  ""python"": ""3.12.10"",
+  ""platform"": ""Windows-11-10.0.22631-SP0"",
+  ""packages"": {
+    ""Jinja2"": ""3.1.6"",
+    ""MarkupSafe"": ""3.0.4"",
+    ""PyYAML"": ""6.0.3"",
+    ""Pygments"": ""2.21.0"",
+    ""Send2Trash"": ""2.1.0"",
+    ""altair"": ""6.3.0"",
+    ""anyio"": ""4.16.0"",
+    ""argon2-cffi"": ""25.1.0"",
+    ""argon2-cffi-bindings"": ""26.1.0"",
+    ""arrow"": ""1.4.0"",
+    ""asttokens"": ""3.0.2"",
+    ""async-lru"": ""2.4.0"",
+    ""attrs"": ""26.1.0"",
+    ""babel"": ""2.18.0"",
+    ""beautifulsoup4"": ""4.15.0"",
+    ""beijing-air-quality"": ""0.1.0"",
+    ""bleach"": ""6.4.0"",
+    ""certifi"": ""2026.10.23"",
+    ""cffi"": ""2.1.1"",
+    ""charset-normalizer"": ""3.5.2"",
+    ""click"": ""8.5.0"",
+    ""cloudpickle"": ""3.1.2"",
+    ""colorama"": ""0.4.6"",
+    ""comm"": ""0.2.3"",
+    ""contourpy"": ""1.4.0"",
+    ""cycler"": ""0.12.1"",
+    ""debugpy"": ""1.8.22"",
+    ""defusedxml"": ""0.7.1"",
+    ""executing"": ""2.3.0"",
+    ""fastjsonschema"": ""2.22.3"",
+    ""fonttools"": ""4.68.0"",
+    ""fqdn"": ""1.6.0"",
+    ""h11"": ""0.16.0"",
+    ""httpcore"": ""1.0.9"",
+    ""httpx"": ""0.28.1"",
+    ""idna"": ""3.20"",
+    ""iniconfig"": ""2.3.1"",
+    ""ipykernel"": ""7.4.0"",
+    ""ipython"": ""9.18.0"",
+    ""ipython_pygments_lexers"": ""1.1.1"",
+    ""ipywidgets"": ""8.1.9"",
+    ""isoduration"": ""20.11.0"",
+    ""itsdangerous"": ""2.2.0"",
+    ""jedi"": ""0.20.1"",
+    ""joblib"": ""1.6.0"",
+    ""json5"": ""0.17.3"",
+    ""jsonpointer"": ""3.7"",
+    ""jsonschema"": ""4.26.0"",
+    ""jsonschema-specifications"": ""2025.9.1"",
+    ""jupyter"": ""1.1.1"",
+    ""jupyter-console"": ""6.6.3"",
+    ""jupyter-events"": ""0.12.1"",
+    ""jupyter-lsp"": ""2.3.1"",
+    ""jupyter_builder"": ""1.2.4"",
+    ""jupyter_client"": ""8.10.0"",
+    ""jupyter_core"": ""5.9.1"",
+    ""jupyter_server"": ""2.21.1"",
+    ""jupyter_server_terminals"": ""0.5.4"",
+    ""jupyterlab"": ""4.6.5"",
+    ""jupyterlab_pygments"": ""0.3.0"",
+    ""jupyterlab_server"": ""2.28.1"",
+    ""jupyterlab_widgets"": ""3.0.17"",
+    ""kiwisolver"": ""1.5.1"",
+    ""lark"": ""1.3.1"",
+    ""matplotlib"": ""3.11.2"",
+    ""matplotlib-inline"": ""0.2.2"",
+    ""mistune"": ""3.4.0"",
+    ""narwhals"": ""2.28.0"",
+    ""nbclient"": ""0.11.0"",
+    ""nbconvert"": ""7.17.2"",
+    ""nbformat"": ""5.11.1"",
+    ""nest-asyncio2"": ""1.7.4"",
+    ""notebook"": ""7.6.4"",
+    ""notebook_shim"": ""0.2.4"",
+    ""numpy"": ""2.5.4"",
+    ""packaging"": ""26.3"",
+    ""pandas"": ""3.0.6"",
+    ""pandocfilters"": ""1.5.1"",
+    ""parso"": ""0.8.7"",
+    ""pillow"": ""13.0.0"",
+    ""pip"": ""26.2.1"",
+    ""platformdirs"": ""4.14.3"",
+    ""pluggy"": ""1.6.0"",
+    ""prometheus_client"": ""0.26.0"",
+    ""prompt_toolkit"": ""3.0.53"",
+    ""protobuf"": ""7.36.2"",
+    ""psutil"": ""7.2.2"",
+    ""pure_eval"": ""0.2.4"",
+    ""pyarrow"": ""26.0.0"",
+    ""pycparser"": ""3.12"",
+    ""pydeck"": ""0.9.3"",
+    ""pyparsing"": ""3.3.3"",
+    ""pytest"": ""9.1.1"",
+    ""python-dateutil"": ""2.9.0.post0"",
+    ""python-json-logger"": ""4.2.0"",
+    ""python-multipart"": ""0.0.33"",
+    ""pywinpty"": ""3.1.2"",
+    ""pyzmq"": ""27.2.0"",
+    ""referencing"": ""0.37.0"",
+    ""requests"": ""2.34.2"",
+    ""rfc3339-validator"": ""0.1.4"",
+    ""rfc3986-validator"": ""0.1.1"",
+    ""rfc3987-syntax"": ""1.1.0"",
+    ""rpds-py"": ""2026.9.1"",
+    ""scikit-learn"": ""1.9.1"",
+    ""scipy"": ""1.18.1"",
+    ""seaborn"": ""0.13.2"",
+    ""setuptools"": ""84.2.1"",
+    ""six"": ""1.17.0"",
+    ""soupsieve"": ""3.0.4"",
+    ""stack-data"": ""0.6.3"",
+    ""starlette"": ""1.10.0"",
+    ""streamlit"": ""1.66.1"",
+    ""terminado"": ""0.18.1"",
+    ""threadpoolctl"": ""3.7.0"",
+    ""tinycss2"": ""1.5.1"",
+    ""tornado"": ""6.6"",
+    ""traitlets"": ""5.16.1"",
+    ""typing_extensions"": ""4.16.0"",
+    ""tzdata"": ""2026.5"",
+    ""uri-template"": ""1.3.0"",
+    ""urllib3"": ""2.8.0"",
+    ""uvicorn"": ""0.54.0"",
+    ""watchdog"": ""6.0.0"",
+    ""wcwidth"": ""0.9.4"",
+    ""webcolors"": ""25.10.0"",
+    ""webencodings"": ""0.6.1"",
+    ""websocket-client"": ""1.9.2"",
+    ""websockets"": ""17.4"",
+    ""wheel"": ""0.48.0"",
+    ""widgetsnbextension"": ""4.0.16""
+  }
+}","{
+  ""validation_primary"": {
+    ""n_total"": 1998,
+    ""n_scored"": 1998,
+    ""unavailable"": 0,
+    ""coverage"": 1.0,
+    ""MAE"": 10.82132132132132,
+    ""RMSE"": 16.70591474860289,
+    ""R2"": 0.9656214053905998,
+    ""r2_undefined_reason"": null,
+    ""fallback_count"": 0,
+    ""fallback_rate"": 0.0
+  },
+  ""validation_operational"": {
+    ""n_total"": 2016,
+    ""n_scored"": 2016,
+    ""unavailable"": 0,
+    ""coverage"": 1.0,
+    ""MAE"": 10.977678571428571,
+    ""RMSE"": 17.233213018830266,
+    ""R2"": 0.963344761386762,
+    ""r2_undefined_reason"": null,
+    ""fallback_count"": 18,
+    ""fallback_rate"": 0.008928571428571428
+  },
+  ""timing_seconds"": {
+    ""preflight"": 7.478052300000854,
+    ""fallback_statistics_fit"": 0.07114000000001397,
+    ""predict"": 0.1818924999970477,
+    ""evaluate"": 0.004015099999378435,
+    ""diagnostics_and_plot"": 1.539282000005187
+  },
+  ""test_csv_accessed"": false,
+  ""official_full_result"": false
+}","[
+  {
+    ""path"": ""../artifacts/experiments/5a6c965f64754a2ea9508e554fd92092/artifacts/source/baseline.py"",
+    ""sha256"": ""ea0787f928f1893a7429f0ecb84de2d630215d1facb668ebda64b9b2754e1572"",
+    ""size_bytes"": 5064
+  },
+  {
+    ""path"": ""../artifacts/experiments/5a6c965f64754a2ea9508e554fd92092/artifacts/source/evaluation.py"",
+    ""sha256"": ""903dad88d32507360c18e67d7c0559bea069a94e6859978244c442196d5ec27a"",
+    ""size_bytes"": 7261
+  },
+  {
+    ""path"": ""../artifacts/experiments/5a6c965f64754a2ea9508e554fd92092/artifacts/source/metrics.py"",
+    ""sha256"": ""c282e54515b5ad25fa9b67c576c8d082da9833878d65ac89e22ac7714b221769"",
+    ""size_bytes"": 3114
+  },
+  {
+    ""path"": ""../artifacts/experiments/5a6c965f64754a2ea9508e554fd92092/artifacts/source/run_baseline.py"",
+    ""sha256"": ""75fa263fa30e9499c367e3263ce2c52de0342f64f9e96e99208390f81e6681a9"",
+    ""size_bytes"": 16051
+  },
+  {
+    ""path"": ""../artifacts/experiments/5a6c965f64754a2ea9508e554fd92092/artifacts/data/validation_manifest.json"",
+    ""sha256"": ""b9646da98017bc0b02f622ee928df0b70185e8a6312a2a9512329d4d04057e7f"",
+    ""size_bytes"": 1195
+  },
+  {
+    ""path"": ""../artifacts/experiments/5a6c965f64754a2ea9508e554fd92092/artifacts/data/evaluation_ids.csv"",
+    ""sha256"": ""0962b6b03f97af3ae6d559e97ecd781027fbf7a687b014ec2f78ed31100d4054"",
+    ""size_bytes"": 240824
+  },
+  {
+    ""path"": ""../artifacts/experiments/5a6c965f64754a2ea9508e554fd92092/artifacts/model/baseline_state.json"",
+    ""sha256"": ""77726627d3b04686729238a94784ba8c55f3a30d3f9aab6893e5dfd6b43d1225"",
+    ""size_bytes"": 429
+  },
+  {
+    ""path"": ""../artifacts/experiments/5a6c965f64754a2ea9508e554fd92092/artifacts/predictions/validation.csv"",
+    ""sha256"": ""97b6e7c7d09eb2bcdb8e61247f6cf9952ac4d1712e360a0989bdebcfe02da2d4"",
+    ""size_bytes"": 481046
+  },
+  {
+    ""path"": ""../artifacts/experiments/5a6c965f64754a2ea9508e554fd92092/artifacts/tables/metrics.csv"",
+    ""sha256"": ""21285a6da9f38832402adec38e6972a127d1abb345b9a3d265b1c7905c8902ad"",
+    ""size_bytes"": 423
+  },
+  {
+    ""path"": ""../artifacts/experiments/5a6c965f64754a2ea9508e554fd92092/artifacts/tables/fallback.csv"",
+    ""sha256"": ""6baeb233a9dc546a750991e00e21bf9db82368cddac40fedf0775d943b2b5250"",
+    ""size_bytes"": 182
+  },
+  {
+    ""path"": ""../artifacts/experiments/5a6c965f64754a2ea9508e554fd92092/artifacts/tables/station_metrics.csv"",
+    ""sha256"": ""edd1a97080e62284debade73f51caf7e6f9861e8578b638e0d9f5426a8c55bca"",
+    ""size_bytes"": 2288
+  },
+  {
+    ""path"": ""../artifacts/experiments/5a6c965f64754a2ea9508e554fd92092/artifacts/tables/month_metrics.csv"",
+    ""sha256"": ""3e51ed17ae489217956b4052397b25fe84d6152e0787a5b9b7311fe8fbdc069b"",
+    ""size_bytes"": 275
+  },
+  {
+    ""path"": ""../artifacts/experiments/5a6c965f64754a2ea9508e554fd92092/artifacts/tables/largest_errors.csv"",
+    ""sha256"": ""98ed9043bd7623d668b6b90eccbd55fa1931c4b00d17ce9117710c1d103c6261"",
+    ""size_bytes"": 5054
+  },
+  {
+    ""path"": ""../artifacts/experiments/5a6c965f64754a2ea9508e554fd92092/artifacts/figures/validation_errors.png"",
+    ""sha256"": ""d2ab335415c0f64a2eaee88cf144beafb8bdcc5f242c773f9f42ce96a4bab770"",
+    ""size_bytes"": 212912
+  }
+]","SMOKE — execution check, not official research numbers.
+
+Primary N=1998, MAE=10.821321, RMSE=16.705915, R²=0.9656214053905998. Operational N=2016, MAE=10.977679, RMSE=17.233213, R²=0.963344761386762.
+
+Fallback=18/2016 (0.8929%); coverage=100.0000%; history limit <= 24h, otherwise train medians. Primary has no missing-current fallback; do not mix denominators. Numeric units µg/m³.
+
+No randomness (actual seed null; project seed retained in config). No test, clipping, learned model or threshold tuning. Compare T10 Ridge/RF A on identical primary validation IDs; improvement is a research question, not a required outcome.","T10: initial Ridge and Random Forest A on frozen IDs, same metrics/prediction policy; log all outcomes.",,../artifacts/experiments/5a6c965f64754a2ea9508e554fd92092/config.json,../artifacts/experiments/5a6c965f64754a2ea9508e554fd92092/metrics.json,../artifacts/experiments/5a6c965f64754a2ea9508e554fd92092/metadata.json,../artifacts/experiments/5a6c965f64754a2ea9508e554fd92092/notes.md

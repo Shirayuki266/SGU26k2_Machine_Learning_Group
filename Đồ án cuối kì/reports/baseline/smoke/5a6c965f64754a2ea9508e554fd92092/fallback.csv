@@ -1,0 +1,4 @@
+cohort,prediction_source,samples,fraction
+primary,persistence,1998,1.0
+operational,last_observed_same_station,18,0.008928571428571428
+operational,persistence,1998,0.9910714285714286

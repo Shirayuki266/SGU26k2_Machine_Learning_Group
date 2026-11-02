@@ -1,0 +1,15 @@
+{
+  "run_id": "5a6c965f64754a2ea9508e554fd92092",
+  "mode": "smoke",
+  "status": "completed",
+  "official": false,
+  "directory": "artifacts/experiments/5a6c965f64754a2ea9508e554fd92092",
+  "config_sha256": "63eca8f565cee6dc67f6373bbfd42e20e8612205bf9210ca3535453265f4a9e1",
+  "metrics_sha256": "99945ebc9835bfb1170c6c029f0382f1a2361f45445aae3d3a9bcac42de89c75",
+  "source_sha256": {
+    "baseline.py": "ea0787f928f1893a7429f0ecb84de2d630215d1facb668ebda64b9b2754e1572",
+    "evaluation.py": "903dad88d32507360c18e67d7c0559bea069a94e6859978244c442196d5ec27a",
+    "metrics.py": "c282e54515b5ad25fa9b67c576c8d082da9833878d65ac89e22ac7714b221769",
+    "run_baseline.py": "75fa263fa30e9499c367e3263ce2c52de0342f64f9e96e99208390f81e6681a9"
+  }
+}

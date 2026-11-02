@@ -1,0 +1,3 @@
+run_id,mode,split,cohort,n_total,n_scored,unavailable,coverage,MAE,RMSE,R2,r2_undefined_reason,fallback_count,fallback_rate
+5a6c965f64754a2ea9508e554fd92092,smoke,validation,primary,1998,1998,0,1.0,10.82132132132132,16.70591474860289,0.9656214053905998,NA,0,0.0
+5a6c965f64754a2ea9508e554fd92092,smoke,validation,operational,2016,2016,0,1.0,10.977678571428571,17.233213018830266,0.963344761386762,NA,18,0.008928571428571428

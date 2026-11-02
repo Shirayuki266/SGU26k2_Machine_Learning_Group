@@ -19,3 +19,17 @@
 /src/beijing_air/preprocessing.py text eol=lf
 /configs/preprocessing.json text eol=lf
 /tests/test_preprocessing.py text eol=lf
+
+# T09 source and immutable report bytes; logger CSV contains mixed CSV/JSON newlines.
+/src/beijing_air/baseline.py text eol=lf
+/src/beijing_air/evaluation.py text eol=lf
+/src/beijing_air/metrics.py text eol=lf
+/configs/baseline.json text eol=lf
+/scripts/run_baseline.py text eol=lf
+/scripts/verify_baseline.py text eol=lf
+/tests/test_baseline.py text eol=lf
+/reports/evaluation/** text eol=lf
+/reports/baseline/** text eol=lf
+/reports/baseline/t09_runs.zip binary
+/reports/figures/baseline/*.png binary
+/experiments/experiment_log.csv -text whitespace=cr-at-eol

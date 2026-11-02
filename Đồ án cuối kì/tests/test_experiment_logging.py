@@ -33,6 +33,23 @@ def start(logger, **kwargs):
     return logger.start_run(task_id="TEST_ONLY_T04", is_test=True, **kwargs)
 
 
+def test_tracked_index_without_run_files_never_loses_history_on_new_run(logger):
+    with start(logger) as original:
+        pass
+    before = logger.csv_path.read_bytes()
+    metrics = original.directory / "metrics.json"
+    saved = metrics.read_bytes()
+    metrics.unlink()  # TEST_ONLY: simulate a clone with missing run artifacts.
+    with pytest.raises(FileNotFoundError, match="restore the run bundle"):
+        start(logger)
+    assert logger.csv_path.read_bytes() == before
+    assert len(list(logger.artifact_dir.iterdir())) == 1
+    metrics.write_bytes(saved)
+    with start(logger):
+        pass
+    assert len(rows(logger)) == 2
+
+
 def test_lifecycle_unicode_null_and_csv_links(logger):
     objective = 'KIỂM THỬ: dự báo, tiếng Việt\n"không phải thực nghiệm"'
     with start(logger, objective=objective, mode="smoke", kind="baseline",
