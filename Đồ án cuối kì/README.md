@@ -462,3 +462,15 @@ chuẩn giữ nguyên. Python cách ly cài/import/pip check/Office pass; EDA tr
 14bảng/9PNG kiểm lại, 14bảng khớp lịch sử. Minh chứng EDA mới mang tag mk02_clean_20261103_01,
 không thêm dòng model log. Chưa kiểm venv chuẩn/OS mới hoặc tái huấn luyện full;
 chưa có serialized model weights. **BẢN NHÁP: nhóm/rubric còn [CẦN BỔ SUNG]**.
+
+## Quy định cuối kỳ từ T13
+
+Đọc [checklist cuối kỳ](docs/final_stage_requirements.md),
+[bài giảng/rubric](docs/course_alignment.md),
+[bảng nhóm chờ xác nhận](docs/team_contributions.md) và
+[AI disclosure](docs/ai_disclosure.md).
+Mỗi PR từ T13 có mục bài giảng/rubric/AI; Issue gán thành viên thật, kiểm danh
+tính Git trước commit. Bổ sung % MAE giảm persistence, fold/std và phân tích lỗi
+đợt ô nhiễm cao. Cuối kỳ có 5chương/slide/poster/video/model/source/README,
+ZIP tên nhóm trưởng và yêu cầu in/chia sẻ repo. Các mục thiếu giữ [CẦN BỔ SUNG].
+Lần cập nhật này chỉ tài liệu, chưa thực hiện T13 hoặc thay đổi gói giữa kỳ.

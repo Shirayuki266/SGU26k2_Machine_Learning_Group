@@ -9,7 +9,8 @@ thay thế quy định trước đây yêu cầu chờ cho phép commit/push/t�
 ## 1. Chia công việc
 
 - Mỗi task nhỏ: một Issue, một branch, một PR; hướng tới một commit hoàn chỉnh
-  trước khi mở PR. Code, kiểm tra và tài liệu trực tiếp liên quan thuộc cùng task.
+  trước khi mở PR cho giai đoạn tới MK02. Từ T13, dùng commit nhỏ theo phần
+  việc thật và tiến độ, không ép một commit cho cả task. Code/kiểm tra/tài liệu liên quan thuộc cùng task.
 - Chia task lớn thành các task con có đầu ra độc lập; không gộp thay đổi không
   liên quan vào một PR.
 - Một task có thể có nhiều lần thực nghiệm ghi đầy đủ trong Experiment Log;
@@ -83,8 +84,9 @@ Experiments:
 ```
 
 Sau commit, push branch lên đúng remote, không push trực tiếp nhánh đích.
-Không force-push hoặc sửa lịch sử đã public nếu chưa được yêu cầu. Ưu tiên
-một commit ban đầu; sau khi PR public, chấp nhận commit sửa lỗi bổ sung trong
+Không force-push hoặc sửa lịch sử đã public nếu chưa được yêu cầu. Không sửa
+lịch sử để cân bằng đóng góp. Đến MK02 ưu tiên một commit ban đầu; từ T13 dùng
+commit nhỏ theo phần việc thật. Sau khi PR public, chấp nhận commit sửa lỗi bổ sung trong
 cùng branch để giữ lịch sử review, không tự squash/force-push để ép còn một commit.
 
 ## 6. Pull Request
@@ -102,6 +104,15 @@ Closes #<issue-number>
 
 ## Mục tiêu
 <Vấn đề và kết quả task giải quyết trong 1–2 câu.>
+
+## Bài giảng áp dụng
+<Từ T13: chủ đề, nguồn file/trang hoặc [CẦN BỔ SUNG], cách áp dụng/khác biệt cho chuỗi thời gian; liên kết course_alignment.md.>
+
+## Tiêu chí rubric đáp ứng
+<Từ T13: yêu cầu có nguồn, bằng chứng và trạng thái; thiếu rubric chính thức ghi [CẦN BỔ SUNG], không tự suy điểm.>
+
+## Hỗ trợ AI
+<Từ T13: công cụ/phần AI hỗ trợ, kiểm chứng/giới hạn, người nhận đã đọc và hiểu hoặc [CẦN BỔ SUNG]; liên kết ai_disclosure.md.>
 
 ## Thay đổi chính
 - <Thay đổi cụ thể và lý do.>
@@ -165,3 +176,24 @@ Nếu thiếu quyền/công cụ GitHub, hoàn thành phần local có thể là
 commit/PR title và body, nêu chính xác bước bị chặn. Không tuyên bố đã commit,
 push hoặc mở PR khi thao tác chưa thành công. Không triển khai task tiếp theo
 chỉ vì task hiện tại đã bàn giao PR.
+
+## 9. Bắt buộc từ T13
+
+- Gán mỗi Issue thực thi cho một thành viên cụ thể từ bảng
+  [team_contributions.md](team_contributions.md) do nhóm xác nhận. Thiếu mapping
+  để [CẦN BỔ SUNG] và hoàn thiện trước công việc/commit task từ T13; không đoán
+  người nhận từ Git config. Issue #30 chuẩn bị quy trình chưa có mapping để gán.
+- Trước mỗi commit chạy git config --show-origin --get user.name/email và
+  git var GIT_AUTHOR_IDENT/GIT_COMMITTER_IDENT; thông báo danh tính thực cho
+  người dùng. Không đổi global config hoặc giả author/co-author.
+- Commit nhỏ, đều theo việc thực; không commit rỗng/tách giả để tăng số lượng
+  hoặc đẩy toàn bộ mã sát hạn. Không sửa lịch sử đã làm để cân bằng đóng góp.
+- Ba mục PR “Bài giảng áp dụng”, “Tiêu chí rubric đáp ứng”, “Hỗ trợ AI” là bắt
+  buộc từ T13 theo mẫu trên; đối chiếu [course_alignment.md](course_alignment.md).
+- Thành viên nhận việc phải đọc/hiểu trước merge; ai đã review phải do nhóm xác
+  nhận. Ghi hỗ trợ AI trong PR và [ai_disclosure.md](ai_disclosure.md), phần
+  đóng góp thật ở team_contributions.md, không suy từ số commit.
+- PR kết quả mới có % MAE giảm persistence và nguồn/run/cohort; phát biểu ổn
+  định kèm fold/std/giới hạn mùa. Xem [yêu cầu cuối kỳ](final_stage_requirements.md).
+- Phát hiện lỗi cũ báo và đề xuất Issue/PR riêng, không sửa báo cáo/log/run cũ
+  trong task hiện tại. Các quy định mới không hồi tố task tới MK02.

@@ -83,3 +83,17 @@ T12 đã so Ridge A/B/C cố định alpha, selection trong fold và khóa RF A 
 validation; chưa tuning RF hoặc mở test/T13. Không nhập audit/fixture vào log
 hoặc dựng lịch sử; không tự triển khai task sau khi chưa được giao.
 Codex hỗ trợ mapping; không tự điền tên/MSSV/đóng góp hoặc rubric chưa cung cấp.
+
+## Bổ sung giai đoạn cuối kỳ từ T13
+
+Issue #30 chỉ cập nhật quy định; giữ nguyên task và sản phẩm đã làm đến MK02.
+[Yêu cầu cuối kỳ](final_stage_requirements.md) là checklist bổ sung cho:
+T13 (%MAE so persistence, fold/std, lỗi theo trạm/mùa/nồng độ/đợt cao và diễn
+giải không nhân quả), T14 (demo và video thật), T15 (5chương/slide/poster,
+bảng thành viên), T16 (tái lập/gói đúng tên nhóm trưởng/bản in/chia sẻ repo).
+Đây là yêu cầu tương lai, không phải xác nhận đã triển khai hoặc cấp quyền mở test.
+
+Mỗi PR từ T13 có bài giảng/rubric/AI disclosure; Issue gán người cụ thể từ
+bảng nhóm, kiểm danh tính trước commit và thành viên đọc/hiểu trước merge.
+Tài liệu thầy, thông tin nhóm/tỷ lệ100% và kích thước poster thiếu được ghi
+[CẦN BỔ SUNG], không tự điền. Không sửa lịch sử cũ để tạo đóng góp cân bằng.
