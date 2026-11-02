@@ -36,7 +36,7 @@ Phụ thuộc là trình tự kỹ thuật, không cấp quyền chạy. Chưa c
 | T03 | Tải UCI 501, nguồn/license, manifest/checksum | T01–T02 | Issue #4; xác minh lại 02/11/2026: 12 trạm/420.768 dòng, manifest/raw không đổi; sửa fallback ZIP, xem reports/data_audit.md; không tải lại |
 | T04 | Ghép trạm, audit chất lượng, giữ raw/chưa impute | T03 | Issue #5; có src/beijing_air/data.py, tests/test_data.py, reports/data_quality.md; không audit lại |
 | T04-LOG | Logger, CSV, hồ sơ run và kiểm thử | T01–T04; trước model | Tên hiện hành của T04-BỔ SUNG, cùng Issue #6/PR #7 đã merge; không tạo hệ thống song song |
-| T05 | Target đúng +1 giờ cùng trạm, temporal split và kiểm tra ranh giới | T04, T02 | Issue #1 có tên tương ứng và đã đóng, **chưa có mã/artifact đủ xác minh trong repo**; không suy hoàn thành từ Issue |
+| T05 | Target đúng +1 giờ cùng trạm, temporal split và kiểm tra ranh giới | T04, T02 | Issue #1; đã triển khai samples.py/build_samples.py, tests và [audit split](../reports/sample_split.md); lần này bàn giao PR riêng, không tự merge |
 | T06 | EDA train: tính chất biến, đơn/đa biến, missing/bất thường/ngoại lệ, chu kỳ thời gian/trạm; notebook, bảng, hình gốc và nhận xét | T05 xác định train | Chưa xác minh hoàn thành/Issue/artifact |
 | T07 | Feature engineering A/B, lag/rolling đúng trạm/timestamp, dictionary và causal tests | T05–T06 | Chưa xác minh hoàn thành/Issue/artifact |
 | T08 | Pipelines impute/encode/scale Ridge/RF, fit train/fold, save/load/inference | T05, T07 | Chưa xác minh hoàn thành/Issue/artifact |
@@ -57,8 +57,8 @@ phải kết quả mô hình. Người dùng merge; theo [quy trình GitHub](git
 
 ## 3. Cổng chất lượng và sản phẩm
 
-- Trước T09/T10: xác minh mã/kiểm thử target/split T05, T07/T08 khi cần, logger
-  sẵn sàng và config/budget đã ghi. Issue #1 đóng chưa thay được bằng chứng T05.
+- Trước T09/T10: dùng snapshot/IDs T05 đã xác minh; hoàn thiện T07/T08 khi cần,
+  logger sẵn sàng và config/budget đã ghi; không suy hoàn thành task từ Issue đóng.
 - Phát triển: chỉ train/CV/validation, A/B/C cùng mẫu và thay đổi được kiểm soát;
   kiểm tra leakage, save/load và pipeline trong task triển khai.
 - Trước T13: khóa lựa chọn/run validation; khi được giao mới refit
@@ -69,7 +69,7 @@ phải kết quả mô hình. Người dùng merge; theo [quy trình GitHub](git
   nếu có, hình gốc, CSV/hồ sơ run, demo, T15 báo cáo 5 chương/slide và T16 gói
   tái lập. Artifact không commit phải có đường dẫn/cách tạo lại.
 
-CSV chính thức hiện chỉ header; chưa xác minh EDA train, target/features,
-baseline/model/metric trong repo. Không nhập audit vào log mô hình hoặc dựng
-lịch sử. T02 chỉ cập nhật tài liệu/config hợp đồng, chưa triển khai task sau.
+CSV chính thức hiện chỉ header; T05 đã có target/split và audit count/date.
+Chưa triển khai EDA train/features/baseline/model/metric. Không nhập audit
+dữ liệu vào log mô hình hoặc dựng lịch sử. T05 không tự triển khai task sau.
 Codex hỗ trợ mapping; không tự điền tên/MSSV/đóng góp hoặc rubric chưa cung cấp.

@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "task_id": "T05",
+  "artifact_type": "data_preparation_audit",
+  "snapshot_id": "2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc",
+  "status": "complete",
+  "mode": "full",
+  "created_at": "2026-11-02T11:32:37.664380+00:00",
+  "signature": {
+    "merged_sha256": "45def94e4f4262360d1be95e3844f53db33b0a0dd9e65b3acd081ace2a11de6a",
+    "quality_summary_sha256": "e5f9a5481984fe79300961209b7ff6724fbf0081f538e89662eb8407c829eea0",
+    "raw_manifest_sha256": "bcc2dd85bc2966bffad18d5c625de81eb26642aca16cd91c40a58df9467c0aaf",
+    "mode": "full",
+    "seed": 42,
+    "output_tag": null,
+    "horizon_hours": 1,
+    "problem": {
+      "task_type": "regression",
+      "target_column": "PM2.5",
+      "target_unit": "ug/m3",
+      "group_column": "station",
+      "input_time_column": "input_timestamp",
+      "target_time_column": "target_timestamp",
+      "station_scope": "observed_stations",
+      "current_observation_available": true,
+      "forecast_strategy": "rolling_one_hour"
+    },
+    "split": {
+      "timestamp_column": "target_timestamp",
+      "validation_start": "2015-03-01T00:00:00",
+      "test_start": "2016-03-01T00:00:00",
+      "timestamp_convention": "source_local_naive",
+      "test_locked": true,
+      "final_refit_train_validation": true
+    },
+    "sample_construction": {
+      "target_value_column": "target_pm25",
+      "sample_id_scheme": "pm25-h1-v1",
+      "target_missing_policy": "drop",
+      "origin_missing_policy": "retain_operational_flag_primary",
+      "holdout_label_rule": "at_or_before_first_origin"
+    },
+    "module_sha256": "163d7b6511140d2123c0e3646c1977a31def999d53e1f2e2d06f5a0cdeb9476c",
+    "script_sha256": "e5c78b22bc8b526bc523deb418f2fc61977e3c09a43bdf792fcbe496ed5557b6"
+  },
+  "source": "data/processed/merged_unimputed_full.csv",
+  "raw_manifest": "reports/data_manifest.json",
+  "t04_summary": "reports/quality_full/summary.json",
+  "config": "configs/default.json",
+  "python_version": "3.12.10",
+  "pandas_version": "3.0.6",
+  "input_scope": "full T04 observations",
+  "totals": {
+    "input_rows": 420768,
+    "retained_operational": 412017,
+    "retained_primary": 409180,
+    "excluded_total": 8751,
+    "missing_origin_pm25_total": 8739,
+    "retained_missing_origin_pm25": 2837,
+    "excluded_end_of_series": 12,
+    "excluded_missing_target_timestamp": 0,
+    "excluded_missing_target_value": 8739
+  },
+  "split_summary": [
+    {
+      "cohort": "operational",
+      "split": "train",
+      "samples": 205977,
+      "stations": 12,
+      "input_timestamp_min": "2013-03-01T00:00:00",
+      "input_timestamp_max": "2015-02-28T22:00:00",
+      "target_timestamp_min": "2013-03-01T01:00:00",
+      "target_timestamp_max": "2015-02-28T23:00:00"
+    },
+    {
+      "cohort": "operational",
+      "split": "validation",
+      "samples": 103287,
+      "stations": 12,
+      "input_timestamp_min": "2015-02-28T23:00:00",
+      "input_timestamp_max": "2016-02-29T22:00:00",
+      "target_timestamp_min": "2015-03-01T00:00:00",
+      "target_timestamp_max": "2016-02-29T23:00:00"
+    },
+    {
+      "cohort": "operational",
+      "split": "test",
+      "samples": 102753,
+      "stations": 12,
+      "input_timestamp_min": "2016-02-29T23:00:00",
+      "input_timestamp_max": "2017-02-28T22:00:00",
+      "target_timestamp_min": "2016-03-01T00:00:00",
+      "target_timestamp_max": "2017-02-28T23:00:00"
+    },
+    {
+      "cohort": "primary",
+      "split": "train",
+      "samples": 204865,
+      "stations": 12,
+      "input_timestamp_min": "2013-03-01T00:00:00",
+      "input_timestamp_max": "2015-02-28T22:00:00",
+      "target_timestamp_min": "2013-03-01T01:00:00",
+      "target_timestamp_max": "2015-02-28T23:00:00"
+    },
+    {
+      "cohort": "primary",
+      "split": "validation",
+      "samples": 102479,
+      "stations": 12,
+      "input_timestamp_min": "2015-02-28T23:00:00",
+      "input_timestamp_max": "2016-02-29T22:00:00",
+      "target_timestamp_min": "2015-03-01T00:00:00",
+      "target_timestamp_max": "2016-02-29T23:00:00"
+    },
+    {
+      "cohort": "primary",
+      "split": "test",
+      "samples": 101836,
+      "stations": 12,
+      "input_timestamp_min": "2016-02-29T23:00:00",
+      "input_timestamp_max": "2017-02-28T22:00:00",
+      "target_timestamp_min": "2016-03-01T00:00:00",
+      "target_timestamp_max": "2017-02-28T23:00:00"
+    }
+  ],
+  "membership": {
+    "train": {
+      "operational": {
+        "samples": 205977,
+        "ordered_sample_ids_sha256": "4845a8e82f7681008ce52fabc936122dc32735f4fc864f98c3b7f3c2c0400297"
+      },
+      "primary": {
+        "samples": 204865,
+        "ordered_sample_ids_sha256": "4bce8e5dc4505432d8b26ff1d7bf3b7971be01bb443ee640a0ba0b7d8ca6838e"
+      }
+    },
+    "validation": {
+      "operational": {
+        "samples": 103287,
+        "ordered_sample_ids_sha256": "bd15e19b4ce89a5025e5f36f547fc4d3f56953e334d38da3bc8390270dd6444a"
+      },
+      "primary": {
+        "samples": 102479,
+        "ordered_sample_ids_sha256": "534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7"
+      }
+    },
+    "test": {
+      "operational": {
+        "samples": 102753,
+        "ordered_sample_ids_sha256": "bc832ce214a9190ec5daf61e0b351635480a8af70118a9adb17d8d2682bf62c5"
+      },
+      "primary": {
+        "samples": 101836,
+        "ordered_sample_ids_sha256": "e157bf07fcb173fd76325ac7e95a70a7cff3b92eb5facb0a4f52f32180fe7ae8"
+      }
+    }
+  },
+  "label_availability": {
+    "operational/train_to_validation": {
+      "status": "passed",
+      "fit_samples": 205977,
+      "evaluation_samples": 103287,
+      "latest_fit_target_timestamp": "2015-02-28T23:00:00",
+      "first_evaluation_input_timestamp": "2015-02-28T23:00:00",
+      "planned_label_cutoff": "2015-02-28T23:00:00",
+      "comparison": "<=",
+      "fitted": false
+    },
+    "operational/train_validation_to_test_prospective": {
+      "status": "passed",
+      "fit_samples": 309264,
+      "evaluation_samples": 102753,
+      "latest_fit_target_timestamp": "2016-02-29T23:00:00",
+      "first_evaluation_input_timestamp": "2016-02-29T23:00:00",
+      "planned_label_cutoff": "2016-02-29T23:00:00",
+      "comparison": "<=",
+      "fitted": false
+    },
+    "primary/train_to_validation": {
+      "status": "passed",
+      "fit_samples": 204865,
+      "evaluation_samples": 102479,
+      "latest_fit_target_timestamp": "2015-02-28T23:00:00",
+      "first_evaluation_input_timestamp": "2015-02-28T23:00:00",
+      "planned_label_cutoff": "2015-02-28T23:00:00",
+      "comparison": "<=",
+      "fitted": false
+    },
+    "primary/train_validation_to_test_prospective": {
+      "status": "passed",
+      "fit_samples": 307344,
+      "evaluation_samples": 101836,
+      "latest_fit_target_timestamp": "2016-02-29T23:00:00",
+      "first_evaluation_input_timestamp": "2016-02-29T23:00:00",
+      "planned_label_cutoff": "2016-02-29T23:00:00",
+      "comparison": "<=",
+      "fitted": false
+    }
+  },
+  "files": {
+    "train_samples": {
+      "path": "data/processed/samples_full/train.csv",
+      "sha256": "ebc89c94b576f009705446da7c4bec079f750755e5755e5041b6a93f09226d46",
+      "bytes": 51395102
+    },
+    "train_ids": {
+      "path": "data/processed/samples_full/sample_ids/train.csv",
+      "sha256": "336d58dda970536fb0c7dc1739529fe2f1bcb4200a5f32e2f3d40cca1279d8bf",
+      "bytes": 24598381
+    },
+    "validation_samples": {
+      "path": "data/processed/samples_full/validation.csv",
+      "sha256": "eed8f0a497b352540705640ccf1a10d3db9084af88653184aa2e0b4abbbfa173",
+      "bytes": 26281009
+    },
+    "validation_ids": {
+      "path": "data/processed/samples_full/sample_ids/validation.csv",
+      "sha256": "4102afaecae6eb3f56434b0b1f93d53f90a914edad304496a429bfdad14f5a8c",
+      "bytes": 12333889
+    },
+    "test_samples": {
+      "path": "data/processed/samples_full/test.csv",
+      "sha256": "7bea8d27bc258a059bf0fce1a2a31a051f9564843b3f2322d21c952cebe55642",
+      "bytes": 25548261
+    },
+    "test_ids": {
+      "path": "data/processed/samples_full/sample_ids/test.csv",
+      "sha256": "63356b83f862c2677cb0a655b262495c36cd40ab84a4a224062f167386cba3ca",
+      "bytes": 12271991
+    },
+    "excluded_samples": {
+      "path": "data/processed/samples_full/excluded_samples.csv",
+      "sha256": "55f893911a1d35b09c111faef4c6a33344a4ad4b572424ad1997ee5eb1383366",
+      "bytes": 1235142
+    },
+    "exclusion_summary.csv": {
+      "path": "reports/splits_full/exclusion_summary.csv",
+      "sha256": "52e445d8633e19d440634d311a33d754c81d1bedf9c450c4da0bd97fd8aa951a",
+      "bytes": 783
+    },
+    "split_summary.csv": {
+      "path": "reports/splits_full/split_summary.csv",
+      "sha256": "d07b02480df8967c65186eaacf50b3fb9faa20af53187fa1dc566c0f6b796db3",
+      "bytes": 756
+    },
+    "station_split_summary.csv": {
+      "path": "reports/splits_full/station_split_summary.csv",
+      "sha256": "a328c392d9cc4ece8a797726fad0c393cbc866eddb8678de14fe56588511ba3c",
+      "bytes": 8334
+    }
+  },
+  "test_use": "target construction and count/date audit only; no exploration, fit or metrics",
+  "model_experiment_run": false
+}

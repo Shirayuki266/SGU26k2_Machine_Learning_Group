@@ -5,7 +5,8 @@ MK02 kiểm tra và đóng gói**, không tách nhầm hai mã thành báo cáo 
 T02 chỉ chuẩn bị checklist, chưa tạo các sản phẩm đó.
 
 Hiện có T01 xác minh môi trường, đặc tả T02, manifest/audit T03–T04 và logger
-T04-LOG. Chưa có baseline/model/metric xác minh; log chính thức chỉ header.
+T04-LOG, thêm target/split và count/date audit T05. Chưa có baseline/model/metric
+xác minh; log chính thức chỉ header.
 Ưu tiên tiến độ thực tế đến T10; có T11/T12 thì bổ sung. Không bắt buộc tuning,
 test cuối hoặc demo và **không mở test để lấy số liệu giữa kỳ**. Phải nêu thiếu,
 không điền bảng giả.
@@ -16,7 +17,7 @@ không điền bảng giả.
 | --- | --- | --- | --- |
 | Đề tài/thành viên/phân công | Business Understanding/quản lý | [ ] Tên/MSSV/số nhóm/phân công và đóng góp xác nhận | Chưa đủ thông tin nhóm |
 | Bối cảnh/mục tiêu/Input–Output/hồi quy | T02 | [ ] Đúng t+1/cùng trạm, µg/m³, input tới t, giả định số đo t, RQ1/2/3 | Có đặc tả, chưa có DOCX/PPTX |
-| Dữ liệu/nguồn/số mẫu/thuộc tính/target | Data Understanding, T03–T05 | [ ] Trích nguồn/manifest/audit; phân biệt số công bố/audit/supervised thật | Có audit, T05 chưa xác minh triển khai |
+| Dữ liệu/nguồn/số mẫu/thuộc tính/target | Data Understanding, T03–T05 | [ ] Trích nguồn/manifest/audit; phân biệt số công bố/audit/supervised thật | Có audit raw/T04 và manifest/số mẫu supervised T05; chưa có DOCX/PPTX |
 | EDA train | T06 | [ ] Đơn/đa biến, missing/bất thường/ngoại lệ, thời gian/trạm, hình/bảng gốc và quyết định | Chưa có notebook/hình train xác minh |
 | Feature/pipeline | Data Preparation, T07–T08 | [ ] A/B/dictionary/causal tests; train-only/schema/save-load; tách thiết kế/đã chạy | Có thiết kế, chưa có pipeline xác minh |
 | Baseline/model/protocol | Modeling/Evaluation, T09–T10 | [ ] Persistence/fallback, Ridge/RF A, MAE/RMSE/R², cùng IDs, split/CV/test gate | Có thiết kế, chưa có predictions/metric thật |

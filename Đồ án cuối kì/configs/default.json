@@ -22,6 +22,13 @@
     "test_locked": true,
     "final_refit_train_validation": true
   },
+  "sample_construction": {
+    "target_value_column": "target_pm25",
+    "sample_id_scheme": "pm25-h1-v1",
+    "target_missing_policy": "drop",
+    "origin_missing_policy": "retain_operational_flag_primary",
+    "holdout_label_rule": "at_or_before_first_origin"
+  },
   "temporal_cv": {
     "strategy": "expanding_window",
     "partition": "train",

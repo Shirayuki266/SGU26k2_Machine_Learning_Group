@@ -51,6 +51,17 @@ artifacts/*
 !reports/quality_full/issues.csv
 !reports/quality_full/stations.csv
 
+# Small T05 count/date audits; samples and IDs remain in ignored data/processed.
+!reports/splits_smoke/exclusion_summary.csv
+!reports/splits_smoke/split_summary.csv
+!reports/splits_smoke/station_split_summary.csv
+!reports/splits_full/exclusion_summary.csv
+!reports/splits_full/split_summary.csv
+!reports/splits_full/station_split_summary.csv
+reports/.splits-*/
+reports/splits_smoke_*/
+reports/splits_full_*/
+
 # Experiment index is reviewable; run files reuse the ignored artifacts/ root.
 !experiments/experiment_log.csv
 experiments/.experiment_log.lock

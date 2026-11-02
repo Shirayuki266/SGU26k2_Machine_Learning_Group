@@ -217,3 +217,29 @@ Kiểm tra logger và hồi quy T04 bằng dữ liệu tổng hợp, không đ�
 Codex hỗ trợ logger, kiểm thử và tài liệu T04-BỔ SUNG. Chưa huấn luyện, tuning,
 feature selection hoặc mở test set. Commit đề xuất:
 `feat: add reproducible experiment logging infrastructure`.
+
+## T05: target đúng một giờ và temporal split
+
+Từ input T04 đã được audit, tạo target bằng join `(station,t+1 giờ)`, không
+dùng dòng kế tiếp khi có giờ khuyết và không impute target:
+
+```powershell
+.\.venv\python.exe scripts/build_samples.py --mode smoke
+.\.venv\python.exe scripts/build_samples.py --mode full
+.\.venv\python.exe -m pytest tests/test_samples.py -q --basetemp=.pytest_cache/t05-samples
+```
+
+`src/beijing_air/samples.py` giữ origin/target timestamps, ID ổn định, lý do
+loại mẫu và split theo target timestamp. Đầu ra tại `data/processed/samples_<mode>/`
+gồm train/validation/test, IDs và exclusions; audit nhỏ tại `reports/splits_<mode>/`.
+Sample CSV chứa cohort operational; lọc `is_primary` cho cohort so sánh chính.
+Full có 412.017 operational/409.180 primary, loại 8.751 vì target thiếu/cuối
+chuỗi. [Báo cáo](reports/sample_split.md) có bảng số mẫu/khoảng ngày theo split;
+[hướng dẫn](docs/temporal_samples.md) giải thích ranh giới, nhãn fit và tái lập.
+
+Chạy lại cùng input/config/code chỉ xác minh checksum và giữ nguyên output;
+khác signature hoặc checksum thì dừng, không tự ghi đè. Giữ dataset/IDs cùng
+manifest khi bàn giao hoặc tái tạo từ T04. Test chỉ được audit count/date trong
+T05, chưa EDA/fit/tính metric; audit này không ghi thành model Experiment Log.
+Trên clone mới hoặc cần snapshot khác, dùng `--output-tag reproduce` để tạo
+`samples_full_reproduce`/`splits_full_reproduce`, giữ nguyên báo cáo đã commit.

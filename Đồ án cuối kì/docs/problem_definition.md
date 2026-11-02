@@ -76,8 +76,9 @@ quyết định mới nhất của người dùng; không dùng test để chọ
 [experiment_plan.md](experiment_plan.md) chốt A/B/C, split/CV, tuning, test gate,
 metrics và log; [project_plan.md](project_plan.md) mapping task vào CRISP-DM;
 [midterm_plan.md](midterm_plan.md) là checklist MK01/MK02. Giá trị cấu hình máy
-đọc ở `configs/default.json`; hiện chỉ là hợp đồng cho task tương lai, chưa có
-pipeline target/features/training thực thi các mục đó.
+đọc ở `configs/default.json`. T05 đã triển khai target/split theo
+[temporal_samples.md](temporal_samples.md); feature engineering và training
+vẫn là phần việc sau, chưa được triển khai trong T05.
 
 Chưa có rubric chính thức hoặc thông tin thành viên/đóng góp được xác minh.
 Nguồn và AI disclosure phải được ghi đúng tài liệu/artifact thật. Codex hỗ trợ
