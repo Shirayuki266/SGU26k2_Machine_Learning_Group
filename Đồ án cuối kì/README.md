@@ -243,3 +243,27 @@ manifest khi bàn giao hoặc tái tạo từ T04. Test chỉ được audit cou
 T05, chưa EDA/fit/tính metric; audit này không ghi thành model Experiment Log.
 Trên clone mới hoặc cần snapshot khác, dùng `--output-tag reproduce` để tạo
 `samples_full_reproduce`/`splits_full_reproduce`, giữ nguyên báo cáo đã commit.
+
+## T06: EDA chỉ trên train
+
+[Notebook đã chạy](notebooks/01_train_eda.ipynb) gọi `beijing_air.eda` để mô tả
+205.977 mẫu operational train (204.865 primary), 12 trạm. Có 14 bảng thống kê,
+9 PNG gốc có nhãn/đơn vị và nhận xét về missing, phân phối/ngoại lệ, quan hệ
+đa biến, trạm, giờ/tháng/mùa, timeline và tự tương quan đúng timestamp.
+[Kết luận và quyết định T07/T08](docs/eda_findings.md),
+[chỉ mục hình](reports/eda_train/figure_index.md),
+[manifest/checksum](reports/eda_train/eda_manifest.json).
+
+```powershell
+.\.venv\python.exe scripts/verify_eda.py
+.\.venv\python.exe scripts/run_eda_notebook.py --mode smoke --output-tag local_check
+.\.venv\python.exe scripts/run_eda_notebook.py --mode full --output-tag reproduce
+.\.venv\python.exe -m pytest tests/test_eda.py -q --basetemp=.pytest_cache/t06-eda
+```
+
+Notebook chạy từ kernel mới bằng đúng interpreter hiện có; không phụ thuộc
+outputs của phiên cũ. Đầu ra có sẵn không ghi đè, lần chạy lại dùng tag mới.
+Smoke/reproduce và cache kernel giữ local. Trên clone mới, tái tạo train T05
+rồi truyền split manifest tương ứng; xem hướng dẫn trong `docs/eda_findings.md`.
+Không mở CSV validation/test cho EDA, không impute, tạo feature hoặc fit model.
+Các đợt ô nhiễm cao được giữ; audit này không thêm run/metric vào Experiment Log.

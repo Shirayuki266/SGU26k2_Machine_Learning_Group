@@ -1,0 +1,196 @@
+{
+  "task_id": "T06",
+  "artifact_type": "train_data_understanding",
+  "status": "complete",
+  "model_experiment_run": false,
+  "mode": "full",
+  "test_accessed": false,
+  "created_at": "2026-11-02T12:05:24.355580+00:00",
+  "cohort": "operational",
+  "source_train_rows": 205977,
+  "analyzed_rows": 205977,
+  "primary_rows": 204865,
+  "stations": 12,
+  "input_timestamp_min": "2013-03-01 00:00:00",
+  "input_timestamp_max": "2015-02-28 22:00:00",
+  "target_timestamp_min": "2013-03-01 01:00:00",
+  "target_timestamp_max": "2015-02-28 23:00:00",
+  "selection_caveat": "Observed-target T05 cohort; gaps do not imply missing raw hours; pairwise observed statistics, no imputation.",
+  "seed": 42,
+  "random_sampling": false,
+  "config": {
+    "task_id": "T06",
+    "split_manifest": "reports/splits_full/split_manifest.json",
+    "cohort": "operational",
+    "seed": 42,
+    "smoke_rows_per_station": 336,
+    "autocorrelation_lags_hours": [
+      1,
+      2,
+      3,
+      6,
+      12,
+      24,
+      48,
+      72,
+      168
+    ],
+    "figure_dpi": 150,
+    "note": "Train-only descriptive EDA; smoke is an execution check, not research evidence. No fit, imputation, clipping, or model metrics."
+  },
+  "provenance": {
+    "split_manifest": "reports/splits_full/split_manifest.json",
+    "split_manifest_sha256": "6d3ac3f05da50324a65c34c1e1601b5df45fefc3d2e6d0e834d43a27062d0e42",
+    "t05_snapshot_id": "2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc",
+    "input_files_read": [
+      {
+        "path": "data/processed/samples_full/train.csv",
+        "sha256": "ebc89c94b576f009705446da7c4bec079f750755e5755e5041b6a93f09226d46",
+        "bytes": 51395102
+      },
+      {
+        "path": "data/processed/samples_full/sample_ids/train.csv",
+        "sha256": "336d58dda970536fb0c7dc1739529fe2f1bcb4200a5f32e2f3d40cca1279d8bf",
+        "bytes": 24598381
+      }
+    ],
+    "source_mode": "full",
+    "validation_start": "2015-03-01T00:00:00"
+  },
+  "python": "3.12.10",
+  "pandas": "3.0.6",
+  "numpy": "2.5.4",
+  "git_head_at_execution": "8ad8c91bdbfdb193431e49b5304f1fb366bf52be",
+  "git_dirty_at_execution": true,
+  "module_sha256": "56f509c6f5dbd0970fcc81885def5793c91238d48e0faa341ff227070541f8a5",
+  "eda_config_sha256": "cf39769c02c25101848689993002db0531b3a0edbac103321325886721851589",
+  "default_config_sha256": "a0738e8caaecda1786d117216b2a3cbada2c19e83c8d70756423e93ac1ef19e5",
+  "quality_config_sha256": "c5037db9dfcd7fe0e907ea9a09f2e3cd54cc76638185a00781f26e669aaaa891",
+  "files": [
+    {
+      "path": "reports/eda_train/autocorrelation.csv",
+      "sha256": "c9a662f51ad3013112295c5fee8b1210d3dad0352d02f1a44617592033f5af4b",
+      "bytes": 4108
+    },
+    {
+      "path": "reports/eda_train/categorical_counts.csv",
+      "sha256": "800ec5c37e8e8d324043c386b7939c3c8fc8210c5fc0b8370d76eca22ed57e08",
+      "bytes": 510
+    },
+    {
+      "path": "reports/eda_train/correlation_pairs.csv",
+      "sha256": "067e32d95ba24f7791a5ae8478c82f8d69fc350633395207a61036b686ce95f3",
+      "bytes": 1139
+    },
+    {
+      "path": "reports/eda_train/daily_station.csv",
+      "sha256": "116f66a94693b044c32d1afaea1418675d9f4abe850594e05183116dce5c6cd5",
+      "bytes": 665577
+    },
+    {
+      "path": "reports/eda_train/figure_index.csv",
+      "sha256": "902ef5c07f2791ace57ceb60b0da80c7b71c8c90d979afe5587273abbe1caa1c",
+      "bytes": 3799
+    },
+    {
+      "path": "reports/eda_train/figure_index.md",
+      "sha256": "2446f1c26421dc5d78c54d1bd225b9c050aad3d01002ef8b09e460b79910ba28",
+      "bytes": 3945
+    },
+    {
+      "path": "reports/eda_train/hourly.csv",
+      "sha256": "94804ed2a35c6f94c035c111a451625b74ac76e19db0332e9e539c9e4709164b",
+      "bytes": 1552
+    },
+    {
+      "path": "reports/eda_train/monthly.csv",
+      "sha256": "f1cb0a7c26c36d0594ba978263644a6628e96b901026e0ca31c64efebea40820",
+      "bytes": 765
+    },
+    {
+      "path": "reports/eda_train/numeric_summary.csv",
+      "sha256": "80a9c20ad8bf38a200d713042b3518f47c844b040451e44fedae092634724d60",
+      "bytes": 2329
+    },
+    {
+      "path": "reports/eda_train/pearson.csv",
+      "sha256": "b5eca25e3e044c110b7613d1a286f96930418a7cd58367211cee7dfd42983c2c",
+      "bytes": 2837
+    },
+    {
+      "path": "reports/eda_train/sample_gaps.csv",
+      "sha256": "48952e71a5fa0e19d8add5191b91ff7e37ed7932eb02f8f4529eace2527aed8d",
+      "bytes": 883
+    },
+    {
+      "path": "reports/eda_train/schema.csv",
+      "sha256": "8fcd920d3b5e4b00acf9aa8f402793a0d04c5687154678753ffe138e8fef73f1",
+      "bytes": 1183
+    },
+    {
+      "path": "reports/eda_train/seasonal.csv",
+      "sha256": "3729e73395c393e189ae51ec6167d83510783746ffacfc9662f1e52a3a90bd20",
+      "bytes": 304
+    },
+    {
+      "path": "reports/eda_train/spearman.csv",
+      "sha256": "59ebbd9a27fedffde0b252931deadb9a1e30baed1ebf7189af13f7c90ae17128",
+      "bytes": 2851
+    },
+    {
+      "path": "reports/eda_train/station_missing_pct.csv",
+      "sha256": "79bb5137779ff153e53900af120df532d7027f1b6d6c37df05b31dba6fd9cfc7",
+      "bytes": 2982
+    },
+    {
+      "path": "reports/eda_train/station_summary.csv",
+      "sha256": "fbbd146091d255d7efaf8849728293a783b6f76cff60ae2c9e28dfdc64d35761",
+      "bytes": 1189
+    },
+    {
+      "path": "reports/figures/eda_train/01_missing.png",
+      "sha256": "e34cad59694a2efa7c2f16d2ced9d84e21e49ad9a7594dc4965e56e6a812498a",
+      "bytes": 78735
+    },
+    {
+      "path": "reports/figures/eda_train/02_distributions.png",
+      "sha256": "0889f244efc6842d8bff24a5d2356f9ae62c0980292f9bbd19e41239570d7964",
+      "bytes": 185034
+    },
+    {
+      "path": "reports/figures/eda_train/03_tails.png",
+      "sha256": "bcf8ea7fb91ec91154b2ceff83949271be6dafad3ded8e1237ee74d2819b7bc6",
+      "bytes": 57739
+    },
+    {
+      "path": "reports/figures/eda_train/04_correlations.png",
+      "sha256": "90f1afa0b6193fd07fc2a893168afbdd5fc5a047d7705dfb9a07d8a40a345438",
+      "bytes": 294534
+    },
+    {
+      "path": "reports/figures/eda_train/05_relationships.png",
+      "sha256": "474a7c3f619b6215d9d2c743e61cf3bb77f2608852a1a699b395fdbd7ee60576",
+      "bytes": 612532
+    },
+    {
+      "path": "reports/figures/eda_train/06_stations.png",
+      "sha256": "1501eda8a8e77609999f27019b47dcf0e011b85aaf0d39d8cef793ac3edcf817",
+      "bytes": 98412
+    },
+    {
+      "path": "reports/figures/eda_train/07_calendar.png",
+      "sha256": "308ce8ab41fb1d671dc921032776dba802f45f1bd727986f320cac0cfaf0f5b5",
+      "bytes": 138153
+    },
+    {
+      "path": "reports/figures/eda_train/08_timeline.png",
+      "sha256": "19e356b8f3723ad3cff6fb8ece90a14ce1fe69a916ea80efdc0a0693e169d28f",
+      "bytes": 1312903
+    },
+    {
+      "path": "reports/figures/eda_train/09_autocorrelation.png",
+      "sha256": "c62ef70c362886a31d2d248e486dfa11fb619b801cde3ec3654dbd583edeb142",
+      "bytes": 112549
+    }
+  ]
+}

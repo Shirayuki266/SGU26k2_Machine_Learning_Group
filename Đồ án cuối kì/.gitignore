@@ -62,6 +62,13 @@ reports/.splits-*/
 reports/splits_smoke_*/
 reports/splits_full_*/
 
+# T06 descriptive train EDA tables; smoke/reproductions stay local.
+!reports/eda_train/*.csv
+reports/eda_train_smoke*/
+reports/eda_train_*/
+reports/figures/eda_train_smoke*/
+reports/figures/eda_train_*/
+
 # Experiment index is reviewable; run files reuse the ignored artifacts/ root.
 !experiments/experiment_log.csv
 experiments/.experiment_log.lock
