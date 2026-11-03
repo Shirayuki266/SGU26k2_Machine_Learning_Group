@@ -7,9 +7,9 @@ name = "beijing-air-quality"
 version = "0.1.0"
 description = "Beijing air quality forecasting project"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = [
-    "pandas",
+    "pandas==3.0.6",
     "numpy",
     "scikit-learn>=1.2",
     "matplotlib",

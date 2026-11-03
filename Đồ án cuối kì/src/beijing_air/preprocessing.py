@@ -55,7 +55,9 @@ class FeatureSchema(TransformerMixin, BaseEstimator):
                 raise ValueError(f"Nonfinite numeric feature: {column}")
         for column in self.categorical_features:
             observed = result[column].dropna()
-            if not observed.map(lambda value: isinstance(value, str)).all():
+            # Python all also accepts an empty observed sequence, independent
+            # of pandas StringDtype/Arrow reduction support (Issue #35).
+            if not all(isinstance(value, str) for value in observed):
                 raise ValueError(f"Categorical values must be strings or missing: {column}")
             if observed.eq(self.missing_token).any():
                 raise ValueError(f"Reserved missing category in source values: {column}")
