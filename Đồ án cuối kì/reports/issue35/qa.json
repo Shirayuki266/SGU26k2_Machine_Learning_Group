@@ -1,0 +1,106 @@
+{
+  "issue": 35,
+  "artifact_type": "TEST_ONLY_bugfix_QA_not_model_experiment",
+  "status": "PASS_WITH_DOCUMENTED_SOURCE_GATE_CHANGE",
+  "base_commit": "8a266c7",
+  "environment": {
+    "python": "3.12.10",
+    "pandas": "3.0.6",
+    "numpy": "2.5.4",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0",
+    "pyarrow": "26.0.0"
+  },
+  "test_runs": [
+    {
+      "name": "red",
+      "tests": 1,
+      "failures": 1,
+      "skipped": 0,
+      "failure_details": [
+        {
+          "test": "test_missing_current_pm25_uses_saved_median_not_zero_or_fit",
+          "message": "TypeError: Cannot perform reduction 'all' with string dtype"
+        }
+      ],
+      "source_xml": "artifacts/issue35/red.xml"
+    },
+    {
+      "name": "green",
+      "tests": 28,
+      "failures": 3,
+      "skipped": 0,
+      "failure_details": [
+        {
+          "test": "test_unknown_valid_and_roundtrip_without_refit[object]",
+          "message": "AssertionError: assert '3b1c54dd3828...caa4bc650b35a' == '0a927d58a6d9...c3356d54c7313'\n  \n  - 0a927d58a6d9b885990c3356d54c7313\n  + 3b1c54dd38289d3a587caa4bc650b35a"
+        },
+        {
+          "test": "test_unknown_valid_and_roundtrip_without_refit[string[python]]",
+          "message": "AssertionError: assert '3b1c54dd3828...caa4bc650b35a' == '4f536c159e7a...ed2e588f51f55'\n  \n  - 4f536c159e7afb49a35ed2e588f51f55\n  + 3b1c54dd38289d3a587caa4bc650b35a"
+        },
+        {
+          "test": "test_unknown_valid_and_roundtrip_without_refit[string[pyarrow]]",
+          "message": "AssertionError: assert '3b1c54dd3828...caa4bc650b35a' == '694c23c1ae73...6f2dc98c30d99'\n  \n  - 694c23c1ae73ba570726f2dc98c30d99\n  + 3b1c54dd38289d3a587caa4bc650b35a"
+        }
+      ],
+      "source_xml": "artifacts/issue35/green.xml"
+    },
+    {
+      "name": "green2",
+      "tests": 28,
+      "failures": 0,
+      "skipped": 0,
+      "failure_details": [],
+      "source_xml": "artifacts/issue35/green2.xml"
+    },
+    {
+      "name": "regression",
+      "tests": 55,
+      "failures": 0,
+      "skipped": 0,
+      "failure_details": [],
+      "source_xml": "artifacts/issue35/regression.xml"
+    }
+  ],
+  "final_focused_tests_passed": 28,
+  "regression_tests_passed": 55,
+  "regression_deselected": 1,
+  "deselected_reason": "test_real_demo_schema_and_script_parity reads actual test-period demo resource; excluded by task scope",
+  "comparison": {
+    "status": "PASS",
+    "prediction_values_compared": 56,
+    "rtol": 0,
+    "atol": 1e-12,
+    "max_absolute_difference": 0.0,
+    "frozen_gate_change_expected": true,
+    "action": "Keep T13 source fingerprint immutable; replay old verification at its commit. Restart app after code update; no automatic artifact migration."
+  },
+  "protected_file_count": 28,
+  "protected_files_unchanged": true,
+  "data_samples_read": false,
+  "saved_test_predictions_read": false,
+  "production_model_refit": false,
+  "tuning": false,
+  "historic_artifacts_updated": false,
+  "legacy_unit_fixture_fits": "Existing T08 unit tests fit toy TEST_ONLY fixtures only; new Issue35 tests forbid fit.",
+  "initial_verifier_failure": "Cross-process RF joblib.hash assertion rejected; two-load diagnostic found equal named fields and different padding bytes. Old hashes retained; use immutable weights SHA/output comparisons.",
+  "dependency_check": "pip check passed; installed pandas3.0.6 matches exact pyproject pin; pandas Requires-Python>=3.11",
+  "limitations": [
+    "Synthetic fixtures only, not whole-dataset equivalence",
+    "T13 frozen source gate intentionally rejects new code; historical fingerprint unchanged",
+    "Restart app to load revised class code; T14 cache key omits source SHA",
+    "No new clean OS or other pandas versions tested"
+  ],
+  "closed_completed_issues": [
+    20,
+    22,
+    24,
+    26,
+    27,
+    30,
+    32,
+    34
+  ],
+  "issue35_assignee": "hoanglecodingmachine"
+}

@@ -15,6 +15,7 @@ import pytest
 from beijing_air.data import MEASUREMENTS,sha256
 from beijing_air.demo import DemoError,DemoStore,check_runtime,forecast_at,load_demo_model,valid_origin
 from beijing_air.final_evaluation import write_json
+from beijing_air.features import features_for_prediction
 
 ROOT=Path(__file__).resolve().parents[1]
 RF_ID="24cd6d765f214d52aa26e5988380e2cd"
@@ -84,7 +85,14 @@ def test_A_with_short_history_matches_full_history_and_preserves_missing(real_mo
 
 def test_missing_current_pm25_uses_saved_median_not_zero_or_fit(real_model,TEST_store):
     before=joblib.hash(real_model.pipeline)
+    # Issue #35: exercise the T08 pipeline directly, before T14's object-dtype
+    # adapter can mask an entirely missing ArrowStringArray wind direction.
+    raw=features_for_prediction(TEST_store.past("Aotizhongxin",pd.Timestamp("2016-03-01 13:00")),
+        station="Aotizhongxin",origin=pd.Timestamp("2016-03-01 13:00"),config=real_model.config).select("A")
+    raw["wd"]=raw["wd"].astype("string[pyarrow]")
+    direct=real_model.pipeline.predict(raw)
     forecast=forecast_at(real_model,TEST_store,station="Aotizhongxin",origin="2016-03-01 13:00")
+    np.testing.assert_allclose(direct,[forecast.predicted_pm25],rtol=0,atol=0)
     assert forecast.current_pm25 is None and np.isnan(forecast.features["PM2.5"].iloc[0])
     pre=real_model.pipeline.named_steps["preprocess"]
     transformed=pre.transform(forecast.features)
