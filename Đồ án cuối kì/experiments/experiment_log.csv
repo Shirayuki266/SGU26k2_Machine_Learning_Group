@@ -1265,6 +1265,258 @@ run_id,status,task_id,reference_run_id,parent_run_id,fold_id,mode,kind,objective
     ""size_bytes"": 16485
   }
 ]","Fresh preprocessing/pilot/selector/final Ridge fit only on purged train fold; grouped one-hot/indicators, no holdout.",,,../artifacts/experiments/0917ba745e2c42f28a6589d113f6bb7b/config.json,../artifacts/experiments/0917ba745e2c42f28a6589d113f6bb7b/metrics.json,../artifacts/experiments/0917ba745e2c42f28a6589d113f6bb7b/metadata.json,../artifacts/experiments/0917ba745e2c42f28a6589d113f6bb7b/notes.md
+0960fac6455f4380bd5b6d1407633cf8,completed,T13,24cef47874a94d9faa7bfcbae29b5c58,a8cb7fda3f1441968b31c26c18e57ebf,,full,baseline,,,,persistence,"{
+  ""locked_parameters"": {
+    ""rule"": ""PM2.5(t+1)=PM2.5(t)"",
+    ""fallback_needed_in_primary"": false
+  },
+  ""stage"": ""final_refit_test"",
+  ""postprocessing"": ""identity""
+}",A,,"{
+  ""test_anchor"": {
+    ""cohort"": ""primary"",
+    ""N"": 101836,
+    ""ordered_ids_sha256"": ""e157bf07fcb173fd76325ac7e95a70a7cff3b92eb5facb0a4f52f32180fe7ae8"",
+    ""source"": {
+      ""path"": ""data/processed/samples_full/sample_ids/test.csv"",
+      ""sha256"": ""63356b83f862c2677cb0a655b262495c36cd40ab84a4a224062f167386cba3ca"",
+      ""bytes"": 12271991
+    },
+    ""first_target"": ""2016-03-01 00:00:00"",
+    ""last_target"": ""2017-02-28 23:00:00"",
+    ""selection"": ""is_primary; all three models use identical IDs; no dropping missing features""
+  },
+  ""preflight"": {
+    ""test_samples_accessed"": false,
+    ""train_rows"": 204865,
+    ""validation_rows"": 102479,
+    ""refit_rows"": 307344,
+    ""ordered_refit_ids_sha256"": ""5417e9b4a5fec60315119011f4026a36359217ec49d39dddf3e25b942c0c55f2"",
+    ""latest_fit_target"": ""2016-02-29 23:00:00"",
+    ""planned_first_test_origin"": ""2016-02-29 23:00:00"",
+    ""label_rule"": ""latest_fit_target <= first_test_origin; observation at origin already available"",
+    ""rapid_change_threshold_train_q95"": 38.0,
+    ""train_concentration_counts"": {
+      ""[0.0, 35.0)"": 68533,
+      ""[35.0, 75.0)"": 47637,
+      ""[75.0, 150.0)"": 53535,
+      ""[150.0, inf)"": 35160
+    }
+  }
+}","{
+  ""timestamp_column"": ""target_timestamp"",
+  ""validation_start"": ""2015-03-01T00:00:00"",
+  ""test_start"": ""2016-03-01T00:00:00"",
+  ""timestamp_convention"": ""source_local_naive"",
+  ""test_locked"": false,
+  ""final_refit_train_validation"": true,
+  ""test_authorized_by"": ""explicit T13 user task; exposure audit persisted before access""
+}",,"{
+  ""fit"": 307344,
+  ""test"": 101836
+}",42,"{
+  ""fits"": 0,
+  ""test_configurations"": 1
+}",false,executed_T13_final_test,2026-11-03T00:10:52.047747+00:00,2026-11-03T00:11:00.263495+00:00,UTC,8.215748,"{
+  ""commit"": ""7aeea64c65d644d3c777f43d5ee0646e4fe85991"",
+  ""branch"": ""feature/t13-final-evaluation"",
+  ""dirty"": true,
+  ""available"": true
+}","{
+  ""python"": ""3.12.10"",
+  ""platform"": ""Windows-11-10.0.22631-SP0"",
+  ""packages"": {
+    ""Jinja2"": ""3.1.6"",
+    ""MarkupSafe"": ""3.0.4"",
+    ""PyYAML"": ""6.0.3"",
+    ""Pygments"": ""2.21.0"",
+    ""Send2Trash"": ""2.1.0"",
+    ""altair"": ""6.3.0"",
+    ""anyio"": ""4.16.0"",
+    ""argon2-cffi"": ""25.1.0"",
+    ""argon2-cffi-bindings"": ""26.1.0"",
+    ""arrow"": ""1.4.0"",
+    ""asttokens"": ""3.0.2"",
+    ""async-lru"": ""2.4.0"",
+    ""attrs"": ""26.1.0"",
+    ""babel"": ""2.18.0"",
+    ""beautifulsoup4"": ""4.15.0"",
+    ""beijing-air-quality"": ""0.1.0"",
+    ""bleach"": ""6.4.0"",
+    ""certifi"": ""2026.10.23"",
+    ""cffi"": ""2.1.1"",
+    ""charset-normalizer"": ""3.5.2"",
+    ""click"": ""8.5.0"",
+    ""cloudpickle"": ""3.1.2"",
+    ""colorama"": ""0.4.6"",
+    ""comm"": ""0.2.3"",
+    ""contourpy"": ""1.4.0"",
+    ""cycler"": ""0.12.1"",
+    ""debugpy"": ""1.8.22"",
+    ""defusedxml"": ""0.7.1"",
+    ""et_xmlfile"": ""2.0.0"",
+    ""executing"": ""2.3.0"",
+    ""fastjsonschema"": ""2.22.3"",
+    ""flatbuffers"": ""25.12.19"",
+    ""fonttools"": ""4.68.0"",
+    ""fqdn"": ""1.6.0"",
+    ""h11"": ""0.16.0"",
+    ""httpcore"": ""1.0.9"",
+    ""httpx"": ""0.28.1"",
+    ""idna"": ""3.20"",
+    ""iniconfig"": ""2.3.1"",
+    ""ipykernel"": ""7.4.0"",
+    ""ipython"": ""9.18.0"",
+    ""ipython_pygments_lexers"": ""1.1.1"",
+    ""ipywidgets"": ""8.1.9"",
+    ""isoduration"": ""20.11.0"",
+    ""itsdangerous"": ""2.2.0"",
+    ""jedi"": ""0.20.1"",
+    ""joblib"": ""1.6.0"",
+    ""json5"": ""0.17.3"",
+    ""jsonpointer"": ""3.7"",
+    ""jsonschema"": ""4.26.0"",
+    ""jsonschema-specifications"": ""2025.9.1"",
+    ""jupyter"": ""1.1.1"",
+    ""jupyter-console"": ""6.6.3"",
+    ""jupyter-events"": ""0.12.1"",
+    ""jupyter-lsp"": ""2.3.1"",
+    ""jupyter_builder"": ""1.2.4"",
+    ""jupyter_client"": ""8.10.0"",
+    ""jupyter_core"": ""5.9.1"",
+    ""jupyter_server"": ""2.21.1"",
+    ""jupyter_server_terminals"": ""0.5.4"",
+    ""jupyterlab"": ""4.6.5"",
+    ""jupyterlab_pygments"": ""0.3.0"",
+    ""jupyterlab_server"": ""2.28.1"",
+    ""jupyterlab_widgets"": ""3.0.17"",
+    ""kiwisolver"": ""1.5.1"",
+    ""lark"": ""1.3.1"",
+    ""lxml"": ""6.1.3"",
+    ""matplotlib"": ""3.11.2"",
+    ""matplotlib-inline"": ""0.2.2"",
+    ""mistune"": ""3.4.0"",
+    ""narwhals"": ""2.28.0"",
+    ""nbclient"": ""0.11.0"",
+    ""nbconvert"": ""7.17.2"",
+    ""nbformat"": ""5.11.1"",
+    ""nest-asyncio2"": ""1.7.4"",
+    ""networkx"": ""3.7"",
+    ""notebook"": ""7.6.4"",
+    ""notebook_shim"": ""0.2.4"",
+    ""numpy"": ""2.5.4"",
+    ""onnxruntime"": ""1.31.1"",
+    ""openpyxl"": ""3.1.5"",
+    ""packaging"": ""26.3"",
+    ""pandas"": ""3.0.6"",
+    ""pandocfilters"": ""1.5.1"",
+    ""parso"": ""0.8.7"",
+    ""pillow"": ""13.0.0"",
+    ""pip"": ""26.2.1"",
+    ""platformdirs"": ""4.14.3"",
+    ""pluggy"": ""1.6.0"",
+    ""prometheus_client"": ""0.26.0"",
+    ""prompt_toolkit"": ""3.0.53"",
+    ""protobuf"": ""7.36.2"",
+    ""psutil"": ""7.2.2"",
+    ""pure_eval"": ""0.2.4"",
+    ""pyarrow"": ""26.0.0"",
+    ""pycparser"": ""3.12"",
+    ""pydeck"": ""0.9.3"",
+    ""pymupdf"": ""2.0"",
+    ""pymupdf4llm"": ""2.0"",
+    ""pymupdf_layout"": ""2.0"",
+    ""pyparsing"": ""3.3.3"",
+    ""pytest"": ""9.1.1"",
+    ""python-dateutil"": ""2.9.0.post0"",
+    ""python-docx"": ""1.2.0"",
+    ""python-json-logger"": ""4.2.0"",
+    ""python-multipart"": ""0.0.33"",
+    ""python-pptx"": ""1.0.2"",
+    ""pywinpty"": ""3.1.2"",
+    ""pyzmq"": ""27.2.0"",
+    ""referencing"": ""0.37.0"",
+    ""requests"": ""2.34.2"",
+    ""rfc3339-validator"": ""0.1.4"",
+    ""rfc3986-validator"": ""0.1.1"",
+    ""rfc3987-syntax"": ""1.1.0"",
+    ""rpds-py"": ""2026.9.1"",
+    ""scikit-learn"": ""1.9.1"",
+    ""scipy"": ""1.18.1"",
+    ""seaborn"": ""0.13.2"",
+    ""setuptools"": ""84.2.1"",
+    ""six"": ""1.17.0"",
+    ""soupsieve"": ""3.0.4"",
+    ""stack-data"": ""0.6.3"",
+    ""starlette"": ""1.10.0"",
+    ""streamlit"": ""1.66.1"",
+    ""tabulate"": ""0.10.0"",
+    ""terminado"": ""0.18.1"",
+    ""threadpoolctl"": ""3.7.0"",
+    ""tinycss2"": ""1.5.1"",
+    ""tornado"": ""6.6"",
+    ""traitlets"": ""5.16.1"",
+    ""typing_extensions"": ""4.16.0"",
+    ""tzdata"": ""2026.5"",
+    ""uri-template"": ""1.3.0"",
+    ""urllib3"": ""2.8.0"",
+    ""uvicorn"": ""0.54.0"",
+    ""watchdog"": ""6.0.0"",
+    ""wcwidth"": ""0.9.4"",
+    ""webcolors"": ""25.10.0"",
+    ""webencodings"": ""0.6.1"",
+    ""websocket-client"": ""1.9.2"",
+    ""websockets"": ""17.4"",
+    ""wheel"": ""0.48.0"",
+    ""widgetsnbextension"": ""4.0.16"",
+    ""xlsxwriter"": ""3.3.1""
+  }
+}","{
+  ""refit_train_validation"": {
+    ""n_total"": 307344,
+    ""n_scored"": 307344,
+    ""unavailable"": 0,
+    ""coverage"": 1.0,
+    ""MAE"": 10.666052045915976,
+    ""RMSE"": 20.314526769903008,
+    ""R2"": 0.9355981225107647,
+    ""r2_undefined_reason"": null,
+    ""mae_reduction_vs_persistence_pct"": 0.0
+  },
+  ""test_primary"": {
+    ""n_total"": 101836,
+    ""n_scored"": 101836,
+    ""unavailable"": 0,
+    ""coverage"": 1.0,
+    ""MAE"": 10.161809183392906,
+    ""RMSE"": 19.436188081133132,
+    ""R2"": 0.9449753346094043,
+    ""r2_undefined_reason"": null,
+    ""mae_reduction_vs_persistence_pct"": 0.0
+  },
+  ""timing_seconds"": {
+    ""fit_pipeline"": 0.0,
+    ""all_operations"": 0.143827699997928
+  },
+  ""negative_predictions"": 0,
+  ""postprocessing"": ""identity""
+}","[
+  {
+    ""path"": ""../artifacts/experiments/0960fac6455f4380bd5b6d1407633cf8/artifacts/model/persistence.json"",
+    ""sha256"": ""47da316433cee4de911d659f12498803e40d876b93c3ae5840f9aaeecd80e154"",
+    ""size_bytes"": 159
+  },
+  {
+    ""path"": ""../artifacts/experiments/0960fac6455f4380bd5b6d1407633cf8/artifacts/predictions/refit.csv.gz"",
+    ""sha256"": ""33d76e379ace859af25cd3aac1c408dc60d1105d3a0bc821be526a69a1594eca"",
+    ""size_bytes"": 16143952
+  },
+  {
+    ""path"": ""../artifacts/experiments/0960fac6455f4380bd5b6d1407633cf8/artifacts/predictions/test.csv.gz"",
+    ""sha256"": ""6f945c1d64e72d6118b9419a3efcb976c54a6f091b85843bae86f9a703f62670"",
+    ""size_bytes"": 5330498
+  }
+]",,,,../artifacts/experiments/0960fac6455f4380bd5b6d1407633cf8/config.json,../artifacts/experiments/0960fac6455f4380bd5b6d1407633cf8/metrics.json,../artifacts/experiments/0960fac6455f4380bd5b6d1407633cf8/metadata.json,../artifacts/experiments/0960fac6455f4380bd5b6d1407633cf8/notes.md
 099eeddbd0a6400681cfb9f2c4790ac3,completed,T12,32e65c5a4cbc489c905cf146b743867f,4c7d175e1b434f6b8aeb8028775e91b5,1,full,feature_selection,Fixed-parameter A/B ablation and train-CV grouped B-to-C selection; freeze deployment by validation.,"Causal PM2.5 history may improve Ridge A at fixed alpha; grouped coefficient selection may reduce redundant dimensions with little loss, without guaranteed improvement.",,ridge,"{
   ""stage"": ""fold"",
   ""k_groups"": 28,
@@ -3971,6 +4223,318 @@ run_id,status,task_id,reference_run_id,parent_run_id,fold_id,mode,kind,objective
   ""std_ddof"": 0,
   ""R2_defined_folds"": 3
 }",[],"Three folds completed. Rank by pooled MAE, report unweighted fold mean/std ddof0 separately; never rank by validation.",,,../artifacts/experiments/23ead96b6d554aba9cb429f03e7d9801/config.json,../artifacts/experiments/23ead96b6d554aba9cb429f03e7d9801/metrics.json,../artifacts/experiments/23ead96b6d554aba9cb429f03e7d9801/metadata.json,../artifacts/experiments/23ead96b6d554aba9cb429f03e7d9801/notes.md
+24cd6d765f214d52aa26e5988380e2cd,completed,T13,780ecb7fb59d48bea58d5e4a076f1f26,a8cb7fda3f1441968b31c26c18e57ebf,,full,train,,,,random_forest,"{
+  ""locked_parameters"": {
+    ""bootstrap"": true,
+    ""ccp_alpha"": 0.0,
+    ""criterion"": ""squared_error"",
+    ""max_depth"": 12,
+    ""max_features"": 1.0,
+    ""max_leaf_nodes"": null,
+    ""max_samples"": null,
+    ""min_impurity_decrease"": 0.0,
+    ""min_samples_leaf"": 2,
+    ""min_samples_split"": 2,
+    ""min_weight_fraction_leaf"": 0.0,
+    ""monotonic_cst"": null,
+    ""n_estimators"": 80,
+    ""n_jobs"": 1,
+    ""oob_score"": false,
+    ""random_state"": 42,
+    ""verbose"": 0,
+    ""warm_start"": false
+  },
+  ""stage"": ""final_refit_test"",
+  ""postprocessing"": ""identity""
+}",A,"{
+  ""schema_version"": ""t08-preprocessing-v1"",
+  ""numeric"": {
+    ""imputation_strategy"": ""median"",
+    ""keep_empty_features"": true,
+    ""missing_indicators"": ""all"",
+    ""scale"": {
+      ""ridge"": true,
+      ""random_forest"": false
+    }
+  },
+  ""categorical"": {
+    ""imputation_strategy"": ""constant"",
+    ""fill_value"": ""__MISSING__"",
+    ""handle_unknown"": ""ignore"",
+    ""sparse_output"": false
+  },
+  ""output"": {
+    ""format"": ""pandas"",
+    ""verbose_feature_names"": true
+  },
+  ""prediction_postprocessing"": {
+    ""negative_predictions"": ""identity"",
+    ""applies_to"": [
+      ""persistence"",
+      ""ridge"",
+      ""random_forest""
+    ]
+  }
+}","{
+  ""test_anchor"": {
+    ""cohort"": ""primary"",
+    ""N"": 101836,
+    ""ordered_ids_sha256"": ""e157bf07fcb173fd76325ac7e95a70a7cff3b92eb5facb0a4f52f32180fe7ae8"",
+    ""source"": {
+      ""path"": ""data/processed/samples_full/sample_ids/test.csv"",
+      ""sha256"": ""63356b83f862c2677cb0a655b262495c36cd40ab84a4a224062f167386cba3ca"",
+      ""bytes"": 12271991
+    },
+    ""first_target"": ""2016-03-01 00:00:00"",
+    ""last_target"": ""2017-02-28 23:00:00"",
+    ""selection"": ""is_primary; all three models use identical IDs; no dropping missing features""
+  },
+  ""preflight"": {
+    ""test_samples_accessed"": false,
+    ""train_rows"": 204865,
+    ""validation_rows"": 102479,
+    ""refit_rows"": 307344,
+    ""ordered_refit_ids_sha256"": ""5417e9b4a5fec60315119011f4026a36359217ec49d39dddf3e25b942c0c55f2"",
+    ""latest_fit_target"": ""2016-02-29 23:00:00"",
+    ""planned_first_test_origin"": ""2016-02-29 23:00:00"",
+    ""label_rule"": ""latest_fit_target <= first_test_origin; observation at origin already available"",
+    ""rapid_change_threshold_train_q95"": 38.0,
+    ""train_concentration_counts"": {
+      ""[0.0, 35.0)"": 68533,
+      ""[35.0, 75.0)"": 47637,
+      ""[75.0, 150.0)"": 53535,
+      ""[150.0, inf)"": 35160
+    }
+  }
+}","{
+  ""timestamp_column"": ""target_timestamp"",
+  ""validation_start"": ""2015-03-01T00:00:00"",
+  ""test_start"": ""2016-03-01T00:00:00"",
+  ""timestamp_convention"": ""source_local_naive"",
+  ""test_locked"": false,
+  ""final_refit_train_validation"": true,
+  ""test_authorized_by"": ""explicit T13 user task; exposure audit persisted before access""
+}",,"{
+  ""fit"": 307344,
+  ""test"": 101836
+}",42,"{
+  ""fits"": 1,
+  ""test_configurations"": 1
+}",false,executed_T13_final_test,2026-11-03T00:11:14.761372+00:00,2026-11-03T00:15:04.295394+00:00,UTC,229.534022,"{
+  ""commit"": ""7aeea64c65d644d3c777f43d5ee0646e4fe85991"",
+  ""branch"": ""feature/t13-final-evaluation"",
+  ""dirty"": true,
+  ""available"": true
+}","{
+  ""python"": ""3.12.10"",
+  ""platform"": ""Windows-11-10.0.22631-SP0"",
+  ""packages"": {
+    ""Jinja2"": ""3.1.6"",
+    ""MarkupSafe"": ""3.0.4"",
+    ""PyYAML"": ""6.0.3"",
+    ""Pygments"": ""2.21.0"",
+    ""Send2Trash"": ""2.1.0"",
+    ""altair"": ""6.3.0"",
+    ""anyio"": ""4.16.0"",
+    ""argon2-cffi"": ""25.1.0"",
+    ""argon2-cffi-bindings"": ""26.1.0"",
+    ""arrow"": ""1.4.0"",
+    ""asttokens"": ""3.0.2"",
+    ""async-lru"": ""2.4.0"",
+    ""attrs"": ""26.1.0"",
+    ""babel"": ""2.18.0"",
+    ""beautifulsoup4"": ""4.15.0"",
+    ""beijing-air-quality"": ""0.1.0"",
+    ""bleach"": ""6.4.0"",
+    ""certifi"": ""2026.10.23"",
+    ""cffi"": ""2.1.1"",
+    ""charset-normalizer"": ""3.5.2"",
+    ""click"": ""8.5.0"",
+    ""cloudpickle"": ""3.1.2"",
+    ""colorama"": ""0.4.6"",
+    ""comm"": ""0.2.3"",
+    ""contourpy"": ""1.4.0"",
+    ""cycler"": ""0.12.1"",
+    ""debugpy"": ""1.8.22"",
+    ""defusedxml"": ""0.7.1"",
+    ""et_xmlfile"": ""2.0.0"",
+    ""executing"": ""2.3.0"",
+    ""fastjsonschema"": ""2.22.3"",
+    ""flatbuffers"": ""25.12.19"",
+    ""fonttools"": ""4.68.0"",
+    ""fqdn"": ""1.6.0"",
+    ""h11"": ""0.16.0"",
+    ""httpcore"": ""1.0.9"",
+    ""httpx"": ""0.28.1"",
+    ""idna"": ""3.20"",
+    ""iniconfig"": ""2.3.1"",
+    ""ipykernel"": ""7.4.0"",
+    ""ipython"": ""9.18.0"",
+    ""ipython_pygments_lexers"": ""1.1.1"",
+    ""ipywidgets"": ""8.1.9"",
+    ""isoduration"": ""20.11.0"",
+    ""itsdangerous"": ""2.2.0"",
+    ""jedi"": ""0.20.1"",
+    ""joblib"": ""1.6.0"",
+    ""json5"": ""0.17.3"",
+    ""jsonpointer"": ""3.7"",
+    ""jsonschema"": ""4.26.0"",
+    ""jsonschema-specifications"": ""2025.9.1"",
+    ""jupyter"": ""1.1.1"",
+    ""jupyter-console"": ""6.6.3"",
+    ""jupyter-events"": ""0.12.1"",
+    ""jupyter-lsp"": ""2.3.1"",
+    ""jupyter_builder"": ""1.2.4"",
+    ""jupyter_client"": ""8.10.0"",
+    ""jupyter_core"": ""5.9.1"",
+    ""jupyter_server"": ""2.21.1"",
+    ""jupyter_server_terminals"": ""0.5.4"",
+    ""jupyterlab"": ""4.6.5"",
+    ""jupyterlab_pygments"": ""0.3.0"",
+    ""jupyterlab_server"": ""2.28.1"",
+    ""jupyterlab_widgets"": ""3.0.17"",
+    ""kiwisolver"": ""1.5.1"",
+    ""lark"": ""1.3.1"",
+    ""lxml"": ""6.1.3"",
+    ""matplotlib"": ""3.11.2"",
+    ""matplotlib-inline"": ""0.2.2"",
+    ""mistune"": ""3.4.0"",
+    ""narwhals"": ""2.28.0"",
+    ""nbclient"": ""0.11.0"",
+    ""nbconvert"": ""7.17.2"",
+    ""nbformat"": ""5.11.1"",
+    ""nest-asyncio2"": ""1.7.4"",
+    ""networkx"": ""3.7"",
+    ""notebook"": ""7.6.4"",
+    ""notebook_shim"": ""0.2.4"",
+    ""numpy"": ""2.5.4"",
+    ""onnxruntime"": ""1.31.1"",
+    ""openpyxl"": ""3.1.5"",
+    ""packaging"": ""26.3"",
+    ""pandas"": ""3.0.6"",
+    ""pandocfilters"": ""1.5.1"",
+    ""parso"": ""0.8.7"",
+    ""pillow"": ""13.0.0"",
+    ""pip"": ""26.2.1"",
+    ""platformdirs"": ""4.14.3"",
+    ""pluggy"": ""1.6.0"",
+    ""prometheus_client"": ""0.26.0"",
+    ""prompt_toolkit"": ""3.0.53"",
+    ""protobuf"": ""7.36.2"",
+    ""psutil"": ""7.2.2"",
+    ""pure_eval"": ""0.2.4"",
+    ""pyarrow"": ""26.0.0"",
+    ""pycparser"": ""3.12"",
+    ""pydeck"": ""0.9.3"",
+    ""pymupdf"": ""2.0"",
+    ""pymupdf4llm"": ""2.0"",
+    ""pymupdf_layout"": ""2.0"",
+    ""pyparsing"": ""3.3.3"",
+    ""pytest"": ""9.1.1"",
+    ""python-dateutil"": ""2.9.0.post0"",
+    ""python-docx"": ""1.2.0"",
+    ""python-json-logger"": ""4.2.0"",
+    ""python-multipart"": ""0.0.33"",
+    ""python-pptx"": ""1.0.2"",
+    ""pywinpty"": ""3.1.2"",
+    ""pyzmq"": ""27.2.0"",
+    ""referencing"": ""0.37.0"",
+    ""requests"": ""2.34.2"",
+    ""rfc3339-validator"": ""0.1.4"",
+    ""rfc3986-validator"": ""0.1.1"",
+    ""rfc3987-syntax"": ""1.1.0"",
+    ""rpds-py"": ""2026.9.1"",
+    ""scikit-learn"": ""1.9.1"",
+    ""scipy"": ""1.18.1"",
+    ""seaborn"": ""0.13.2"",
+    ""setuptools"": ""84.2.1"",
+    ""six"": ""1.17.0"",
+    ""soupsieve"": ""3.0.4"",
+    ""stack-data"": ""0.6.3"",
+    ""starlette"": ""1.10.0"",
+    ""streamlit"": ""1.66.1"",
+    ""tabulate"": ""0.10.0"",
+    ""terminado"": ""0.18.1"",
+    ""threadpoolctl"": ""3.7.0"",
+    ""tinycss2"": ""1.5.1"",
+    ""tornado"": ""6.6"",
+    ""traitlets"": ""5.16.1"",
+    ""typing_extensions"": ""4.16.0"",
+    ""tzdata"": ""2026.5"",
+    ""uri-template"": ""1.3.0"",
+    ""urllib3"": ""2.8.0"",
+    ""uvicorn"": ""0.54.0"",
+    ""watchdog"": ""6.0.0"",
+    ""wcwidth"": ""0.9.4"",
+    ""webcolors"": ""25.10.0"",
+    ""webencodings"": ""0.6.1"",
+    ""websocket-client"": ""1.9.2"",
+    ""websockets"": ""17.4"",
+    ""wheel"": ""0.48.0"",
+    ""widgetsnbextension"": ""4.0.16"",
+    ""xlsxwriter"": ""3.3.1""
+  }
+}","{
+  ""refit_train_validation"": {
+    ""n_total"": 307344,
+    ""n_scored"": 307344,
+    ""unavailable"": 0,
+    ""coverage"": 1.0,
+    ""MAE"": 9.549073805692823,
+    ""RMSE"": 16.552115833121444,
+    ""R2"": 0.9572444849429752,
+    ""r2_undefined_reason"": null,
+    ""mae_reduction_vs_persistence_pct"": 10.472274421826427
+  },
+  ""test_primary"": {
+    ""n_total"": 101836,
+    ""n_scored"": 101836,
+    ""unavailable"": 0,
+    ""coverage"": 1.0,
+    ""MAE"": 9.877149899523696,
+    ""RMSE"": 18.56963395188441,
+    ""R2"": 0.9497724597810346,
+    ""r2_undefined_reason"": null,
+    ""mae_reduction_vs_persistence_pct"": 2.8012657857659757
+  },
+  ""timing_seconds"": {
+    ""fit_pipeline"": 209.8541578000004,
+    ""all_operations"": 219.24653389999003
+  },
+  ""negative_predictions"": 0,
+  ""postprocessing"": ""identity""
+}","[
+  {
+    ""path"": ""../artifacts/experiments/24cd6d765f214d52aa26e5988380e2cd/artifacts/model/pipeline.joblib"",
+    ""sha256"": ""0b696574847be1a19a8eb4c21ee813efe81266eb0a3bc37efd301a8a9c6e4009"",
+    ""size_bytes"": 7319268
+  },
+  {
+    ""path"": ""../artifacts/experiments/24cd6d765f214d52aa26e5988380e2cd/artifacts/model/pipeline_summary.json"",
+    ""sha256"": ""78f60808db8c3184aab77a9a469252689ea0794e8141eae5415c35baed05f7fe"",
+    ""size_bytes"": 6152
+  },
+  {
+    ""path"": ""../artifacts/experiments/24cd6d765f214d52aa26e5988380e2cd/artifacts/interpretation/rf_permutation.csv"",
+    ""sha256"": ""3455af793d43c720884b3846ff438a992ecfeef1fde52beae461f5ac5db75cbc"",
+    ""size_bytes"": 3067
+  },
+  {
+    ""path"": ""../artifacts/experiments/24cd6d765f214d52aa26e5988380e2cd/artifacts/interpretation/rf_permutation_ids.csv"",
+    ""sha256"": ""29e2aeaac6973717e8b78cf7e4799dcd722e2d71911e251d692754bad07ea797"",
+    ""size_bytes"": 229036
+  },
+  {
+    ""path"": ""../artifacts/experiments/24cd6d765f214d52aa26e5988380e2cd/artifacts/predictions/refit.csv.gz"",
+    ""sha256"": ""994273af9ca5d591cd72106bf329f33c606a93e211034153ee4d6085802dd65f"",
+    ""size_bytes"": 20971359
+  },
+  {
+    ""path"": ""../artifacts/experiments/24cd6d765f214d52aa26e5988380e2cd/artifacts/predictions/test.csv.gz"",
+    ""sha256"": ""0f349bfcf81858f6f9de9e3bc80656a0692443b49d22424913013817e4b67de6"",
+    ""size_bytes"": 6941811
+  }
+]",,,,../artifacts/experiments/24cd6d765f214d52aa26e5988380e2cd/config.json,../artifacts/experiments/24cd6d765f214d52aa26e5988380e2cd/metrics.json,../artifacts/experiments/24cd6d765f214d52aa26e5988380e2cd/metadata.json,../artifacts/experiments/24cd6d765f214d52aa26e5988380e2cd/notes.md
 24cef47874a94d9faa7bfcbae29b5c58,completed,T09,5a6c965f64754a2ea9508e554fd92092,,,full,baseline,"Xác định mốc MAE/RMSE/R² cho PM2.5 đúng t+1, cùng trạm, trên validation IDs cố định.",PM2.5(t) là mốc dự báo một giờ cần kiểm chứng; chưa yêu cầu Ridge/RF phải thắng.,Expand verified smoke protocol to full validation; smoke/full metrics are not directly comparable.,persistence,"{
   ""signature"": {
     ""baseline_config"": {
@@ -7561,6 +8125,303 @@ No randomness (actual seed null; project seed retained in config). No test, clip
   ""std_ddof"": 0,
   ""R2_defined_folds"": 3
 }",[],"C top28 groups; rank pooled CV MAE, no validation-based k choice.",,,../artifacts/experiments/4c7d175e1b434f6b8aeb8028775e91b5/config.json,../artifacts/experiments/4c7d175e1b434f6b8aeb8028775e91b5/metrics.json,../artifacts/experiments/4c7d175e1b434f6b8aeb8028775e91b5/metadata.json,../artifacts/experiments/4c7d175e1b434f6b8aeb8028775e91b5/notes.md
+51975d2c66ff4263b83ace6962f3d3f7,completed,T13,32e65c5a4cbc489c905cf146b743867f,a8cb7fda3f1441968b31c26c18e57ebf,,full,train,,,,ridge,"{
+  ""locked_parameters"": {
+    ""alpha"": 0.1,
+    ""copy_X"": true,
+    ""fit_intercept"": true,
+    ""max_iter"": null,
+    ""positive"": false,
+    ""random_state"": null,
+    ""solver"": ""auto"",
+    ""tol"": 0.0001
+  },
+  ""stage"": ""final_refit_test"",
+  ""postprocessing"": ""identity""
+}",A,"{
+  ""schema_version"": ""t08-preprocessing-v1"",
+  ""numeric"": {
+    ""imputation_strategy"": ""median"",
+    ""keep_empty_features"": true,
+    ""missing_indicators"": ""all"",
+    ""scale"": {
+      ""ridge"": true,
+      ""random_forest"": false
+    }
+  },
+  ""categorical"": {
+    ""imputation_strategy"": ""constant"",
+    ""fill_value"": ""__MISSING__"",
+    ""handle_unknown"": ""ignore"",
+    ""sparse_output"": false
+  },
+  ""output"": {
+    ""format"": ""pandas"",
+    ""verbose_feature_names"": true
+  },
+  ""prediction_postprocessing"": {
+    ""negative_predictions"": ""identity"",
+    ""applies_to"": [
+      ""persistence"",
+      ""ridge"",
+      ""random_forest""
+    ]
+  }
+}","{
+  ""test_anchor"": {
+    ""cohort"": ""primary"",
+    ""N"": 101836,
+    ""ordered_ids_sha256"": ""e157bf07fcb173fd76325ac7e95a70a7cff3b92eb5facb0a4f52f32180fe7ae8"",
+    ""source"": {
+      ""path"": ""data/processed/samples_full/sample_ids/test.csv"",
+      ""sha256"": ""63356b83f862c2677cb0a655b262495c36cd40ab84a4a224062f167386cba3ca"",
+      ""bytes"": 12271991
+    },
+    ""first_target"": ""2016-03-01 00:00:00"",
+    ""last_target"": ""2017-02-28 23:00:00"",
+    ""selection"": ""is_primary; all three models use identical IDs; no dropping missing features""
+  },
+  ""preflight"": {
+    ""test_samples_accessed"": false,
+    ""train_rows"": 204865,
+    ""validation_rows"": 102479,
+    ""refit_rows"": 307344,
+    ""ordered_refit_ids_sha256"": ""5417e9b4a5fec60315119011f4026a36359217ec49d39dddf3e25b942c0c55f2"",
+    ""latest_fit_target"": ""2016-02-29 23:00:00"",
+    ""planned_first_test_origin"": ""2016-02-29 23:00:00"",
+    ""label_rule"": ""latest_fit_target <= first_test_origin; observation at origin already available"",
+    ""rapid_change_threshold_train_q95"": 38.0,
+    ""train_concentration_counts"": {
+      ""[0.0, 35.0)"": 68533,
+      ""[35.0, 75.0)"": 47637,
+      ""[75.0, 150.0)"": 53535,
+      ""[150.0, inf)"": 35160
+    }
+  }
+}","{
+  ""timestamp_column"": ""target_timestamp"",
+  ""validation_start"": ""2015-03-01T00:00:00"",
+  ""test_start"": ""2016-03-01T00:00:00"",
+  ""timestamp_convention"": ""source_local_naive"",
+  ""test_locked"": false,
+  ""final_refit_train_validation"": true,
+  ""test_authorized_by"": ""explicit T13 user task; exposure audit persisted before access""
+}",,"{
+  ""fit"": 307344,
+  ""test"": 101836
+}",42,"{
+  ""fits"": 1,
+  ""test_configurations"": 1
+}",false,executed_T13_final_test,2026-11-03T00:11:00.416008+00:00,2026-11-03T00:11:14.234461+00:00,UTC,13.818453,"{
+  ""commit"": ""7aeea64c65d644d3c777f43d5ee0646e4fe85991"",
+  ""branch"": ""feature/t13-final-evaluation"",
+  ""dirty"": true,
+  ""available"": true
+}","{
+  ""python"": ""3.12.10"",
+  ""platform"": ""Windows-11-10.0.22631-SP0"",
+  ""packages"": {
+    ""Jinja2"": ""3.1.6"",
+    ""MarkupSafe"": ""3.0.4"",
+    ""PyYAML"": ""6.0.3"",
+    ""Pygments"": ""2.21.0"",
+    ""Send2Trash"": ""2.1.0"",
+    ""altair"": ""6.3.0"",
+    ""anyio"": ""4.16.0"",
+    ""argon2-cffi"": ""25.1.0"",
+    ""argon2-cffi-bindings"": ""26.1.0"",
+    ""arrow"": ""1.4.0"",
+    ""asttokens"": ""3.0.2"",
+    ""async-lru"": ""2.4.0"",
+    ""attrs"": ""26.1.0"",
+    ""babel"": ""2.18.0"",
+    ""beautifulsoup4"": ""4.15.0"",
+    ""beijing-air-quality"": ""0.1.0"",
+    ""bleach"": ""6.4.0"",
+    ""certifi"": ""2026.10.23"",
+    ""cffi"": ""2.1.1"",
+    ""charset-normalizer"": ""3.5.2"",
+    ""click"": ""8.5.0"",
+    ""cloudpickle"": ""3.1.2"",
+    ""colorama"": ""0.4.6"",
+    ""comm"": ""0.2.3"",
+    ""contourpy"": ""1.4.0"",
+    ""cycler"": ""0.12.1"",
+    ""debugpy"": ""1.8.22"",
+    ""defusedxml"": ""0.7.1"",
+    ""et_xmlfile"": ""2.0.0"",
+    ""executing"": ""2.3.0"",
+    ""fastjsonschema"": ""2.22.3"",
+    ""flatbuffers"": ""25.12.19"",
+    ""fonttools"": ""4.68.0"",
+    ""fqdn"": ""1.6.0"",
+    ""h11"": ""0.16.0"",
+    ""httpcore"": ""1.0.9"",
+    ""httpx"": ""0.28.1"",
+    ""idna"": ""3.20"",
+    ""iniconfig"": ""2.3.1"",
+    ""ipykernel"": ""7.4.0"",
+    ""ipython"": ""9.18.0"",
+    ""ipython_pygments_lexers"": ""1.1.1"",
+    ""ipywidgets"": ""8.1.9"",
+    ""isoduration"": ""20.11.0"",
+    ""itsdangerous"": ""2.2.0"",
+    ""jedi"": ""0.20.1"",
+    ""joblib"": ""1.6.0"",
+    ""json5"": ""0.17.3"",
+    ""jsonpointer"": ""3.7"",
+    ""jsonschema"": ""4.26.0"",
+    ""jsonschema-specifications"": ""2025.9.1"",
+    ""jupyter"": ""1.1.1"",
+    ""jupyter-console"": ""6.6.3"",
+    ""jupyter-events"": ""0.12.1"",
+    ""jupyter-lsp"": ""2.3.1"",
+    ""jupyter_builder"": ""1.2.4"",
+    ""jupyter_client"": ""8.10.0"",
+    ""jupyter_core"": ""5.9.1"",
+    ""jupyter_server"": ""2.21.1"",
+    ""jupyter_server_terminals"": ""0.5.4"",
+    ""jupyterlab"": ""4.6.5"",
+    ""jupyterlab_pygments"": ""0.3.0"",
+    ""jupyterlab_server"": ""2.28.1"",
+    ""jupyterlab_widgets"": ""3.0.17"",
+    ""kiwisolver"": ""1.5.1"",
+    ""lark"": ""1.3.1"",
+    ""lxml"": ""6.1.3"",
+    ""matplotlib"": ""3.11.2"",
+    ""matplotlib-inline"": ""0.2.2"",
+    ""mistune"": ""3.4.0"",
+    ""narwhals"": ""2.28.0"",
+    ""nbclient"": ""0.11.0"",
+    ""nbconvert"": ""7.17.2"",
+    ""nbformat"": ""5.11.1"",
+    ""nest-asyncio2"": ""1.7.4"",
+    ""networkx"": ""3.7"",
+    ""notebook"": ""7.6.4"",
+    ""notebook_shim"": ""0.2.4"",
+    ""numpy"": ""2.5.4"",
+    ""onnxruntime"": ""1.31.1"",
+    ""openpyxl"": ""3.1.5"",
+    ""packaging"": ""26.3"",
+    ""pandas"": ""3.0.6"",
+    ""pandocfilters"": ""1.5.1"",
+    ""parso"": ""0.8.7"",
+    ""pillow"": ""13.0.0"",
+    ""pip"": ""26.2.1"",
+    ""platformdirs"": ""4.14.3"",
+    ""pluggy"": ""1.6.0"",
+    ""prometheus_client"": ""0.26.0"",
+    ""prompt_toolkit"": ""3.0.53"",
+    ""protobuf"": ""7.36.2"",
+    ""psutil"": ""7.2.2"",
+    ""pure_eval"": ""0.2.4"",
+    ""pyarrow"": ""26.0.0"",
+    ""pycparser"": ""3.12"",
+    ""pydeck"": ""0.9.3"",
+    ""pymupdf"": ""2.0"",
+    ""pymupdf4llm"": ""2.0"",
+    ""pymupdf_layout"": ""2.0"",
+    ""pyparsing"": ""3.3.3"",
+    ""pytest"": ""9.1.1"",
+    ""python-dateutil"": ""2.9.0.post0"",
+    ""python-docx"": ""1.2.0"",
+    ""python-json-logger"": ""4.2.0"",
+    ""python-multipart"": ""0.0.33"",
+    ""python-pptx"": ""1.0.2"",
+    ""pywinpty"": ""3.1.2"",
+    ""pyzmq"": ""27.2.0"",
+    ""referencing"": ""0.37.0"",
+    ""requests"": ""2.34.2"",
+    ""rfc3339-validator"": ""0.1.4"",
+    ""rfc3986-validator"": ""0.1.1"",
+    ""rfc3987-syntax"": ""1.1.0"",
+    ""rpds-py"": ""2026.9.1"",
+    ""scikit-learn"": ""1.9.1"",
+    ""scipy"": ""1.18.1"",
+    ""seaborn"": ""0.13.2"",
+    ""setuptools"": ""84.2.1"",
+    ""six"": ""1.17.0"",
+    ""soupsieve"": ""3.0.4"",
+    ""stack-data"": ""0.6.3"",
+    ""starlette"": ""1.10.0"",
+    ""streamlit"": ""1.66.1"",
+    ""tabulate"": ""0.10.0"",
+    ""terminado"": ""0.18.1"",
+    ""threadpoolctl"": ""3.7.0"",
+    ""tinycss2"": ""1.5.1"",
+    ""tornado"": ""6.6"",
+    ""traitlets"": ""5.16.1"",
+    ""typing_extensions"": ""4.16.0"",
+    ""tzdata"": ""2026.5"",
+    ""uri-template"": ""1.3.0"",
+    ""urllib3"": ""2.8.0"",
+    ""uvicorn"": ""0.54.0"",
+    ""watchdog"": ""6.0.0"",
+    ""wcwidth"": ""0.9.4"",
+    ""webcolors"": ""25.10.0"",
+    ""webencodings"": ""0.6.1"",
+    ""websocket-client"": ""1.9.2"",
+    ""websockets"": ""17.4"",
+    ""wheel"": ""0.48.0"",
+    ""widgetsnbextension"": ""4.0.16"",
+    ""xlsxwriter"": ""3.3.1""
+  }
+}","{
+  ""refit_train_validation"": {
+    ""n_total"": 307344,
+    ""n_scored"": 307344,
+    ""unavailable"": 0,
+    ""coverage"": 1.0,
+    ""MAE"": 10.777079708788381,
+    ""RMSE"": 19.562728558390454,
+    ""R2"": 0.9402766766135839,
+    ""r2_undefined_reason"": null,
+    ""mae_reduction_vs_persistence_pct"": -1.0409443193643355
+  },
+  ""test_primary"": {
+    ""n_total"": 101836,
+    ""n_scored"": 101836,
+    ""unavailable"": 0,
+    ""coverage"": 1.0,
+    ""MAE"": 10.384442508805602,
+    ""RMSE"": 18.939486569257028,
+    ""R2"": 0.9477517646173637,
+    ""r2_undefined_reason"": null,
+    ""mae_reduction_vs_persistence_pct"": -2.1908827591108277
+  },
+  ""timing_seconds"": {
+    ""fit_pipeline"": 1.9840133999969112,
+    ""all_operations"": 3.8265291999996407
+  },
+  ""negative_predictions"": 2067,
+  ""postprocessing"": ""identity""
+}","[
+  {
+    ""path"": ""../artifacts/experiments/51975d2c66ff4263b83ace6962f3d3f7/artifacts/model/pipeline.joblib"",
+    ""sha256"": ""b7274fe6ed73bb891aeeb3c51b8004ade97077a6747c140303aaa31d9268a21f"",
+    ""size_bytes"": 3989
+  },
+  {
+    ""path"": ""../artifacts/experiments/51975d2c66ff4263b83ace6962f3d3f7/artifacts/model/pipeline_summary.json"",
+    ""sha256"": ""6c70b41e1eaf5701a7873363380fccdc3b425f2590936186cb90737bebfacd86"",
+    ""size_bytes"": 6555
+  },
+  {
+    ""path"": ""../artifacts/experiments/51975d2c66ff4263b83ace6962f3d3f7/artifacts/interpretation/ridge_coefficients.csv"",
+    ""sha256"": ""0e60fb718bee263d48be1b531de082dd30f04ed8c9095a5b61831bb6201fa4d4"",
+    ""size_bytes"": 10056
+  },
+  {
+    ""path"": ""../artifacts/experiments/51975d2c66ff4263b83ace6962f3d3f7/artifacts/predictions/refit.csv.gz"",
+    ""sha256"": ""42162cbfe1918989c5c5e2a38d4e2774e5d9ac0f289bb2757c58154464e49ccb"",
+    ""size_bytes"": 21058750
+  },
+  {
+    ""path"": ""../artifacts/experiments/51975d2c66ff4263b83ace6962f3d3f7/artifacts/predictions/test.csv.gz"",
+    ""sha256"": ""ae390d5aa954c1d861ebfdcd7dfc6d7099aa99a5c56cbc78b0123e20fd22cdd2"",
+    ""size_bytes"": 6974040
+  }
+]",,,,../artifacts/experiments/51975d2c66ff4263b83ace6962f3d3f7/config.json,../artifacts/experiments/51975d2c66ff4263b83ace6962f3d3f7/metrics.json,../artifacts/experiments/51975d2c66ff4263b83ace6962f3d3f7/metadata.json,../artifacts/experiments/51975d2c66ff4263b83ace6962f3d3f7/notes.md
 5659175c99154b01a310329495c2e40f,completed,T12,32e65c5a4cbc489c905cf146b743867f,2a69d1bf135543998fd9b8f807056c82,3,full,feature_selection,Fixed-parameter A/B ablation and train-CV grouped B-to-C selection; freeze deployment by validation.,"Causal PM2.5 history may improve Ridge A at fixed alpha; grouped coefficient selection may reduce redundant dimensions with little loss, without guaranteed improvement.",,ridge,"{
   ""stage"": ""fold"",
   ""k_groups"": 20,
@@ -14308,6 +15169,604 @@ a56930ab555241fbb560a1d950bd2f03,completed,T11,aec8630115714bb59d5c89c8a6b368c1,
     ""size_bytes"": 6519
   }
 ]","alpha=100.0, fold=2, fresh T08 pipeline fit on past only; strict purged boundary, no holdout.",,,../artifacts/experiments/a56930ab555241fbb560a1d950bd2f03/config.json,../artifacts/experiments/a56930ab555241fbb560a1d950bd2f03/metrics.json,../artifacts/experiments/a56930ab555241fbb560a1d950bd2f03/metadata.json,../artifacts/experiments/a56930ab555241fbb560a1d950bd2f03/notes.md
+a8cb7fda3f1441968b31c26c18e57ebf,completed,T13,780ecb7fb59d48bea58d5e4a076f1f26,,,full,train,Final held-out test evaluation of development-frozen models; deployment selection remains RF A regardless of test ordering.,Assess development generalization and error regimes without test-driven selection.,,locked_final_comparison,"{
+  ""design"": {
+    ""schema_version"": ""t13-final-v1"",
+    ""task_id"": ""T13"",
+    ""issue"": 32,
+    ""assignee"": ""hoanglecodingmachine"",
+    ""frozen"": ""reports/ablation/frozen_model.json"",
+    ""development_selected_run_id"": ""780ecb7fb59d48bea58d5e4a076f1f26"",
+    ""selection"": ""locked_by_development_validation_MAE; never choose by test"",
+    ""feature_set"": ""A"",
+    ""cohort"": ""primary"",
+    ""seed"": 42,
+    ""postprocessing"": ""identity"",
+    ""models"": {
+      ""persistence"": {
+        ""reference_run_id"": ""24cef47874a94d9faa7bfcbae29b5c58"",
+        ""parameters"": {
+          ""rule"": ""PM2.5(t+1)=PM2.5(t)"",
+          ""fallback_needed_in_primary"": false
+        }
+      },
+      ""ridge"": {
+        ""reference_run_id"": ""32e65c5a4cbc489c905cf146b743867f"",
+        ""parameters"": {
+          ""alpha"": 0.1,
+          ""copy_X"": true,
+          ""fit_intercept"": true,
+          ""max_iter"": null,
+          ""positive"": false,
+          ""random_state"": null,
+          ""solver"": ""auto"",
+          ""tol"": 0.0001
+        }
+      },
+      ""random_forest"": {
+        ""reference_run_id"": ""780ecb7fb59d48bea58d5e4a076f1f26"",
+        ""parameters"": {
+          ""bootstrap"": true,
+          ""ccp_alpha"": 0.0,
+          ""criterion"": ""squared_error"",
+          ""max_depth"": 12,
+          ""max_features"": 1.0,
+          ""max_leaf_nodes"": null,
+          ""max_samples"": null,
+          ""min_impurity_decrease"": 0.0,
+          ""min_samples_leaf"": 2,
+          ""min_samples_split"": 2,
+          ""min_weight_fraction_leaf"": 0.0,
+          ""monotonic_cst"": null,
+          ""n_estimators"": 80,
+          ""n_jobs"": 1,
+          ""oob_score"": false,
+          ""random_state"": 42,
+          ""verbose"": 0,
+          ""warm_start"": false
+        }
+      }
+    },
+    ""preprocessing"": {
+      ""schema_version"": ""t08-preprocessing-v1"",
+      ""numeric"": {
+        ""imputation_strategy"": ""median"",
+        ""keep_empty_features"": true,
+        ""missing_indicators"": ""all"",
+        ""scale"": {
+          ""ridge"": true,
+          ""random_forest"": false
+        }
+      },
+      ""categorical"": {
+        ""imputation_strategy"": ""constant"",
+        ""fill_value"": ""__MISSING__"",
+        ""handle_unknown"": ""ignore"",
+        ""sparse_output"": false
+      },
+      ""output"": {
+        ""format"": ""pandas"",
+        ""verbose_feature_names"": true
+      },
+      ""prediction_postprocessing"": {
+        ""negative_predictions"": ""identity"",
+        ""applies_to"": [
+          ""persistence"",
+          ""ridge"",
+          ""random_forest""
+        ]
+      }
+    },
+    ""files_sha256"": {
+      ""reports/ablation/frozen_model.json"": ""1ac73aad2c7109b0f6caf95475ca3c0ef7dd155c54c6e943c6cffa25a9c8de0c"",
+      ""reports/splits_full/split_manifest.json"": ""6d3ac3f05da50324a65c34c1e1601b5df45fefc3d2e6d0e834d43a27062d0e42"",
+      ""configs/default.json"": ""f2a0d2e72af598a91072f92e9595cd0d3d2c82fa895a8d45737ecca2cd6493c5"",
+      ""configs/preprocessing.json"": ""19c756cbcb4d3e6c2796104d2a056ee9f7d1d8df86163613bd3dee99ce4b2d26"",
+      ""artifacts/experiments/780ecb7fb59d48bea58d5e4a076f1f26/config.json"": ""a8c645190c409be35594fcc1af99ed85dd9db02056f1fb26b20a0a1c62f200bd"",
+      ""artifacts/experiments/780ecb7fb59d48bea58d5e4a076f1f26/metrics.json"": ""f872c563a6d10064f7f538cbd9ce572f6e680aa6d3eb8fba5d082c7723ff4de5"",
+      ""artifacts/experiments/780ecb7fb59d48bea58d5e4a076f1f26/metadata.json"": ""4463edfac711a72ccc4890327acf10ee598d7e3cd4341cb3cc4bf4d33578dd4f"",
+      ""artifacts/experiments/32e65c5a4cbc489c905cf146b743867f/config.json"": ""14c77d76cd624833023c16902dac5703fc573b23f5429bef53662e3f8bf3d7f0"",
+      ""artifacts/experiments/32e65c5a4cbc489c905cf146b743867f/metrics.json"": ""770ff75755dc6a57e50e820080aea8ff804f12e2af28eafd8f0344ba5d468ae3"",
+      ""artifacts/experiments/32e65c5a4cbc489c905cf146b743867f/metadata.json"": ""e9d02af8ae3099898d00e5c850b1cd19cecf4d9d5f7181968aa524db6529c25f"",
+      ""artifacts/experiments/24cef47874a94d9faa7bfcbae29b5c58/config.json"": ""de1e28b5c2f61861a6e8b784b2e69f619414c3b1dbed2b9e222154bd4f55c2a9"",
+      ""artifacts/experiments/24cef47874a94d9faa7bfcbae29b5c58/metrics.json"": ""5178574a63576ae765844c38415ea13cf3a79d4e1edef95c96eac246544f8915"",
+      ""artifacts/experiments/24cef47874a94d9faa7bfcbae29b5c58/metadata.json"": ""a64eb21dd6b3577b4af5bf2d3fb906966ca3a34f737587a45ca9adaec1b7e1b0"",
+      ""artifacts/experiments/80a499da1e8c4d02a3db2a698b5e5769/config.json"": ""bd4db1054933db77b5dc75b7a901666a440df449e7682da576910cb90695b1e5"",
+      ""artifacts/experiments/80a499da1e8c4d02a3db2a698b5e5769/metrics.json"": ""6f3a558f5b8470513f8a62de1a19b0693c1760d47de69201b4ab5d31042da550"",
+      ""artifacts/experiments/80a499da1e8c4d02a3db2a698b5e5769/metadata.json"": ""4ca5c136d68fb14bae3529221680d64e7148089696f8166edafcd0cdd2391f66"",
+      ""src/beijing_air/preprocessing.py"": ""3e121c4f6f5226b3764f053f1ceafdc9087ff3bbc97382dcc75242044b5d241f"",
+      ""src/beijing_air/features.py"": ""ccb40348855216057b1c10ab34a67a3da467979fb51417df5b6782f265996210"",
+      ""src/beijing_air/metrics.py"": ""c282e54515b5ad25fa9b67c576c8d082da9833878d65ac89e22ac7714b221769"",
+      ""src/beijing_air/samples.py"": ""4ef941da6714a685528f048e74c6c52771825e919287622dfa3b53cd77666735""
+    },
+    ""budget"": {
+      ""full_parent_attempts"": 1,
+      ""fits_per_ml_model"": 1,
+      ""automatic_retries"": 0,
+      ""technical_retry"": ""explicit reason, only after failed parent; preserve all prior attempts"",
+      ""blas_threads"": 1,
+      ""execution"": ""sequential"",
+      ""min_free_memory_mb"": 768
+    },
+    ""analysis"": {
+      ""group_r2_min_n"": 30,
+      ""concentration_edges"": [
+        0,
+        35,
+        75,
+        150
+      ],
+      ""concentration_basis"": ""Fixed descriptive bands from development protocol T02, verified against train distribution before test; not fitted on test or a health standard"",
+      ""episode_threshold"": 150,
+      ""episode_min_hours"": 3,
+      ""episode_gap_hours"": 1,
+      ""episode_scope"": ""primary observed-target rows; missing hours break events"",
+      ""rapid_change_training_quantile"": 0.95,
+      ""permutation_rows_per_station"": 200,
+      ""permutation_repeats"": 3,
+      ""permutation_seed"": 42,
+      ""permutation_scope"": ""raw source groups, joint calendar sin/cos, station/wd grouped by raw input; diagnostic only"",
+      ""timeline_station"": ""Aotizhongxin"",
+      ""timeline_days"": 7,
+      ""std_ddof"": 0
+    },
+    ""test_access_policy"": ""Only execute after preflight and committed config; write audit before first open; never reset exposure after failure"",
+    ""save_model_weights"": true,
+    ""locked_at"": ""2026-11-02T23:59:51.529384+00:00""
+  },
+  ""technical_retry_reason"": null
+}",A,"{
+  ""schema_version"": ""t08-preprocessing-v1"",
+  ""numeric"": {
+    ""imputation_strategy"": ""median"",
+    ""keep_empty_features"": true,
+    ""missing_indicators"": ""all"",
+    ""scale"": {
+      ""ridge"": true,
+      ""random_forest"": false
+    }
+  },
+  ""categorical"": {
+    ""imputation_strategy"": ""constant"",
+    ""fill_value"": ""__MISSING__"",
+    ""handle_unknown"": ""ignore"",
+    ""sparse_output"": false
+  },
+  ""output"": {
+    ""format"": ""pandas"",
+    ""verbose_feature_names"": true
+  },
+  ""prediction_postprocessing"": {
+    ""negative_predictions"": ""identity"",
+    ""applies_to"": [
+      ""persistence"",
+      ""ridge"",
+      ""random_forest""
+    ]
+  }
+}","{
+  ""split_manifest_sha256"": ""6d3ac3f05da50324a65c34c1e1601b5df45fefc3d2e6d0e834d43a27062d0e42"",
+  ""preflight"": {
+    ""test_samples_accessed"": false,
+    ""train_rows"": 204865,
+    ""validation_rows"": 102479,
+    ""refit_rows"": 307344,
+    ""ordered_refit_ids_sha256"": ""5417e9b4a5fec60315119011f4026a36359217ec49d39dddf3e25b942c0c55f2"",
+    ""latest_fit_target"": ""2016-02-29 23:00:00"",
+    ""planned_first_test_origin"": ""2016-02-29 23:00:00"",
+    ""label_rule"": ""latest_fit_target <= first_test_origin; observation at origin already available"",
+    ""rapid_change_threshold_train_q95"": 38.0,
+    ""train_concentration_counts"": {
+      ""[0.0, 35.0)"": 68533,
+      ""[35.0, 75.0)"": 47637,
+      ""[75.0, 150.0)"": 53535,
+      ""[150.0, inf)"": 35160
+    }
+  }
+}","{
+  ""timestamp_column"": ""target_timestamp"",
+  ""validation_start"": ""2015-03-01T00:00:00"",
+  ""test_start"": ""2016-03-01T00:00:00"",
+  ""timestamp_convention"": ""source_local_naive"",
+  ""test_locked"": false,
+  ""final_refit_train_validation"": true,
+  ""test_authorized_by"": ""explicit T13 user task; exposure audit persisted before access""
+}",,,42,"{
+  ""full_parent_attempts"": 1,
+  ""fits_per_ml_model"": 1,
+  ""automatic_retries"": 0,
+  ""technical_retry"": ""explicit reason, only after failed parent; preserve all prior attempts"",
+  ""blas_threads"": 1,
+  ""execution"": ""sequential"",
+  ""min_free_memory_mb"": 768
+}",false,executed_T13_final_test,2026-11-03T00:10:33.225572+00:00,2026-11-03T00:15:15.383239+00:00,UTC,282.157667,"{
+  ""commit"": ""7aeea64c65d644d3c777f43d5ee0646e4fe85991"",
+  ""branch"": ""feature/t13-final-evaluation"",
+  ""dirty"": true,
+  ""available"": true
+}","{
+  ""python"": ""3.12.10"",
+  ""platform"": ""Windows-11-10.0.22631-SP0"",
+  ""packages"": {
+    ""Jinja2"": ""3.1.6"",
+    ""MarkupSafe"": ""3.0.4"",
+    ""PyYAML"": ""6.0.3"",
+    ""Pygments"": ""2.21.0"",
+    ""Send2Trash"": ""2.1.0"",
+    ""altair"": ""6.3.0"",
+    ""anyio"": ""4.16.0"",
+    ""argon2-cffi"": ""25.1.0"",
+    ""argon2-cffi-bindings"": ""26.1.0"",
+    ""arrow"": ""1.4.0"",
+    ""asttokens"": ""3.0.2"",
+    ""async-lru"": ""2.4.0"",
+    ""attrs"": ""26.1.0"",
+    ""babel"": ""2.18.0"",
+    ""beautifulsoup4"": ""4.15.0"",
+    ""beijing-air-quality"": ""0.1.0"",
+    ""bleach"": ""6.4.0"",
+    ""certifi"": ""2026.10.23"",
+    ""cffi"": ""2.1.1"",
+    ""charset-normalizer"": ""3.5.2"",
+    ""click"": ""8.5.0"",
+    ""cloudpickle"": ""3.1.2"",
+    ""colorama"": ""0.4.6"",
+    ""comm"": ""0.2.3"",
+    ""contourpy"": ""1.4.0"",
+    ""cycler"": ""0.12.1"",
+    ""debugpy"": ""1.8.22"",
+    ""defusedxml"": ""0.7.1"",
+    ""et_xmlfile"": ""2.0.0"",
+    ""executing"": ""2.3.0"",
+    ""fastjsonschema"": ""2.22.3"",
+    ""flatbuffers"": ""25.12.19"",
+    ""fonttools"": ""4.68.0"",
+    ""fqdn"": ""1.6.0"",
+    ""h11"": ""0.16.0"",
+    ""httpcore"": ""1.0.9"",
+    ""httpx"": ""0.28.1"",
+    ""idna"": ""3.20"",
+    ""iniconfig"": ""2.3.1"",
+    ""ipykernel"": ""7.4.0"",
+    ""ipython"": ""9.18.0"",
+    ""ipython_pygments_lexers"": ""1.1.1"",
+    ""ipywidgets"": ""8.1.9"",
+    ""isoduration"": ""20.11.0"",
+    ""itsdangerous"": ""2.2.0"",
+    ""jedi"": ""0.20.1"",
+    ""joblib"": ""1.6.0"",
+    ""json5"": ""0.17.3"",
+    ""jsonpointer"": ""3.7"",
+    ""jsonschema"": ""4.26.0"",
+    ""jsonschema-specifications"": ""2025.9.1"",
+    ""jupyter"": ""1.1.1"",
+    ""jupyter-console"": ""6.6.3"",
+    ""jupyter-events"": ""0.12.1"",
+    ""jupyter-lsp"": ""2.3.1"",
+    ""jupyter_builder"": ""1.2.4"",
+    ""jupyter_client"": ""8.10.0"",
+    ""jupyter_core"": ""5.9.1"",
+    ""jupyter_server"": ""2.21.1"",
+    ""jupyter_server_terminals"": ""0.5.4"",
+    ""jupyterlab"": ""4.6.5"",
+    ""jupyterlab_pygments"": ""0.3.0"",
+    ""jupyterlab_server"": ""2.28.1"",
+    ""jupyterlab_widgets"": ""3.0.17"",
+    ""kiwisolver"": ""1.5.1"",
+    ""lark"": ""1.3.1"",
+    ""lxml"": ""6.1.3"",
+    ""matplotlib"": ""3.11.2"",
+    ""matplotlib-inline"": ""0.2.2"",
+    ""mistune"": ""3.4.0"",
+    ""narwhals"": ""2.28.0"",
+    ""nbclient"": ""0.11.0"",
+    ""nbconvert"": ""7.17.2"",
+    ""nbformat"": ""5.11.1"",
+    ""nest-asyncio2"": ""1.7.4"",
+    ""networkx"": ""3.7"",
+    ""notebook"": ""7.6.4"",
+    ""notebook_shim"": ""0.2.4"",
+    ""numpy"": ""2.5.4"",
+    ""onnxruntime"": ""1.31.1"",
+    ""openpyxl"": ""3.1.5"",
+    ""packaging"": ""26.3"",
+    ""pandas"": ""3.0.6"",
+    ""pandocfilters"": ""1.5.1"",
+    ""parso"": ""0.8.7"",
+    ""pillow"": ""13.0.0"",
+    ""pip"": ""26.2.1"",
+    ""platformdirs"": ""4.14.3"",
+    ""pluggy"": ""1.6.0"",
+    ""prometheus_client"": ""0.26.0"",
+    ""prompt_toolkit"": ""3.0.53"",
+    ""protobuf"": ""7.36.2"",
+    ""psutil"": ""7.2.2"",
+    ""pure_eval"": ""0.2.4"",
+    ""pyarrow"": ""26.0.0"",
+    ""pycparser"": ""3.12"",
+    ""pydeck"": ""0.9.3"",
+    ""pymupdf"": ""2.0"",
+    ""pymupdf4llm"": ""2.0"",
+    ""pymupdf_layout"": ""2.0"",
+    ""pyparsing"": ""3.3.3"",
+    ""pytest"": ""9.1.1"",
+    ""python-dateutil"": ""2.9.0.post0"",
+    ""python-docx"": ""1.2.0"",
+    ""python-json-logger"": ""4.2.0"",
+    ""python-multipart"": ""0.0.33"",
+    ""python-pptx"": ""1.0.2"",
+    ""pywinpty"": ""3.1.2"",
+    ""pyzmq"": ""27.2.0"",
+    ""referencing"": ""0.37.0"",
+    ""requests"": ""2.34.2"",
+    ""rfc3339-validator"": ""0.1.4"",
+    ""rfc3986-validator"": ""0.1.1"",
+    ""rfc3987-syntax"": ""1.1.0"",
+    ""rpds-py"": ""2026.9.1"",
+    ""scikit-learn"": ""1.9.1"",
+    ""scipy"": ""1.18.1"",
+    ""seaborn"": ""0.13.2"",
+    ""setuptools"": ""84.2.1"",
+    ""six"": ""1.17.0"",
+    ""soupsieve"": ""3.0.4"",
+    ""stack-data"": ""0.6.3"",
+    ""starlette"": ""1.10.0"",
+    ""streamlit"": ""1.66.1"",
+    ""tabulate"": ""0.10.0"",
+    ""terminado"": ""0.18.1"",
+    ""threadpoolctl"": ""3.7.0"",
+    ""tinycss2"": ""1.5.1"",
+    ""tornado"": ""6.6"",
+    ""traitlets"": ""5.16.1"",
+    ""typing_extensions"": ""4.16.0"",
+    ""tzdata"": ""2026.5"",
+    ""uri-template"": ""1.3.0"",
+    ""urllib3"": ""2.8.0"",
+    ""uvicorn"": ""0.54.0"",
+    ""watchdog"": ""6.0.0"",
+    ""wcwidth"": ""0.9.4"",
+    ""webcolors"": ""25.10.0"",
+    ""webencodings"": ""0.6.1"",
+    ""websocket-client"": ""1.9.2"",
+    ""websockets"": ""17.4"",
+    ""wheel"": ""0.48.0"",
+    ""widgetsnbextension"": ""4.0.16"",
+    ""xlsxwriter"": ""3.3.1""
+  }
+}","{
+  ""models"": {
+    ""persistence"": {
+      ""refit_train_validation"": {
+        ""n_total"": 307344,
+        ""n_scored"": 307344,
+        ""unavailable"": 0,
+        ""coverage"": 1.0,
+        ""MAE"": 10.666052045915976,
+        ""RMSE"": 20.314526769903008,
+        ""R2"": 0.9355981225107647,
+        ""r2_undefined_reason"": null,
+        ""mae_reduction_vs_persistence_pct"": 0.0
+      },
+      ""test_primary"": {
+        ""n_total"": 101836,
+        ""n_scored"": 101836,
+        ""unavailable"": 0,
+        ""coverage"": 1.0,
+        ""MAE"": 10.161809183392906,
+        ""RMSE"": 19.436188081133132,
+        ""R2"": 0.9449753346094043,
+        ""r2_undefined_reason"": null,
+        ""mae_reduction_vs_persistence_pct"": 0.0
+      },
+      ""timing_seconds"": {
+        ""fit_pipeline"": 0.0,
+        ""all_operations"": 0.143827699997928
+      },
+      ""negative_predictions"": 0,
+      ""postprocessing"": ""identity""
+    },
+    ""ridge"": {
+      ""refit_train_validation"": {
+        ""n_total"": 307344,
+        ""n_scored"": 307344,
+        ""unavailable"": 0,
+        ""coverage"": 1.0,
+        ""MAE"": 10.777079708788381,
+        ""RMSE"": 19.562728558390454,
+        ""R2"": 0.9402766766135839,
+        ""r2_undefined_reason"": null,
+        ""mae_reduction_vs_persistence_pct"": -1.0409443193643355
+      },
+      ""test_primary"": {
+        ""n_total"": 101836,
+        ""n_scored"": 101836,
+        ""unavailable"": 0,
+        ""coverage"": 1.0,
+        ""MAE"": 10.384442508805602,
+        ""RMSE"": 18.939486569257028,
+        ""R2"": 0.9477517646173637,
+        ""r2_undefined_reason"": null,
+        ""mae_reduction_vs_persistence_pct"": -2.1908827591108277
+      },
+      ""timing_seconds"": {
+        ""fit_pipeline"": 1.9840133999969112,
+        ""all_operations"": 3.8265291999996407
+      },
+      ""negative_predictions"": 2067,
+      ""postprocessing"": ""identity""
+    },
+    ""random_forest"": {
+      ""refit_train_validation"": {
+        ""n_total"": 307344,
+        ""n_scored"": 307344,
+        ""unavailable"": 0,
+        ""coverage"": 1.0,
+        ""MAE"": 9.549073805692823,
+        ""RMSE"": 16.552115833121444,
+        ""R2"": 0.9572444849429752,
+        ""r2_undefined_reason"": null,
+        ""mae_reduction_vs_persistence_pct"": 10.472274421826427
+      },
+      ""test_primary"": {
+        ""n_total"": 101836,
+        ""n_scored"": 101836,
+        ""unavailable"": 0,
+        ""coverage"": 1.0,
+        ""MAE"": 9.877149899523696,
+        ""RMSE"": 18.56963395188441,
+        ""R2"": 0.9497724597810346,
+        ""r2_undefined_reason"": null,
+        ""mae_reduction_vs_persistence_pct"": 2.8012657857659757
+      },
+      ""timing_seconds"": {
+        ""fit_pipeline"": 209.8541578000004,
+        ""all_operations"": 219.24653389999003
+      },
+      ""negative_predictions"": 0,
+      ""postprocessing"": ""identity""
+    }
+  },
+  ""test_samples"": 101836,
+  ""test_ids_sha256"": ""e157bf07fcb173fd76325ac7e95a70a7cff3b92eb5facb0a4f52f32180fe7ae8"",
+  ""deployment_selected_by"": ""development_validation_MAE"",
+  ""test_exposed"": true
+}","[
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/data/development_ledger_before.csv"",
+    ""sha256"": ""a03912f43bea36b6c23544d531d6405097797942de17659a6d6e87edb2823e56"",
+    ""size_bytes"": 628892
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/data/history_before.json"",
+    ""sha256"": ""35706a57e69abb79f73b656e5f0f652cfd294dff9b9a80b122a82f4b26efaea8"",
+    ""size_bytes"": 27443
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/config/final_evaluation.json"",
+    ""sha256"": ""b02d1ecd66b05e54d4fe3f054e057e1cbba91bbf9c0aabe4b010c6cfb3f2884a"",
+    ""size_bytes"": 6209
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/data/preflight.json"",
+    ""sha256"": ""94bdfbf4101ceb9c1f29eade180598b256e69894796ff33286d050fc6b5c0c17"",
+    ""size_bytes"": 601
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/source/final_evaluation.py"",
+    ""sha256"": ""6f2581d6f5488dd4bd0bb0563fe63564af52a4bb240f1de74fb808b481cd3aea"",
+    ""size_bytes"": 25617
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/source/final_reporting.py"",
+    ""sha256"": ""36b46ab6bbca440b417682343808767c97a729169891183161b851224a076257"",
+    ""size_bytes"": 19298
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/data/test_manifest.json"",
+    ""sha256"": ""30b722590bb5fb76a75a8f69ed9536e18e2854f83458ba2b34f0c221cc1b44de"",
+    ""size_bytes"": 495
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/data/test_primary_ids.csv.gz"",
+    ""sha256"": ""0d46a3b55616008f9abb215f6841772a654d6d063e68adc776e1783cc9335235"",
+    ""size_bytes"": 4639925
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/tables/comparison.csv"",
+    ""sha256"": ""a1ade3706e97e8353d148de2b20fb558c4d744e482cf0631717ee4fd2cad131f"",
+    ""size_bytes"": 748
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/tables/cv_summary.csv"",
+    ""sha256"": ""8aa5d716bc37a893e0d9ce613635e9600c08873a319f86ea783fcb10df7618de"",
+    ""size_bytes"": 826
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/tables/development_fold_metrics.csv"",
+    ""sha256"": ""2d4fbc2a52de31db5aac8babc292a1f0ed824fde832e3ff686270558d96e36a3"",
+    ""size_bytes"": 1204
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/tables/episodes.csv"",
+    ""sha256"": ""7edd87d7942ae76dbba2bc4a48029fc7223060806469747376c298220d3db680"",
+    ""size_bytes"": 78183
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/tables/figure_index.csv"",
+    ""sha256"": ""8f450e12130aae4569049d4c0f39707014e552484fe92bc4a1c3e4ce8a50ea9f"",
+    ""size_bytes"": 1542
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/tables/generalization_gap.csv"",
+    ""sha256"": ""b9f634b1b3bfcaaae8e935ca05cfdbbad89d817682f02ed6042fa88c8ab7e6ef"",
+    ""size_bytes"": 3094
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/tables/grouped_metrics.csv"",
+    ""sha256"": ""53b038ab252b1e584df56c1fdb59bed8b2dd0b141a529e5940f26162d5563635"",
+    ""size_bytes"": 414610
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/tables/rf_permutation.csv"",
+    ""sha256"": ""3455af793d43c720884b3846ff438a992ecfeef1fde52beae461f5ac5db75cbc"",
+    ""size_bytes"": 3067
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/tables/rf_permutation_ids.csv"",
+    ""sha256"": ""29e2aeaac6973717e8b78cf7e4799dcd722e2d71911e251d692754bad07ea797"",
+    ""size_bytes"": 229036
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/tables/rf_permutation_summary.csv"",
+    ""sha256"": ""165cd6c10e4a547d0e975d4f6df5d32f90fa07376d4e55f2f8e80061fdea7f80"",
+    ""size_bytes"": 772
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/tables/ridge_coefficients.csv"",
+    ""sha256"": ""0e60fb718bee263d48be1b531de082dd30f04ed8c9095a5b61831bb6201fa4d4"",
+    ""size_bytes"": 10056
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/figures/actual_predicted.png"",
+    ""sha256"": ""4b9503d50826d2783f597786c409a6da6ac9915a01d4ca0d9959f74d21bf8890"",
+    ""size_bytes"": 389658
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/figures/group_errors.png"",
+    ""sha256"": ""461b2ea258d22cd9a61ee69bccfe1b353d5f19c40e1d74301f020019a670f766"",
+    ""size_bytes"": 81925
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/figures/high_pollution_episode.png"",
+    ""sha256"": ""243d85791f594bea86175ab80745fb7a1178504026e3cf79dcb01e0cbc8a9998"",
+    ""size_bytes"": 145971
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/figures/residuals.png"",
+    ""sha256"": ""7c87f612c49836eb1c56788d3a05565fad159707170f9f03c9833602be5142d6"",
+    ""size_bytes"": 81764
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/figures/rf_permutation.png"",
+    ""sha256"": ""d5706bf7a358b1d53cd3ff686e9c96b17788ddf97633cd1cf3f45ba09c492615"",
+    ""size_bytes"": 66521
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/figures/ridge_coefficients.png"",
+    ""sha256"": ""aeef0e1c40f51651a2a7f215663727ae6e490c68dffa0740d593721c630fbbc1"",
+    ""size_bytes"": 88410
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/figures/timeline.png"",
+    ""sha256"": ""9c05ab53ecf92222a71cc116cabdd6bef4228e6f9e33fa1ffe81e1907b1657b3"",
+    ""size_bytes"": 192506
+  },
+  {
+    ""path"": ""../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/report/results_discussion.md"",
+    ""sha256"": ""010c7337332ccb54a1f5007917aac66e1835611439de17007d49bcdb1d927e31"",
+    ""size_bytes"": 8334
+  }
+]","is_test=False denotes a REAL experiment, not a synthetic logger test. Evaluation partition is held-out test. No tuning.",,,../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/config.json,../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/metrics.json,../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/metadata.json,../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/notes.md
 ae59476594294ee78cd5e4875951ba61,completed,T11,aec8630115714bb59d5c89c8a6b368c1,23ead96b6d554aba9cb429f03e7d9801,3,full,tuning,Select Ridge alpha by purged temporal CV within train; evaluate validation only after selection.,Ridge alpha=1 has worse validation MAE than persistence in T10. Changing regularization may improve temporal CV generalization; improvement is not guaranteed and negative MAE gap is not proof of overfitting.,,ridge,"{
   ""stage"": ""fold"",
   ""alpha"": 100.0,

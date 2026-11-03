@@ -1,0 +1,30 @@
+{
+  "refit_train_validation": {
+    "n_total": 307344,
+    "n_scored": 307344,
+    "unavailable": 0,
+    "coverage": 1.0,
+    "MAE": 10.666052045915976,
+    "RMSE": 20.314526769903008,
+    "R2": 0.9355981225107647,
+    "r2_undefined_reason": null,
+    "mae_reduction_vs_persistence_pct": 0.0
+  },
+  "test_primary": {
+    "n_total": 101836,
+    "n_scored": 101836,
+    "unavailable": 0,
+    "coverage": 1.0,
+    "MAE": 10.161809183392906,
+    "RMSE": 19.436188081133132,
+    "R2": 0.9449753346094043,
+    "r2_undefined_reason": null,
+    "mae_reduction_vs_persistence_pct": 0.0
+  },
+  "timing_seconds": {
+    "fit_pipeline": 0.0,
+    "all_operations": 0.143827699997928
+  },
+  "negative_predictions": 0,
+  "postprocessing": "identity"
+}

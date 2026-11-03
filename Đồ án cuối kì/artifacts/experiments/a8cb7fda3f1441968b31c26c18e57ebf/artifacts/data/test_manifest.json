@@ -1,0 +1,13 @@
+{
+  "cohort": "primary",
+  "N": 101836,
+  "ordered_ids_sha256": "e157bf07fcb173fd76325ac7e95a70a7cff3b92eb5facb0a4f52f32180fe7ae8",
+  "source": {
+    "path": "data/processed/samples_full/sample_ids/test.csv",
+    "sha256": "63356b83f862c2677cb0a655b262495c36cd40ab84a4a224062f167386cba3ca",
+    "bytes": 12271991
+  },
+  "first_target": "2016-03-01 00:00:00",
+  "last_target": "2017-02-28 23:00:00",
+  "selection": "is_primary; all three models use identical IDs; no dropping missing features"
+}

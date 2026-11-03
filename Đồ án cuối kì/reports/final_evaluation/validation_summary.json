@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "scope": "T13 final review",
+  "tests": 53,
+  "test_command": ".venv/python.exe -m pytest tests/test_final_evaluation.py tests/test_preprocessing.py tests/test_final_artifact_delivery.py -q -p no:cacheprovider --basetemp=artifacts/t13_TEST_final_scope",
+  "test_duration_seconds": 23.38,
+  "midterm_deliverable_hashes_unchanged": 5,
+  "historical_report_and_frozen_config_diff": "unchanged",
+  "local_document_links": 68,
+  "plots_visually_reviewed": 7,
+  "visual_review_note": "Contact sheet reviewed: axes/units/legend present, no cropped labels; all original PNGs retained",
+  "model_fits_in_actual_data": 2,
+  "technical_retries": 0,
+  "parent_attempts": 1,
+  "selected_by": "development_validation_MAE",
+  "input_test_has_been_exposed": true,
+  "T14_T16_executed": false
+}

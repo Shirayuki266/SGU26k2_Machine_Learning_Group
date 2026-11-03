@@ -1,0 +1,233 @@
+{
+  "task_id": "T13",
+  "reference_run_id": "780ecb7fb59d48bea58d5e4a076f1f26",
+  "parent_run_id": null,
+  "fold_id": null,
+  "mode": "full",
+  "kind": "train",
+  "objective": "Final held-out test evaluation of development-frozen models; deployment selection remains RF A regardless of test ordering.",
+  "hypothesis": "Assess development generalization and error regimes without test-driven selection.",
+  "change": null,
+  "model": "locked_final_comparison",
+  "parameters": {
+    "design": {
+      "schema_version": "t13-final-v1",
+      "task_id": "T13",
+      "issue": 32,
+      "assignee": "hoanglecodingmachine",
+      "frozen": "reports/ablation/frozen_model.json",
+      "development_selected_run_id": "780ecb7fb59d48bea58d5e4a076f1f26",
+      "selection": "locked_by_development_validation_MAE; never choose by test",
+      "feature_set": "A",
+      "cohort": "primary",
+      "seed": 42,
+      "postprocessing": "identity",
+      "models": {
+        "persistence": {
+          "reference_run_id": "24cef47874a94d9faa7bfcbae29b5c58",
+          "parameters": {
+            "rule": "PM2.5(t+1)=PM2.5(t)",
+            "fallback_needed_in_primary": false
+          }
+        },
+        "ridge": {
+          "reference_run_id": "32e65c5a4cbc489c905cf146b743867f",
+          "parameters": {
+            "alpha": 0.1,
+            "copy_X": true,
+            "fit_intercept": true,
+            "max_iter": null,
+            "positive": false,
+            "random_state": null,
+            "solver": "auto",
+            "tol": 0.0001
+          }
+        },
+        "random_forest": {
+          "reference_run_id": "780ecb7fb59d48bea58d5e4a076f1f26",
+          "parameters": {
+            "bootstrap": true,
+            "ccp_alpha": 0.0,
+            "criterion": "squared_error",
+            "max_depth": 12,
+            "max_features": 1.0,
+            "max_leaf_nodes": null,
+            "max_samples": null,
+            "min_impurity_decrease": 0.0,
+            "min_samples_leaf": 2,
+            "min_samples_split": 2,
+            "min_weight_fraction_leaf": 0.0,
+            "monotonic_cst": null,
+            "n_estimators": 80,
+            "n_jobs": 1,
+            "oob_score": false,
+            "random_state": 42,
+            "verbose": 0,
+            "warm_start": false
+          }
+        }
+      },
+      "preprocessing": {
+        "schema_version": "t08-preprocessing-v1",
+        "numeric": {
+          "imputation_strategy": "median",
+          "keep_empty_features": true,
+          "missing_indicators": "all",
+          "scale": {
+            "ridge": true,
+            "random_forest": false
+          }
+        },
+        "categorical": {
+          "imputation_strategy": "constant",
+          "fill_value": "__MISSING__",
+          "handle_unknown": "ignore",
+          "sparse_output": false
+        },
+        "output": {
+          "format": "pandas",
+          "verbose_feature_names": true
+        },
+        "prediction_postprocessing": {
+          "negative_predictions": "identity",
+          "applies_to": [
+            "persistence",
+            "ridge",
+            "random_forest"
+          ]
+        }
+      },
+      "files_sha256": {
+        "reports/ablation/frozen_model.json": "1ac73aad2c7109b0f6caf95475ca3c0ef7dd155c54c6e943c6cffa25a9c8de0c",
+        "reports/splits_full/split_manifest.json": "6d3ac3f05da50324a65c34c1e1601b5df45fefc3d2e6d0e834d43a27062d0e42",
+        "configs/default.json": "f2a0d2e72af598a91072f92e9595cd0d3d2c82fa895a8d45737ecca2cd6493c5",
+        "configs/preprocessing.json": "19c756cbcb4d3e6c2796104d2a056ee9f7d1d8df86163613bd3dee99ce4b2d26",
+        "artifacts/experiments/780ecb7fb59d48bea58d5e4a076f1f26/config.json": "a8c645190c409be35594fcc1af99ed85dd9db02056f1fb26b20a0a1c62f200bd",
+        "artifacts/experiments/780ecb7fb59d48bea58d5e4a076f1f26/metrics.json": "f872c563a6d10064f7f538cbd9ce572f6e680aa6d3eb8fba5d082c7723ff4de5",
+        "artifacts/experiments/780ecb7fb59d48bea58d5e4a076f1f26/metadata.json": "4463edfac711a72ccc4890327acf10ee598d7e3cd4341cb3cc4bf4d33578dd4f",
+        "artifacts/experiments/32e65c5a4cbc489c905cf146b743867f/config.json": "14c77d76cd624833023c16902dac5703fc573b23f5429bef53662e3f8bf3d7f0",
+        "artifacts/experiments/32e65c5a4cbc489c905cf146b743867f/metrics.json": "770ff75755dc6a57e50e820080aea8ff804f12e2af28eafd8f0344ba5d468ae3",
+        "artifacts/experiments/32e65c5a4cbc489c905cf146b743867f/metadata.json": "e9d02af8ae3099898d00e5c850b1cd19cecf4d9d5f7181968aa524db6529c25f",
+        "artifacts/experiments/24cef47874a94d9faa7bfcbae29b5c58/config.json": "de1e28b5c2f61861a6e8b784b2e69f619414c3b1dbed2b9e222154bd4f55c2a9",
+        "artifacts/experiments/24cef47874a94d9faa7bfcbae29b5c58/metrics.json": "5178574a63576ae765844c38415ea13cf3a79d4e1edef95c96eac246544f8915",
+        "artifacts/experiments/24cef47874a94d9faa7bfcbae29b5c58/metadata.json": "a64eb21dd6b3577b4af5bf2d3fb906966ca3a34f737587a45ca9adaec1b7e1b0",
+        "artifacts/experiments/80a499da1e8c4d02a3db2a698b5e5769/config.json": "bd4db1054933db77b5dc75b7a901666a440df449e7682da576910cb90695b1e5",
+        "artifacts/experiments/80a499da1e8c4d02a3db2a698b5e5769/metrics.json": "6f3a558f5b8470513f8a62de1a19b0693c1760d47de69201b4ab5d31042da550",
+        "artifacts/experiments/80a499da1e8c4d02a3db2a698b5e5769/metadata.json": "4ca5c136d68fb14bae3529221680d64e7148089696f8166edafcd0cdd2391f66",
+        "src/beijing_air/preprocessing.py": "3e121c4f6f5226b3764f053f1ceafdc9087ff3bbc97382dcc75242044b5d241f",
+        "src/beijing_air/features.py": "ccb40348855216057b1c10ab34a67a3da467979fb51417df5b6782f265996210",
+        "src/beijing_air/metrics.py": "c282e54515b5ad25fa9b67c576c8d082da9833878d65ac89e22ac7714b221769",
+        "src/beijing_air/samples.py": "4ef941da6714a685528f048e74c6c52771825e919287622dfa3b53cd77666735"
+      },
+      "budget": {
+        "full_parent_attempts": 1,
+        "fits_per_ml_model": 1,
+        "automatic_retries": 0,
+        "technical_retry": "explicit reason, only after failed parent; preserve all prior attempts",
+        "blas_threads": 1,
+        "execution": "sequential",
+        "min_free_memory_mb": 768
+      },
+      "analysis": {
+        "group_r2_min_n": 30,
+        "concentration_edges": [
+          0,
+          35,
+          75,
+          150
+        ],
+        "concentration_basis": "Fixed descriptive bands from development protocol T02, verified against train distribution before test; not fitted on test or a health standard",
+        "episode_threshold": 150,
+        "episode_min_hours": 3,
+        "episode_gap_hours": 1,
+        "episode_scope": "primary observed-target rows; missing hours break events",
+        "rapid_change_training_quantile": 0.95,
+        "permutation_rows_per_station": 200,
+        "permutation_repeats": 3,
+        "permutation_seed": 42,
+        "permutation_scope": "raw source groups, joint calendar sin/cos, station/wd grouped by raw input; diagnostic only",
+        "timeline_station": "Aotizhongxin",
+        "timeline_days": 7,
+        "std_ddof": 0
+      },
+      "test_access_policy": "Only execute after preflight and committed config; write audit before first open; never reset exposure after failure",
+      "save_model_weights": true,
+      "locked_at": "2026-11-02T23:59:51.529384+00:00"
+    },
+    "technical_retry_reason": null
+  },
+  "feature_set": "A",
+  "preprocessing": {
+    "schema_version": "t08-preprocessing-v1",
+    "numeric": {
+      "imputation_strategy": "median",
+      "keep_empty_features": true,
+      "missing_indicators": "all",
+      "scale": {
+        "ridge": true,
+        "random_forest": false
+      }
+    },
+    "categorical": {
+      "imputation_strategy": "constant",
+      "fill_value": "__MISSING__",
+      "handle_unknown": "ignore",
+      "sparse_output": false
+    },
+    "output": {
+      "format": "pandas",
+      "verbose_feature_names": true
+    },
+    "prediction_postprocessing": {
+      "negative_predictions": "identity",
+      "applies_to": [
+        "persistence",
+        "ridge",
+        "random_forest"
+      ]
+    }
+  },
+  "data": {
+    "split_manifest_sha256": "6d3ac3f05da50324a65c34c1e1601b5df45fefc3d2e6d0e834d43a27062d0e42",
+    "preflight": {
+      "test_samples_accessed": false,
+      "train_rows": 204865,
+      "validation_rows": 102479,
+      "refit_rows": 307344,
+      "ordered_refit_ids_sha256": "5417e9b4a5fec60315119011f4026a36359217ec49d39dddf3e25b942c0c55f2",
+      "latest_fit_target": "2016-02-29 23:00:00",
+      "planned_first_test_origin": "2016-02-29 23:00:00",
+      "label_rule": "latest_fit_target <= first_test_origin; observation at origin already available",
+      "rapid_change_threshold_train_q95": 38.0,
+      "train_concentration_counts": {
+        "[0.0, 35.0)": 68533,
+        "[35.0, 75.0)": 47637,
+        "[75.0, 150.0)": 53535,
+        "[150.0, inf)": 35160
+      }
+    }
+  },
+  "split": {
+    "timestamp_column": "target_timestamp",
+    "validation_start": "2015-03-01T00:00:00",
+    "test_start": "2016-03-01T00:00:00",
+    "timestamp_convention": "source_local_naive",
+    "test_locked": false,
+    "final_refit_train_validation": true,
+    "test_authorized_by": "explicit T13 user task; exposure audit persisted before access"
+  },
+  "time_ranges": null,
+  "sample_counts": null,
+  "seed": 42,
+  "budget": {
+    "full_parent_attempts": 1,
+    "fits_per_ml_model": 1,
+    "automatic_retries": 0,
+    "technical_retry": "explicit reason, only after failed parent; preserve all prior attempts",
+    "blas_threads": 1,
+    "execution": "sequential",
+    "min_free_memory_mb": 768
+  },
+  "is_test": false,
+  "source": "executed_T13_final_test"
+}

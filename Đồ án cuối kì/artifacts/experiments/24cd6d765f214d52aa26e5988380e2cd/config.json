@@ -1,0 +1,120 @@
+{
+  "task_id": "T13",
+  "reference_run_id": "780ecb7fb59d48bea58d5e4a076f1f26",
+  "parent_run_id": "a8cb7fda3f1441968b31c26c18e57ebf",
+  "fold_id": null,
+  "mode": "full",
+  "kind": "train",
+  "objective": null,
+  "hypothesis": null,
+  "change": null,
+  "model": "random_forest",
+  "parameters": {
+    "locked_parameters": {
+      "bootstrap": true,
+      "ccp_alpha": 0.0,
+      "criterion": "squared_error",
+      "max_depth": 12,
+      "max_features": 1.0,
+      "max_leaf_nodes": null,
+      "max_samples": null,
+      "min_impurity_decrease": 0.0,
+      "min_samples_leaf": 2,
+      "min_samples_split": 2,
+      "min_weight_fraction_leaf": 0.0,
+      "monotonic_cst": null,
+      "n_estimators": 80,
+      "n_jobs": 1,
+      "oob_score": false,
+      "random_state": 42,
+      "verbose": 0,
+      "warm_start": false
+    },
+    "stage": "final_refit_test",
+    "postprocessing": "identity"
+  },
+  "feature_set": "A",
+  "preprocessing": {
+    "schema_version": "t08-preprocessing-v1",
+    "numeric": {
+      "imputation_strategy": "median",
+      "keep_empty_features": true,
+      "missing_indicators": "all",
+      "scale": {
+        "ridge": true,
+        "random_forest": false
+      }
+    },
+    "categorical": {
+      "imputation_strategy": "constant",
+      "fill_value": "__MISSING__",
+      "handle_unknown": "ignore",
+      "sparse_output": false
+    },
+    "output": {
+      "format": "pandas",
+      "verbose_feature_names": true
+    },
+    "prediction_postprocessing": {
+      "negative_predictions": "identity",
+      "applies_to": [
+        "persistence",
+        "ridge",
+        "random_forest"
+      ]
+    }
+  },
+  "data": {
+    "test_anchor": {
+      "cohort": "primary",
+      "N": 101836,
+      "ordered_ids_sha256": "e157bf07fcb173fd76325ac7e95a70a7cff3b92eb5facb0a4f52f32180fe7ae8",
+      "source": {
+        "path": "data/processed/samples_full/sample_ids/test.csv",
+        "sha256": "63356b83f862c2677cb0a655b262495c36cd40ab84a4a224062f167386cba3ca",
+        "bytes": 12271991
+      },
+      "first_target": "2016-03-01 00:00:00",
+      "last_target": "2017-02-28 23:00:00",
+      "selection": "is_primary; all three models use identical IDs; no dropping missing features"
+    },
+    "preflight": {
+      "test_samples_accessed": false,
+      "train_rows": 204865,
+      "validation_rows": 102479,
+      "refit_rows": 307344,
+      "ordered_refit_ids_sha256": "5417e9b4a5fec60315119011f4026a36359217ec49d39dddf3e25b942c0c55f2",
+      "latest_fit_target": "2016-02-29 23:00:00",
+      "planned_first_test_origin": "2016-02-29 23:00:00",
+      "label_rule": "latest_fit_target <= first_test_origin; observation at origin already available",
+      "rapid_change_threshold_train_q95": 38.0,
+      "train_concentration_counts": {
+        "[0.0, 35.0)": 68533,
+        "[35.0, 75.0)": 47637,
+        "[75.0, 150.0)": 53535,
+        "[150.0, inf)": 35160
+      }
+    }
+  },
+  "split": {
+    "timestamp_column": "target_timestamp",
+    "validation_start": "2015-03-01T00:00:00",
+    "test_start": "2016-03-01T00:00:00",
+    "timestamp_convention": "source_local_naive",
+    "test_locked": false,
+    "final_refit_train_validation": true,
+    "test_authorized_by": "explicit T13 user task; exposure audit persisted before access"
+  },
+  "time_ranges": null,
+  "sample_counts": {
+    "fit": 307344,
+    "test": 101836
+  },
+  "seed": 42,
+  "budget": {
+    "fits": 1,
+    "test_configurations": 1
+  },
+  "is_test": false,
+  "source": "executed_T13_final_test"
+}

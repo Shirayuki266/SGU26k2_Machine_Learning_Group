@@ -46,3 +46,24 @@ Tham chiếu [kế hoạch thực nghiệm](experiment_plan.md) và
   [AI disclosure](ai_disclosure.md). Review của thành viên chưa có phải ghi thiếu.
 
 Checklist sản phẩm nằm ở [yêu cầu cuối kỳ](final_stage_requirements.md).
+
+## Minh chứng T13 / Issue #32
+
+Chưa có file/trang bài giảng hoặc rubric chính thức, tiếp tục [CẦN BỔ SUNG].
+Các áp dụng kỹ thuật sau truy vết từ artifact thực, không giả làm trích giảng:
+
+- Chủ đề05: comparison.csv, generalization_gap.csv, development_fold_metrics.csv,
+  cv_summary.csv và grouped_metrics.csv trong reports/final_evaluation; metric
+  được tính lại từ6file predictions. Không fit test hoặc chọn lại theo test.
+- Chủ đề06: Ridge A alpha0.1 từ CV T11, refit train+validation;65hệ số tại
+  ridge_coefficients.csv. MAE kém baseline nhưng RMSE tốt hơn; báo2067dự báo âm
+  theo policy identity đã khóa, không clipping sau test.
+- Ensemble: RF A80cây/depth12 chọn bằng validation, weights có checksum trong
+  final_model.json; permutation nhóm raw16nguồn,3repeat,2400IDs/1luồng,
+  chỉ chẩn đoán sau scoring, không chọn model từ importance.
+- Chủ đề04 khi diễn giải: T13 chỉ A, dùng kết quả A/B/C T12 trên development
+  để nói về selection; không khẳng định đã chấm B/C trên test hoặc fit selector
+  mới trong T13. Hệ số/importance không chứng minh nhân quả.
+
+Bảng/hình và nhận xét: [results_discussion.md](results_discussion.md).
+Người nhận hoanglecodingmachine cần đọc/hiểu/review; chưa tự tick xác nhận.

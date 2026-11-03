@@ -1,0 +1,17 @@
+{
+  "test_samples_accessed": false,
+  "train_rows": 204865,
+  "validation_rows": 102479,
+  "refit_rows": 307344,
+  "ordered_refit_ids_sha256": "5417e9b4a5fec60315119011f4026a36359217ec49d39dddf3e25b942c0c55f2",
+  "latest_fit_target": "2016-02-29 23:00:00",
+  "planned_first_test_origin": "2016-02-29 23:00:00",
+  "label_rule": "latest_fit_target <= first_test_origin; observation at origin already available",
+  "rapid_change_threshold_train_q95": 38.0,
+  "train_concentration_counts": {
+    "[0.0, 35.0)": 68533,
+    "[35.0, 75.0)": 47637,
+    "[75.0, 150.0)": 53535,
+    "[150.0, inf)": 35160
+  }
+}

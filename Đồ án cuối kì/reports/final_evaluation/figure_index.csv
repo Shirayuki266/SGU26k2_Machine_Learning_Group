@@ -1,0 +1,8 @@
+figure_id,title,path,source,scope,parent_run_id
+actual_predicted,All primary test actual/predicted observations,reports/figures/final_evaluation/actual_predicted.png,child predictions/test.csv.gz,test diagnostic; fixed models,a8cb7fda3f1441968b31c26c18e57ebf
+residuals,Residual distribution without clipping,reports/figures/final_evaluation/residuals.png,child predictions/test.csv.gz,test diagnostic; fixed models,a8cb7fda3f1441968b31c26c18e57ebf
+timeline,"Predeclared station, first seven test days",reports/figures/final_evaluation/timeline.png,child predictions/test.csv.gz; gaps remain NaN,test diagnostic; fixed models,a8cb7fda3f1441968b31c26c18e57ebf
+high_pollution_episode,Highest observed episode peak: Nongzhanguan__20170127T21 (diagnostic selection only),reports/figures/final_evaluation/high_pollution_episode.png,child predictions/test.csv.gz; gaps remain NaN,test diagnostic; fixed models,a8cb7fda3f1441968b31c26c18e57ebf
+group_errors,MAE by station and target season,reports/figures/final_evaluation/group_errors.png,grouped_metrics.csv,test diagnostic; fixed models,a8cb7fda3f1441968b31c26c18e57ebf
+rf_permutation,Grouped permutation importance; error bars ddof0,reports/figures/final_evaluation/rf_permutation.png,rf_permutation.csv; rf_permutation_ids.csv,test diagnostic; fixed models,a8cb7fda3f1441968b31c26c18e57ebf
+ridge_coefficients,Ridge coefficients (not causal importance),reports/figures/final_evaluation/ridge_coefficients.png,ridge_coefficients.csv,refit train+validation,a8cb7fda3f1441968b31c26c18e57ebf
