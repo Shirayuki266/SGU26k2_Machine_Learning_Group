@@ -93,6 +93,17 @@
 /reports/submission/*.json text eol=lf
 /reports/submission/*.txt text eol=lf
 /reports/submission/*.sha256 text eol=lf
+/src/beijing_air/final_evaluation.py text eol=lf
+/src/beijing_air/final_reporting.py text eol=lf
+/scripts/run_final_evaluation.py text eol=lf
+/scripts/verify_final_evaluation.py text eol=lf
+/tests/test_final_evaluation.py text eol=lf
+/configs/final_evaluation.json text eol=lf
+/reports/final_evaluation/*.json text eol=lf
+/reports/final_evaluation/*.csv -text whitespace=cr-at-eol
+/reports/figures/final_evaluation/*.png binary
+/docs/final_evaluation.md text eol=lf
+/docs/results_discussion.md text eol=lf
 /README.md text eol=lf
 /docs/midterm_plan.md text eol=lf
 /docs/project_plan.md text eol=lf

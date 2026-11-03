@@ -88,6 +88,7 @@ experiments/.experiment_log.lock
 !reports/tuning/**/*.csv
 !reports/ablation/**/*.csv
 !reports/midterm/*.csv
+!reports/final_evaluation/*.csv
 reports/submission/clean_before.json
 reports/submission/verification_initial.json
 !artifacts/experiments/
