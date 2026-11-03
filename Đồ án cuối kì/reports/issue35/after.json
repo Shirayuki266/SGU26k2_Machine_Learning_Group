@@ -1,0 +1,233 @@
+{
+  "issue": 35,
+  "artifact_type": "TEST_ONLY_fixture_compatibility_not_experiment",
+  "environment": {
+    "python": "3.12.10",
+    "pandas": "3.0.6",
+    "numpy": "2.5.4",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0",
+    "pyarrow": "26.0.0"
+  },
+  "source_sha256": "a5279de8fc43f4b484ad0b0829e648bf5b1f0cb030f46c00455b77a7826fd2ef",
+  "guard_source_sha256": "ea37b2b51e2c81d1327c5cb932c9ee5c05595e549c113ab9e5655e99ebd58aee",
+  "class_path": "beijing_air.preprocessing.FeatureSchema",
+  "constructor_signature": "(feature_names, numeric_features, categorical_features, missing_token='__MISSING__')",
+  "package_version": "0.1.0",
+  "fitted_state_hashes": {
+    "ridge": "429c8bf5584c3c9549f87a2b6ddd08dd",
+    "random_forest": "e7241e12d618d83575a144d874ba511c"
+  },
+  "protected_files_sha256": {
+    "configs/ablation.json": "cad2856355a5da4beec463c985e9b3db883c09062b24477a9789babe003e9bfe",
+    "configs/baseline.json": "0e9e92b3ccc6cac8daf850740041001f2de179929e31b57f0f5da5dd73192d02",
+    "configs/data_quality.json": "c5037db9dfcd7fe0e907ea9a09f2e3cd54cc76638185a00781f26e669aaaa891",
+    "configs/default.json": "f2a0d2e72af598a91072f92e9595cd0d3d2c82fa895a8d45737ecca2cd6493c5",
+    "configs/demo.json": "37b8eca8754ceafcd4007173c864ab6a38f13f6031f7e3dc663c3d6d180090ce",
+    "configs/eda.json": "cf39769c02c25101848689993002db0531b3a0edbac103321325886721851589",
+    "configs/final_evaluation.json": "b02d1ecd66b05e54d4fe3f054e057e1cbba91bbf9c0aabe4b010c6cfb3f2884a",
+    "configs/initial_models.json": "288ba9af2a76aa2912b5ed2891b89c0ba5667c9b04186fe14a9dd8d26ab52af1",
+    "configs/midterm.json": "1aae68e01e53f5510c10a2c0b8f4341a15dea902f51c85bf53d0df517c76714a",
+    "configs/preprocessing.json": "19c756cbcb4d3e6c2796104d2a056ee9f7d1d8df86163613bd3dee99ce4b2d26",
+    "configs/tuning.json": "92e7f4697dd82843165590f3748eeda6cad7ab447802f92ab250264ed2b0cef9",
+    "configs/uci_501.json": "5be97d4a726785a80c3a51d1178bf1c0d7df2d956883709b199d8de1d39d681c",
+    "experiments/experiment_log.csv": "a9ca88199e42ec6e3a7ea5a42a2764ed0a39ceddff16ab86d219333e50659342",
+    "reports/ablation/frozen_model.json": "1ac73aad2c7109b0f6caf95475ca3c0ef7dd155c54c6e943c6cffa25a9c8de0c",
+    "reports/final_evaluation/final_model.json": "d745b4e55fcd6c2c8d6d2eb242118f8b37fb83d199ec8adc280ae5a1a6693e61",
+    "reports/final_evaluation/execution.json": "e7894e886c311b5309dc2808a9263f78e070b8f9087e2a6b87c14adbb9f3a5aa",
+    "reports/final_evaluation/t13_runs.zip": "5362ebf0c51961d96537f5c3a8ffae39b4e1da0b7f6daa6230593445a8e471c1",
+    "artifacts/experiments/0960fac6455f4380bd5b6d1407633cf8/config.json": "8822a839e3d51c94311436f48d2b8c6daeebc78545eaced68025420fb3f56e4a",
+    "artifacts/experiments/0960fac6455f4380bd5b6d1407633cf8/metadata.json": "36a833a4a46a79bea472a3ef350181886d59090bd6a97c72be97f000b1f6d3fc",
+    "artifacts/experiments/0960fac6455f4380bd5b6d1407633cf8/metrics.json": "d600e214ff97ee408ca35ee9d0f432407e34314a6752633380b458675a809721",
+    "artifacts/experiments/51975d2c66ff4263b83ace6962f3d3f7/config.json": "46055866258052c888f65b087999af15b2885fe293b9738ccaaba45be06684b0",
+    "artifacts/experiments/51975d2c66ff4263b83ace6962f3d3f7/metadata.json": "815a8573e5e65b3f2b8945a86d09e3c5f4375ee47ffb8bc376177eb17db393a5",
+    "artifacts/experiments/51975d2c66ff4263b83ace6962f3d3f7/metrics.json": "7f1b365e521b6ad32f618c138072e5bd4375b1a3625c9800ceb3fff72c45679c",
+    "artifacts/experiments/51975d2c66ff4263b83ace6962f3d3f7/artifacts/model/pipeline.joblib": "b7274fe6ed73bb891aeeb3c51b8004ade97077a6747c140303aaa31d9268a21f",
+    "artifacts/experiments/24cd6d765f214d52aa26e5988380e2cd/config.json": "7161759bd46c2a39a2cc50fd46186a9246686b6cca1f10c97c989b82f46a2ddd",
+    "artifacts/experiments/24cd6d765f214d52aa26e5988380e2cd/metadata.json": "df7cb61b2dd2459cffb2b2a74a933fc7deb7ccf2fadd3ae3927e83c968edf7d0",
+    "artifacts/experiments/24cd6d765f214d52aa26e5988380e2cd/metrics.json": "8aed0bc9ce1e991a40fa46219e315465338beca80e66e9d6b5323951056a630c",
+    "artifacts/experiments/24cd6d765f214d52aa26e5988380e2cd/artifacts/model/pipeline.joblib": "0b696574847be1a19a8eb4c21ee813efe81266eb0a3bc37efd301a8a9c6e4009"
+  },
+  "T14_model_cache_fingerprint": "4c78e83236f86e362696617b96677f90dcd260a978107648c157684d308d9820",
+  "T13_frozen_source_gate": {
+    "accepted": false,
+    "error": "Frozen input changed: src/beijing_air/preprocessing.py"
+  },
+  "cases": {
+    "object:valid": {
+      "fixture_sha256": "3dd8c153f761a65baddcaa4a673a31e08e9670677cca2afaed8045aa0adc15ff",
+      "sample_ids": [
+        "TEST_ONLY_ISSUE35_0",
+        "TEST_ONLY_ISSUE35_1",
+        "TEST_ONLY_ISSUE35_2",
+        "TEST_ONLY_ISSUE35_3"
+      ],
+      "predictions": {
+        "ridge": [
+          1.9918285034741814,
+          21.049326141658007,
+          74.76588409476909,
+          2.0404999420137386
+        ],
+        "random_forest": [
+          10.250407323418989,
+          30.569706579864043,
+          95.81529793820543,
+          51.04482859188427
+        ]
+      }
+    },
+    "object:mixed_missing_unknown": {
+      "fixture_sha256": "c51e68f3a5e04f363d27d97984def10d6e040ee4e43fd5c3fac96e432e314c37",
+      "sample_ids": [
+        "TEST_ONLY_ISSUE35_0",
+        "TEST_ONLY_ISSUE35_1",
+        "TEST_ONLY_ISSUE35_2",
+        "TEST_ONLY_ISSUE35_3"
+      ],
+      "predictions": {
+        "ridge": [
+          3.6526542088007403,
+          21.036727174008576,
+          74.76588409476909,
+          2.0404999420137386
+        ],
+        "random_forest": [
+          10.250407323418989,
+          30.569706579864043,
+          95.81529793820543,
+          51.04482859188427
+        ]
+      }
+    },
+    "string[python]:valid": {
+      "fixture_sha256": "3dd8c153f761a65baddcaa4a673a31e08e9670677cca2afaed8045aa0adc15ff",
+      "sample_ids": [
+        "TEST_ONLY_ISSUE35_0",
+        "TEST_ONLY_ISSUE35_1",
+        "TEST_ONLY_ISSUE35_2",
+        "TEST_ONLY_ISSUE35_3"
+      ],
+      "predictions": {
+        "ridge": [
+          1.9918285034741814,
+          21.049326141658007,
+          74.76588409476909,
+          2.0404999420137386
+        ],
+        "random_forest": [
+          10.250407323418989,
+          30.569706579864043,
+          95.81529793820543,
+          51.04482859188427
+        ]
+      }
+    },
+    "string[python]:mixed_missing_unknown": {
+      "fixture_sha256": "c51e68f3a5e04f363d27d97984def10d6e040ee4e43fd5c3fac96e432e314c37",
+      "sample_ids": [
+        "TEST_ONLY_ISSUE35_0",
+        "TEST_ONLY_ISSUE35_1",
+        "TEST_ONLY_ISSUE35_2",
+        "TEST_ONLY_ISSUE35_3"
+      ],
+      "predictions": {
+        "ridge": [
+          3.6526542088007403,
+          21.036727174008576,
+          74.76588409476909,
+          2.0404999420137386
+        ],
+        "random_forest": [
+          10.250407323418989,
+          30.569706579864043,
+          95.81529793820543,
+          51.04482859188427
+        ]
+      }
+    },
+    "string[pyarrow]:valid": {
+      "fixture_sha256": "3dd8c153f761a65baddcaa4a673a31e08e9670677cca2afaed8045aa0adc15ff",
+      "sample_ids": [
+        "TEST_ONLY_ISSUE35_0",
+        "TEST_ONLY_ISSUE35_1",
+        "TEST_ONLY_ISSUE35_2",
+        "TEST_ONLY_ISSUE35_3"
+      ],
+      "predictions": {
+        "ridge": [
+          1.9918285034741814,
+          21.049326141658007,
+          74.76588409476909,
+          2.0404999420137386
+        ],
+        "random_forest": [
+          10.250407323418989,
+          30.569706579864043,
+          95.81529793820543,
+          51.04482859188427
+        ]
+      }
+    },
+    "string[pyarrow]:mixed_missing_unknown": {
+      "fixture_sha256": "c51e68f3a5e04f363d27d97984def10d6e040ee4e43fd5c3fac96e432e314c37",
+      "sample_ids": [
+        "TEST_ONLY_ISSUE35_0",
+        "TEST_ONLY_ISSUE35_1",
+        "TEST_ONLY_ISSUE35_2",
+        "TEST_ONLY_ISSUE35_3"
+      ],
+      "predictions": {
+        "ridge": [
+          3.6526542088007403,
+          21.036727174008576,
+          74.76588409476909,
+          2.0404999420137386
+        ],
+        "random_forest": [
+          10.250407323418989,
+          30.569706579864043,
+          95.81529793820543,
+          51.04482859188427
+        ]
+      }
+    },
+    "object:all_missing": {
+      "fixture_sha256": "0ecff7f2382abc5977cf3be67ee00975c996a861064655f9524a3ba650d32239",
+      "sample_ids": [
+        "TEST_ONLY_ISSUE35_0",
+        "TEST_ONLY_ISSUE35_1",
+        "TEST_ONLY_ISSUE35_2",
+        "TEST_ONLY_ISSUE35_3"
+      ],
+      "predictions": {
+        "ridge": [
+          4.2759100274437,
+          21.036727174008576,
+          74.47482263014614,
+          2.554266894288631
+        ],
+        "random_forest": [
+          10.250407323418989,
+          30.569706579864043,
+          95.81529793820543,
+          50.36386680826825
+        ]
+      }
+    }
+  },
+  "data_scope": "synthetic TEST_ONLY fixture; no train/validation/test samples or saved predictions read",
+  "fit_calls": 0,
+  "model_artifacts_rewritten": false,
+  "experiment_log_written": false,
+  "comparison": {
+    "status": "PASS",
+    "prediction_values_compared": 56,
+    "rtol": 0,
+    "atol": 1e-12,
+    "max_absolute_difference": 0.0,
+    "frozen_gate_change_expected": true,
+    "action": "Keep T13 source fingerprint immutable; replay old verification at its commit. Restart app after code update; no automatic artifact migration."
+  },
+  "in_memory_hash_caveat": "RF joblib.hash varies across independent loads of the same file due to node-buffer padding; not used as a cross-process equality assertion. Immutable weight-file SHA and fixture predictions are compared; tests check each instance unchanged within its own lifecycle. See hash_diagnostic.json for a two-load check with equal named tree fields."
+}

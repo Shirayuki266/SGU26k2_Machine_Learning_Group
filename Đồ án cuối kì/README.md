@@ -25,9 +25,16 @@ app/               Ứng dụng Streamlit
 
 Dependencies được khai báo duy nhất trong `pyproject.toml`: pandas, numpy, scikit-learn, matplotlib, seaborn, joblib, streamlit, pytest và Jupyter. Package dùng cấu trúc `src`; cài editable để import `beijing_air` từ môi trường dự án.
 
+Issue #35 ghim **pandas==3.0.6** (môi trường tái hiện lỗi guard categorical), yêu
+cầu Python>=3.11 theo metadata pandas. Khi nạp model T13, dùng Python3.12 và
+các phiên bản đã lưu theo [hướng dẫn demo](docs/demo.md). Bản sửa guard dùng
+kiểm tra kiểu Python độc lập dtype, vẫn giữ missing cho imputer đã fit.
+Xem [changelog và ảnh hưởng fingerprint](docs/changelog_issue35.md); không sửa
+SHA/config/weights hoặc kết quả lịch sử. Khởi động lại app sau cập nhật source.
+
 ## Tạo môi trường trên Windows PowerShell
 
-Cài Python 3.10 trở lên và Python Launcher (`py`), sau đó mở PowerShell tại thư mục chứa README này:
+Cài Python 3.11 trở lên và Python Launcher (`py`), sau đó mở PowerShell tại thư mục chứa README này:
 
 Các lệnh tạo venv bên dưới dành cho máy có Python cài chuẩn và chưa có `.venv`.
 Nếu đã có `.venv\python.exe` portable như workspace hiện tại, dùng phần portable

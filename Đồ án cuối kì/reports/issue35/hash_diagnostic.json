@@ -1,0 +1,28 @@
+{
+  "same_weight_file_two_loads": true,
+  "hash_a": "8dcd25911e052442b684417e92e7fe2c",
+  "hash_b": "cf2cf6b438c09a84d91394a6e01d9921",
+  "preprocess_hash_equal": true,
+  "all_first_tree_fields_equal": true,
+  "node_itemsize": 64,
+  "node_fields": "{'names': ['left_child', 'right_child', 'feature', 'threshold', 'impurity', 'n_node_samples', 'weighted_n_node_samples', 'missing_go_to_left'], 'formats': ['<i8', '<i8', '<i8', '<f8', '<f8', '<i8', '<f8', 'u1'], 'offsets': [0, 8, 16, 24, 32, 40, 48, 56], 'itemsize': 64}",
+  "padding_offsets": [
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63
+  ],
+  "differing_offsets": [
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63
+  ],
+  "only_padding_differs": true
+}
