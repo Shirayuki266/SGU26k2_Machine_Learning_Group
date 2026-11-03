@@ -1,0 +1,305 @@
+{
+  "schema_version": 1,
+  "run_id": "a8cb7fda3f1441968b31c26c18e57ebf",
+  "status": "completed",
+  "started_at": "2026-11-03T00:10:33.225572+00:00",
+  "ended_at": "2026-11-03T00:15:15.383239+00:00",
+  "timezone": "UTC",
+  "duration_seconds": 282.157667,
+  "git": {
+    "commit": "7aeea64c65d644d3c777f43d5ee0646e4fe85991",
+    "branch": "feature/t13-final-evaluation",
+    "dirty": true,
+    "available": true
+  },
+  "environment": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.22631-SP0",
+    "packages": {
+      "Jinja2": "3.1.6",
+      "MarkupSafe": "3.0.4",
+      "PyYAML": "6.0.3",
+      "Pygments": "2.21.0",
+      "Send2Trash": "2.1.0",
+      "altair": "6.3.0",
+      "anyio": "4.16.0",
+      "argon2-cffi": "25.1.0",
+      "argon2-cffi-bindings": "26.1.0",
+      "arrow": "1.4.0",
+      "asttokens": "3.0.2",
+      "async-lru": "2.4.0",
+      "attrs": "26.1.0",
+      "babel": "2.18.0",
+      "beautifulsoup4": "4.15.0",
+      "beijing-air-quality": "0.1.0",
+      "bleach": "6.4.0",
+      "certifi": "2026.10.23",
+      "cffi": "2.1.1",
+      "charset-normalizer": "3.5.2",
+      "click": "8.5.0",
+      "cloudpickle": "3.1.2",
+      "colorama": "0.4.6",
+      "comm": "0.2.3",
+      "contourpy": "1.4.0",
+      "cycler": "0.12.1",
+      "debugpy": "1.8.22",
+      "defusedxml": "0.7.1",
+      "et_xmlfile": "2.0.0",
+      "executing": "2.3.0",
+      "fastjsonschema": "2.22.3",
+      "flatbuffers": "25.12.19",
+      "fonttools": "4.68.0",
+      "fqdn": "1.6.0",
+      "h11": "0.16.0",
+      "httpcore": "1.0.9",
+      "httpx": "0.28.1",
+      "idna": "3.20",
+      "iniconfig": "2.3.1",
+      "ipykernel": "7.4.0",
+      "ipython": "9.18.0",
+      "ipython_pygments_lexers": "1.1.1",
+      "ipywidgets": "8.1.9",
+      "isoduration": "20.11.0",
+      "itsdangerous": "2.2.0",
+      "jedi": "0.20.1",
+      "joblib": "1.6.0",
+      "json5": "0.17.3",
+      "jsonpointer": "3.7",
+      "jsonschema": "4.26.0",
+      "jsonschema-specifications": "2025.9.1",
+      "jupyter": "1.1.1",
+      "jupyter-console": "6.6.3",
+      "jupyter-events": "0.12.1",
+      "jupyter-lsp": "2.3.1",
+      "jupyter_builder": "1.2.4",
+      "jupyter_client": "8.10.0",
+      "jupyter_core": "5.9.1",
+      "jupyter_server": "2.21.1",
+      "jupyter_server_terminals": "0.5.4",
+      "jupyterlab": "4.6.5",
+      "jupyterlab_pygments": "0.3.0",
+      "jupyterlab_server": "2.28.1",
+      "jupyterlab_widgets": "3.0.17",
+      "kiwisolver": "1.5.1",
+      "lark": "1.3.1",
+      "lxml": "6.1.3",
+      "matplotlib": "3.11.2",
+      "matplotlib-inline": "0.2.2",
+      "mistune": "3.4.0",
+      "narwhals": "2.28.0",
+      "nbclient": "0.11.0",
+      "nbconvert": "7.17.2",
+      "nbformat": "5.11.1",
+      "nest-asyncio2": "1.7.4",
+      "networkx": "3.7",
+      "notebook": "7.6.4",
+      "notebook_shim": "0.2.4",
+      "numpy": "2.5.4",
+      "onnxruntime": "1.31.1",
+      "openpyxl": "3.1.5",
+      "packaging": "26.3",
+      "pandas": "3.0.6",
+      "pandocfilters": "1.5.1",
+      "parso": "0.8.7",
+      "pillow": "13.0.0",
+      "pip": "26.2.1",
+      "platformdirs": "4.14.3",
+      "pluggy": "1.6.0",
+      "prometheus_client": "0.26.0",
+      "prompt_toolkit": "3.0.53",
+      "protobuf": "7.36.2",
+      "psutil": "7.2.2",
+      "pure_eval": "0.2.4",
+      "pyarrow": "26.0.0",
+      "pycparser": "3.12",
+      "pydeck": "0.9.3",
+      "pymupdf": "2.0",
+      "pymupdf4llm": "2.0",
+      "pymupdf_layout": "2.0",
+      "pyparsing": "3.3.3",
+      "pytest": "9.1.1",
+      "python-dateutil": "2.9.0.post0",
+      "python-docx": "1.2.0",
+      "python-json-logger": "4.2.0",
+      "python-multipart": "0.0.33",
+      "python-pptx": "1.0.2",
+      "pywinpty": "3.1.2",
+      "pyzmq": "27.2.0",
+      "referencing": "0.37.0",
+      "requests": "2.34.2",
+      "rfc3339-validator": "0.1.4",
+      "rfc3986-validator": "0.1.1",
+      "rfc3987-syntax": "1.1.0",
+      "rpds-py": "2026.9.1",
+      "scikit-learn": "1.9.1",
+      "scipy": "1.18.1",
+      "seaborn": "0.13.2",
+      "setuptools": "84.2.1",
+      "six": "1.17.0",
+      "soupsieve": "3.0.4",
+      "stack-data": "0.6.3",
+      "starlette": "1.10.0",
+      "streamlit": "1.66.1",
+      "tabulate": "0.10.0",
+      "terminado": "0.18.1",
+      "threadpoolctl": "3.7.0",
+      "tinycss2": "1.5.1",
+      "tornado": "6.6",
+      "traitlets": "5.16.1",
+      "typing_extensions": "4.16.0",
+      "tzdata": "2026.5",
+      "uri-template": "1.3.0",
+      "urllib3": "2.8.0",
+      "uvicorn": "0.54.0",
+      "watchdog": "6.0.0",
+      "wcwidth": "0.9.4",
+      "webcolors": "25.10.0",
+      "webencodings": "0.6.1",
+      "websocket-client": "1.9.2",
+      "websockets": "17.4",
+      "wheel": "0.48.0",
+      "widgetsnbextension": "4.0.16",
+      "xlsxwriter": "3.3.1"
+    }
+  },
+  "artifacts": [
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/data/development_ledger_before.csv",
+      "sha256": "a03912f43bea36b6c23544d531d6405097797942de17659a6d6e87edb2823e56",
+      "size_bytes": 628892
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/data/history_before.json",
+      "sha256": "35706a57e69abb79f73b656e5f0f652cfd294dff9b9a80b122a82f4b26efaea8",
+      "size_bytes": 27443
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/config/final_evaluation.json",
+      "sha256": "b02d1ecd66b05e54d4fe3f054e057e1cbba91bbf9c0aabe4b010c6cfb3f2884a",
+      "size_bytes": 6209
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/data/preflight.json",
+      "sha256": "94bdfbf4101ceb9c1f29eade180598b256e69894796ff33286d050fc6b5c0c17",
+      "size_bytes": 601
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/source/final_evaluation.py",
+      "sha256": "6f2581d6f5488dd4bd0bb0563fe63564af52a4bb240f1de74fb808b481cd3aea",
+      "size_bytes": 25617
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/source/final_reporting.py",
+      "sha256": "36b46ab6bbca440b417682343808767c97a729169891183161b851224a076257",
+      "size_bytes": 19298
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/data/test_manifest.json",
+      "sha256": "30b722590bb5fb76a75a8f69ed9536e18e2854f83458ba2b34f0c221cc1b44de",
+      "size_bytes": 495
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/data/test_primary_ids.csv.gz",
+      "sha256": "0d46a3b55616008f9abb215f6841772a654d6d063e68adc776e1783cc9335235",
+      "size_bytes": 4639925
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/tables/comparison.csv",
+      "sha256": "a1ade3706e97e8353d148de2b20fb558c4d744e482cf0631717ee4fd2cad131f",
+      "size_bytes": 748
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/tables/cv_summary.csv",
+      "sha256": "8aa5d716bc37a893e0d9ce613635e9600c08873a319f86ea783fcb10df7618de",
+      "size_bytes": 826
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/tables/development_fold_metrics.csv",
+      "sha256": "2d4fbc2a52de31db5aac8babc292a1f0ed824fde832e3ff686270558d96e36a3",
+      "size_bytes": 1204
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/tables/episodes.csv",
+      "sha256": "7edd87d7942ae76dbba2bc4a48029fc7223060806469747376c298220d3db680",
+      "size_bytes": 78183
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/tables/figure_index.csv",
+      "sha256": "8f450e12130aae4569049d4c0f39707014e552484fe92bc4a1c3e4ce8a50ea9f",
+      "size_bytes": 1542
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/tables/generalization_gap.csv",
+      "sha256": "b9f634b1b3bfcaaae8e935ca05cfdbbad89d817682f02ed6042fa88c8ab7e6ef",
+      "size_bytes": 3094
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/tables/grouped_metrics.csv",
+      "sha256": "53b038ab252b1e584df56c1fdb59bed8b2dd0b141a529e5940f26162d5563635",
+      "size_bytes": 414610
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/tables/rf_permutation.csv",
+      "sha256": "3455af793d43c720884b3846ff438a992ecfeef1fde52beae461f5ac5db75cbc",
+      "size_bytes": 3067
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/tables/rf_permutation_ids.csv",
+      "sha256": "29e2aeaac6973717e8b78cf7e4799dcd722e2d71911e251d692754bad07ea797",
+      "size_bytes": 229036
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/tables/rf_permutation_summary.csv",
+      "sha256": "165cd6c10e4a547d0e975d4f6df5d32f90fa07376d4e55f2f8e80061fdea7f80",
+      "size_bytes": 772
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/tables/ridge_coefficients.csv",
+      "sha256": "0e60fb718bee263d48be1b531de082dd30f04ed8c9095a5b61831bb6201fa4d4",
+      "size_bytes": 10056
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/figures/actual_predicted.png",
+      "sha256": "4b9503d50826d2783f597786c409a6da6ac9915a01d4ca0d9959f74d21bf8890",
+      "size_bytes": 389658
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/figures/group_errors.png",
+      "sha256": "461b2ea258d22cd9a61ee69bccfe1b353d5f19c40e1d74301f020019a670f766",
+      "size_bytes": 81925
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/figures/high_pollution_episode.png",
+      "sha256": "243d85791f594bea86175ab80745fb7a1178504026e3cf79dcb01e0cbc8a9998",
+      "size_bytes": 145971
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/figures/residuals.png",
+      "sha256": "7c87f612c49836eb1c56788d3a05565fad159707170f9f03c9833602be5142d6",
+      "size_bytes": 81764
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/figures/rf_permutation.png",
+      "sha256": "d5706bf7a358b1d53cd3ff686e9c96b17788ddf97633cd1cf3f45ba09c492615",
+      "size_bytes": 66521
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/figures/ridge_coefficients.png",
+      "sha256": "aeef0e1c40f51651a2a7f215663727ae6e490c68dffa0740d593721c630fbbc1",
+      "size_bytes": 88410
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/figures/timeline.png",
+      "sha256": "9c05ab53ecf92222a71cc116cabdd6bef4228e6f9e33fa1ffe81e1907b1657b3",
+      "size_bytes": 192506
+    },
+    {
+      "path": "../artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/artifacts/report/results_discussion.md",
+      "sha256": "010c7337332ccb54a1f5007917aac66e1835611439de17007d49bcdb1d927e31",
+      "size_bytes": 8334
+    }
+  ],
+  "notes": "is_test=False denotes a REAL experiment, not a synthetic logger test. Evaluation partition is held-out test. No tuning.",
+  "decision": null,
+  "error": null
+}

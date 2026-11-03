@@ -112,3 +112,10 @@
 /docs/project_plan.md text eol=lf
 /artifacts/experiments/0a616a9fb5134058b3af3cafb1a70e18/artifacts/source/*.py -text whitespace=cr-at-eol
 /artifacts/experiments/1ee4f2f0e07948a187f5889b042df812/artifacts/source/*.py -text whitespace=cr-at-eol
+/artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/** -text whitespace=cr-at-eol
+/artifacts/experiments/0960fac6455f4380bd5b6d1407633cf8/** -text whitespace=cr-at-eol
+/artifacts/experiments/51975d2c66ff4263b83ace6962f3d3f7/** -text whitespace=cr-at-eol
+/artifacts/experiments/24cd6d765f214d52aa26e5988380e2cd/** -text whitespace=cr-at-eol
+/scripts/package_final_artifacts.py text eol=lf
+/tests/test_final_artifact_delivery.py text eol=lf
+/reports/final_evaluation/*.sha256 text eol=lf

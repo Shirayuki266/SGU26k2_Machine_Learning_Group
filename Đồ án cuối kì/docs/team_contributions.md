@@ -67,3 +67,8 @@ nhập hoanglecodingmachine, trùng Git identity hiện có. Issue #32 được 
 hoanglecodingmachine trước triển khai. Chỉ mapping này đã xác nhận; họ tên,
 MSSV, tỷ lệ và thành viên khác vẫn chờ nhóm cung cấp. Không suy công việc cũ
 hoặc ghi đã đọc/hiểu khi chưa được xác nhận.
+
+Minh chứng T13 hiện có: hai commit code/protocol74a739e và7aeea64 trước test,
+parent a8cb7fda3f1441968b31c26c18e57ebf cùng3child trong
+reports/final_evaluation/execution.json. AI hỗ trợ chạy/kiểm; người nhận cần
+review/đọc/hiểu trước merge, chưa gán thêm phần đóng góp hoặc tỷ lệ học thuật.

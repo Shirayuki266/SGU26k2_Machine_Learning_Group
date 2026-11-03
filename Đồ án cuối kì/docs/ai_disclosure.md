@@ -32,3 +32,9 @@ dùng xác nhận: hoanglecodingmachine; review/đọc/hiểu trước merge [C�
 Trước full: tests/prefight được ghi trong PR; test chỉ mở sau kế hoạch và code
 đã commit. Kết quả thực và giới hạn cập nhật bằng artifact mới, không sửa run
 cũ hoặc quy đóng góp cho sinh viên chưa xác nhận.
+
+T13 đã chạy xong theo yêu cầu: một parent/ba child, hai pipeline fit dataset,
+permutation chẩn đoán, không retry/tuning thêm. Codex hỗ trợ soạn thảo luận từ
+metrics/predictions/figures thật; verifier/CRC/restore fixture pass. Run IDs và
+các giới hạn ở docs/results_discussion.md; review của thành viên vẫn chưa được
+xác nhận, không tự đánh dấu đã hiểu hoặc tự điền tỷ lệ đóng góp.

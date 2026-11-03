@@ -474,3 +474,29 @@ tính Git trước commit. Bổ sung % MAE giảm persistence, fold/std và phâ
 đợt ô nhiễm cao. Cuối kỳ có 5chương/slide/poster/video/model/source/README,
 ZIP tên nhóm trưởng và yêu cầu in/chia sẻ repo. Các mục thiếu giữ [CẦN BỔ SUNG].
 Lần cập nhật này chỉ tài liệu, chưa thực hiện T13 hoặc thay đổi gói giữa kỳ.
+
+## T13: test đã đánh giá theo recipe khóa
+
+[Thảo luận RQ1–RQ3](docs/results_discussion.md),
+[protocol/lệnh/bàn giao](docs/final_evaluation.md),
+[bảng test](reports/final_evaluation/comparison.csv) và
+[model RF final](reports/final_evaluation/final_model.json).
+Hai pipeline refit307344primary train+validation;3model cùng101836test IDs.
+
+| Model A/primary | Test MAE (µg/m³) | Test RMSE (µg/m³) | Test R² | % MAE giảm persistence |
+| --- | --- | --- | --- | --- |
+| Persistence | 10,161809 | 19,436188 | 0,944975 | 0% |
+| Ridge alpha0.1 | 10,384443 | 18,939487 | 0,947752 | −2,1909% |
+| RF80cây/depth12 | 9,877150 | 18,569634 | 0,949772 | 2,8013% |
+
+RF vẫn là phương án chọn bằng validation, không chọn lại theo test. Identity
+chung, không clipping; Ridge có2067dự báo âm được giữ/báo rõ. Train/CV/validation
+lịch sử khác final refit, không gọi validation đã refit là held-out. RF chưa
+có CV, không tạo fold/std giả. Ngưỡng/mùa/episode/permutation đã chốt trước test.
+
+Verifier pass41artifact/6predictions/2weights/2946metric nhóm;49row và196file
+run cũ giữ nguyên. Bundle cục bộ reports/final_evaluation/t13_runs.zip kèm
+weights và hai dependency T09, có checksum/restore helper; binary ignored,
+chưa upload công khai. Cần chuyển bundle cùng source khi sang máy khác.
+Báo cáo/ZIP giữa kỳ giữ nguyên; không chạy lại MK01/MK02 để thêm số liệu test.
+T14–T16 chưa thực hiện. Issue#32/PR T13 chờ người dùng review và merge.

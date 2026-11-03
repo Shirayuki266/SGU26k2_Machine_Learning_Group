@@ -99,3 +99,50 @@ Bài giảng05/06/Ensemble,04 khi nói selection; file/trang/rubric riêng còn
 [CẦN BỔ SUNG], xem course_alignment.md. Codex hỗ trợ triển khai/kiểm/soạn
 nhận xét từ artifact; thành viên cần đọc/hiểu/review trước merge. T14–T16 chưa
 được thực hiện bởi task này.
+
+## Trạng thái thực tế sau run
+
+Đã hoàn tất một parent attempt,3child trên101836test primary IDs; không lỗi
+kỹ thuật, không technical retry, không tuning/chọn lại. Parent:
+a8cb7fda3f1441968b31c26c18e57ebf.
+Persistence0960fac6455f4380bd5b6d1407633cf8,
+Ridge51975d2c66ff4263b83ace6962f3d3f7,
+RF24cd6d765f214d52aa26e5988380e2cd.
+
+[Thảo luận RQ1–RQ3](results_discussion.md) và
+[kiểm artifact](../reports/final_evaluation/verification.json):
+41artifact đăng ký,6file predictions,2weights và2946metric nhóm pass.
+49row CSV cũ/196core file cũ không đổi. RF MAE9,877150, giảm2,8013%
+so persistence10,161809; Ridge10,384443, kém2,1909% theo MAE.
+Model vẫn chọn theo validation; manifest bàn giao ở
+[final_model.json](../reports/final_evaluation/final_model.json).
+Frozen T12 giữ test_evaluated=false như snapshot cũ; trạng thái test hiện tại
+phải đọc execution.json: **test đã được mở**.
+
+Weights ignored được kèm trong bundle cục bộ
+reports/final_evaluation/t13_runs.zip (102162012byte), SHA-256:
+5362ebf0c51961d96537f5c3a8ffae39b4e1da0b7f6daa6230593445a8e471c1.
+Bundle có93file:4tree T13 và2tree T09 dependency giữ nguyên, không phải6run mới.
+Không có CSV ledger ở root ZIP và không ghi đè ledger mới. Binary bundle/weights
+không commit hoặc upload công khai; người dùng lấy file bàn giao trên workspace.
+Git giữ manifest/checksum/code/metadata/predictions/bảng/hình. Khi chuyển máy,
+cần mang bundle này cùng source; không gọi clone chỉ có Git là đã đủ weights.
+
+```powershell
+# Kiểm checksum/CRC/file manifest, không ghi project:
+.\.venv\python.exe scripts/package_final_artifacts.py --verify reports/final_evaluation/t13_runs.zip
+# Khôi phục chỉ file còn thiếu, file có sẵn phải đúng SHA; không thay CSV:
+.\.venv\python.exe scripts/package_final_artifacts.py --restore reports/final_evaluation/t13_runs.zip
+.\.venv\python.exe scripts/verify_final_evaluation.py
+```
+
+Đã thử restore93file vào thư mục trống, sau đó restore lần2 ghi0file; ledger
+workspace không đổi. delivery_verification.json lưu kết quả. Không chạy
+--execute để khôi phục artifact, vì parent completed chặn đánh giá mới.
+Không dùng lệnh restore T09 cũ yêu cầu ledger chỉ T09 cho repo đã có53row;
+bundle T13 đã kèm hai dependency T09 để không cần thay CSV hiện hành.
+
+Báo cáo tự động nguyên gốc giữ trong parent artifact. docs/results_discussion.md
+được rà định dạng và thêm nhận xét từ số liệu đã lưu; không thay bản run gốc.
+Bảy PNG đã rà contact sheet: đủ axis/đơn vị/legend, không bị cắt; dữ liệu đỉnh
+vẫn được giữ. Không tái sinh hình hoặc chấm model khác để cải thiện kết quả.

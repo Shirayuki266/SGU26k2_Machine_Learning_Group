@@ -1,0 +1,16 @@
+model,partition,reference_run_id,MAE,RMSE,R2,note,n_total,n_scored,unavailable,coverage,r2_undefined_reason,fallback_count,fallback_rate,mae_reduction_vs_persistence_pct,negative_predictions
+persistence,development_train_in_sample,24cef47874a94d9faa7bfcbae29b5c58,,,,not recorded,,,,,,,,,
+persistence,development_validation_held_out,24cef47874a94d9faa7bfcbae29b5c58,9.736617258169966,19.240919249995102,0.9448035694053172,historical train-only fit; not the refitted final model,102479.0,102479.0,0.0,1.0,,0.0,0.0,,
+persistence,development_train_CV_pooled,,10.159566108643663,18.683535684218118,0.943399743939596,3 temporal folds; std in cv_summary.csv,,,,,,,,,
+persistence,final_refit_train_validation_IN_SAMPLE,,10.666052045915976,20.314526769903008,0.9355981225107647,final fit uses more data than historical model; validation is part of fit,307344.0,307344.0,0.0,1.0,,,,0.0,
+persistence,final_test_held_out,,10.161809183392906,19.436188081133132,0.9449753346094043,final fit uses more data than historical model; validation is part of fit,101836.0,101836.0,0.0,1.0,,,,0.0,
+ridge,development_train_in_sample,32e65c5a4cbc489c905cf146b743867f,11.28626211185184,19.92371866784375,0.9361795919059314,historical train-only fit; not the refitted final model,204865.0,204865.0,0.0,1.0,,,,,4179.0
+ridge,development_validation_held_out,32e65c5a4cbc489c905cf146b743867f,10.200529345095717,18.907197877209306,0.9467016580406031,historical train-only fit; not the refitted final model,102479.0,102479.0,0.0,1.0,,,,,2684.0
+ridge,development_train_CV_pooled,,10.405534178754428,18.08060833105341,0.9469938402448626,3 temporal folds; std in cv_summary.csv,,,,,,,,,
+ridge,final_refit_train_validation_IN_SAMPLE,,10.777079708788381,19.562728558390454,0.9402766766135839,final fit uses more data than historical model; validation is part of fit,307344.0,307344.0,0.0,1.0,,,,-1.0409443193643355,
+ridge,final_test_held_out,,10.384442508805602,18.939486569257028,0.9477517646173637,final fit uses more data than historical model; validation is part of fit,101836.0,101836.0,0.0,1.0,,,,-2.1908827591108277,
+random_forest,development_train_in_sample,780ecb7fb59d48bea58d5e4a076f1f26,9.837286915801801,16.66433522709399,0.9553527450212967,historical train-only fit; not the refitted final model,204865.0,204865.0,0.0,1.0,,,,,0.0
+random_forest,development_validation_held_out,780ecb7fb59d48bea58d5e4a076f1f26,9.56148776684663,18.964824954952,0.9463762678475134,historical train-only fit; not the refitted final model,102479.0,102479.0,0.0,1.0,,,,,0.0
+random_forest,development_train_CV_pooled,,,,,RF CV not run in T11 budget; no fabricated folds,,,,,,,,,
+random_forest,final_refit_train_validation_IN_SAMPLE,,9.549073805692823,16.552115833121444,0.9572444849429752,final fit uses more data than historical model; validation is part of fit,307344.0,307344.0,0.0,1.0,,,,10.472274421826427,
+random_forest,final_test_held_out,,9.877149899523696,18.56963395188441,0.9497724597810346,final fit uses more data than historical model; validation is part of fit,101836.0,101836.0,0.0,1.0,,,,2.8012657857659757,

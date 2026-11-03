@@ -1,0 +1,7 @@
+{
+  "reference_run_id": "24cef47874a94d9faa7bfcbae29b5c58",
+  "parameters": {
+    "rule": "PM2.5(t+1)=PM2.5(t)",
+    "fallback_needed_in_primary": false
+  }
+}

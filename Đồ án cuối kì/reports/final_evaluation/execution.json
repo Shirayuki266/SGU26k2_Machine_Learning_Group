@@ -1,0 +1,17 @@
+{
+  "attempt": "741648d92b3d4388aa109092da093de1",
+  "status": "completed",
+  "config_sha256": "b02d1ecd66b05e54d4fe3f054e057e1cbba91bbf9c0aabe4b010c6cfb3f2884a",
+  "retry_reason": null,
+  "test_samples_accessed": true,
+  "child_run_ids": {
+    "persistence": "0960fac6455f4380bd5b6d1407633cf8",
+    "ridge": "51975d2c66ff4263b83ace6962f3d3f7",
+    "random_forest": "24cd6d765f214d52aa26e5988380e2cd"
+  },
+  "selected_model": "random_forest",
+  "selected_by": "development_validation_MAE",
+  "selected_reference_run_id": "780ecb7fb59d48bea58d5e4a076f1f26",
+  "parent_run_id": "a8cb7fda3f1441968b31c26c18e57ebf",
+  "first_test_access_at": "2026-11-03T00:10:37.233170+00:00"
+}

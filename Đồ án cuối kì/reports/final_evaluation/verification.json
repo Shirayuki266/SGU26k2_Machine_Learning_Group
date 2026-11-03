@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "task_id": "T13",
+  "parent_run_id": "a8cb7fda3f1441968b31c26c18e57ebf",
+  "runs": 4,
+  "registered_artifacts_checked": 41,
+  "prediction_files_recomputed": 6,
+  "saved_models_checked": 2,
+  "test_primary_samples": 101836,
+  "same_test_ids": true,
+  "selection_from_development": true,
+  "old_run_files_unchanged": 196,
+  "old_csv_rows_unchanged": 49,
+  "group_metrics_recomputed": 2946,
+  "model_fit_performed": false,
+  "input_test_csv_reopened": false,
+  "test_has_been_exposed": true,
+  "weights_note": "Saved models were serialized/reloaded and reproduced all test predictions exactly inside the actual run."
+}

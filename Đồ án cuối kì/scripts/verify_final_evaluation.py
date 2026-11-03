@@ -46,6 +46,10 @@ def main():
             p=project_path(root,Path("experiments") / info["path"])
             if not p.is_relative_to(d) or sha256(p)!=info["sha256"] or p.stat().st_size!=info["size_bytes"]:
                 raise ValueError("Registered artifact changed")
+            if model=="parent" and p.parent.name=="tables":
+                if sha256(out/p.name)!=info["sha256"]:raise ValueError("Working result table differs from registered snapshot")
+            if model=="parent" and p.parent.name=="figures":
+                if sha256(root/"reports/figures/final_evaluation"/p.name)!=info["sha256"]:raise ValueError("Working PNG differs from registered snapshot")
             files+=1
         if model=="parent":continue
         if cfg["reference_run_id"]!=design["models"][model]["reference_run_id"]:
@@ -84,6 +88,17 @@ def main():
     anchor=read_json(out / "test_manifest.json")
     if len(test)!=anchor["N"] or ids_digest(test.sample_id)!=anchor["ordered_ids_sha256"]:
         raise ValueError("Frozen test identity differs")
+    comparison=pd.read_csv(out/"comparison.csv").set_index("model")
+    for model,rid in state["child_run_ids"].items():
+        metrics=read_json(root/"artifacts/experiments"/rid/"metrics.json")["test_primary"]
+        if comparison.loc[model,"run_id"]!=rid:raise ValueError("Comparison run ID differs")
+        for key in ("MAE","RMSE","R2","mae_reduction_vs_persistence_pct"):
+            if not np.isclose(comparison.loc[model,key],metrics[key],rtol=1e-10,atol=1e-10):raise ValueError("Comparison differs from actual model metric")
+    handoff=read_json(out/"final_model.json")
+    if (handoff["final_run_id"]!=state["child_run_ids"]["random_forest"] or handoff["test_used_for_selection"]
+            or not handoff["test_has_been_exposed"] or handoff["selected_development_run_id"]!=frozen["selected_run_id"]
+            or sha256(project_path(root,handoff["weights"]["path"]))!=handoff["weights"]["sha256"]):
+        raise ValueError("Final handoff differs from validation-selected model")
     fit=pred_by_part["refit"]["persistence"]
     if set(fit.sample_id)&set(test.sample_id) or fit.target_timestamp.max()>test.input_timestamp.min():
         raise ValueError("Fit/test overlap or labels unavailable")

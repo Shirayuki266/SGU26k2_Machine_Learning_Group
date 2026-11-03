@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "files": 93,
+  "restored_missing_files": 93,
+  "sha256": "5362ebf0c51961d96537f5c3a8ffae39b4e1da0b7f6daa6230593445a8e471c1",
+  "ledger_written": false,
+  "models_refitted": false,
+  "second_restore_missing_files": 0,
+  "working_ledger_unchanged": true,
+  "scope": "New isolated directory; no fit/predict or input test CSV reads"
+}

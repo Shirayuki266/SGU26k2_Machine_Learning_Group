@@ -197,3 +197,17 @@ Thumbs.db
 !artifacts/experiments/c1213340c642447b995c9e24779cd947/**/*.gz
 !artifacts/experiments/ede2fdc7ba2d4c758a268beb2896661a/
 !artifacts/experiments/ede2fdc7ba2d4c758a268beb2896661a/**/*.gz
+
+# T13 actual run records; weights are delivered in the checksummed local bundle.
+!artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/
+!artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/**/*.gz
+!artifacts/experiments/0960fac6455f4380bd5b6d1407633cf8/
+!artifacts/experiments/0960fac6455f4380bd5b6d1407633cf8/**/*.gz
+!artifacts/experiments/51975d2c66ff4263b83ace6962f3d3f7/
+!artifacts/experiments/51975d2c66ff4263b83ace6962f3d3f7/**/*.gz
+!artifacts/experiments/24cd6d765f214d52aa26e5988380e2cd/
+!artifacts/experiments/24cd6d765f214d52aa26e5988380e2cd/**/*.gz
+!artifacts/experiments/a8cb7fda3f1441968b31c26c18e57ebf/**/*.csv
+!artifacts/experiments/0960fac6455f4380bd5b6d1407633cf8/**/*.csv
+!artifacts/experiments/51975d2c66ff4263b83ace6962f3d3f7/**/*.csv
+!artifacts/experiments/24cd6d765f214d52aa26e5988380e2cd/**/*.csv
