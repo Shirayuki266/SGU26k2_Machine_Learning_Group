@@ -1,0 +1,77 @@
+{
+  "schema_version": "t14-demo-data-v1",
+  "task_id": "T14",
+  "artifact_type": "historical_demo_data_preparation",
+  "created_at": "2026-11-03T03:17:09.552687+00:00",
+  "model_experiment_run": false,
+  "test_samples_accessed": true,
+  "selection": {
+    "start": "2016-03-01 00:00:00",
+    "end": "2016-03-08 00:00:00",
+    "buffer_start": "2016-02-28 01:00:00",
+    "window_selection": "fixed in config before predictions, no error-based sample selection"
+  },
+  "source_partition": "already-evaluated T13 test period, with validation measurements as past buffer",
+  "source": {
+    "path": "data/processed/samples_full/test.csv",
+    "sha256": "7bea8d27bc258a059bf0fce1a2a31a051f9564843b3f2322d21c952cebe55642",
+    "bytes": 25548261
+  },
+  "history_buffer_source": {
+    "path": "data/processed/samples_full/validation.csv",
+    "sha256": "eed8f0a497b352540705640ccf1a10d3db9084af88653184aa2e0b4abbbfa173",
+    "bytes": 26281009
+  },
+  "last_model_fit_target": "2016-02-29 23:00:00",
+  "new_model_selection_or_aggregate_score": false,
+  "split_manifest_sha256": "6d3ac3f05da50324a65c34c1e1601b5df45fefc3d2e6d0e834d43a27062d0e42",
+  "dataset_source": "https://archive.ics.uci.edu/dataset/501/beijing+multi+site+air+quality+data",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "observations": 2554,
+  "selectable_origins": 1992,
+  "actual_rows": 2004,
+  "stations": [
+    "Aotizhongxin",
+    "Changping",
+    "Dingling",
+    "Dongsi",
+    "Guanyuan",
+    "Gucheng",
+    "Huairou",
+    "Nongzhanguan",
+    "Shunyi",
+    "Tiantan",
+    "Wanliu",
+    "Wanshouxigong"
+  ],
+  "missing_origin_pm25_in_selectable": 13,
+  "observations_columns": [
+    "station",
+    "timestamp",
+    "PM2.5",
+    "PM10",
+    "SO2",
+    "NO2",
+    "CO",
+    "O3",
+    "TEMP",
+    "PRES",
+    "DEWP",
+    "RAIN",
+    "WSPM",
+    "wd"
+  ],
+  "actuals_columns": [
+    "station",
+    "target_timestamp",
+    "pm25"
+  ],
+  "selection_caveat": "T05 operational retained rows require an observed target. This illustration is conditional on that cohort, not a raw-data missingness audit or new evaluation.",
+  "target_access_policy": "Offline builder separates observations/actuals. Runtime index reads only keys, feature query only times<=t; actuals query occurs only after successful predict.",
+  "database": {
+    "path": "app/resources/demo.sqlite3",
+    "bytes": 491520,
+    "sha256": "35978ebe2ddb74f556d0bb1ac6eee7508a542658c04d01d812cdf1c2333eb820"
+  }
+}

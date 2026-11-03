@@ -1,0 +1,68 @@
+{
+  "task_id": "T14",
+  "status": "PASS",
+  "browser": "Chromium 156.0.8078.4",
+  "url": "http://127.0.0.1:8514",
+  "images": [
+    {
+      "path": "reports/demo/screenshots/01_ready.png",
+      "sha256": "f558f7b3bac8f22ae04be58b454b8c18ca749826ccaeac896c59659ad11afeaa",
+      "scenario": "Actual local app before prediction; no target queried by UI",
+      "bytes": 61487,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "path": "reports/demo/screenshots/02_forecast.png",
+      "sha256": "a36cc6e73cbe594c6b6a0eb76bd6b253baa206e51d4c80aaa24cb01234db2f7c",
+      "scenario": "Aotizhongxin 2016-03-01 12:00:00 -> 2016-03-01 13:00:00, post-fit pipeline forecast then actual",
+      "bytes": 134019,
+      "viewport": {
+        "width": 1440,
+        "height": 1403
+      }
+    },
+    {
+      "path": "reports/demo/screenshots/03_model_details.png",
+      "sha256": "887d308658234456b546170a41be47a35ec6b2ca512020fde726af0f2e603fe1",
+      "scenario": "Version/schema/training phase and validation selection, real T13 model",
+      "bytes": 183276,
+      "viewport": {
+        "width": 1440,
+        "height": 1650
+      }
+    },
+    {
+      "path": "reports/demo/screenshots/04_missing_current.png",
+      "sha256": "071345c7613395ad5474b3343a59021ff6fa5741be24e399e741f12e1da5a74c",
+      "scenario": "Real demo row with missing PM2.5(t); learned imputation, no zero-fill",
+      "bytes": 153267,
+      "viewport": {
+        "width": 1440,
+        "height": 1514
+      }
+    },
+    {
+      "path": "reports/demo/screenshots/05_mobile.png",
+      "sha256": "8ffdd0b2d9e7f355460ed81b18d22a03ce487c4a6ab67a57c550183db62dc2cf",
+      "scenario": "Responsive local app, same model/prediction state",
+      "bytes": 142169,
+      "viewport": {
+        "width": 430,
+        "height": 2180
+      }
+    }
+  ],
+  "browser_page_errors": [],
+  "missing_current_example": {
+    "station": "Changping",
+    "origin": "2016-03-02 17:00:00"
+  },
+  "server_exposed_publicly": false,
+  "deployed": false,
+  "video_recorded": false,
+  "model_training_performed": false,
+  "note": "Screenshots are actual browser UI, not mockups. A member must record the demo video later."
+}

@@ -38,3 +38,16 @@ permutation chẩn đoán, không retry/tuning thêm. Codex hỗ trợ soạn th
 metrics/predictions/figures thật; verifier/CRC/restore fixture pass. Run IDs và
 các giới hạn ở docs/results_discussion.md; review của thành viên vẫn chưa được
 xác nhận, không tự đánh dấu đã hiểu hoặc tự điền tỷ lệ đóng góp.
+
+## T14 / Issue #34
+
+Codex hỗ trợ service inference/Streamlit, kiểm model/schema/version, resource
+replay sau fit, tests TEST_ONLY, đối chiếu36 mẫu với predictions T13, chụp5ảnh
+browser thật và soạn hướng dẫn/storyboard. Không train/tune, không thêm run hoặc
+metric thực nghiệm. Đọc phần test đã đánh giá T13 để chuẩn bị replay, không gọi
+là test chưa xem. Lỗi T08 cũ báo riêng Issue #35, không thay source/weights/run cũ.
+
+Người nhận do người dùng xác nhận: hoanglecodingmachine. Thành viên review,
+đọc/hiểu và video thật [CẦN BỔ SUNG]. Chưa deploy hoặc quay video; không quy phần
+AI hỗ trợ thành tỷ lệ đóng góp học thuật đã xác nhận. Lệnh/kết quả ở docs/demo.md
+và reports/demo/; artifact UI không giả làm một run model mới.

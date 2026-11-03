@@ -1,0 +1,94 @@
+{
+  "task_id": "T14",
+  "artifact_type": "inference_UI_handoff_QA_not_model_experiment",
+  "checked_at": "2026-11-03T03:30:16.205797+00:00",
+  "status": "PASS",
+  "environment": {
+    "python": "3.12.10",
+    "streamlit": "1.66.1",
+    "scikit-learn": "1.9.1",
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "joblib": "1.6.0"
+  },
+  "checks": [
+    {
+      "command": ".venv/python.exe -m pytest tests/test_demo.py tests/test_demo_ui.py -q -p no:cacheprovider --basetemp=artifacts/t14_TEST_handoff",
+      "status": "PASS",
+      "passed": 19,
+      "skipped": 0,
+      "seconds": 10.18
+    },
+    {
+      "command": ".venv/python.exe scripts/verify_demo.py",
+      "status": "PASS",
+      "requests": 36,
+      "matched_T13": 36,
+      "max_absolute_difference": 1.4210854715202004e-14,
+      "artifact": "reports/demo/inference_verification.json"
+    },
+    {
+      "command": ".venv/python.exe scripts/capture_demo_screenshots.py",
+      "status": "PASS",
+      "screenshots": 5,
+      "page_errors": [],
+      "artifact": "reports/demo/browser_verification.json"
+    },
+    {
+      "check": "localhost startup",
+      "status": "PASS",
+      "http_status": 200,
+      "body": "ok"
+    },
+    {
+      "check": "git diff --check and protected historical paths compared with origin/main",
+      "status": "PASS"
+    }
+  ],
+  "historical_hash_checks": [
+    {
+      "path": "experiments/experiment_log.csv",
+      "before_sha256": "a9ca88199e42ec6e3a7ea5a42a2764ed0a39ceddff16ab86d219333e50659342",
+      "after_sha256": "a9ca88199e42ec6e3a7ea5a42a2764ed0a39ceddff16ab86d219333e50659342",
+      "unchanged": true
+    },
+    {
+      "path": "reports/final_evaluation/final_model.json",
+      "before_sha256": "d745b4e55fcd6c2c8d6d2eb242118f8b37fb83d199ec8adc280ae5a1a6693e61",
+      "after_sha256": "d745b4e55fcd6c2c8d6d2eb242118f8b37fb83d199ec8adc280ae5a1a6693e61",
+      "unchanged": true
+    },
+    {
+      "path": "reports/ablation/frozen_model.json",
+      "before_sha256": "1ac73aad2c7109b0f6caf95475ca3c0ef7dd155c54c6e943c6cffa25a9c8de0c",
+      "after_sha256": "1ac73aad2c7109b0f6caf95475ca3c0ef7dd155c54c6e943c6cffa25a9c8de0c",
+      "unchanged": true
+    },
+    {
+      "path": "reports/final_evaluation/t13_runs.zip",
+      "before_sha256": "5362ebf0c51961d96537f5c3a8ffae39b4e1da0b7f6daa6230593445a8e471c1",
+      "after_sha256": "5362ebf0c51961d96537f5c3a8ffae39b4e1da0b7f6daa6230593445a8e471c1",
+      "unchanged": true
+    },
+    {
+      "path": "artifacts/experiments/24cd6d765f214d52aa26e5988380e2cd/artifacts/model/pipeline.joblib",
+      "before_sha256": "0b696574847be1a19a8eb4c21ee813efe81266eb0a3bc37efd301a8a9c6e4009",
+      "after_sha256": "0b696574847be1a19a8eb4c21ee813efe81266eb0a3bc37efd301a8a9c6e4009",
+      "unchanged": true
+    }
+  ],
+  "official_ledger_rows": 53,
+  "new_experiment_runs": 0,
+  "new_training": false,
+  "deployment": false,
+  "video_recorded": false,
+  "data_scope": "fixed first week of already-evaluated T13 test after final fit; no new aggregate score or selection",
+  "legacy_issue": "https://github.com/Shirayuki266/SGU26k2_Machine_Learning_Group/issues/35",
+  "limitations": [
+    "No new clean OS/standard venv installation verified",
+    "T13 model bundle is local; no public download URL",
+    "Video not recorded; member review/understanding not confirmed",
+    "T05 observed-target cohort, not a raw-data missingness benchmark",
+    "Browser QA limited to Chromium/local single-user sessions"
+  ]
+}

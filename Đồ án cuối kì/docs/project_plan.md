@@ -44,8 +44,8 @@ Phụ thuộc là trình tự kỹ thuật, không cấp quyền chạy. Chưa c
 | T10 | Ridge và RF ban đầu A, so baseline cùng validation IDs; config/metric/thời gian/nhận xét/đề xuất | T07(A), T08–T09, T04-LOG | Issue #20, PR #21 đã merge; [hai smoke/hai full và nhận xét](initial_findings.md); validation MAE Ridge 10,200433, RF 9,561488 |
 | T11 | Tune ít nhất một model bằng expanding-window CV train chung ranh giới trạm; giả thuyết/budget/log từng cấu hình/fold và so trước–sau | T10, T04-LOG | Issue #22, PR #23 đã merge; [Ridge A 4alpha×3fold +1refit](tuning_findings.md), chọn alpha0.1, validation MAE 10,200529 chưa cải thiện T10 |
 | T12 | A/B ablation, chọn C từ B trong fold, phân tích và khóa bằng train/CV/validation | T07(B), T08, T10–T11 | Issue #24, PR #25 đã merge; [ablation/RQ2](ablation_findings.md), Ridge A/B/C MAE 10,200529/9,968755/9,903377, C12 nhóm; [frozen](../reports/ablation/frozen_model.json) chọn RF A T10 theo validation, chưa T13 |
-| T13 | Sau khóa refit train+validation rồi test, sai số theo trạm/mùa/nồng độ, diễn giải và trả lời RQ; không tuning test | T12 khóa, T04-LOG | Issue #32 gán hoanglecodingmachine; [kết quả thật](results_discussion.md),101836IDs,RF MAE9,877150 giảm2,8013%,41artifact/6predictions pass; test đã mở, chưa merge PR |
-| T14 | Streamlit dùng pipeline/model chọn bằng validation, dự báo t+1, lịch sử/thực tế nếu có, feature causal | T12 khóa lựa chọn, T13 artifact cuối | Chưa xác minh hoàn thành/Issue/artifact |
+| T13 | Sau khóa refit train+validation rồi test, sai số theo trạm/mùa/nồng độ, diễn giải và trả lời RQ; không tuning test | T12 khóa, T04-LOG | Issue #32 gán hoanglecodingmachine; [kết quả thật](results_discussion.md),101836IDs,RF MAE9,877150 giảm2,8013%,41artifact/6predictions pass; người dùng xác nhận đã merge PR #33 |
+| T14 | Streamlit dùng pipeline/model chọn bằng validation, dự báo t+1, lịch sử/thực tế nếu có, feature causal | T12 khóa lựa chọn, T13 artifact cuối | Issue #34, hoanglecodingmachine; [app/hướng dẫn/QA](demo.md), 19 tests/36 parity/5 ảnh thật; chưa merge/deploy/video thật, có storyboard |
 | T15 | Báo cáo 5 chương, slide, notebook/README; truy vết artifact, nguồn/AI disclosure | T06–T14/artifact thật | Chưa xác minh hoàn thành/Issue/artifact |
 | T16 | Tái lập, đối chiếu source–log–metric–hình–báo cáo, tài nguyên và gói cuối kỳ; lệnh đã chạy/giới hạn | T15 và artifact liên quan | Chưa xác minh hoàn thành/Issue/artifact |
 | MK01 | DOCX/PPTX giữa kỳ: bài toán/dữ liệu/EDA/pipeline/baseline/model, kết quả/vòng thử–nhận xét–sửa, khó khăn/kế hoạch/đóng góp | Ưu tiên tới T10; T11/T12 nếu có | Issue #26; [DOCX17trang/PPTX15slide đã render/kiểm](midterm_deliverables.md), bản nháp chờ nhóm bổ sung; PR #28 đã merge theo quyền người dùng |
@@ -70,7 +70,7 @@ phải kết quả mô hình. Người dùng merge; theo [quy trình GitHub](git
   nếu có, hình gốc, CSV/hồ sơ run, demo, T15 báo cáo 5 chương/slide và T16 gói
   tái lập. Artifact không commit phải có đường dẫn/cách tạo lại.
 
-CSV chính thức có 49 run completed: hai persistence T09, bốn Ridge/RF T10,
+Snapshot trước T13 có 49 run completed: hai persistence T09, bốn Ridge/RF T10,
 23 hồ sơ T11 và 20 hồ sơ T12 (5 smoke, 15 full search/candidate/fold/final).
 Không có run minh họa; không gọi toàn bộ 49 dòng là 49 model độc lập;
 T05 có target/split và audit count/date,
@@ -83,6 +83,11 @@ T12 đã so Ridge A/B/C cố định alpha, selection trong fold và khóa RF A 
 validation; chưa tuning RF hoặc mở test/T13. Không nhập audit/fixture vào log
 hoặc dựng lịch sử; không tự triển khai task sau khi chưa được giao.
 Codex hỗ trợ mapping; không tự điền tên/MSSV/đóng góp hoặc rubric chưa cung cấp.
+
+Cập nhật T14: ledger sau T13 có53 hồ sơ (49 cũ +1parent/3child T13), T14
+không thêm run/metric; checksum lịch sử giữ nguyên. Phần mô tả49run trên là
+snapshot phát triển T12, không phủ nhận việc test đã mở T13. Demo sau fit,
+video thật chưa quay; xem docs/demo.md và reports/demo/qa.json.
 
 ## Bổ sung giai đoạn cuối kỳ từ T13
 

@@ -1,0 +1,705 @@
+{
+  "task_id": "T14",
+  "artifact_type": "inference_consistency_check_not_model_experiment",
+  "status": "PASS",
+  "model_run_id": "24cd6d765f214d52aa26e5988380e2cd",
+  "selected_by": "development_validation_MAE",
+  "requests_checked": 36,
+  "saved_T13_predictions_matched": 36,
+  "max_absolute_difference": 1.4210854715202004e-14,
+  "input_dimensions": 20,
+  "encoded_dimensions": 65,
+  "new_training": false,
+  "T13_test_predictions_read": true,
+  "input_test_csv_read_by_verifier": false,
+  "target_read_after_predict": true,
+  "scope": "examples after final fit from the already-evaluated T13 period; no new aggregate score or model selection",
+  "rows": [
+    {
+      "station": "Aotizhongxin",
+      "origin": "2016-03-01 00:00:00",
+      "target": "2016-03-01 01:00:00",
+      "sample_id": "f65c12949cf4b5955fed62ed23bc0ce77a46f6d541ac7ceb3ab3dd7ba87dbdb7",
+      "prediction": 65.59336627880381,
+      "actual_after_prediction": 77.0,
+      "max_observation_time_used": "2016-03-01 00:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 65.59336627880381,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Aotizhongxin",
+      "origin": "2016-03-04 11:00:00",
+      "target": "2016-03-04 12:00:00",
+      "sample_id": "bb9f6641618e99bd38b9f5d4c94b4d2057e66d1f3f61bd72471417bc78f45bcc",
+      "prediction": 369.5984024749848,
+      "actual_after_prediction": 389.0,
+      "max_observation_time_used": "2016-03-04 11:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 369.5984024749848,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Aotizhongxin",
+      "origin": "2016-03-07 23:00:00",
+      "target": "2016-03-08 00:00:00",
+      "sample_id": "5a8de1d4fd463738b6a5ac14e11d2708efcb5c81e1e86aacc197dfec9fd71fa5",
+      "prediction": 12.447728880383181,
+      "actual_after_prediction": 14.0,
+      "max_observation_time_used": "2016-03-07 23:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 12.44772888038318,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Changping",
+      "origin": "2016-03-01 00:00:00",
+      "target": "2016-03-01 01:00:00",
+      "sample_id": "e883890e1723a500d6c4c19a457ce4c8c3f91070346109294d25edddcf7e81ce",
+      "prediction": 88.88384816020697,
+      "actual_after_prediction": 71.0,
+      "max_observation_time_used": "2016-03-01 00:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 88.88384816020697,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Changping",
+      "origin": "2016-03-04 11:00:00",
+      "target": "2016-03-04 12:00:00",
+      "sample_id": "859183c5e645d121538e5dbf7befc0b5d85f92219e10abe2236d0aea720f67c0",
+      "prediction": 322.41680199684856,
+      "actual_after_prediction": 324.0,
+      "max_observation_time_used": "2016-03-04 11:00:00",
+      "history_rows": 47,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 322.41680199684856,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Changping",
+      "origin": "2016-03-07 23:00:00",
+      "target": "2016-03-08 00:00:00",
+      "sample_id": "1630d6d1111107d2f9efdd69ce4e1f889fb8d93eb3b8f8a2c4ecf0b565c30016",
+      "prediction": 8.75281025247187,
+      "actual_after_prediction": 8.0,
+      "max_observation_time_used": "2016-03-07 23:00:00",
+      "history_rows": 46,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 8.75281025247187,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Dingling",
+      "origin": "2016-03-01 00:00:00",
+      "target": "2016-03-01 01:00:00",
+      "sample_id": "c53951f99925e900cda8bba491e15e19546a42cabe73dc0b89b86c9ee0e7d0bf",
+      "prediction": 75.54129047055625,
+      "actual_after_prediction": 80.0,
+      "max_observation_time_used": "2016-03-01 00:00:00",
+      "history_rows": 46,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 75.54129047055625,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Dingling",
+      "origin": "2016-03-04 10:00:00",
+      "target": "2016-03-04 11:00:00",
+      "sample_id": "37f9e7b6a7092ec3f9bb84f3c380ee5260c703ce2cc98a62beac978a19ff092d",
+      "prediction": 441.0304443423818,
+      "actual_after_prediction": 427.0,
+      "max_observation_time_used": "2016-03-04 10:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 441.0304443423818,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Dingling",
+      "origin": "2016-03-07 23:00:00",
+      "target": "2016-03-08 00:00:00",
+      "sample_id": "242be76d5578bffe4f70b31cb6f559a808f23173a3a4aae888c548a3e7ff3a0f",
+      "prediction": 13.164462295792125,
+      "actual_after_prediction": 12.0,
+      "max_observation_time_used": "2016-03-07 23:00:00",
+      "history_rows": 46,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 13.164462295792124,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Dongsi",
+      "origin": "2016-03-01 00:00:00",
+      "target": "2016-03-01 01:00:00",
+      "sample_id": "3cb31afbfb5eb02b1c6047d1ad072074faf7d867d50b86b34694d684d29e490a",
+      "prediction": 65.50022072999091,
+      "actual_after_prediction": 78.0,
+      "max_observation_time_used": "2016-03-01 00:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 65.50022072999091,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Dongsi",
+      "origin": "2016-03-04 06:00:00",
+      "target": "2016-03-04 07:00:00",
+      "sample_id": "44e92b18e849f91846ef58653764d9db91125722f8070a981ccaffaaf8e0e7a3",
+      "prediction": 289.29680378384404,
+      "actual_after_prediction": 299.0,
+      "max_observation_time_used": "2016-03-04 06:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 289.29680378384404,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Dongsi",
+      "origin": "2016-03-07 23:00:00",
+      "target": "2016-03-08 00:00:00",
+      "sample_id": "b4b342f6f55aeb84f9dbc8fce70e7f4b7259ad8d7967611b9abc832fa8aa190d",
+      "prediction": 8.631659785377964,
+      "actual_after_prediction": 9.0,
+      "max_observation_time_used": "2016-03-07 23:00:00",
+      "history_rows": 38,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 8.631659785377964,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Guanyuan",
+      "origin": "2016-03-01 00:00:00",
+      "target": "2016-03-01 01:00:00",
+      "sample_id": "186459533e18714d0a3ff31ee828af49ea66bec53309b195a8992a350f0afb0f",
+      "prediction": 51.60406341364652,
+      "actual_after_prediction": 65.0,
+      "max_observation_time_used": "2016-03-01 00:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 51.60406341364652,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Guanyuan",
+      "origin": "2016-03-04 11:00:00",
+      "target": "2016-03-04 12:00:00",
+      "sample_id": "e318778e3c7d14490505d461dc7bf0bc8a073ddf16a60ef92d0efdcc3a256fe5",
+      "prediction": 323.4577082540974,
+      "actual_after_prediction": 339.0,
+      "max_observation_time_used": "2016-03-04 11:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 323.4577082540974,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Guanyuan",
+      "origin": "2016-03-07 23:00:00",
+      "target": "2016-03-08 00:00:00",
+      "sample_id": "b821506d5c509c37142ffb1bf5aa7f601bfd32ea47eb958cbe1a10021142f6ea",
+      "prediction": 7.13797596814311,
+      "actual_after_prediction": 9.0,
+      "max_observation_time_used": "2016-03-07 23:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 7.13797596814311,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Gucheng",
+      "origin": "2016-03-01 00:00:00",
+      "target": "2016-03-01 01:00:00",
+      "sample_id": "4dc7d528218c2f20e7b08fcc28247324eb7e458595ddfdde490b016fb3ad61e9",
+      "prediction": 101.48698263549639,
+      "actual_after_prediction": 110.0,
+      "max_observation_time_used": "2016-03-01 00:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 101.4869826354964,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Gucheng",
+      "origin": "2016-03-04 12:00:00",
+      "target": "2016-03-04 13:00:00",
+      "sample_id": "e61bd9fe25e0ea47c726cd0a6a89f7418496515304c744c43bd3b7988eb4bb2d",
+      "prediction": 347.7626325993176,
+      "actual_after_prediction": 363.0,
+      "max_observation_time_used": "2016-03-04 12:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 347.7626325993176,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Gucheng",
+      "origin": "2016-03-07 23:00:00",
+      "target": "2016-03-08 00:00:00",
+      "sample_id": "0d56be6583a60f0f258385e0fa483cf382fe3cfb67f5e8b634839fd3efd1ab26",
+      "prediction": 8.242532208587235,
+      "actual_after_prediction": 8.0,
+      "max_observation_time_used": "2016-03-07 23:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 8.242532208587235,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Huairou",
+      "origin": "2016-03-01 00:00:00",
+      "target": "2016-03-01 01:00:00",
+      "sample_id": "fc8053e56d50642d87f283ca71444b04c219e4ad833eebe4e79f5fbb7263badf",
+      "prediction": 82.3984270588043,
+      "actual_after_prediction": 85.0,
+      "max_observation_time_used": "2016-03-01 00:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 82.3984270588043,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Huairou",
+      "origin": "2016-03-04 11:00:00",
+      "target": "2016-03-04 12:00:00",
+      "sample_id": "98c45bc93c60f09ac6a8b06cdd2961378eb73ac2412ded5e822592cf921e6de3",
+      "prediction": 353.9927396262816,
+      "actual_after_prediction": 333.0,
+      "max_observation_time_used": "2016-03-04 11:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 353.9927396262816,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Huairou",
+      "origin": "2016-03-07 23:00:00",
+      "target": "2016-03-08 00:00:00",
+      "sample_id": "3d37b4d63ad609d9bff96e520690f134d431e641c85adc3f6224014ad8375f5c",
+      "prediction": 8.606370520182654,
+      "actual_after_prediction": 8.0,
+      "max_observation_time_used": "2016-03-07 23:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 8.606370520182654,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Nongzhanguan",
+      "origin": "2016-03-01 00:00:00",
+      "target": "2016-03-01 01:00:00",
+      "sample_id": "724e9743d3fa91ddcbe8efb2f31b7fcad54621834695efcc4ea67ae347519f86",
+      "prediction": 52.05590956449841,
+      "actual_after_prediction": 77.0,
+      "max_observation_time_used": "2016-03-01 00:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 52.05590956449841,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Nongzhanguan",
+      "origin": "2016-03-04 11:00:00",
+      "target": "2016-03-04 12:00:00",
+      "sample_id": "349ad5e551c8c5aab42962d167eca38ad2f9e05fb942fe2eca7a0a3768ac007e",
+      "prediction": 323.4577082540974,
+      "actual_after_prediction": 335.0,
+      "max_observation_time_used": "2016-03-04 11:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 323.4577082540974,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Nongzhanguan",
+      "origin": "2016-03-07 23:00:00",
+      "target": "2016-03-08 00:00:00",
+      "sample_id": "e1fd6ef496e3dc204fcfaaba564d47ff929760c274e831afd8fdb045ee7bde93",
+      "prediction": 8.740229686212256,
+      "actual_after_prediction": 10.0,
+      "max_observation_time_used": "2016-03-07 23:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 8.740229686212256,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Shunyi",
+      "origin": "2016-03-01 00:00:00",
+      "target": "2016-03-01 01:00:00",
+      "sample_id": "7990c225c37d3b02bd3e73bbc51b54ac76fc7d86805689a4aef07ef50441a18c",
+      "prediction": 86.98874967838464,
+      "actual_after_prediction": 119.0,
+      "max_observation_time_used": "2016-03-01 00:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 86.98874967838464,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Shunyi",
+      "origin": "2016-03-04 11:00:00",
+      "target": "2016-03-04 12:00:00",
+      "sample_id": "d0d70c6298ac35e7f2aff5fe635977f7da10e1ecfcfdc367345d048d4f120383",
+      "prediction": 423.2383218307079,
+      "actual_after_prediction": 425.0,
+      "max_observation_time_used": "2016-03-04 11:00:00",
+      "history_rows": 46,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 423.2383218307079,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Shunyi",
+      "origin": "2016-03-07 23:00:00",
+      "target": "2016-03-08 00:00:00",
+      "sample_id": "4b7c8062ab5634cec6c73bf3372fe37edeccadd8868a867dcd64410197dab552",
+      "prediction": 7.119663554843063,
+      "actual_after_prediction": 3.0,
+      "max_observation_time_used": "2016-03-07 23:00:00",
+      "history_rows": 46,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 7.119663554843063,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Tiantan",
+      "origin": "2016-03-01 00:00:00",
+      "target": "2016-03-01 01:00:00",
+      "sample_id": "662ade183bb972af45e0ab543e9183d9aa21c4d40f4cb6e67c8ecb38be6db880",
+      "prediction": 68.55346020662276,
+      "actual_after_prediction": 84.0,
+      "max_observation_time_used": "2016-03-01 00:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 68.55346020662276,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Tiantan",
+      "origin": "2016-03-04 12:00:00",
+      "target": "2016-03-04 13:00:00",
+      "sample_id": "d2234b8094506891dad73a06559066c622c574c1fd130484b37c08d61a64aaaf",
+      "prediction": 320.89750314973304,
+      "actual_after_prediction": 329.0,
+      "max_observation_time_used": "2016-03-04 12:00:00",
+      "history_rows": 47,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 320.89750314973304,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Tiantan",
+      "origin": "2016-03-07 23:00:00",
+      "target": "2016-03-08 00:00:00",
+      "sample_id": "c204113d5452fecdf2a72b3ff4e5c54889effec5ba9109d7b42cb8c7a75df744",
+      "prediction": 9.088064203293191,
+      "actual_after_prediction": 13.0,
+      "max_observation_time_used": "2016-03-07 23:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 9.088064203293191,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Wanliu",
+      "origin": "2016-03-01 00:00:00",
+      "target": "2016-03-01 01:00:00",
+      "sample_id": "5168f2ddd0ca38f1fcf32aed389e5cd52ee9109094b0cd2fb31ba756fbe2a331",
+      "prediction": 74.65286579433504,
+      "actual_after_prediction": 87.0,
+      "max_observation_time_used": "2016-03-01 00:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 74.65286579433504,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Wanliu",
+      "origin": "2016-03-04 10:00:00",
+      "target": "2016-03-04 11:00:00",
+      "sample_id": "84a862b3d468fa031152cca2cf0637e8cd3ec79257993788eff7c65040a16082",
+      "prediction": 347.6508706216045,
+      "actual_after_prediction": 350.0,
+      "max_observation_time_used": "2016-03-04 10:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 347.6508706216045,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Wanliu",
+      "origin": "2016-03-07 23:00:00",
+      "target": "2016-03-08 00:00:00",
+      "sample_id": "ba50f58e15b580ae7d37871cc757f167da1ccf95f3dea4195728f2e2692a4b8b",
+      "prediction": 7.568776345373027,
+      "actual_after_prediction": 9.0,
+      "max_observation_time_used": "2016-03-07 23:00:00",
+      "history_rows": 46,
+      "missing_inputs": [
+        "NO2"
+      ],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 7.568776345373027,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Wanshouxigong",
+      "origin": "2016-03-01 00:00:00",
+      "target": "2016-03-01 01:00:00",
+      "sample_id": "bd1f3ab17d512424c4eecd208bf798a47f939c5758d71c684cd3dc67e8027c44",
+      "prediction": 68.47521108170876,
+      "actual_after_prediction": 90.0,
+      "max_observation_time_used": "2016-03-01 00:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 68.47521108170876,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Wanshouxigong",
+      "origin": "2016-03-04 11:00:00",
+      "target": "2016-03-04 12:00:00",
+      "sample_id": "1bca941ea80e9c6764dbb3df4c7e112cdde139bd8462dbd4690da5496a47dc46",
+      "prediction": 311.8953800579094,
+      "actual_after_prediction": 323.0,
+      "max_observation_time_used": "2016-03-04 11:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 311.8953800579094,
+      "reference_status": "matched saved T13 test prediction"
+    },
+    {
+      "station": "Wanshouxigong",
+      "origin": "2016-03-07 23:00:00",
+      "target": "2016-03-08 00:00:00",
+      "sample_id": "df734e07f95844409b52939a70f9bba68b401c316e81fb5c39c7e0b5b11f34ce",
+      "prediction": 6.8623851880451525,
+      "actual_after_prediction": 10.0,
+      "max_observation_time_used": "2016-03-07 23:00:00",
+      "history_rows": 48,
+      "missing_inputs": [],
+      "events": [
+        "past_observations",
+        "predict_start",
+        "predict_complete",
+        "future_actual"
+      ],
+      "reference_T13_test_prediction": 6.8623851880451525,
+      "reference_status": "matched saved T13 test prediction"
+    }
+  ]
+}

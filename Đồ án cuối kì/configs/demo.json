@@ -1,0 +1,10 @@
+{
+  "schema_version": "t14-demo-v1",
+  "source_partition": "test",
+  "start": "2016-03-01T00:00:00",
+  "end": "2016-03-08T00:00:00",
+  "history_hours": 48,
+  "default_station": "Aotizhongxin",
+  "default_hour": "12:00",
+  "purpose": "Fixed replay after final fit, from already-evaluated T13 period; no new aggregate benchmark or model selection"
+}
