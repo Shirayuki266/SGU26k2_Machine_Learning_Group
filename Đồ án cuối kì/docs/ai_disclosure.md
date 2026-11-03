@@ -23,3 +23,12 @@ Thành viên nhận việc chịu trách nhiệm đọc và hiểu trước khi 
 Issue #30 không fit/tune/refit mô hình, không mở test, không tạo kết quả cuối kỳ.
 Ghi nhận trước T13 theo minh chứng đã có và xác nhận nhóm; không suy rằng mọi
 thành viên đã dùng AI, tự làm hay hiểu toàn bộ source chỉ từ lịch sử Git.
+
+## T13 / Issue #32
+
+Codex hỗ trợ dựng runner theo frozen recipe, tests fixture TEST_ONLY, kiểm
+provenance/IDs/metrics và soạn báo cáo từ artifact thực. Người nhận được người
+dùng xác nhận: hoanglecodingmachine; review/đọc/hiểu trước merge [CẦN BỔ SUNG].
+Trước full: tests/prefight được ghi trong PR; test chỉ mở sau kế hoạch và code
+đã commit. Kết quả thực và giới hạn cập nhật bằng artifact mới, không sửa run
+cũ hoặc quy đóng góp cho sinh viên chưa xác nhận.

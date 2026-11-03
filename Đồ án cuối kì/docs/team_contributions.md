@@ -9,7 +9,7 @@ người chạy script hay tài khoản đang đăng nhập. Không sửa lịch
 
 | Họ tên | MSSV | GitHub cá nhân | Vai trò/nhiệm vụ | Phần công việc thực tế | Đóng góp % | Issue/PR/artifact minh chứng | Đã đọc và hiểu phần nhận |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [CẦN BỔ SUNG] | [CẦN BỔ SUNG] | [CẦN BỔ SUNG] | [CẦN BỔ SUNG] | [CẦN BỔ SUNG] | [CẦN BỔ SUNG] | [CẦN BỔ SUNG] | [CẦN BỔ SUNG] |
+| [CẦN BỔ SUNG] | [CẦN BỔ SUNG] | [hoanglecodingmachine](https://github.com/hoanglecodingmachine) | Người nhận T13 | T13 được giao; AI hỗ trợ code/kiểm, người nhận review/đọc/hiểu trước merge | [CẦN BỔ SUNG] | Issue #32, artifact/PR T13 sau thực thi | [CẦN BỔ SUNG] |
 
 Nhóm tự thêm đúng số thành viên. Tổng tỷ lệ phải bằng **100%** sau khi nhóm
 xác nhận; hiện **chưa có số liệu để kiểm tổng**, không chia đều hoặc điền giả.
@@ -59,3 +59,11 @@ riêng. Khung bảng không khẳng định nhóm đã review các phần AI h�
 
 Issue #30 là cập nhật quy trình chuẩn bị, chưa có thành viên được xác nhận để
 gán; trạng thái đó được công khai, không giả nhận người phụ trách.
+
+## Xác nhận người nhận T13
+
+Người dùng trả lời “cho tôi” cho T13; gh api user xác minh tài khoản đang đăng
+nhập hoanglecodingmachine, trùng Git identity hiện có. Issue #32 được gán cho
+hoanglecodingmachine trước triển khai. Chỉ mapping này đã xác nhận; họ tên,
+MSSV, tỷ lệ và thành viên khác vẫn chờ nhóm cung cấp. Không suy công việc cũ
+hoặc ghi đã đọc/hiểu khi chưa được xác nhận.
