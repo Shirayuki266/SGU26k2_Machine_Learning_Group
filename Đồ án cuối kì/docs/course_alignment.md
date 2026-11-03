@@ -67,3 +67,17 @@ Các áp dụng kỹ thuật sau truy vết từ artifact thực, không giả l
 
 Bảng/hình và nhận xét: [results_discussion.md](results_discussion.md).
 Người nhận hoanglecodingmachine cần đọc/hiểu/review; chưa tự tick xác nhận.
+
+## Minh chứng T14 / Issue #34
+
+Chủ đề Ensemble: inference từ RF A đã chọn bằng validation, load đầy đủ pipeline
+và schema/version, không fit lại khi rerun. Chủ đề05: phân biệt demo vài ví dụ
+với đánh giá tổng hợp T13; không chọn lại bằng test hoặc tuyên bố cảnh báo thực tế.
+Chủ đề04/06: giữ quyết định A và so sánh phát triển trước đó, không thêm selector,
+không tuyên bố demo Ridge hay suy importance thành nhân quả. Feature dùng input
+đến t và lịch t+1; thời điểm replay sau fit cuối, actual chỉ query sau predict.
+
+Minh chứng: [hướng dẫn/QA](demo.md),19 tests,36 parity/12trạm,5 PNG browser thật.
+Yêu cầu demo/model/README đã có; video chỉ [storyboard chưa quay](demo_video_storyboard.md).
+File/trang bài giảng và rubric chính thức [CẦN BỔ SUNG]; chưa xác nhận điểm cộng
+hoặc đáp ứng toàn bộ rubric. Người nhận phải đọc/hiểu trước merge.

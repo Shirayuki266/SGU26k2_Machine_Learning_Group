@@ -499,4 +499,22 @@ run cũ giữ nguyên. Bundle cục bộ reports/final_evaluation/t13_runs.zip k
 weights và hai dependency T09, có checksum/restore helper; binary ignored,
 chưa upload công khai. Cần chuyển bundle cùng source khi sang máy khác.
 Báo cáo/ZIP giữa kỳ giữ nguyên; không chạy lại MK01/MK02 để thêm số liệu test.
-T14–T16 chưa thực hiện. Issue#32/PR T13 chờ người dùng review và merge.
+T13 đã được người dùng xác nhận merge PR #33; T14 bàn giao riêng bên dưới.
+
+## T14: demo Streamlit cục bộ
+
+[Hướng dẫn chạy/khôi phục model](docs/demo.md), [storyboard video chưa quay](docs/demo_video_storyboard.md)
+và [ảnh app thật](reports/demo/screenshots/02_forecast.png). Tại root đồ án:
+
+```powershell
+.\.venv\python.exe -m streamlit run app/streamlit_app.py --server.address 127.0.0.1
+```
+
+Dùng RF A chọn bằng validation, pipeline final T13; cần bundle T13 trên máy,
+chưa có URL tải công khai. Resource SQLite nhỏ đã kèm source. Chọn trạm/giờ,
+dự báo đúng t+1 rồi mới đọc số đo đối chiếu; không fit khi UI rerun.
+Ví dụ lịch sử sau fit: một tuần test đã đánh giá T13, không chọn model hoặc
+tạo metric tổng hợp mới. 19 tests và 36 kiểm tra khớp predictions T13 pass;
+[QA](reports/demo/qa.json), [browser/5 ảnh](reports/demo/browser_verification.json).
+Issue #34 giao hoanglecodingmachine; chưa merge/deploy, video thật còn thiếu.
+T15/T16 chưa triển khai. Lỗi T08 được báo riêng ở Issue #35, không sửa lịch sử cũ.

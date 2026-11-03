@@ -72,3 +72,11 @@ Minh chứng T13 hiện có: hai commit code/protocol74a739e và7aeea64 trước
 parent a8cb7fda3f1441968b31c26c18e57ebf cùng3child trong
 reports/final_evaluation/execution.json. AI hỗ trợ chạy/kiểm; người nhận cần
 review/đọc/hiểu trước merge, chưa gán thêm phần đóng góp hoặc tỷ lệ học thuật.
+
+## Xác nhận người nhận T14
+
+Người dùng xác nhận “Giao cho hoanglecodingmachine như T13”; Issue #34 đã gán
+hoanglecodingmachine trước triển khai. Phạm vi thực tế: app inference từ model
+chọn bằng validation, tests/ảnh/hướng dẫn/storyboard; Codex hỗ trợ triển khai và
+kiểm tra. Chưa có video thật; thành viên tự quay. Chưa xác nhận đã đọc/hiểu;
+họ tên/MSSV/tỷ lệ vẫn [CẦN BỔ SUNG], không suy từ Git identity.
