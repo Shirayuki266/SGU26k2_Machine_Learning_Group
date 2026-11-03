@@ -119,3 +119,21 @@
 /scripts/package_final_artifacts.py text eol=lf
 /tests/test_final_artifact_delivery.py text eol=lf
 /reports/final_evaluation/*.sha256 text eol=lf
+
+# T14 source/resources and actual local app screenshots.
+/src/beijing_air/demo.py text eol=lf
+/src/beijing_air/demo_ui.py text eol=lf
+/app/streamlit_app.py text eol=lf
+/app/resources/demo.sqlite3 binary
+/app/resources/demo_manifest.json text eol=lf
+/configs/demo.json text eol=lf
+/scripts/build_demo_data.py text eol=lf
+/scripts/verify_demo.py text eol=lf
+/scripts/capture_demo_screenshots.py text eol=lf
+/tests/test_demo.py text eol=lf
+/tests/test_demo_ui.py text eol=lf
+/reports/demo/*.json text eol=lf
+/reports/demo/screenshots/*.png binary
+/docs/demo.md text eol=lf
+/docs/demo_video_storyboard.md text eol=lf
+/.streamlit/config.toml text eol=lf

@@ -211,3 +211,9 @@ Thumbs.db
 !artifacts/experiments/0960fac6455f4380bd5b6d1407633cf8/**/*.csv
 !artifacts/experiments/51975d2c66ff4263b83ace6962f3d3f7/**/*.csv
 !artifacts/experiments/24cd6d765f214d52aa26e5988380e2cd/**/*.csv
+
+# Streamlit credentials and SQLite transient files are not deliverables.
+.streamlit/secrets.toml
+app/resources/*.sqlite3-journal
+app/resources/*.sqlite3-wal
+app/resources/*.sqlite3-shm
