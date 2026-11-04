@@ -543,3 +543,22 @@ highlight theo validation chỉ mô tả, marker khóa T12/T13 không đổi. Đ
 test artifact T13, không mở raw test samples, không training/tuning hoặc thêm
 run. Có checks OK/KHÁC, provenance/SHA và audit đủ mọi run trong reports/tables/.
 Issue #40 giao hoanglecodingmachine; người dùng review/merge, không tự làm T17b.
+
+## NB01: hành trình T01–T14 có minh chứng
+
+[Notebook có output](notebooks/PM25_Project_Journey_T01_T14.ipynb),
+[HTML đọc ngay](reports/notebook/PM25_Project_Journey_T01_T14.html),
+[bản đồ code/dòng/test](docs/notebook_code_map.md) và
+[hướng dẫn kiểm/chạy lại](docs/project_journey.md).
+Mỗi task giải thích code nào triển khai, file kết quả ở đâu và ý nghĩa;
+đọc artifact cũ, không huấn luyện hoặc mở test samples.
+
+```powershell
+.\.venv\python.exe scripts/build_project_journey.py --execute
+```
+
+Kernel mới có guard chỉ đọc; xuất notebook/HTML/code map/QA NB01, không sửa
+ledger hay run lịch sử. T13/T14 test chỉ đọc lại artifact đã lưu. Issue #42
+giao hoanglecodingmachine, PR chờ người dùng review/merge. Tại snapshot NB01,
+PR T14 #36, bug-fix #37 và T17a #41 đã merge; các dòng “chưa merge” ở mốc
+trước là ghi nhận lịch sử, không hồi tố chỉnh sửa báo cáo/run cũ.

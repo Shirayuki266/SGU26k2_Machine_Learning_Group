@@ -63,3 +63,14 @@ Người dùng xác nhận giao hoanglecodingmachine; Git identity kiểm trư�
 commit. Phần người nhận đã đọc/hiểu/review [CẦN BỔ SUNG], không tự gán tỷ lệ
 đóng góp học thuật. Chưa triển khai T17b/T15/T16. Bằng chứng ở reports/tables/,
 docs/experiment_summary_readme.md và PR T17a.
+
+## NB01 / Issue #42
+
+Codex hỗ trợ soạn notebook hành trình, helper AST/git/test map, bảng vai trò
+file và diễn giải từ artifact, crosscheck saved predictions/OOF và số giữa
+kỳ; chạy kernel mới, xuất HTML và kiểm bố cục. Không huấn luyện/tuning,
+load weights hoặc đọc mẫu test thô; T13/T14 chỉ artifact đã có. Không sửa
+ledger/config/frozen/metrics hay hồ sơ giữa kỳ. Hỗ trợ này không tự quy thành
+đóng góp học thuật. Người nhận hoanglecodingmachine cần rà soát/hiểu trước
+merge; người review, họ tên/MSSV/% [CẦN BỔ SUNG]. Bằng chứng ở reports/notebook,
+notebook có output và docs/notebook_code_map.md.

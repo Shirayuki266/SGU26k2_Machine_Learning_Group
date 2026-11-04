@@ -103,3 +103,13 @@ Mỗi PR từ T13 có bài giảng/rubric/AI disclosure; Issue gán người c�
 bảng nhóm, kiểm danh tính trước commit và thành viên đọc/hiểu trước merge.
 Tài liệu thầy, thông tin nhóm/tỷ lệ100% và kích thước poster thiếu được ghi
 [CẦN BỔ SUNG], không tự điền. Không sửa lịch sử cũ để tạo đóng góp cân bằng.
+
+## NB01 — Chỉ mục minh chứng hành trình
+
+Issue #42, giao hoanglecodingmachine theo yêu cầu “như cũ”; branch
+`docs/nb01-project-journey`. Đầu ra [notebook/HTML/hướng dẫn](project_journey.md)
+và [bản đồ code tự sinh](notebook_code_map.md) đọc artifact T01–T14 hiện có,
+không thực nghiệm mới hoặc mở mẫu test. Cung cấp nguồn cho T15/T16, không
+thay thế hai task đó. Tại snapshot NB01, PR #36 (T14), #37 (Issue #35),
+#41 (T17a) đã merge; trạng thái ghi ở mốc trước là lịch sử. Người dùng review
+và merge PR NB01; thông tin nhóm/rubric còn [CẦN BỔ SUNG].

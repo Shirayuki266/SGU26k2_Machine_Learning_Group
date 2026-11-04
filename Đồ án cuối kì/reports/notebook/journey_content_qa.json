@@ -1,0 +1,12 @@
+{
+  "task_id": "NB01",
+  "sequential_clean_execution_cells": 20,
+  "tasks_with_six_parts": 15,
+  "source_positions_verified": 34,
+  "existing_test_references_verified": 142,
+  "inventory_files_sha_verified": 172,
+  "all_checks_OK": 164,
+  "missing_artifacts": [],
+  "discrepancies": [],
+  "scope": "Notebook content/source/saved artifacts only; no data/ or weights"
+}

@@ -221,5 +221,8 @@ app/resources/*.sqlite3-shm
 # T17a small, source-linked summary tables; no new experiment records.
 !reports/tables/experiment_summary*.csv
 
+# NB01 evidence inventories/checks, not new model runs.
+!reports/notebook/journey_*.csv
+
 # T17a small, source-linked summary tables; no new experiment records.
 !reports/tables/experiment_summary*.csv

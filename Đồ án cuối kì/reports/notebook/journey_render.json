@@ -1,0 +1,37 @@
+{
+  "task_id": "NB01",
+  "tool": "Playwright Chromium, local HTML, external requests blocked",
+  "headings": [
+    "Bản đồ tổng thể¶",
+    "T01 — Môi trường và cấu trúc¶",
+    "T02 — Đặc tả dự báo/CRISP-DM¶",
+    "T03 — Nguồn UCI 501¶",
+    "T04 — Hợp nhất và audit¶",
+    "T04-LOG — Nhật ký thực nghiệm¶",
+    "T05 — Target đúng giờ và split¶",
+    "T06 — EDA chỉ train¶",
+    "T07 — Feature A/B có tính nhân quả¶",
+    "T08 — Pipeline preprocessing¶",
+    "T09 — Persistence baseline¶",
+    "T10 — Ridge/RF ban đầu¶",
+    "T11 — Tuning temporal CV hữu hạn¶",
+    "T12 — A/B/C và khóa phương án¶",
+    "T13 — Đánh giá test sau khóa¶",
+    "T14 — Demo pipeline đã chọn¶",
+    "Tổng hợp và kết quả bất lợi¶",
+    "Tổng hợp RQ1–RQ3 — T13 artifact, chỉ đọc¶",
+    "Kiểm chứng chéo¶",
+    "Phụ lục và xuất bản đồ mã nguồn¶",
+    "Phụ lục kiểm kê và tái lập¶"
+  ],
+  "embedded_images": 22,
+  "all_images_loaded": true,
+  "vietnamese_text_present": true,
+  "all_task_headings_present": true,
+  "viewport_document_width": {
+    "viewport": 1440,
+    "document": 1440
+  },
+  "screenshots_local_only": "artifacts/nb01_work/browser/",
+  "manual_visual_review": "Codex inspected overview, T03/T06/T13/T14, crosscheck and EDA screenshots: Vietnamese, tables and figures readable; human assignee review remains pending"
+}

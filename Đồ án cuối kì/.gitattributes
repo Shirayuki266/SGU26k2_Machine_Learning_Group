@@ -149,6 +149,17 @@
 /reports/tables/experiment_summary.png binary
 /reports/tables/experiment_summary.xlsx binary
 
+# NB01 executed evidence outputs retain their notebook cell outputs.
+/src/beijing_air/project_journey.py text eol=lf
+/scripts/build_project_journey.py text eol=lf
+/tests/test_project_journey.py text eol=lf
+/docs/project_journey.md text eol=lf
+/docs/notebook_code_map.md text eol=lf
+/notebooks/PM25_Project_Journey_T01_T14.ipynb text eol=lf
+/reports/notebook/*.html text eol=lf
+/reports/notebook/*.json text eol=lf
+/reports/notebook/*.csv text eol=lf
+
 # T17a generated tables and read-only summary implementation.
 /src/beijing_air/experiment_summary.py text eol=lf
 /scripts/build_experiment_summary.py text eol=lf
