@@ -217,3 +217,9 @@ Thumbs.db
 app/resources/*.sqlite3-journal
 app/resources/*.sqlite3-wal
 app/resources/*.sqlite3-shm
+
+# T17a small, source-linked summary tables; no new experiment records.
+!reports/tables/experiment_summary*.csv
+
+# T17a small, source-linked summary tables; no new experiment records.
+!reports/tables/experiment_summary*.csv

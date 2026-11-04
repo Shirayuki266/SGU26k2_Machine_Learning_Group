@@ -51,3 +51,15 @@ Người nhận do người dùng xác nhận: hoanglecodingmachine. Thành viê
 đọc/hiểu và video thật [CẦN BỔ SUNG]. Chưa deploy hoặc quay video; không quy phần
 AI hỗ trợ thành tỷ lệ đóng góp học thuật đã xác nhận. Lệnh/kết quả ở docs/demo.md
 và reports/demo/; artifact UI không giả làm một run model mới.
+
+## T17a / Issue #40
+
+Codex hỗ trợ module/CLI tổng hợp, fixture TEST_ONLY, kiểm weighted pooled
+MAE/RMSE/nguồn run, render CSV/MD/XLSX/PNG và soạn hướng dẫn. Chỉ đọc ledger,
+metrics/saved predictions, gồm artifact test T13 đã có; không fit/tune, mở
+raw test samples, ghi thêm run hoặc sửa frozen/log/báo cáo giữa kỳ.
+
+Người dùng xác nhận giao hoanglecodingmachine; Git identity kiểm trước mỗi
+commit. Phần người nhận đã đọc/hiểu/review [CẦN BỔ SUNG], không tự gán tỷ lệ
+đóng góp học thuật. Chưa triển khai T17b/T15/T16. Bằng chứng ở reports/tables/,
+docs/experiment_summary_readme.md và PR T17a.

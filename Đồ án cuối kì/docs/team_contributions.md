@@ -80,3 +80,10 @@ hoanglecodingmachine trước triển khai. Phạm vi thực tế: app inference
 chọn bằng validation, tests/ảnh/hướng dẫn/storyboard; Codex hỗ trợ triển khai và
 kiểm tra. Chưa có video thật; thành viên tự quay. Chưa xác nhận đã đọc/hiểu;
 họ tên/MSSV/tỷ lệ vẫn [CẦN BỔ SUNG], không suy từ Git identity.
+
+## Xác nhận người nhận T17a
+
+Người dùng trả lời “Giao cho hoanglecodingmachine”; Issue #40 gán tài khoản
+này trước triển khai. Phần việc: bảng tổng hợp từ artifact cũ, kiểm chứng
+pooled/IDs/run linkage, tests/render/docs, có AI hỗ trợ. Không phải training
+hoặc T17b. Đọc/hiểu trước merge và họ tên/MSSV/tỷ lệ vẫn [CẦN BỔ SUNG].

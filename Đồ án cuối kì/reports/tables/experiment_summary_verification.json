@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "checks_ok": 148,
+  "historical_checkpoints": 14,
+  "table_rows": 12,
+  "observed_configurations": 10,
+  "not_run_placeholders": 2,
+  "ledger_rows": 53,
+  "protected_history_files_unchanged": 216,
+  "blocked_access_attempts": [],
+  "raw_test_samples_read": false,
+  "saved_T13_test_prediction_paths": [
+    "artifacts/experiments/0960fac6455f4380bd5b6d1407633cf8/artifacts/predictions/test.csv.gz",
+    "artifacts/experiments/24cd6d765f214d52aa26e5988380e2cd/artifacts/predictions/test.csv.gz",
+    "artifacts/experiments/51975d2c66ff4263b83ace6962f3d3f7/artifacts/predictions/test.csv.gz"
+  ],
+  "new_runs": 0,
+  "training": false,
+  "byte_identical_two_runs": true,
+  "output_sha256": {
+    "experiment_summary.csv": "10ec50677244ce3ac9804ac55999f5ae3357c340b314345f7b994db1f6e3317e",
+    "experiment_summary.md": "dd042b0eaf152b540bdf88ff5a6b17013aedcac2cb093cbddf992d74221c4bb6",
+    "experiment_summary.png": "926db67d36051f54f044522a776f2537c2feed1310015b19f5dce7200447832d",
+    "experiment_summary.xlsx": "dffde3d74cfe4e7c4fb64bdcbf614f7ec3354b654219aa1f8f8a8667eee03e0b",
+    "experiment_summary_checks.csv": "3873467e7f2bd4f7a1776edc1d2541d8605eefac6df6cbebac52d05fec3fd7ef",
+    "experiment_summary_provenance.json": "b346815c2e58a9c7733f136b925819c8f492f8b782ab977fec5925cfb72659aa",
+    "experiment_summary_runs.csv": "c04af4827c342138efda319e072011447767926388c3689aebeca83894564838"
+  },
+  "seconds": 16.17,
+  "unit_tests": "13 passed; tests/test_experiment_summary.py; TEST_ONLY tmp ledgers/predictions",
+  "environment": {
+    "pandas": "3.0.6",
+    "numpy": "2.5.4",
+    "matplotlib": "3.11.2",
+    "openpyxl": "3.1.5"
+  },
+  "source_commit": "a256b3eecb68c55869f52b20b1e62fe84ecd7d35",
+  "generated_at": "2026-11-04T20:12:00+07:00"
+}

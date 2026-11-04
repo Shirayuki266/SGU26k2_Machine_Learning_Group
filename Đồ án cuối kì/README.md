@@ -525,3 +525,21 @@ tạo metric tổng hợp mới. 19 tests và 36 kiểm tra khớp predictions T
 [QA](reports/demo/qa.json), [browser/5 ảnh](reports/demo/browser_verification.json).
 Issue #34 giao hoanglecodingmachine; chưa merge/deploy, video thật còn thiếu.
 T15/T16 chưa triển khai. Lỗi T08 được báo riêng ở Issue #35, không sửa lịch sử cũ.
+
+## T17a: bảng tổng hợp thí nghiệm chỉ đọc
+
+[Cách đọc/nguồn/giới hạn](docs/experiment_summary_readme.md),
+[bảng tổng hợp](reports/tables/experiment_summary.md),
+[CSV](reports/tables/experiment_summary.csv), [PNG](reports/tables/experiment_summary.png)
+và [Excel](reports/tables/experiment_summary.xlsx).
+
+```powershell
+.\.venv\python.exe scripts/build_experiment_summary.py
+```
+
+Gộp53hồ sơ thành10cấu hình đã chạy và2dòng nhóm chưa chạy. CV pooled từ
+saved OOF (fallback có trọng số n_i), validation/CV/test có run nguồn riêng;
+highlight theo validation chỉ mô tả, marker khóa T12/T13 không đổi. Đọc saved
+test artifact T13, không mở raw test samples, không training/tuning hoặc thêm
+run. Có checks OK/KHÁC, provenance/SHA và audit đủ mọi run trong reports/tables/.
+Issue #40 giao hoanglecodingmachine; người dùng review/merge, không tự làm T17b.

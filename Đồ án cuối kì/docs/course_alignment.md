@@ -81,3 +81,14 @@ Minh chứng: [hướng dẫn/QA](demo.md),19 tests,36 parity/12trạm,5 PNG bro
 Yêu cầu demo/model/README đã có; video chỉ [storyboard chưa quay](demo_video_storyboard.md).
 File/trang bài giảng và rubric chính thức [CẦN BỔ SUNG]; chưa xác nhận điểm cộng
 hoặc đáp ứng toàn bộ rubric. Người nhận phải đọc/hiểu trước merge.
+
+## Minh chứng T17a / Issue #40
+
+Chủ đề05: cùng primary validation IDs/coverage, pooled theo n_i khác mean/std
+fold, tách test refit T13 và giữ lock từ development. Chủ đề06/Ensemble và04:
+bảng Ridge/RF/A/B/C dùng artifact thật, không fit selector/model mới. Dòng
+tốt nhất chỉ tô theo validation, không chọn lại model sau test.
+
+Bằng chứng: reports/tables/experiment_summary.*, các checks/provenance và
+tests/test_experiment_summary.py. Chỉ tổng hợp, không T17b/training. File/trang
+bài giảng/rubric gốc [CẦN BỔ SUNG]; không tự gán điểm hoặc bịa bảng leaderboard.
