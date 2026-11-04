@@ -111,26 +111,34 @@ def related_tests(root, module, symbol):
     """
     results = []
     token = symbol.split(".")[-1] if symbol else ""
+    owner = symbol.split(".")[0] if symbol else ""
     specific = token not in {"", "main", "fit", "transform", "render", "execute", "load", "save"}
     for file in sorted((root/"tests").glob("test_*.py")):
         source = file.read_text(encoding="utf-8-sig")
         tree = ast.parse(source)
-        imports_module = any(isinstance(n, ast.ImportFrom) and (n.module or "").split(".")[-1] == module
-                             for n in ast.walk(tree))
-        imports_module |= any(isinstance(n, ast.Import) and any(a.name.split(".")[-1] == module for a in n.names)
-                              for n in ast.walk(tree))
+        imported, aliases, exact_names = set(), set(), set()
+        for node in ast.walk(tree):
+            if isinstance(node, ast.ImportFrom) and (node.module or "").split(".")[-1] == module:
+                for name in node.names:
+                    imported.add(name.asname or name.name)
+                    if name.name in {token, owner}:
+                        exact_names.add(name.asname or name.name)
+            elif isinstance(node, ast.Import):
+                aliases.update(a.asname or a.name for a in node.names if a.name.split(".")[-1] == module)
         names_script = module+".py" in source
-        if not imports_module and not names_script and not (specific and re.search(r"\b"+re.escape(token)+r"\b", source)):
+        if not imported and not aliases and not names_script and not (specific and re.search(r"\b"+re.escape(token)+r"\b", source)):
             continue
+        exact, supporting = [], []
         for node in tree.body:
             if isinstance(node, ast.FunctionDef) and node.name.startswith("test_"):
-                body = ast.get_source_segment(source, node) or ""
-                if token and re.search(r"\b"+re.escape(token)+r"\b", body):
-                    results.append(file.relative_to(root).as_posix()+"::"+node.name)
-        if not any(item.startswith(file.relative_to(root).as_posix()+"::") for item in results):
-            # A real module test is still relevant, explicitly documented as such.
-            tests = [n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name.startswith("test_")]
-            results.extend(file.relative_to(root).as_posix()+"::"+n.name for n in tests[:2])
+                calls = [ast.unparse(n.func) for n in ast.walk(node) if isinstance(n, ast.Call)]
+                identifier = file.relative_to(root).as_posix()+"::"+node.name
+                if any(c in exact_names or (specific and (c == token or c.endswith("."+token)))
+                       or any(c == a+"."+symbol for a in aliases) for c in calls):
+                    exact.append(identifier)
+                elif any(c.split(".")[0] in imported or any(c.startswith(a+".") for a in aliases) for c in calls):
+                    supporting.append(identifier)
+        results.extend(exact or supporting[:2])
     return results
 
 
@@ -224,7 +232,7 @@ TASKS = {
     "T11": ("Tuning temporal CV hữu hạn", 22, 23, TUNE, "scripts/run_tuning.py", "execute_search",
             "Điều chuẩn Ridge thay đổi có cải thiện validation?",
             "4 alpha × 3 expanding folds, purge nhãn biên, refit preprocessing từng fold; không RF search do ngân sách. Chủ đề 05/06.",
-            "reports/tuning/candidates.csv", "Pooled theo số mẫu khác mean±std fold; std là mô tả, không khoảng tin cậy. Train chỉ khoảng hai năm, fold sớm thiếu mùa đánh giá."),
+            "reports/tuning/candidates.csv", "Pooled theo số mẫu khác mean±std fold; std là mô tả, không khoảng tin cậy. Train khoảng hai năm; mỗi eval fold chỉ ba tháng, ít lần lặp mùa/chu kỳ."),
     "T12": ("A/B/C và khóa phương án", 24, 25, RB+"; "+RC, "src/beijing_air/feature_selection.py", "GroupRidgeSelector.fit",
             "Lag/rolling và chọn nhóm feature đóng góp gì khi giữ alpha cố định?",
             "Ridge alpha0.1 A/B/C; selector theo nhóm raw giữ toàn bộ one-hot của nhóm; tối đa3k ×3fold. Chọn triển khai bằng validation. Chủ đề04/05/06.",
@@ -322,7 +330,11 @@ class Journey:
         if frame.empty:
             self.md("Không có hàng để hiển thị; xem thông báo thiếu artifact.")
         else:
-            display(frame.head(limit).style.format(precision=6, na_rep="chưa có"))
+            styled = frame.head(limit).style.format(precision=6, na_rep="chưa có").hide(axis="index")
+            styled = styled.set_properties(**{"text-align": "left", "white-space": "normal", "overflow-wrap": "anywhere"})
+            styled = styled.set_table_styles([{"selector": "", "props": [("width", "100%"), ("table-layout", "fixed")]},
+                                              {"selector": "th", "props": [("text-align", "left"), ("overflow-wrap", "anywhere")]}])
+            display(styled)
             if len(frame) > limit:
                 self.md(f"Hiển thị {limit}/{len(frame)} hàng; file nguồn giữ đầy đủ.")
         self.md(f"Nguồn: `{source}` · run_id: `{run_id}`. MAE/RMSE/PM2.5: µg/m³; R² và tỷ lệ: không đơn vị; thời gian: giây.")
@@ -404,8 +416,8 @@ class Journey:
     def overview(self):
         rows = []
         for task, s in TASKS.items():
-            links = f"[Issue #{s[1]}]({REPO_URL}/issues/{s[1]})"
-            links += f" / [PR #{s[2]}]({REPO_URL}/pull/{s[2]}) đã merge" if s[2] else " / PR riêng: chưa có bằng chứng"
+            links = f'<a href="{REPO_URL}/issues/{s[1]}">Issue #{s[1]}</a>'
+            links += f' / <a href="{REPO_URL}/pull/{s[2]}">PR #{s[2]}</a> đã merge' if s[2] else " / PR riêng: chưa có bằng chứng"
             rows.append({"Task": task, "Mục tiêu": s[0], "Trạng thái": "Có nguồn/minh chứng; xem giới hạn từng bước",
                          "Issue/PR": links, "run_id chính": s[3] or "không có model run", "Artifact chính": s[8],
                          "File mã chính": s[4], "Test": "; ".join(related_tests(self.root, Path(s[4]).stem, s[5])[:2]) or "script/tài liệu"})
@@ -630,7 +642,7 @@ class Journey:
                 "**RQ2:** Lag/rolling và selection giảm MAE Ridge A→B→C trên development; C không giảm RMSE so B. Không có B/C test, không tuyên bố tốt nhất tổng quát. "
                 "Hệ số/importance chỉ liên hệ dự báo, không nhân quả.\n\n"
                 "**RQ3:** Bảng theo trạm/mùa/nồng độ và đợt cao T13 cho biết sai số không đồng đều; đỉnh/thay đổi nhanh khó hơn là diễn giải/giả thuyết cần kiểm thêm. "
-                "Không tính R² cho nhóm quá nhỏ hoặc không biến thiên. Train khoảng hai năm và CV sớm chưa bao phủ mọi mùa đánh giá; RF không có fold/std CV.")
+                "Không tính R² cho nhóm quá nhỏ hoặc không biến thiên. Train khoảng hai năm, eval mỗi fold chỉ ba tháng và fit sớm có ít lần lặp mùa/chu kỳ; RF không có fold/std CV.")
         adverse = pd.DataFrame([
             ["T10 Ridge A", R, "MAE validation kém persistence; có dự báo âm", "reports/initial_models/comparison.csv"],
             ["T11 alpha0.1", RA, "CV chọn tốt hơn nhưng validation MAE không cải thiện alpha1", "reports/tuning/before_after.csv"],
@@ -656,31 +668,44 @@ class Journey:
             self.md("KHÁC/lỗi kiểm chứng: "+safe_text(str(exc))+". Không sửa artifact cũ.")
             self.checks = [{"check": "saved predictions reconciliation", "status": "KHÁC", "observed": str(exc), "expected": "matching artifacts"}]
             return
-        self.checks = list(evidence["checks"])
+        self.checks = [dict(check) for check in evidence["checks"]]
+        for check in self.checks:
+            if check["check"].startswith("historical") and "cv_" in check["check"]:
+                matched = [row for row in rows if row["run_id"] == check["run_id"] and row.get("cv_run_id")]
+                if len(matched) == 1:
+                    check["run_id"] = matched[0]["cv_run_id"]
+                    check["source"] = "artifacts/experiments/"+check["run_id"]+"/metrics.json (CV candidate)"
         self.evidence.sources.update(reader.sources)
         self.evidence.missing.extend(w.replace("Chưa có: ", "Không tìm thấy artifact: ") for w in reader.warnings if w not in self.evidence.missing)
         initial = self.evidence.csv("reports/initial_models/comparison.csv")
         splits = self.evidence.csv("reports/splits_full/split_summary.csv")
         ablation = self.evidence.csv("reports/ablation/comparison.csv")
         extras = []
+        baseline_metrics_path = f"artifacts/experiments/{P}/metrics.json"
+        baseline_metrics = self.evidence.json(baseline_metrics_path)
+        extras.append(("T09 Persistence primary validation N", baseline_metrics.get("validation_primary", {}).get("n_scored"),
+                       102479, P, baseline_metrics_path))
         for model, key, expected in (("ridge", "train_MAE", 11.286320), ("random_forest", "train_MAE", 9.837287),
                                      ("random_forest", "train_RMSE", 16.664335)):
             selected = initial.loc[initial.model.eq(model)] if "model" in initial else pd.DataFrame()
-            extras.append(("T10 "+model+" "+key, selected.iloc[0][key] if not selected.empty else None, expected))
+            extras.append(("T10 "+model+" "+key, selected.iloc[0][key] if not selected.empty else None,
+                           expected, R if model == "ridge" else F, "reports/initial_models/comparison.csv"))
         for cohort, counts in (("primary", (204865, 102479, 101836)), ("operational", (205977, 103287, 102753))):
             for partition, count in zip(("train", "validation", "test"), counts):
                 found = splits.loc[splits.cohort.eq(cohort) & splits.split.eq(partition)] if not splits.empty else pd.DataFrame()
-                extras.append((f"T05 {cohort}/{partition} N", found.iloc[0].samples if not found.empty else None, count))
+                extras.append((f"T05 {cohort}/{partition} N", found.iloc[0].samples if not found.empty else None,
+                               count, "— audit T05", "reports/splits_full/split_summary.csv"))
         for rid, dimensions, rmse in ((RA, 65, 18.907198), (RB, 91, 18.467071), (RC, 24, 18.501063)):
             found = ablation.loc[ablation.run_id.eq(rid)] if not ablation.empty else pd.DataFrame()
             for key, expected in (("model_dimensions", dimensions), ("RMSE", rmse)):
-                extras.append(("T12 "+rid+" "+key, found.iloc[0][key] if not found.empty else None, expected))
-        for name, value, expected in extras:
+                extras.append(("T12 "+rid+" "+key, found.iloc[0][key] if not found.empty else None,
+                               expected, rid, "reports/ablation/comparison.csv"))
+        for name, value, expected, rid, source in extras:
             observed = float(value) if value is not None else None
-            self.checks.append({"check": name, "run_id": "xem tên/nguồn bảng", "observed": observed, "expected": expected,
+            self.checks.append({"check": name, "run_id": rid, "source": source, "observed": observed, "expected": expected, "tolerance": 1e-6,
                                 "status": "OK" if observed is not None and abs(observed-expected) <= 1e-6 else "KHÁC"})
         checks = pd.DataFrame(self.checks)
-        historical = checks.loc[checks.check.str.startswith(("historical", "T05", "T10", "T12"))]
+        historical = checks.loc[checks.check.str.startswith(("historical", "T05", "T09", "T10", "T12"))]
         self.table(historical, "Số đối chiếu người dùng (1e-6), giá trị gốc không sửa", limit=40, run_id="xem từng hàng")
         self.table(checks.loc[~checks.index.isin(historical.index)].head(12), "Ví dụ kiểm metric/OOF/IDs từ saved predictions vs metrics.json", run_id="xem từng hàng")
         self.table(checks.groupby("status", dropna=False).size().rename("số kiểm chứng").reset_index(), "Tổng hợp tất cả kiểm chứng; đầy đủ journey_checks.csv")
@@ -738,5 +763,5 @@ class Journey:
                   "missing": list(dict.fromkeys(self.evidence.missing)), "sources": len(self.evidence.sources),
                   "new_model_runs": 0, "raw_samples_read": False, "weights_loaded": False}
         (directory/"journey_verification.json").write_text(json.dumps(report, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
-        self.md(f"Đã sinh code map {len(self.code_rows)} dòng AST và inventory/checks NB01; không ghi experiment_log.")
+        self.md(f"Đã sinh code map {len(self.code_rows)} mục (AST cho .py; đếm dòng toàn file PS1/JSON) và inventory/checks NB01; không ghi experiment_log.")
         return report

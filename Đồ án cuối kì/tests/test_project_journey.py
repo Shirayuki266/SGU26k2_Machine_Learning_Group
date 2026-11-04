@@ -47,6 +47,15 @@ def test_test_map_lists_only_ast_existing_tests(tmp_path):
     assert result == ["tests/test_fixture.py::test_real"]
 
 
+def test_generic_execute_does_not_match_unrelated_sql_calls(tmp_path):
+    directory = tmp_path/"tests"
+    directory.mkdir()
+    (directory/"test_fixture.py").write_text("from TEST_ONLY_module import execute\n"
+        "def test_unrelated_sql():\n    connection.execute('TEST_ONLY')\n"
+        "def test_actual_runner():\n    execute()\n", encoding="utf-8")
+    assert related_tests(tmp_path, "TEST_ONLY_module", "execute") == ["tests/test_fixture.py::test_actual_runner"]
+
+
 def test_notebook_template_has_all_tasks_flags_and_t13_labels(tmp_path):
     import importlib.util
     from beijing_air.project_journey import TASKS
