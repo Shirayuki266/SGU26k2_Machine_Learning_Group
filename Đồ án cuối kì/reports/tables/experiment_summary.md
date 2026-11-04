@@ -1,0 +1,175 @@
+# Bảng tổng hợp thí nghiệm PM2.5
+
+| No | Nhóm | Method | Input | Approach | CV pooled MAE | CV pooled RMSE | CV MAE mean ± std theo fold (chỉ mô tả) | Validation MAE | Validation RMSE | Validation R² | Δ MAE validation so với persistence (%) | Test MAE (chỉ mô hình T13) | test_run_id | Đã khóa (T12/T13) | run_id (validation/CV) | cv_run_id | Trạng thái | Tốt nhất validation (mô tả) | Validation N | Ghi chú |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | Baseline | Persistence | PM2.5(t) | PM2.5(t+1)=PM2.5(t); fallback history≤24h rồi median train | chưa có | chưa có | chưa có | 9.736617 | 19.240919 | 0.944804 | 0.000000 | 10.161809 | 0960fac6455f4380bd5b6d1407633cf8 |  | 24cef47874a94d9faa7bfcbae29b5c58 |  | completed |  | 102479 | Test: run persistence T13 riêng, quy tắc không fit; khác tập validation |
+| **2** | **Basic** | **Random Forest A** | **A: số đo t, station/wd, lịch t+1** | **n_estimators=80; max_depth=12; min_samples_leaf=2; n_jobs=1** | **chưa có** | **chưa có** | **chưa có** | **9.561488** | **18.964825** | **0.946376** | **1.798669** | **9.877150** | **24cd6d765f214d52aa26e5988380e2cd** | **Có** | **780ecb7fb59d48bea58d5e4a076f1f26** |  | **completed** | **Có** | **102479** | **Test: T13 refit train+validation, fitted model khác bên validation; Phương án đã khóa bằng validation T12/T13** |
+| 3 | Basic | Ridge A | A: số đo t, station/wd, lịch t+1 | Ridge alpha=1.0 | 10.412704 | 18.086351 | 10.432820 ± 1.278168 | 10.200433 | 18.907140 | 0.946702 | -4.763618 |  |  |  | aec8630115714bb59d5c89c8a6b368c1 | a321e59292894860b419b112c8f7ef33 | completed |  | 102479 | CV/validation khác run; liên kết cùng cấu hình, xem cv_run_id |
+| 4 | Tuned | Ridge A | A: số đo t, station/wd, lịch t+1 | Ridge alpha=0.1 | 10.405534 | 18.080608 | 10.425491 ± 1.268015 | 10.200529 | 18.907198 | 0.946702 | -4.764613 | 10.384443 | 51975d2c66ff4263b83ace6962f3d3f7 |  | 32e65c5a4cbc489c905cf146b743867f | 80a499da1e8c4d02a3db2a698b5e5769 | completed |  | 102479 | Test: T13 refit train+validation, fitted model khác bên validation; CV/validation khác run; liên kết cùng cấu hình, xem cv_run_id |
+| 5 | Tuned | Ridge A | A: số đo t, station/wd, lịch t+1 | Ridge alpha=10.0 | 10.415655 | 18.088943 | 10.435821 ± 1.281371 | chưa có | chưa có | chưa có | chưa có |  |  |  | 09bf32c86d834aa5a7796d0ed8740a32 | 09bf32c86d834aa5a7796d0ed8740a32 | completed |  | chưa có | Chỉ CV; chưa chấm validation |
+| 6 | Tuned | Ridge A | A: số đo t, station/wd, lịch t+1 | Ridge alpha=100.0 | 10.421272 | 18.091901 | 10.441349 ± 1.275715 | chưa có | chưa có | chưa có | chưa có |  |  |  | 23ead96b6d554aba9cb429f03e7d9801 | 23ead96b6d554aba9cb429f03e7d9801 | completed |  | chưa có | Chỉ CV; chưa chấm validation |
+| 7 | +Lag/rolling (B) | Ridge B | B: A + lag/rolling PM2.5 | Ridge alpha=0.1 | chưa có | chưa có | chưa có | 9.968755 | 18.467071 | 0.949154 | -2.384174 |  |  |  | 48d2f03be4614a25906f84d98df9e9dc |  | completed |  | 102479 |  |
+| 8 | +Chọn đặc trưng (C) | Ridge C | C: chọn nhóm từ B | Ridge alpha=0.1; k_groups=12 | 10.106828 | 17.727766 | 10.125542 ± 1.188526 | 9.903377 | 18.501063 | 0.948967 | -1.712703 |  |  |  | 3a9f2500e4dd4ef28d7bc20def6f79c8 | 9ae62221f0ba4fbcbdaaddd5e04c9633 | completed |  | 102479 | CV/validation khác run; liên kết cùng cấu hình, xem cv_run_id |
+| 9 | +Chọn đặc trưng (C) | Ridge C | C: chọn nhóm từ B | Ridge alpha=0.1; k_groups=20 | 10.171504 | 17.567402 | 10.190435 ± 1.202549 | chưa có | chưa có | chưa có | chưa có |  |  |  | 2a69d1bf135543998fd9b8f807056c82 | 2a69d1bf135543998fd9b8f807056c82 | completed |  | chưa có | Chỉ CV; chưa chấm validation |
+| 10 | +Chọn đặc trưng (C) | Ridge C | C: chọn nhóm từ B | Ridge alpha=0.1; k_groups=28 | 10.159104 | 17.572611 | 10.178662 ± 1.243861 | chưa có | chưa có | chưa có | chưa có |  |  |  | 4c7d175e1b434f6b8aeb8028775e91b5 | 4c7d175e1b434f6b8aeb8028775e91b5 | completed |  | chưa có | Chỉ CV; chưa chấm validation |
+| 11 | Bổ sung (T17b) | Chưa chạy (kế hoạch) | chưa có | chưa có | chưa có | chưa có | chưa có | chưa có | chưa có | chưa có | chưa có |  |  |  |  |  | not_run |  | chưa có | Không có run hoặc số liệu; không tô |
+| 12 | Gộp mô hình | Chưa chạy (kế hoạch) | chưa có | chưa có | chưa có | chưa có | chưa có | chưa có | chưa có | chưa có | chưa có |  |  |  |  |  | not_run |  | chưa có | Không có run hoặc số liệu; không tô |
+
+Nguồn: experiments/experiment_log.csv | commit: a256b3eecb68 | sinh: 2026-11-04T20:12:00+07:00
+
+Đơn vị MAE/RMSE: µg/m³. Tô theo Validation MAE trên cùng primary IDs/coverage, chỉ mô tả; không đổi phương án khóa T12/T13. Test ML: T13 refit train+validation; persistence không fit, test_run_id riêng; không lấy chênh lệch/trung bình validation-test. CV mean±std ddof=0 chỉ mô tả, không là khoảng tin cậy.
+
+Ô trống ở Test: cấu hình không có T13 tương ứng; chưa có không phải0. Dòng đậm tương ứng highlight validation. Parent/fold/smoke xem experiment_summary_runs.csv, không gọi mỗi hồ sơ là một model.
+
+## Đối chiếu artifact và số lịch sử (1e-6)
+
+| Kiểm tra | run_id | Đo/đọc được | Đã ghi/tham chiếu | Trạng thái |
+| --- | --- | --- | --- | --- |
+| validation predictions vs log: MAE | 24cef47874a94d9faa7bfcbae29b5c58 | 9.736617 | 9.736617 | OK |
+| validation predictions vs log: RMSE | 24cef47874a94d9faa7bfcbae29b5c58 | 19.240919 | 19.240919 | OK |
+| validation predictions vs log: R2 | 24cef47874a94d9faa7bfcbae29b5c58 | 0.944804 | 0.944804 | OK |
+| validation predictions vs log: n_scored | 24cef47874a94d9faa7bfcbae29b5c58 | 102479.000000 | 102479.000000 | OK |
+| test predictions vs log: MAE | 0960fac6455f4380bd5b6d1407633cf8 | 10.161809 | 10.161809 | OK |
+| test predictions vs log: RMSE | 0960fac6455f4380bd5b6d1407633cf8 | 19.436188 | 19.436188 | OK |
+| test predictions vs log: R2 | 0960fac6455f4380bd5b6d1407633cf8 | 0.944975 | 0.944975 | OK |
+| test predictions vs log: n_scored | 0960fac6455f4380bd5b6d1407633cf8 | 101836.000000 | 101836.000000 | OK |
+| validation predictions vs log: MAE | 32e65c5a4cbc489c905cf146b743867f | 10.200529 | 10.200529 | OK |
+| validation predictions vs log: RMSE | 32e65c5a4cbc489c905cf146b743867f | 18.907198 | 18.907198 | OK |
+| validation predictions vs log: R2 | 32e65c5a4cbc489c905cf146b743867f | 0.946702 | 0.946702 | OK |
+| validation predictions vs log: n_scored | 32e65c5a4cbc489c905cf146b743867f | 102479.000000 | 102479.000000 | OK |
+| evaluation predictions vs log: MAE | 0e18db006aea4fd39531a4fbf51da136 | 9.263715 | 9.263715 | OK |
+| evaluation predictions vs log: RMSE | 0e18db006aea4fd39531a4fbf51da136 | 14.495222 | 14.495222 | OK |
+| evaluation predictions vs log: R2 | 0e18db006aea4fd39531a4fbf51da136 | 0.931922 | 0.931922 | OK |
+| evaluation predictions vs log: n_scored | 0e18db006aea4fd39531a4fbf51da136 | 25746.000000 | 25746.000000 | OK |
+| evaluation predictions vs log: MAE | 31dda181a3de4773b8d587c73296a6fc | 9.823374 | 9.823374 | OK |
+| evaluation predictions vs log: RMSE | 31dda181a3de4773b8d587c73296a6fc | 16.308834 | 16.308834 | OK |
+| evaluation predictions vs log: R2 | 31dda181a3de4773b8d587c73296a6fc | 0.965253 | 0.965253 | OK |
+| evaluation predictions vs log: n_scored | 31dda181a3de4773b8d587c73296a6fc | 25541.000000 | 25541.000000 | OK |
+| evaluation predictions vs log: MAE | 0710ea61b9ba41e58ab302d6fe8c27a1 | 12.189384 | 12.189384 | OK |
+| evaluation predictions vs log: RMSE | 0710ea61b9ba41e58ab302d6fe8c27a1 | 22.600890 | 22.600890 | OK |
+| evaluation predictions vs log: R2 | 0710ea61b9ba41e58ab302d6fe8c27a1 | 0.932744 | 0.932744 | OK |
+| evaluation predictions vs log: n_scored | 0710ea61b9ba41e58ab302d6fe8c27a1 | 24815.000000 | 24815.000000 | OK |
+| CV pooled MAE vs log | 80a499da1e8c4d02a3db2a698b5e5769 | 10.405534 | 10.405534 | OK |
+| CV pooled RMSE vs log | 80a499da1e8c4d02a3db2a698b5e5769 | 18.080608 | 18.080608 | OK |
+| test predictions vs log: MAE | 51975d2c66ff4263b83ace6962f3d3f7 | 10.384443 | 10.384443 | OK |
+| test predictions vs log: RMSE | 51975d2c66ff4263b83ace6962f3d3f7 | 18.939487 | 18.939487 | OK |
+| test predictions vs log: R2 | 51975d2c66ff4263b83ace6962f3d3f7 | 0.947752 | 0.947752 | OK |
+| test predictions vs log: n_scored | 51975d2c66ff4263b83ace6962f3d3f7 | 101836.000000 | 101836.000000 | OK |
+| validation predictions vs log: MAE | 3a9f2500e4dd4ef28d7bc20def6f79c8 | 9.903377 | 9.903377 | OK |
+| validation predictions vs log: RMSE | 3a9f2500e4dd4ef28d7bc20def6f79c8 | 18.501063 | 18.501063 | OK |
+| validation predictions vs log: R2 | 3a9f2500e4dd4ef28d7bc20def6f79c8 | 0.948967 | 0.948967 | OK |
+| validation predictions vs log: n_scored | 3a9f2500e4dd4ef28d7bc20def6f79c8 | 102479.000000 | 102479.000000 | OK |
+| evaluation predictions vs log: MAE | 041d4b16d718493cb854f68f56ef82ce | 8.999002 | 8.999002 | OK |
+| evaluation predictions vs log: RMSE | 041d4b16d718493cb854f68f56ef82ce | 14.461940 | 14.461940 | OK |
+| evaluation predictions vs log: R2 | 041d4b16d718493cb854f68f56ef82ce | 0.932235 | 0.932235 | OK |
+| evaluation predictions vs log: n_scored | 041d4b16d718493cb854f68f56ef82ce | 25746.000000 | 25746.000000 | OK |
+| evaluation predictions vs log: MAE | bb3f77ea515e445b9cf8e96b91f8ab34 | 9.608501 | 9.608501 | OK |
+| evaluation predictions vs log: RMSE | bb3f77ea515e445b9cf8e96b91f8ab34 | 15.939086 | 15.939086 | OK |
+| evaluation predictions vs log: R2 | bb3f77ea515e445b9cf8e96b91f8ab34 | 0.966810 | 0.966810 | OK |
+| evaluation predictions vs log: n_scored | bb3f77ea515e445b9cf8e96b91f8ab34 | 25541.000000 | 25541.000000 | OK |
+| evaluation predictions vs log: MAE | 6fdd6ef773e246e985decc9b07d8eb01 | 11.769124 | 11.769124 | OK |
+| evaluation predictions vs log: RMSE | 6fdd6ef773e246e985decc9b07d8eb01 | 22.030089 | 22.030089 | OK |
+| evaluation predictions vs log: R2 | 6fdd6ef773e246e985decc9b07d8eb01 | 0.936098 | 0.936098 | OK |
+| evaluation predictions vs log: n_scored | 6fdd6ef773e246e985decc9b07d8eb01 | 24815.000000 | 24815.000000 | OK |
+| CV pooled MAE vs log | 9ae62221f0ba4fbcbdaaddd5e04c9633 | 10.106828 | 10.106828 | OK |
+| CV pooled RMSE vs log | 9ae62221f0ba4fbcbdaaddd5e04c9633 | 17.727766 | 17.727766 | OK |
+| validation predictions vs log: MAE | 48d2f03be4614a25906f84d98df9e9dc | 9.968755 | 9.968755 | OK |
+| validation predictions vs log: RMSE | 48d2f03be4614a25906f84d98df9e9dc | 18.467071 | 18.467071 | OK |
+| validation predictions vs log: R2 | 48d2f03be4614a25906f84d98df9e9dc | 0.949154 | 0.949154 | OK |
+| validation predictions vs log: n_scored | 48d2f03be4614a25906f84d98df9e9dc | 102479.000000 | 102479.000000 | OK |
+| validation predictions vs log: MAE | 780ecb7fb59d48bea58d5e4a076f1f26 | 9.561488 | 9.561488 | OK |
+| validation predictions vs log: RMSE | 780ecb7fb59d48bea58d5e4a076f1f26 | 18.964825 | 18.964825 | OK |
+| validation predictions vs log: R2 | 780ecb7fb59d48bea58d5e4a076f1f26 | 0.946376 | 0.946376 | OK |
+| validation predictions vs log: n_scored | 780ecb7fb59d48bea58d5e4a076f1f26 | 102479.000000 | 102479.000000 | OK |
+| test predictions vs log: MAE | 24cd6d765f214d52aa26e5988380e2cd | 9.877150 | 9.877150 | OK |
+| test predictions vs log: RMSE | 24cd6d765f214d52aa26e5988380e2cd | 18.569634 | 18.569634 | OK |
+| test predictions vs log: R2 | 24cd6d765f214d52aa26e5988380e2cd | 0.949772 | 0.949772 | OK |
+| test predictions vs log: n_scored | 24cd6d765f214d52aa26e5988380e2cd | 101836.000000 | 101836.000000 | OK |
+| validation predictions vs log: MAE | aec8630115714bb59d5c89c8a6b368c1 | 10.200433 | 10.200433 | OK |
+| validation predictions vs log: RMSE | aec8630115714bb59d5c89c8a6b368c1 | 18.907140 | 18.907140 | OK |
+| validation predictions vs log: R2 | aec8630115714bb59d5c89c8a6b368c1 | 0.946702 | 0.946702 | OK |
+| validation predictions vs log: n_scored | aec8630115714bb59d5c89c8a6b368c1 | 102479.000000 | 102479.000000 | OK |
+| evaluation predictions vs log: MAE | 25967a7e77c44c5faafba8fa4c73d1dd | 9.263732 | 9.263732 | OK |
+| evaluation predictions vs log: RMSE | 25967a7e77c44c5faafba8fa4c73d1dd | 14.495279 | 14.495279 | OK |
+| evaluation predictions vs log: R2 | 25967a7e77c44c5faafba8fa4c73d1dd | 0.931922 | 0.931922 | OK |
+| evaluation predictions vs log: n_scored | 25967a7e77c44c5faafba8fa4c73d1dd | 25746.000000 | 25746.000000 | OK |
+| evaluation predictions vs log: MAE | 09c83b0a21dc4767bf0848cba3b204fd | 9.823422 | 9.823422 | OK |
+| evaluation predictions vs log: RMSE | 09c83b0a21dc4767bf0848cba3b204fd | 16.308832 | 16.308832 | OK |
+| evaluation predictions vs log: R2 | 09c83b0a21dc4767bf0848cba3b204fd | 0.965253 | 0.965253 | OK |
+| evaluation predictions vs log: n_scored | 09c83b0a21dc4767bf0848cba3b204fd | 25541.000000 | 25541.000000 | OK |
+| evaluation predictions vs log: MAE | 8f0cbec3f67142f6bfc69b1d29732287 | 12.211306 | 12.211306 | OK |
+| evaluation predictions vs log: RMSE | 8f0cbec3f67142f6bfc69b1d29732287 | 22.614941 | 22.614941 | OK |
+| evaluation predictions vs log: R2 | 8f0cbec3f67142f6bfc69b1d29732287 | 0.932660 | 0.932660 | OK |
+| evaluation predictions vs log: n_scored | 8f0cbec3f67142f6bfc69b1d29732287 | 24815.000000 | 24815.000000 | OK |
+| CV pooled MAE vs log | a321e59292894860b419b112c8f7ef33 | 10.412704 | 10.412704 | OK |
+| CV pooled RMSE vs log | a321e59292894860b419b112c8f7ef33 | 18.086351 | 18.086351 | OK |
+| evaluation predictions vs log: MAE | f232ff1fadd544b29cc1a472d9b1e939 | 9.264339 | 9.264339 | OK |
+| evaluation predictions vs log: RMSE | f232ff1fadd544b29cc1a472d9b1e939 | 14.495957 | 14.495957 | OK |
+| evaluation predictions vs log: R2 | f232ff1fadd544b29cc1a472d9b1e939 | 0.931915 | 0.931915 | OK |
+| evaluation predictions vs log: n_scored | f232ff1fadd544b29cc1a472d9b1e939 | 25746.000000 | 25746.000000 | OK |
+| evaluation predictions vs log: MAE | fdc8ea02edf8428ca109d17fed4539c8 | 9.824236 | 9.824236 | OK |
+| evaluation predictions vs log: RMSE | fdc8ea02edf8428ca109d17fed4539c8 | 16.309450 | 16.309450 | OK |
+| evaluation predictions vs log: R2 | fdc8ea02edf8428ca109d17fed4539c8 | 0.965250 | 0.965250 | OK |
+| evaluation predictions vs log: n_scored | fdc8ea02edf8428ca109d17fed4539c8 | 25541.000000 | 25541.000000 | OK |
+| evaluation predictions vs log: MAE | a23222577b16407dadcf11ff53dd76ec | 12.218888 | 12.218888 | OK |
+| evaluation predictions vs log: RMSE | a23222577b16407dadcf11ff53dd76ec | 22.620388 | 22.620388 | OK |
+| evaluation predictions vs log: R2 | a23222577b16407dadcf11ff53dd76ec | 0.932628 | 0.932628 | OK |
+| evaluation predictions vs log: n_scored | a23222577b16407dadcf11ff53dd76ec | 24815.000000 | 24815.000000 | OK |
+| CV pooled MAE vs log | 09bf32c86d834aa5a7796d0ed8740a32 | 10.415655 | 10.415655 | OK |
+| CV pooled RMSE vs log | 09bf32c86d834aa5a7796d0ed8740a32 | 18.088943 | 18.088943 | OK |
+| evaluation predictions vs log: MAE | dc6f29e8873a46d5a50211f5cf253466 | 9.273193 | 9.273193 | OK |
+| evaluation predictions vs log: RMSE | dc6f29e8873a46d5a50211f5cf253466 | 14.504126 | 14.504126 | OK |
+| evaluation predictions vs log: R2 | dc6f29e8873a46d5a50211f5cf253466 | 0.931839 | 0.931839 | OK |
+| evaluation predictions vs log: n_scored | dc6f29e8873a46d5a50211f5cf253466 | 25746.000000 | 25746.000000 | OK |
+| evaluation predictions vs log: MAE | a56930ab555241fbb560a1d950bd2f03 | 9.834741 | 9.834741 | OK |
+| evaluation predictions vs log: RMSE | a56930ab555241fbb560a1d950bd2f03 | 16.317111 | 16.317111 | OK |
+| evaluation predictions vs log: R2 | a56930ab555241fbb560a1d950bd2f03 | 0.965217 | 0.965217 | OK |
+| evaluation predictions vs log: n_scored | a56930ab555241fbb560a1d950bd2f03 | 25541.000000 | 25541.000000 | OK |
+| evaluation predictions vs log: MAE | ae59476594294ee78cd5e4875951ba61 | 12.216113 | 12.216113 | OK |
+| evaluation predictions vs log: RMSE | ae59476594294ee78cd5e4875951ba61 | 22.616524 | 22.616524 | OK |
+| evaluation predictions vs log: R2 | ae59476594294ee78cd5e4875951ba61 | 0.932651 | 0.932651 | OK |
+| evaluation predictions vs log: n_scored | ae59476594294ee78cd5e4875951ba61 | 24815.000000 | 24815.000000 | OK |
+| CV pooled MAE vs log | 23ead96b6d554aba9cb429f03e7d9801 | 10.421272 | 10.421272 | OK |
+| CV pooled RMSE vs log | 23ead96b6d554aba9cb429f03e7d9801 | 18.091901 | 18.091901 | OK |
+| evaluation predictions vs log: MAE | 3ef83ee1856f49b4871ee86643e9c039 | 9.076815 | 9.076815 | OK |
+| evaluation predictions vs log: RMSE | 3ef83ee1856f49b4871ee86643e9c039 | 14.185195 | 14.185195 | OK |
+| evaluation predictions vs log: R2 | 3ef83ee1856f49b4871ee86643e9c039 | 0.934803 | 0.934803 | OK |
+| evaluation predictions vs log: n_scored | 3ef83ee1856f49b4871ee86643e9c039 | 25746.000000 | 25746.000000 | OK |
+| evaluation predictions vs log: MAE | 79c3d5995f3d4b76b81fc8c1a79067ab | 9.634108 | 9.634108 | OK |
+| evaluation predictions vs log: RMSE | 79c3d5995f3d4b76b81fc8c1a79067ab | 15.834164 | 15.834164 | OK |
+| evaluation predictions vs log: R2 | 79c3d5995f3d4b76b81fc8c1a79067ab | 0.967246 | 0.967246 | OK |
+| evaluation predictions vs log: n_scored | 79c3d5995f3d4b76b81fc8c1a79067ab | 25541.000000 | 25541.000000 | OK |
+| evaluation predictions vs log: MAE | 5659175c99154b01a310329495c2e40f | 11.860381 | 11.860381 | OK |
+| evaluation predictions vs log: RMSE | 5659175c99154b01a310329495c2e40f | 21.900303 | 21.900303 | OK |
+| evaluation predictions vs log: R2 | 5659175c99154b01a310329495c2e40f | 0.936849 | 0.936849 | OK |
+| evaluation predictions vs log: n_scored | 5659175c99154b01a310329495c2e40f | 24815.000000 | 24815.000000 | OK |
+| CV pooled MAE vs log | 2a69d1bf135543998fd9b8f807056c82 | 10.171504 | 10.171504 | OK |
+| CV pooled RMSE vs log | 2a69d1bf135543998fd9b8f807056c82 | 17.567402 | 17.567402 | OK |
+| evaluation predictions vs log: MAE | 099eeddbd0a6400681cfb9f2c4790ac3 | 9.070000 | 9.070000 | OK |
+| evaluation predictions vs log: RMSE | 099eeddbd0a6400681cfb9f2c4790ac3 | 14.190000 | 14.190000 | OK |
+| evaluation predictions vs log: R2 | 099eeddbd0a6400681cfb9f2c4790ac3 | 0.934759 | 0.934759 | OK |
+| evaluation predictions vs log: n_scored | 099eeddbd0a6400681cfb9f2c4790ac3 | 25746.000000 | 25746.000000 | OK |
+| evaluation predictions vs log: MAE | ede2fdc7ba2d4c758a268beb2896661a | 9.550226 | 9.550226 | OK |
+| evaluation predictions vs log: RMSE | ede2fdc7ba2d4c758a268beb2896661a | 15.760262 | 15.760262 | OK |
+| evaluation predictions vs log: R2 | ede2fdc7ba2d4c758a268beb2896661a | 0.967551 | 0.967551 | OK |
+| evaluation predictions vs log: n_scored | ede2fdc7ba2d4c758a268beb2896661a | 25541.000000 | 25541.000000 | OK |
+| evaluation predictions vs log: MAE | 67d7b322e77c42a0934fc67860171369 | 11.915759 | 11.915759 | OK |
+| evaluation predictions vs log: RMSE | 67d7b322e77c42a0934fc67860171369 | 21.964662 | 21.964662 | OK |
+| evaluation predictions vs log: R2 | 67d7b322e77c42a0934fc67860171369 | 0.936477 | 0.936477 | OK |
+| evaluation predictions vs log: n_scored | 67d7b322e77c42a0934fc67860171369 | 24815.000000 | 24815.000000 | OK |
+| CV pooled MAE vs log | 4c7d175e1b434f6b8aeb8028775e91b5 | 10.159104 | 10.159104 | OK |
+| CV pooled RMSE vs log | 4c7d175e1b434f6b8aeb8028775e91b5 | 17.572611 | 17.572611 | OK |
+| historical Persistence None None validation_mae | 24cef47874a94d9faa7bfcbae29b5c58 | 9.736617 | 9.736617 | OK |
+| historical Persistence None None validation_rmse | 24cef47874a94d9faa7bfcbae29b5c58 | 19.240919 | 19.240919 | OK |
+| historical Persistence None None validation_r2 | 24cef47874a94d9faa7bfcbae29b5c58 | 0.944804 | 0.944804 | OK |
+| historical Ridge A 1.0 validation_mae | aec8630115714bb59d5c89c8a6b368c1 | 10.200433 | 10.200433 | OK |
+| historical Ridge A 1.0 validation_rmse | aec8630115714bb59d5c89c8a6b368c1 | 18.907140 | 18.907140 | OK |
+| historical Random Forest A None validation_mae | 780ecb7fb59d48bea58d5e4a076f1f26 | 9.561488 | 9.561488 | OK |
+| historical Random Forest A None validation_rmse | 780ecb7fb59d48bea58d5e4a076f1f26 | 18.964825 | 18.964825 | OK |
+| historical Ridge A 0.1 validation_mae | 32e65c5a4cbc489c905cf146b743867f | 10.200529 | 10.200529 | OK |
+| historical Ridge A 0.1 cv_pooled_mae | 32e65c5a4cbc489c905cf146b743867f | 10.405534 | 10.405534 | OK |
+| historical Ridge A 1.0 cv_pooled_mae | aec8630115714bb59d5c89c8a6b368c1 | 10.412704 | 10.412704 | OK |
+| historical Ridge B 0.1 validation_mae | 48d2f03be4614a25906f84d98df9e9dc | 9.968755 | 9.968755 | OK |
+| historical Ridge B 0.1 validation_rmse | 48d2f03be4614a25906f84d98df9e9dc | 18.467071 | 18.467071 | OK |
+| historical Ridge C 0.1 validation_mae | 3a9f2500e4dd4ef28d7bc20def6f79c8 | 9.903377 | 9.903377 | OK |
+| historical Ridge C 0.1 validation_rmse | 3a9f2500e4dd4ef28d7bc20def6f79c8 | 18.501063 | 18.501063 | OK |

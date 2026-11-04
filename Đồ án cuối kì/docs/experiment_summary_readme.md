@@ -26,6 +26,7 @@ Không tự train để bù file thiếu. Có thể dùng `--output artifacts/T1
 | [experiment_summary_checks.csv](../reports/tables/experiment_summary_checks.csv) | Metric tính lại từ saved predictions/OOF so log và14điểm lịch sử, dung sai1e-6 |
 | [experiment_summary_runs.csv](../reports/tables/experiment_summary_runs.csv) | Audit đủ mọi hồ sơ, gồm smoke/search/candidate/fold/final/status/has_error |
 | [experiment_summary_provenance.json](../reports/tables/experiment_summary_provenance.json) | SHA/size nguồn đã đọc, CV/fold IDs, nguồn validation/test, lock, checks, môi trường và SHA đầu ra |
+| [experiment_summary_verification.json](../reports/tables/experiment_summary_verification.json) | Snapshot QA bàn giao: hai lần CLI byte-identical, 148 checks OK và 216 SHA lịch sử giữ nguyên; không phải model run |
 
 PNG là ảnh lớn để đọc/phóng to hoặc lấy phần metric/provenance cho báo cáo,
 không phải slide đã dàn trang. Approach trên ảnh viết gọn trees/depth/leaf/jobs;
@@ -178,3 +179,11 @@ tham chiếu14mục lấy từ prompt người dùng, không phải metric dựn
 Codex hỗ trợ module/CLI/tests/render/docs; hoanglecodingmachine được giao,
 review/đọc/hiểu trước merge [CẦN BỔ SUNG]. Chủ đề05,06,Ensemble/04 khi nói
 features; file/trang bài giảng và rubric gốc [CẦN BỔ SUNG], không tự suy điểm.
+
+QA bàn giao: **13 tests pass; 148/148 đối chiếu OK**, gồm 14 mốc lịch sử.
+Hai lần CLI liên tiếp giống từng byte ở 7 file do script sinh; Excel mở lại
+được 3 sheet, PNG hợp lệ và đã xem bố cục/tiếng Việt/marker. Audit guard không
+ghi nhận việc đọc raw samples/model hoặc ghi lịch sử; 216 SHA protected giữ
+nguyên. Verification JSON là snapshot kiểm tra gắn source_commit/ngày sinh,
+không được CLI ghi lại khi người dùng chạy trên input mới. Khi kiểm phiên bản
+mới cần tạo QA mới thay vì coi snapshot cũ là xác nhận cho mọi tương lai.
