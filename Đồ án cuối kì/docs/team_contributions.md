@@ -87,3 +87,12 @@ Người dùng trả lời “Giao cho hoanglecodingmachine”; Issue #40 gán t
 này trước triển khai. Phần việc: bảng tổng hợp từ artifact cũ, kiểm chứng
 pooled/IDs/run linkage, tests/render/docs, có AI hỗ trợ. Không phải training
 hoặc T17b. Đọc/hiểu trước merge và họ tên/MSSV/tỷ lệ vẫn [CẦN BỔ SUNG].
+
+## NB01 / Issue #42
+
+Người dùng yêu cầu làm notebook “như cũ”; giữ mapping người phụ trách
+hoanglecodingmachine đã xác nhận ở T13/T14/T17a, Issue #42 đã gán trước triển
+khai. Codex hỗ trợ helper AST, mapping vai trò file, bảng/hình từ artifact,
+đối chiếu và kiểm notebook/HTML. Không training hoặc viết run mới. Người nhận
+đọc/hiểu/review [CẦN BỔ SUNG]; họ tên/MSSV/tỷ lệ do nhóm cung cấp, không suy
+từ Git hay ghi một phần trăm tự chọn.

@@ -92,3 +92,13 @@ tốt nhất chỉ tô theo validation, không chọn lại model sau test.
 Bằng chứng: reports/tables/experiment_summary.*, các checks/provenance và
 tests/test_experiment_summary.py. Chỉ tổng hợp, không T17b/training. File/trang
 bài giảng/rubric gốc [CẦN BỔ SUNG]; không tự gán điểm hoặc bịa bảng leaderboard.
+
+## NB01 / Issue #42
+
+Notebook chỉ tổng hợp minh chứng: chủ đề02/quy trình CRISP-DM;03/Lab03 cho
+audit/EDA/preprocessing;04 cho selector A/B/C;05 cho temporal split/CV,
+metric, adverse outcomes và RQ;06/Ridge;Ensemble/RF. File/trang bài giảng
+và rubric chính thức [CẦN BỔ SUNG], không bịa nội dung/điểm. Giữ temporal
+split thay random split, fit trong train/fold và không xóa đỉnh bằng IQR.
+Nguồn nằm ngay dưới bảng/hình, T13 chỉ đọc artifact đã có; NB01 không chọn
+lại phương án bằng test. Chi tiết ở project_journey.md/notebook/code map.
