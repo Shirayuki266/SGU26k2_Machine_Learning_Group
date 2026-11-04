@@ -1,0 +1,15 @@
+{
+  "task_id": "NB01",
+  "executed_clean_kernel": true,
+  "execution_tool": "jupyter nbconvert --execute",
+  "elapsed_seconds": 24.969,
+  "code_cells": 20,
+  "error_outputs": 0,
+  "notebook_bytes": 7295468,
+  "html_bytes": 7367770,
+  "protected_files": 226,
+  "protected_bytes_unchanged": true,
+  "raw_model_access_guard": "active in kernel, rejects sample data/model opens and experiment/config writes",
+  "path_secret_scan": "PASS",
+  "generated_at": "2026-11-04T21:32:19+07:00"
+}

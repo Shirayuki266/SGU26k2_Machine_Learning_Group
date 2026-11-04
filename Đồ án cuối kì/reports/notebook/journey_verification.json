@@ -1,0 +1,31 @@
+{
+  "task_id": "NB01",
+  "artifact_type": "read_only_evidence_not_model_experiment",
+  "generated_at": "2026-11-04T21:31:59+07:00",
+  "source_commit": "938947c2a21203579790c9dcfe7d51ce191475ce",
+  "tasks": [
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T04-LOG",
+    "T05",
+    "T06",
+    "T07",
+    "T08",
+    "T09",
+    "T10",
+    "T11",
+    "T12",
+    "T13",
+    "T14"
+  ],
+  "code_map_rows": 34,
+  "checks": 164,
+  "different": [],
+  "missing": [],
+  "sources": 172,
+  "new_model_runs": 0,
+  "raw_samples_read": false,
+  "weights_loaded": false
+}

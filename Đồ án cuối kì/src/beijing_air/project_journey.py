@@ -8,6 +8,7 @@ import io
 import json
 from pathlib import Path
 import platform
+import posixpath
 import re
 import subprocess
 
@@ -330,7 +331,11 @@ class Journey:
         if frame.empty:
             self.md("Không có hàng để hiển thị; xem thông báo thiếu artifact.")
         else:
-            styled = frame.head(limit).style.format(precision=6, na_rep="chưa có").hide(axis="index")
+            def format_value(value):
+                if isinstance(value, float):
+                    return f"{value:.6g}" if 0 < abs(value) < 1e-5 else f"{value:.6f}"
+                return value
+            styled = frame.head(limit).style.format(format_value, na_rep="chưa có").hide(axis="index")
             styled = styled.set_properties(**{"text-align": "left", "white-space": "normal", "overflow-wrap": "anywhere"})
             styled = styled.set_table_styles([{"selector": "", "props": [("width", "100%"), ("table-layout", "fixed")]},
                                               {"selector": "th", "props": [("text-align", "left"), ("overflow-wrap", "anywhere")]}])
@@ -356,8 +361,14 @@ class Journey:
         if raw is not None:
             # Render as excerpt, with original line numbers to avoid implying complete quotation.
             text = raw.decode("utf-8-sig").splitlines()
-            self.md(f"Trích `{path}` dòng 1–{min(max_lines, len(text))} (tổng {len(text)} dòng):\n\n"+
-                    "\n".join("> "+line for line in text[:max_lines]))
+            excerpt = "\n".join(re.sub(r"^#{1,4} ", "##### ", line) for line in text[:max_lines])
+            def relative_link(match):
+                label, target = match.groups()
+                if re.match(r"https?://|#", target):
+                    return match.group(0)
+                return label+" (`"+posixpath.normpath((Path(path).parent/target).as_posix())+"`)"
+            excerpt = re.sub(r"\[([^]]+)\]\(([^)]+)\)", relative_link, excerpt)
+            self.md(f"**Trích `{path}` dòng 1–{min(max_lines, len(text))} (tổng {len(text)} dòng; tiêu đề thu nhỏ, link nội bộ ghi path từ root đồ án):**\n\n"+excerpt)
 
     def environment(self, light=False, heavy=False):
         self.md("**Cờ mặc định:** RERUN_LIGHT="+str(light)+", RERUN_HEAVY="+str(heavy)+
@@ -374,6 +385,8 @@ class Journey:
                 f"`{git(self.root, 'show', '-s', '--format=%cs', 'HEAD')}` · thời điểm chạy: `{self.started}` · "
                 f"git: **{'bẩn (đang sinh notebook/tài liệu)' if dirty else 'sạch'}**. "
                 "Đây là source anchor khi sinh, không tự nhận hash của commit output tương lai. Issue #35 liên quan pandas 3.x.")
+        for name in ("src/beijing_air/project_journey.py", "scripts/build_project_journey.py"):
+            self.evidence.read(name)  # Exact generator hashes in inventory, including a dirty source snapshot.
 
     def components(self, task):
         spec = TASKS[task]
@@ -571,7 +584,10 @@ class Journey:
             if not grouped.empty:
                 rf = grouped.loc[grouped.model.eq("random_forest")]
                 self.table(rf.loc[rf.group.eq("station")].sort_values("MAE", ascending=False), "reports/final_evaluation/grouped_metrics.csv", limit=12, run_id=RF_FINAL)
-                self.table(rf.loc[~rf.group.eq("station")], "reports/final_evaluation/grouped_metrics.csv", limit=24, run_id=RF_FINAL)
+                self.table(rf.loc[~rf.group.isin(["station", "episode_id"])], "reports/final_evaluation/grouped_metrics.csv", limit=16, run_id=RF_FINAL)
+                episodes = rf.loc[rf.group.eq("episode_id")].sort_values("MAE", ascending=False)
+                self.table(episodes, "reports/final_evaluation/grouped_metrics.csv — episode MAE cao nhất", limit=8, run_id=RF_FINAL)
+                self.md("Episode ít mẫu chỉ mô tả; đọc kèm N/r2_undefined_reason, không suy rộng từ một đợt nhỏ.")
             self.csv("reports/final_evaluation/generalization_gap.csv", limit=14, run_id=FINAL)
             self.csv("reports/final_evaluation/cv_summary.csv", limit=2, run_id=FINAL)
             self.csv("reports/final_evaluation/ridge_coefficients.csv", limit=6, run_id="51975d2c66ff4263b83ace6962f3d3f7")
@@ -653,6 +669,10 @@ class Journey:
         self.table(adverse, "Các file nguồn ở cột cuối", limit=5)
         self.md("### Issue #35: phát hiện, tác động và trạng thái thật")
         self.doc("docs/changelog_issue35.md", 64)
+        qa35 = self.evidence.json("reports/issue35/qa.json")
+        self.table(pd.DataFrame([{k: record.get(k) for k in ("name", "tests", "failures", "skipped", "source_xml")}
+                                 for record in qa35.get("test_runs", [])]), "reports/issue35/qa.json — kiểm lịch sử, không vừa chạy NB01")
+        self.table(pd.DataFrame([qa35.get("comparison", {})]), "reports/issue35/qa.json#comparison — fixture TEST_ONLY, không metric model")
         self.md("Issue **#35** là số Issue, PR sửa thực tế **#37** đã merge (không tự gọi là PR35 trên GitHub). "
                 "Source guard đổi nên fingerprint nguồn khác; snapshot/config/model T13 giữ nguyên. NB01 không load lại weights hoặc chạy lại đánh giá test.\n\n"
                 "**Hạn chế chung:** thiếu bài giảng/rubric gốc, thông tin nhóm và % đóng góp, video thật; model bundle lớn cần hướng dẫn tải/kiểm checksum; "
@@ -670,6 +690,8 @@ class Journey:
             return
         self.checks = [dict(check) for check in evidence["checks"]]
         for check in self.checks:
+            check["source"] = ("artifacts/experiments/"+check["run_id"]+"/metrics.json" if re.fullmatch(r"[a-f0-9]{32}", check.get("run_id", ""))
+                               else "experiments/experiment_log.csv + registered predictions")
             if check["check"].startswith("historical") and "cv_" in check["check"]:
                 matched = [row for row in rows if row["run_id"] == check["run_id"] and row.get("cv_run_id")]
                 if len(matched) == 1:
