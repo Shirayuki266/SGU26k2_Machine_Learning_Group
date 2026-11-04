@@ -108,6 +108,18 @@ def test_delta_requires_identical_ids_truth_and_coverage(log):
     assert mismatch["mae_reduction_pct"] is None and not mismatch["best_validation"]
 
 
+def test_persistence_test_is_separate_run_not_a_fitted_pipeline(log):
+    data = frame(2, prefix="TEST_ONLY_TEST_ARTIFACT")
+    log.add("TEST_T13_BASE", task="T13", model="persistence", reference="TEST_BASE", parent="TEST_T13_PARENT",
+            parameters={"stage": "final_refit_test", "locked_parameters": {"rule": "PM2.5(t+1)=PM2.5(t)"}},
+            metrics={"test_primary": regression_metrics(data.y_true, data.y_pred)}, predictions={"test": data})
+    _, rows, _ = build(log)
+    baseline = next(r for r in rows if r["run_id"] == "TEST_BASE")
+    assert baseline["test_run_id"] == "TEST_T13_BASE"
+    assert "quy tắc không fit" in baseline["notes"]
+    assert "fitted model khác" not in baseline["notes"]
+
+
 def test_inconsistent_metric_kept_and_reported_without_highlight(log):
     ridge = next(r for r in log.rows if r["run_id"] == "TEST_RIDGE")
     metrics = json.loads(ridge["metrics"])

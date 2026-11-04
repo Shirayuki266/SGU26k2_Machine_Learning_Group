@@ -33,7 +33,7 @@ LABELS = {
     "validation_n": "Validation N", "notes": "Ghi chú",
 }
 NOTE = ("Đơn vị MAE/RMSE: µg/m³. Tô theo Validation MAE trên cùng primary IDs/coverage, chỉ mô tả; "
-        "không đổi phương án khóa T12/T13. Test từ pipeline T13 refit train+validation, test_run_id riêng; "
+        "không đổi phương án khóa T12/T13. Test ML: T13 refit train+validation; persistence không fit, test_run_id riêng; "
         "không lấy chênh lệch/trung bình validation-test. CV mean±std ddof=0 chỉ mô tả, không là khoảng tin cậy.")
 
 
@@ -386,7 +386,9 @@ def build_summary(reader, *, include_plans=True):
         test = tests[0] if tests else None
         if test:
             metric_match(reader, test, "test", test.metrics["test_primary"])
-            notes.append("Test: T13 refit train+validation, fitted model khác bên validation")
+            notes.append("Test: run persistence T13 riêng, quy tắc không fit; khác tập validation" if
+                         run.row.get("model") == "persistence" else
+                         "Test: T13 refit train+validation, fitted model khác bên validation")
         if locked_id == run.id:
             notes.append("Phương án đã khóa bằng validation T12/T13")
         if run.row.get("task_id", "").upper().startswith("T17B"):
