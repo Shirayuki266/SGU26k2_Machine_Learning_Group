@@ -30,7 +30,7 @@
 | 26 | Gộp mô hình | fusion_3 A+B | A+B | base_model_count=3 | 9.499709 | 17.222872 | 9.518667 ± 1.205377 | 9.274579 | 18.505495 | 0.948942 | 4.745362 |  |  |  | e708283791cf4bafb4e75f21984855a4 | 23adbf79645a47ed85546ac96d093b61 | completed |  | 102479 | ứng viên, chưa đánh giá độc lập; CV/validation khác run; liên kết cùng cấu hình, xem cv_run_id |
 | **27** | **Gộp mô hình** | **stack A+B** | **A+B** | **alpha=1.0; validation_is_fit_data=False** | **chưa có** | **chưa có** | **chưa có** | **9.232098** | **18.471756** | **0.949128** | **5.181672** |  |  |  | **b09e47f628624116a8272135767a4ada** |  | **completed** | **Có** | **102479** | **ứng viên, chưa đánh giá độc lập** |
 
-Nguồn: experiments/experiment_log.csv | commit: 53ccb2a96394 | sinh: 2026-11-06T12:24:59+07:00
+Nguồn: experiments/experiment_log.csv | commit: 657d59786a20 | sinh: 2026-11-06T19:33:09+07:00
 
 Đơn vị MAE/RMSE: µg/m³. Tô theo Validation MAE trên cùng primary IDs/coverage, chỉ mô tả; không đổi phương án khóa T12/T13. Test ML: T13 refit train+validation; persistence không fit, test_run_id riêng; không lấy chênh lệch/trung bình validation-test. CV mean±std ddof=0 chỉ mô tả, không là khoảng tin cậy.
 
