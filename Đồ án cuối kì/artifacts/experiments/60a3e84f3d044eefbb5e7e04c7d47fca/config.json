@@ -1,0 +1,58 @@
+{
+  "task_id": "T17b",
+  "reference_run_id": "956d7a1455824a6ab1a9569db9e168b0",
+  "parent_run_id": "980f1a593fe04b8ba91434710c95bda4",
+  "fold_id": null,
+  "mode": "full",
+  "kind": "train",
+  "objective": "Evaluate CV-selected same_target_hour_yesterday on the frozen primary validation IDs.",
+  "hypothesis": "PM2.5 observed at the previous day's target-hour may capture daily periodicity; missing values fall back to observed PM2.5(t).",
+  "change": "Validation is evaluated after CV-only selection; it is not used to fit preprocessing or model.",
+  "model": "same_target_hour_yesterday",
+  "parameters": {
+    "stage": "validation",
+    "candidate_id": "same_target_hour_yesterday",
+    "selected_candidate_run_id": "956d7a1455824a6ab1a9569db9e168b0",
+    "family": "baseline",
+    "actual_model_parameters": {},
+    "declared_parameters": {},
+    "missing_policy": "Lookup station PM2.5 at target_timestamp minus 24 hours, only when that timestamp is no later than input_timestamp; otherwise use PM2.5(t)."
+  },
+  "feature_set": "A",
+  "preprocessing": {
+    "baseline": "same_target_hour_yesterday"
+  },
+  "data": {
+    "split_manifest": "reports/splits_full/split_manifest.json",
+    "scope": "T05 train fit and primary validation evaluation; no test access"
+  },
+  "split": {
+    "train_only_fit": true,
+    "validation_ids_sha256": "534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7",
+    "validation_samples": 102479
+  },
+  "time_ranges": null,
+  "sample_counts": {
+    "train": 204865,
+    "validation": 102479
+  },
+  "seed": 42,
+  "budget": {
+    "candidate_configurations": 13,
+    "cv_estimator_fits": {
+      "random_forest": 12,
+      "hist_gradient_boosting": 12,
+      "linear": 9,
+      "decision_tree": 6,
+      "total": 39
+    },
+    "validation_refit_max": 6,
+    "folds": 3,
+    "automatic_retries": 0,
+    "parallel_jobs": 1,
+    "blas_threads": 1,
+    "minimum_free_memory_mb": 768
+  },
+  "is_test": false,
+  "source": "scripts/run_supplementary_experiments.py"
+}

@@ -1,0 +1,22 @@
+{
+  "candidate_run_ids": [
+    "8fc3d7550e7b4bea85c20721d1722ef3",
+    "0db110d82dbb47fc91e066e6f047a8b9",
+    "04b7d6b650ed4d6a81495075e38dee13",
+    "032079a44e9a459e9c12dbf5cbf51286",
+    "c11652224b0e421bad837bfb1dc52f5c",
+    "f8168419c9da4ad1ab2c937bda455a17",
+    "d789edc716b14014bba02552a2e7421c",
+    "c7d638e0aaca402da5e3111274265323",
+    "0ab20dd4219e454eae968dd27f19dacc",
+    "44c5c0f766204400a2e9d954e703e301",
+    "c9606a067a594b9180ecbf3930354be9",
+    "8bd763799fa44a318094562cbeaae26b",
+    "2ec891bd2f1b47deae632c8433871c74",
+    "6efe9b34de0d45399ffbeb54f43ab7bf",
+    "3b9205dba5cf40d3bea7152bba34883e"
+  ],
+  "failed_candidates": [],
+  "test_csv_accessed": false,
+  "elapsed_seconds": 23.28193789999932
+}

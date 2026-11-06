@@ -1,0 +1,103 @@
+{
+  "task_id": "T17b",
+  "reference_run_id": "51c1938cebf44519b438d5e7d3ac270e",
+  "parent_run_id": "2512bc9c844a4b39a150c52f6bded9db",
+  "fold_id": null,
+  "mode": "full",
+  "kind": "train",
+  "objective": "Evaluate CV-selected tree_B_depth_12 on the frozen primary validation IDs.",
+  "hypothesis": "Compare the predeclared candidate without assuming it improves.",
+  "change": "Validation is evaluated after CV-only selection; it is not used to fit preprocessing or model.",
+  "model": "decision_tree",
+  "parameters": {
+    "stage": "validation",
+    "candidate_id": "tree_B_depth_12",
+    "selected_candidate_run_id": "51c1938cebf44519b438d5e7d3ac270e",
+    "family": "decision_tree",
+    "actual_model_parameters": {
+      "ccp_alpha": 0.0,
+      "criterion": "squared_error",
+      "max_depth": 12,
+      "max_features": null,
+      "max_leaf_nodes": null,
+      "min_impurity_decrease": 0.0,
+      "min_samples_leaf": 50,
+      "min_samples_split": 2,
+      "min_weight_fraction_leaf": 0.0,
+      "monotonic_cst": null,
+      "random_state": 42,
+      "splitter": "best"
+    },
+    "declared_parameters": {
+      "max_depth": 12,
+      "min_samples_leaf": 50,
+      "random_state": 42
+    },
+    "missing_policy": null
+  },
+  "feature_set": "B",
+  "preprocessing": {
+    "schema_version": "t08-preprocessing-v1",
+    "numeric": {
+      "imputation_strategy": "median",
+      "keep_empty_features": true,
+      "missing_indicators": "all",
+      "scale": {
+        "ridge": true,
+        "random_forest": false
+      }
+    },
+    "categorical": {
+      "imputation_strategy": "constant",
+      "fill_value": "__MISSING__",
+      "handle_unknown": "ignore",
+      "sparse_output": false
+    },
+    "output": {
+      "format": "pandas",
+      "verbose_feature_names": true
+    },
+    "prediction_postprocessing": {
+      "negative_predictions": "identity",
+      "applies_to": [
+        "persistence",
+        "ridge",
+        "random_forest"
+      ]
+    },
+    "t17b_applied_scale": "none"
+  },
+  "data": {
+    "split_manifest": "reports/splits_full/split_manifest.json",
+    "scope": "T05 train fit and primary validation evaluation; no test access"
+  },
+  "split": {
+    "train_only_fit": true,
+    "validation_ids_sha256": "534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7",
+    "validation_samples": 102479
+  },
+  "time_ranges": null,
+  "sample_counts": {
+    "train": 204865,
+    "validation": 102479
+  },
+  "seed": 42,
+  "budget": {
+    "candidate_configurations": 13,
+    "cv_estimator_fits": {
+      "random_forest": 12,
+      "hist_gradient_boosting": 12,
+      "linear": 9,
+      "decision_tree": 6,
+      "total": 39
+    },
+    "validation_refit_max": 6,
+    "folds": 3,
+    "automatic_retries": 0,
+    "parallel_jobs": 1,
+    "blas_threads": 1,
+    "minimum_free_memory_mb": 768
+  },
+  "is_test": false,
+  "source": "scripts/run_supplementary_experiments.py"
+}

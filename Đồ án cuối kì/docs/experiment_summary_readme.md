@@ -35,14 +35,12 @@ thêm footer phá schema; MD/PNG/XLSX ghi nguồn ở dưới bảng.
 
 ## Bảng hiện tại đại diện cho những gì?
 
-Ledger hiện có53hồ sơ thật: T09=2,T10=4,T11=23,T12=20,T13=4. Không có run
-failed trong snapshot này; code vẫn giữ cấu hình failed và trạng thái lỗi khi
-log có. Không tạo thêm run để minh họa thất bại.
-
-Bảng chính có10cấu hình đã chạy: persistence, Ridge A alpha1, RF A,
-Ridge A alpha0.1/10/100, Ridge B, Ridge C k12/20/28. Hai dòng cuối chỉ là nhóm
-T17b/gộp chưa chạy: không run ID, không số, không tô. Chúng không được tính
-vào10cấu hình hoặc53hồ sơ thực nghiệm.
+Ledger hiện có264hồ sơ thật, gồm cả T17b smoke, full attempt lỗi và full attempt
+đã hoàn tất. Bảng chính có27dòng model/candidate/ensemble: các kết quả T17b lấy
+từ successful full parent; kết quả child của full attempt lỗi được giữ trong
+All runs/provenance để audit nhưng không lặp thành cấu hình bổ sung. Snapshot
+này có412kiểm tra OK, không có KHÁC hoặc CHƯA CÓ. Các số là trạng thái của
+snapshot hiện tại, không phải quy tắc cố định cho ledger sau này.
 
 - Alpha1 có validation T10 và CV T11 của cùng cấu hình. Giữ run validation
   trong `run_id`, candidate CV ở `cv_run_id`; không giả rằng T10 đã chạy CV.
@@ -50,8 +48,10 @@ vào10cấu hình hoặc53hồ sơ thực nghiệm.
 - C12 có validation T12 và candidate/fold riêng. C20/C28 chỉ có CV, không bịa
   validation. B không có CV B độc lập, nên để thiếu; không lấy CV selector C
   rồi điền cho B.
-- Parent, fold và smoke vẫn nằm trong All runs/provenance, không lặp thành
-  các dòng “model final”. Smoke không được dùng kết luận chính hoặc highlight.
+- Parent, fold, smoke và failed-attempt children vẫn nằm trong
+  All runs/provenance, không lặp thành các dòng “model final”. Smoke không
+  được dùng kết luận chính hoặc highlight. T17b children chỉ vào bảng chính
+  nếu parent search full hoàn tất.
 - Tham số candidate T12 chỉ ghi k, alpha0.1 được kế thừa từ thiết kế search
   parent trong ledger; không suy alpha từ số metric.
 

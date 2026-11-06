@@ -74,3 +74,16 @@ ledger/config/frozen/metrics hay hồ sơ giữa kỳ. Hỗ trợ này không t�
 đóng góp học thuật. Người nhận hoanglecodingmachine cần rà soát/hiểu trước
 merge; người review, họ tên/MSSV/% [CẦN BỔ SUNG]. Bằng chứng ở reports/notebook,
 notebook có output và docs/notebook_code_map.md.
+
+## T17b / Issue #44
+
+Codex hỗ trợ soạn kế hoạch đã khóa trước khi chạy, candidate runner, CLI và
+fixture-only tests. Sau khi khôi phục bundle T13 có checksum được manifest
+xác nhận, smoke chạy thành công. Lần full đầu đã fit các candidate/fold và
+validation nhưng lỗi khi ghi Stack metadata do biến OOF tham chiếu chưa khai
+báo; run lỗi được giữ nguyên trong ledger. Đã sửa, thêm regression test và
+chạy lại cùng frozen design thành công. Full thiết kế bị chạy lại do lỗi tích
+hợp nên compute thực vượt budget đã khai báo; không thêm/thay candidate hoặc
+hyperparameter. T17a summary được tái tạo sau T17b, 412 kiểm tra đều OK; runner
+xác nhận không truy cập test CSV. Review/đọc/hiểu của thành viên
+[CẦN BỔ SUNG]. Trạng thái và kết quả ở docs/supplementary_experiments.md.

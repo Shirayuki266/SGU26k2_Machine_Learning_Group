@@ -1,0 +1,69 @@
+{
+  "task_id": "T17b",
+  "reference_run_id": "24cef47874a94d9faa7bfcbae29b5c58",
+  "parent_run_id": "f5cb6c8b27a64cb49bc234a467841f24",
+  "fold_id": 1,
+  "mode": "smoke",
+  "kind": "tuning",
+  "objective": "Out-of-fold prediction for rolling_mean_3h.",
+  "hypothesis": "The mean of the three most recent observed PM2.5 values through origin t may be a stronger non-learning baseline than persistence.",
+  "change": "Fold 1 only; fitted preprocessing/model use fold fit rows.",
+  "model": "rolling_mean_3h",
+  "parameters": {
+    "stage": "fold",
+    "candidate_id": "rolling_mean_3h",
+    "fold_audit": {
+      "fold_id": 1,
+      "mode": "smoke",
+      "fit_sample_ids_sha256": "55f0433191b25e99c9777fe9a37151d972b55e3646239507a8bdb71ec9740420",
+      "evaluation_sample_ids_sha256": "b3d71fb1b939fa3e3dcbdd1955135203e59c8ea6bea9ab557f3a3d2c016bbfb6",
+      "fit_samples": 756,
+      "evaluation_samples": 96,
+      "purged_samples": 12,
+      "test_csv_accessed": false
+    },
+    "actual_model_parameters": {}
+  },
+  "feature_set": "B",
+  "preprocessing": {
+    "baseline": "rolling_mean_3h"
+  },
+  "data": {
+    "scope": "T05 train rows only; no test access"
+  },
+  "split": {
+    "fold_id": 1,
+    "mode": "smoke",
+    "fit_sample_ids_sha256": "55f0433191b25e99c9777fe9a37151d972b55e3646239507a8bdb71ec9740420",
+    "evaluation_sample_ids_sha256": "b3d71fb1b939fa3e3dcbdd1955135203e59c8ea6bea9ab557f3a3d2c016bbfb6",
+    "fit_samples": 756,
+    "evaluation_samples": 96,
+    "purged_samples": 12,
+    "test_csv_accessed": false
+  },
+  "time_ranges": null,
+  "sample_counts": {
+    "fit": 756,
+    "evaluation": 96,
+    "purged": 12
+  },
+  "seed": 42,
+  "budget": {
+    "candidate_configurations": 13,
+    "cv_estimator_fits": {
+      "random_forest": 12,
+      "hist_gradient_boosting": 12,
+      "linear": 9,
+      "decision_tree": 6,
+      "total": 39
+    },
+    "validation_refit_max": 6,
+    "folds": 3,
+    "automatic_retries": 0,
+    "parallel_jobs": 1,
+    "blas_threads": 1,
+    "minimum_free_memory_mb": 768
+  },
+  "is_test": false,
+  "source": "scripts/run_supplementary_experiments.py"
+}

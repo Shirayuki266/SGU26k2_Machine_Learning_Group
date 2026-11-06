@@ -90,8 +90,25 @@ bảng Ridge/RF/A/B/C dùng artifact thật, không fit selector/model mới. D�
 tốt nhất chỉ tô theo validation, không chọn lại model sau test.
 
 Bằng chứng: reports/tables/experiment_summary.*, các checks/provenance và
-tests/test_experiment_summary.py. Chỉ tổng hợp, không T17b/training. File/trang
-bài giảng/rubric gốc [CẦN BỔ SUNG]; không tự gán điểm hoặc bịa bảng leaderboard.
+tests/test_experiment_summary.py. Tại thời điểm hoàn thành T17a, chỉ tổng hợp,
+không training; phần T17b được ghi riêng bên dưới. File/trang bài giảng/rubric
+gốc [CẦN BỔ SUNG]; không tự gán điểm hoặc bịa bảng leaderboard.
+
+## Minh chứng T17b / Issue #44
+
+Chủ đề05: ba expanding folds trong train, pooled OOF MAE/RMSE và fold
+mean±std; validation cùng primary cohort để đánh giá, tuyệt đối không dùng test
+để chọn/tune. Chủ đề06/Ensemble: so sánh RF, HistGradientBoosting, Lasso/
+ElasticNet, Decision Tree, Fusion-3 và Stack; meta Ridge chỉ fit trên train
+OOF. Chủ đề04: đối chiếu feature sets A/B, không thêm selector mới.
+
+Bằng chứng metric/run IDs/giới hạn ở
+[kết quả supplementary](supplementary_experiments.md), T17a summary và audit
+checks/provenance. T13 frozen model/decision/test artifacts giữ nguyên. Lần
+full đầu lỗi khi log Stack nên cùng frozen design được chạy lại, vượt ngân sách
+tính toán đã định trước; không đổi search grid. Dữ liệu bài giảng và rubric
+chính thức [CẦN BỔ SUNG]; người nhận cần đọc/hiểu/review trước merge, chưa tự
+đánh dấu đã xác nhận.
 
 ## NB01 / Issue #42
 

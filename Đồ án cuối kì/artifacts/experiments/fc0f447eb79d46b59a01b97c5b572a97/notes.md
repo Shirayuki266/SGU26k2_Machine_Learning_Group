@@ -1,0 +1,1 @@
+Smoke uses one chronological train-only window; not a full CV result.

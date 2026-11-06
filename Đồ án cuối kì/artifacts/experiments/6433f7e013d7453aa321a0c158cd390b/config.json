@@ -1,0 +1,58 @@
+{
+  "task_id": "T17b",
+  "reference_run_id": "19c6cc8b1fee4e4c84ec945ca7a47749",
+  "parent_run_id": "980f1a593fe04b8ba91434710c95bda4",
+  "fold_id": null,
+  "mode": "full",
+  "kind": "train",
+  "objective": "Evaluate CV-selected rolling_mean_3h on the frozen primary validation IDs.",
+  "hypothesis": "The mean of the three most recent observed PM2.5 values through origin t may be a stronger non-learning baseline than persistence.",
+  "change": "Validation is evaluated after CV-only selection; it is not used to fit preprocessing or model.",
+  "model": "rolling_mean_3h",
+  "parameters": {
+    "stage": "validation",
+    "candidate_id": "rolling_mean_3h",
+    "selected_candidate_run_id": "19c6cc8b1fee4e4c84ec945ca7a47749",
+    "family": "baseline",
+    "actual_model_parameters": {},
+    "declared_parameters": {},
+    "missing_policy": "Use the T07 full-window rolling mean; if fewer than three observations exist, fall back to observed PM2.5(t)."
+  },
+  "feature_set": "B",
+  "preprocessing": {
+    "baseline": "rolling_mean_3h"
+  },
+  "data": {
+    "split_manifest": "reports/splits_full/split_manifest.json",
+    "scope": "T05 train fit and primary validation evaluation; no test access"
+  },
+  "split": {
+    "train_only_fit": true,
+    "validation_ids_sha256": "534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7",
+    "validation_samples": 102479
+  },
+  "time_ranges": null,
+  "sample_counts": {
+    "train": 204865,
+    "validation": 102479
+  },
+  "seed": 42,
+  "budget": {
+    "candidate_configurations": 13,
+    "cv_estimator_fits": {
+      "random_forest": 12,
+      "hist_gradient_boosting": 12,
+      "linear": 9,
+      "decision_tree": 6,
+      "total": 39
+    },
+    "validation_refit_max": 6,
+    "folds": 3,
+    "automatic_retries": 0,
+    "parallel_jobs": 1,
+    "blas_threads": 1,
+    "minimum_free_memory_mb": 768
+  },
+  "is_test": false,
+  "source": "scripts/run_supplementary_experiments.py"
+}

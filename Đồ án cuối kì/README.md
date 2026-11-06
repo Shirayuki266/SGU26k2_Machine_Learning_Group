@@ -562,3 +562,20 @@ ledger hay run lịch sử. T13/T14 test chỉ đọc lại artifact đã lưu. 
 giao hoanglecodingmachine, PR chờ người dùng review/merge. Tại snapshot NB01,
 PR T14 #36, bug-fix #37 và T17a #41 đã merge; các dòng “chưa merge” ở mốc
 trước là ghi nhận lịch sử, không hồi tố chỉnh sửa báo cáo/run cũ.
+
+## T17b: thí nghiệm bổ sung và gộp mô hình
+
+[Thiết kế T17b](docs/t17b_design.md) và [kết quả/giới hạn](docs/supplementary_experiments.md)
+ghi lại các thí nghiệm RF bộ B, tuning RF, HistGradientBoosting, Lasso/ElasticNet,
+Decision Tree, baseline, Fusion-3 và Stack. Chạy thí nghiệm bằng:
+
+```powershell
+.\.venv\python.exe scripts/run_supplementary_experiments.py
+```
+
+Bảng tổng hợp tái tạo từ ledger và run artifacts bằng
+`.\.venv\python.exe scripts/build_experiment_summary.py` được lưu tại
+[experiment_summary.md](reports/tables/experiment_summary.md): 27 dòng mô hình/ứng viên/gộp,
+264 hồ sơ và 412 kiểm tra nhất quán đều OK. Validation MAE nổi bật là RF B
+9.3798, Fusion-3 9.2746 và Stack 9.2321 µg/m³. Đây là kết quả phát triển bổ sung;
+không thay mô hình RF A đã khóa ở T12/T13 và không sử dụng hay chạm tập test.

@@ -195,6 +195,29 @@ def test_missing_metrics_and_failed_candidate_retained_without_highlight(log):
     assert any(r["has_error"] for r in evidence["runs"])
 
 
+def test_t17b_children_of_failed_parent_stay_in_audit_but_not_model_table(log):
+    validation = frame(.1)
+    log.add("TEST_T17B_FAILED_PARENT", task="T17b", model="supplementary_search",
+            parameters={"stage": "search"}, status="failed")
+    log.add("TEST_T17B_FAILED_CV", task="T17b", model="hist_gradient_boosting",
+            parameters={"stage": "candidate", "actual_model_parameters": {"max_iter": 100}},
+            metrics={"fold_run_ids": []}, parent="TEST_T17B_FAILED_PARENT")
+    log.add("TEST_T17B_FAILED_VALIDATION", task="T17b", model="hist_gradient_boosting",
+            parameters={"stage": "validation", "selected_candidate_run_id": "TEST_T17B_FAILED_CV",
+                        "actual_model_parameters": {"max_iter": 100}},
+            metrics=validation_metrics(validation), predictions={"validation": validation},
+            parent="TEST_T17B_FAILED_PARENT")
+
+    reader, rows, evidence = build(log)
+
+    assert not {"TEST_T17B_FAILED_CV", "TEST_T17B_FAILED_VALIDATION"} & {
+        row["run_id"] for row in rows
+    }
+    assert {"TEST_T17B_FAILED_PARENT", "TEST_T17B_FAILED_CV", "TEST_T17B_FAILED_VALIDATION"} <= {
+        row["run_id"] for row in evidence["runs"]
+    }
+
+
 def test_non_t13_test_artifacts_forbidden_and_wrong_parameters_not_attributed(log):
     log.save()
     reader = Reader(log.root)

@@ -1,0 +1,12 @@
+{
+  "evaluation": {
+    "n_total": 25541,
+    "n_scored": 25541,
+    "unavailable": 0,
+    "coverage": 1.0,
+    "MAE": 10.005021491586522,
+    "RMSE": 16.92614715824414,
+    "R2": 0.9625723147331848,
+    "r2_undefined_reason": null
+  }
+}

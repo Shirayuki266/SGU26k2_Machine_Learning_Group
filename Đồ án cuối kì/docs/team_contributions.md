@@ -96,3 +96,14 @@ khai. Codex hỗ trợ helper AST, mapping vai trò file, bảng/hình từ arti
 đối chiếu và kiểm notebook/HTML. Không training hoặc viết run mới. Người nhận
 đọc/hiểu/review [CẦN BỔ SUNG]; họ tên/MSSV/tỷ lệ do nhóm cung cấp, không suy
 từ Git hay ghi một phần trăm tự chọn.
+
+## Xác nhận người nhận T17b / Issue #44
+
+Người dùng xác nhận identity Git hiện tại `Shirayuki_Chan
+<vodonggiabao02.06.06@gmail.com>` là identity được dùng cho công việc T17b;
+Issue #44 được gán cho tài khoản GitHub `Shirayuki266`. Phần việc gồm thiết kế
+và chạy thí nghiệm bổ sung trên train/CV/validation, sửa lỗi tích hợp Stack,
+kiểm thử và cập nhật bảng tổng hợp T17a; Codex hỗ trợ triển khai, thực thi và
+kiểm chứng. Không truy cập test để chọn/tune hoặc chấm T17b. Người nhận cần
+đọc/hiểu/review trước merge [CẦN BỔ SUNG]; họ tên, MSSV và tỷ lệ đóng góp do
+nhóm cung cấp [CẦN BỔ SUNG].
