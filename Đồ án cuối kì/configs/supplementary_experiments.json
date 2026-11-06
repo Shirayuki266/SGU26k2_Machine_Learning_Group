@@ -1,0 +1,218 @@
+{
+  "schema_version": "t17b-supplementary-v1",
+  "seed": 42,
+  "cohort": "primary",
+  "feature_sets": {
+    "A": "T07 current measurements, categories and target-hour calendar",
+    "B": "T07 A plus causal PM2.5 lag and rolling features"
+  },
+  "folds": 3,
+  "parallel_jobs": 1,
+  "blas_threads": 1,
+  "automatic_retries": 0,
+  "budget_reason": "Use a bounded representative grid because each fold fits a dense T08 pipeline on up to 204865 training samples; keep sequential execution on the available-memory-constrained workstation.",
+  "budget": {
+    "candidate_configurations": 13,
+    "cv_estimator_fits": {
+      "random_forest": 12,
+      "hist_gradient_boosting": 12,
+      "linear": 9,
+      "decision_tree": 6,
+      "total": 39
+    },
+    "validation_refit_max": 6,
+    "folds": 3,
+    "automatic_retries": 0,
+    "parallel_jobs": 1,
+    "blas_threads": 1,
+    "minimum_free_memory_mb": 768
+  },
+  "random_forest": [
+    {
+      "candidate_id": "rf_A_locked",
+      "feature_set": "A",
+      "parameters": {
+        "n_estimators": 80,
+        "max_depth": 12,
+        "min_samples_leaf": 2,
+        "max_features": 1.0,
+        "random_state": 42,
+        "n_jobs": 1
+      },
+      "hypothesis": "The locked RF A is the fixed reference and may remain stronger than supplementary variants."
+    },
+    {
+      "candidate_id": "rf_B_locked",
+      "feature_set": "B",
+      "parameters": {
+        "n_estimators": 80,
+        "max_depth": 12,
+        "min_samples_leaf": 2,
+        "max_features": 1.0,
+        "random_state": 42,
+        "n_jobs": 1
+      },
+      "hypothesis": "Adding causal lag/rolling PM2.5 features may improve RF at unchanged locked hyperparameters."
+    },
+    {
+      "candidate_id": "rf_B_tuned_small",
+      "feature_set": "B",
+      "parameters": {
+        "n_estimators": 40,
+        "max_depth": 8,
+        "min_samples_leaf": 5,
+        "max_features": 1.0,
+        "random_state": 42,
+        "n_jobs": 1
+      },
+      "hypothesis": "A shallower RF with larger leaves may improve temporal CV error while reducing model complexity."
+    },
+    {
+      "candidate_id": "rf_B_tuned_more_trees",
+      "feature_set": "B",
+      "parameters": {
+        "n_estimators": 80,
+        "max_depth": 8,
+        "min_samples_leaf": 5,
+        "max_features": 1.0,
+        "random_state": 42,
+        "n_jobs": 1
+      },
+      "hypothesis": "More trees at the same shallower depth/leaf size may stabilize RF B without changing the feature protocol."
+    }
+  ],
+  "hist_gradient_boosting": [
+    {
+      "candidate_id": "hgb_A_squared",
+      "feature_set": "A",
+      "parameters": {
+        "loss": "squared_error",
+        "learning_rate": 0.1,
+        "max_iter": 100,
+        "max_leaf_nodes": 15,
+        "l2_regularization": 1.0,
+        "early_stopping": false,
+        "random_state": 42
+      }
+    },
+    {
+      "candidate_id": "hgb_A_absolute",
+      "feature_set": "A",
+      "parameters": {
+        "loss": "absolute_error",
+        "learning_rate": 0.1,
+        "max_iter": 100,
+        "max_leaf_nodes": 15,
+        "l2_regularization": 1.0,
+        "early_stopping": false,
+        "random_state": 42
+      }
+    },
+    {
+      "candidate_id": "hgb_B_squared",
+      "feature_set": "B",
+      "parameters": {
+        "loss": "squared_error",
+        "learning_rate": 0.1,
+        "max_iter": 100,
+        "max_leaf_nodes": 15,
+        "l2_regularization": 1.0,
+        "early_stopping": false,
+        "random_state": 42
+      }
+    },
+    {
+      "candidate_id": "hgb_B_absolute",
+      "feature_set": "B",
+      "parameters": {
+        "loss": "absolute_error",
+        "learning_rate": 0.1,
+        "max_iter": 100,
+        "max_leaf_nodes": 15,
+        "l2_regularization": 1.0,
+        "early_stopping": false,
+        "random_state": 42
+      }
+    }
+  ],
+  "linear": [
+    {
+      "candidate_id": "lasso_B_alpha_0_1",
+      "model": "lasso",
+      "feature_set": "B",
+      "parameters": {
+        "alpha": 0.1,
+        "max_iter": 2000,
+        "tol": 0.0001,
+        "selection": "cyclic"
+      }
+    },
+    {
+      "candidate_id": "lasso_B_alpha_1",
+      "model": "lasso",
+      "feature_set": "B",
+      "parameters": {
+        "alpha": 1.0,
+        "max_iter": 2000,
+        "tol": 0.0001,
+        "selection": "cyclic"
+      }
+    },
+    {
+      "candidate_id": "elastic_net_B_alpha_0_1",
+      "model": "elastic_net",
+      "feature_set": "B",
+      "parameters": {
+        "alpha": 0.1,
+        "l1_ratio": 0.5,
+        "max_iter": 2000,
+        "tol": 0.0001,
+        "selection": "cyclic"
+      }
+    }
+  ],
+  "decision_tree": [
+    {
+      "candidate_id": "tree_B_depth_6",
+      "feature_set": "B",
+      "parameters": {
+        "max_depth": 6,
+        "min_samples_leaf": 50,
+        "random_state": 42
+      }
+    },
+    {
+      "candidate_id": "tree_B_depth_12",
+      "feature_set": "B",
+      "parameters": {
+        "max_depth": 12,
+        "min_samples_leaf": 50,
+        "random_state": 42
+      }
+    }
+  ],
+  "baselines": [
+    {
+      "candidate_id": "rolling_mean_3h",
+      "model": "rolling_mean_3h",
+      "feature_set": "B",
+      "hypothesis": "The mean of the three most recent observed PM2.5 values through origin t may be a stronger non-learning baseline than persistence.",
+      "missing_policy": "Use the T07 full-window rolling mean; if fewer than three observations exist, fall back to observed PM2.5(t)."
+    },
+    {
+      "candidate_id": "same_target_hour_yesterday",
+      "model": "same_target_hour_yesterday",
+      "feature_set": "A",
+      "hypothesis": "PM2.5 observed at the previous day's target-hour may capture daily periodicity; missing values fall back to observed PM2.5(t).",
+      "missing_policy": "Lookup station PM2.5 at target_timestamp minus 24 hours, only when that timestamp is no later than input_timestamp; otherwise use PM2.5(t)."
+    }
+  ],
+  "ensemble": {
+    "fusion_size": 3,
+    "base_selection_metric": "pooled_CV_MAE",
+    "stack_model": "Ridge",
+    "stack_alpha": 1.0,
+    "stack_fit_data": "Only aligned out-of-fold predictions from the three expanding train folds",
+    "validation_is_fit_data": false
+  }
+}

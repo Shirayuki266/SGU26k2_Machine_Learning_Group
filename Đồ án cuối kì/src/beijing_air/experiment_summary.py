@@ -317,6 +317,16 @@ def build_summary(reader, *, include_plans=True):
     runs = reader.load()
     by_id = {r.id: r for r in runs}
     official = [r for r in runs if r.row.get("mode") == "full" and r.row.get("is_test", "").lower() != "true"]
+    t17b_parent_status = {
+        r.id: r.completed for r in official
+        if r.row.get("task_id", "").upper() == "T17B" and r.stage == "search"
+    }
+    # Keep failed attempts in the audit export, but do not duplicate their completed children in the model table.
+    official = [r for r in official if not (
+        r.row.get("task_id", "").upper() == "T17B"
+        and r.row.get("parent_run_id") in t17b_parent_status
+        and not t17b_parent_status[r.row.get("parent_run_id")]
+    )]
     candidates = [r for r in official if r.stage == "candidate"]
     finals = [r for r in official if r.row.get("task_id") != "T13" and r.stage not in ("candidate", "search", "fold")
               and not r.row.get("fold_id")]
