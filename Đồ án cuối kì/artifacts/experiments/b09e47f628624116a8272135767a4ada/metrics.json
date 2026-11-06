@@ -1,0 +1,14 @@
+{
+  "validation_primary": {
+    "n_total": 102479,
+    "n_scored": 102479,
+    "unavailable": 0,
+    "coverage": 1.0,
+    "MAE": 9.232097685137118,
+    "RMSE": 18.471755794937724,
+    "R2": 0.9491283625570128,
+    "r2_undefined_reason": null
+  },
+  "oof_only_meta_fit": true,
+  "validation_used_for_fit": false
+}

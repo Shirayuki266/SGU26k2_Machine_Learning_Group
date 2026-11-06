@@ -1,0 +1,58 @@
+{
+  "task_id": "T17b",
+  "reference_run_id": null,
+  "parent_run_id": "078476664bdb42a5aca9bf36007d8137",
+  "fold_id": 2,
+  "mode": "full",
+  "kind": "tuning",
+  "objective": "Average selected base OOF predictions for this fold.",
+  "hypothesis": "A CV-selected mean ensemble may combine complementary prediction errors.",
+  "change": "No fitting; average aligned fold predictions.",
+  "model": "fusion_3",
+  "parameters": {
+    "stage": "fold",
+    "candidate_id": "fusion_3_cv_champions",
+    "actual_model_parameters": {
+      "base_candidate_run_ids": [
+        "4f1455f80e2f4074b62f1b64e4732378",
+        "c934c9b69abe4ee7bb16b612fb99f84f",
+        "2b92ee8a90824321a71a9a7b4401f07d"
+      ],
+      "selection": "top three distinct model families by train pooled CV MAE",
+      "base_model_count": 3
+    }
+  },
+  "feature_set": "A+B",
+  "preprocessing": {
+    "base_pipelines": "T08"
+  },
+  "data": {
+    "scope": "train OOF predictions only"
+  },
+  "split": {
+    "fold_id": 2
+  },
+  "time_ranges": null,
+  "sample_counts": {
+    "evaluation": 25541
+  },
+  "seed": 42,
+  "budget": {
+    "candidate_configurations": 13,
+    "cv_estimator_fits": {
+      "random_forest": 12,
+      "hist_gradient_boosting": 12,
+      "linear": 9,
+      "decision_tree": 6,
+      "total": 39
+    },
+    "validation_refit_max": 6,
+    "folds": 3,
+    "automatic_retries": 0,
+    "parallel_jobs": 1,
+    "blas_threads": 1,
+    "minimum_free_memory_mb": 768
+  },
+  "is_test": false,
+  "source": "scripts/run_supplementary_experiments.py"
+}

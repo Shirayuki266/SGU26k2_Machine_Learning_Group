@@ -1,0 +1,12 @@
+{
+  "validation_primary": {
+    "n_total": 102479,
+    "n_scored": 102479,
+    "unavailable": 0,
+    "coverage": 1.0,
+    "MAE": 9.274579485136,
+    "RMSE": 18.50549499430741,
+    "R2": 0.9489423557869627,
+    "r2_undefined_reason": null
+  }
+}

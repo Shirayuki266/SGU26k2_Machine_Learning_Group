@@ -1,0 +1,69 @@
+{
+  "task_id": "T17b",
+  "reference_run_id": null,
+  "parent_run_id": "2512bc9c844a4b39a150c52f6bded9db",
+  "fold_id": null,
+  "mode": "full",
+  "kind": "train",
+  "objective": "Evaluate a Ridge stacker fit exclusively on aligned base OOF predictions.",
+  "hypothesis": "A linear meta-learner may combine the selected base predictions.",
+  "change": "Meta Ridge is fit on train OOF predictions; validation is prediction-only.",
+  "model": "stack",
+  "parameters": {
+    "stage": "validation",
+    "base_candidate_run_ids": [
+      "05b2581d58b34b38a91ad53b776a4069",
+      "5f5767bc3d2d4179837a73f24dbd60b9",
+      "e6a48c43c09d44e9bd4f11e047fdc5c0"
+    ],
+    "meta_model": "Ridge",
+    "parameters": {
+      "alpha": 1.0,
+      "copy_X": true,
+      "fit_intercept": true,
+      "max_iter": null,
+      "positive": false,
+      "random_state": null,
+      "solver": "auto",
+      "tol": 0.0001
+    },
+    "alpha": 1.0,
+    "fit_scope": "OOF train predictions only",
+    "validation_is_fit_data": false
+  },
+  "feature_set": "A+B",
+  "preprocessing": {
+    "base_pipelines": "T08; meta Ridge on saved OOF prediction columns"
+  },
+  "data": {
+    "scope": "train OOF labels for meta fit; primary validation for scoring only"
+  },
+  "split": {
+    "validation_ids_sha256": "49c0dae2fffb40a926067ace7ece4aabe90801cde8c62f7910964034b240a635",
+    "stack_fit_sample_ids_sha256": "1b35e685cc48454c3bbcece683658200e95db63cb7caecf4cf10b2600fec1970"
+  },
+  "time_ranges": null,
+  "sample_counts": {
+    "oof_fit": 76102,
+    "validation": 102479
+  },
+  "seed": 42,
+  "budget": {
+    "candidate_configurations": 13,
+    "cv_estimator_fits": {
+      "random_forest": 12,
+      "hist_gradient_boosting": 12,
+      "linear": 9,
+      "decision_tree": 6,
+      "total": 39
+    },
+    "validation_refit_max": 6,
+    "folds": 3,
+    "automatic_retries": 0,
+    "parallel_jobs": 1,
+    "blas_threads": 1,
+    "minimum_free_memory_mb": 768
+  },
+  "is_test": false,
+  "source": "scripts/run_supplementary_experiments.py"
+}

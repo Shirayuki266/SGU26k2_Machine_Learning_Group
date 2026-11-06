@@ -1,0 +1,40 @@
+{
+  "candidate_run_ids": [
+    "b07bb61ade5c45bf8f53107c38c50d2c",
+    "5f5767bc3d2d4179837a73f24dbd60b9",
+    "0909291f18ae4c3887a4f54aaf8a0ec2",
+    "8de248c240084de6a13a44b5fba34403",
+    "1a155a7e6e7e4fc0bd0491500908dbb0",
+    "3ae07096597a4cab96b81443ad7462ce",
+    "2bb8ff9d7273457b8d7c4f00b22ba682",
+    "05b2581d58b34b38a91ad53b776a4069",
+    "e6a48c43c09d44e9bd4f11e047fdc5c0",
+    "68e69af3610e41e0b0f31651be242558",
+    "117bbc288b774e6fbbcb887f9ad45a7d",
+    "eca39f18564a403ca15c57d69a4a3042",
+    "51c1938cebf44519b438d5e7d3ac270e",
+    "9cad64690329490ab4d42c0a46355fa7",
+    "d9ce629ddbb240dcb1cf388b412d3f3f"
+  ],
+  "failed_candidates": [],
+  "test_csv_accessed": false,
+  "elapsed_seconds": 1824.409895400051,
+  "selected_validation_candidate_ids": [
+    "rf_A_locked",
+    "rf_B_locked",
+    "rf_B_tuned_more_trees",
+    "hgb_B_absolute",
+    "lasso_B_alpha_0_1",
+    "tree_B_depth_12",
+    "rolling_mean_3h",
+    "same_target_hour_yesterday"
+  ],
+  "fusion_base_candidate_ids": [
+    "hgb_B_absolute",
+    "rf_B_locked",
+    "lasso_B_alpha_0_1"
+  ],
+  "fusion_validation_run_id": "e708283791cf4bafb4e75f21984855a4",
+  "stack_validation_run_id": "b09e47f628624116a8272135767a4ada",
+  "validation_sample_ids_sha256": "534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7"
+}

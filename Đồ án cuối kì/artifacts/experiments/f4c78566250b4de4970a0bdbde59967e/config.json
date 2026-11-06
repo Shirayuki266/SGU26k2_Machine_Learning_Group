@@ -1,0 +1,209 @@
+{
+  "task_id": "T17b",
+  "reference_run_id": "24cef47874a94d9faa7bfcbae29b5c58",
+  "parent_run_id": "956d7a1455824a6ab1a9569db9e168b0",
+  "fold_id": 3,
+  "mode": "full",
+  "kind": "tuning",
+  "objective": "Out-of-fold prediction for same_target_hour_yesterday.",
+  "hypothesis": "PM2.5 observed at the previous day's target-hour may capture daily periodicity; missing values fall back to observed PM2.5(t).",
+  "change": "Fold 3 only; fitted preprocessing/model use fold fit rows.",
+  "model": "same_target_hour_yesterday",
+  "parameters": {
+    "stage": "fold",
+    "candidate_id": "same_target_hour_yesterday",
+    "fold_audit": {
+      "fold_id": 3,
+      "evaluation_start": "2014-12-01 00:00:00",
+      "evaluation_end_exclusive": "2015-03-01 00:00:00",
+      "fit": {
+        "samples": 180038,
+        "ordered_ids_sha256": "84039cded9bbb848fce611bad7dbe77a20116f3c5f40c880c39a256584e41596",
+        "stations": [
+          "Aotizhongxin",
+          "Changping",
+          "Dingling",
+          "Dongsi",
+          "Guanyuan",
+          "Gucheng",
+          "Huairou",
+          "Nongzhanguan",
+          "Shunyi",
+          "Tiantan",
+          "Wanliu",
+          "Wanshouxigong"
+        ],
+        "first_target": "2013-03-01 01:00:00",
+        "last_target": "2014-11-30 22:00:00",
+        "unique_target_timestamps": 15331
+      },
+      "evaluation": {
+        "samples": 24815,
+        "ordered_ids_sha256": "26d125173f48e020d0841015868c109623281d72dd67ccf65aee1057d16c1295",
+        "stations": [
+          "Aotizhongxin",
+          "Changping",
+          "Dingling",
+          "Dongsi",
+          "Guanyuan",
+          "Gucheng",
+          "Huairou",
+          "Nongzhanguan",
+          "Shunyi",
+          "Tiantan",
+          "Wanliu",
+          "Wanshouxigong"
+        ],
+        "first_target": "2014-12-01 00:00:00",
+        "last_target": "2015-02-28 23:00:00",
+        "unique_target_timestamps": 2153
+      },
+      "purged": {
+        "samples": 12,
+        "ordered_ids_sha256": "40ed498b83cf2f7900aa7a9560df118599ef4fd913a953ebd023f58f84ff1151",
+        "stations": [
+          "Aotizhongxin",
+          "Changping",
+          "Dingling",
+          "Dongsi",
+          "Guanyuan",
+          "Gucheng",
+          "Huairou",
+          "Nongzhanguan",
+          "Shunyi",
+          "Tiantan",
+          "Wanliu",
+          "Wanshouxigong"
+        ],
+        "first_target": "2014-11-30 23:00:00",
+        "last_target": "2014-11-30 23:00:00",
+        "unique_target_timestamps": 1
+      },
+      "label_availability": {
+        "status": "passed",
+        "fit_samples": 180038,
+        "evaluation_samples": 24815,
+        "latest_fit_target_timestamp": "2014-11-30T22:00:00",
+        "first_evaluation_input_timestamp": "2014-11-30T23:00:00",
+        "planned_label_cutoff": "2014-11-30T23:00:00",
+        "comparison": "<",
+        "fitted": false
+      },
+      "shared_station_boundaries": true,
+      "timestamp_grouping": "unique_target_timestamp"
+    },
+    "actual_model_parameters": {}
+  },
+  "feature_set": "A",
+  "preprocessing": {
+    "baseline": "same_target_hour_yesterday"
+  },
+  "data": {
+    "scope": "T05 train rows only; no test access"
+  },
+  "split": {
+    "fold_id": 3,
+    "evaluation_start": "2014-12-01 00:00:00",
+    "evaluation_end_exclusive": "2015-03-01 00:00:00",
+    "fit": {
+      "samples": 180038,
+      "ordered_ids_sha256": "84039cded9bbb848fce611bad7dbe77a20116f3c5f40c880c39a256584e41596",
+      "stations": [
+        "Aotizhongxin",
+        "Changping",
+        "Dingling",
+        "Dongsi",
+        "Guanyuan",
+        "Gucheng",
+        "Huairou",
+        "Nongzhanguan",
+        "Shunyi",
+        "Tiantan",
+        "Wanliu",
+        "Wanshouxigong"
+      ],
+      "first_target": "2013-03-01 01:00:00",
+      "last_target": "2014-11-30 22:00:00",
+      "unique_target_timestamps": 15331
+    },
+    "evaluation": {
+      "samples": 24815,
+      "ordered_ids_sha256": "26d125173f48e020d0841015868c109623281d72dd67ccf65aee1057d16c1295",
+      "stations": [
+        "Aotizhongxin",
+        "Changping",
+        "Dingling",
+        "Dongsi",
+        "Guanyuan",
+        "Gucheng",
+        "Huairou",
+        "Nongzhanguan",
+        "Shunyi",
+        "Tiantan",
+        "Wanliu",
+        "Wanshouxigong"
+      ],
+      "first_target": "2014-12-01 00:00:00",
+      "last_target": "2015-02-28 23:00:00",
+      "unique_target_timestamps": 2153
+    },
+    "purged": {
+      "samples": 12,
+      "ordered_ids_sha256": "40ed498b83cf2f7900aa7a9560df118599ef4fd913a953ebd023f58f84ff1151",
+      "stations": [
+        "Aotizhongxin",
+        "Changping",
+        "Dingling",
+        "Dongsi",
+        "Guanyuan",
+        "Gucheng",
+        "Huairou",
+        "Nongzhanguan",
+        "Shunyi",
+        "Tiantan",
+        "Wanliu",
+        "Wanshouxigong"
+      ],
+      "first_target": "2014-11-30 23:00:00",
+      "last_target": "2014-11-30 23:00:00",
+      "unique_target_timestamps": 1
+    },
+    "label_availability": {
+      "status": "passed",
+      "fit_samples": 180038,
+      "evaluation_samples": 24815,
+      "latest_fit_target_timestamp": "2014-11-30T22:00:00",
+      "first_evaluation_input_timestamp": "2014-11-30T23:00:00",
+      "planned_label_cutoff": "2014-11-30T23:00:00",
+      "comparison": "<",
+      "fitted": false
+    },
+    "shared_station_boundaries": true,
+    "timestamp_grouping": "unique_target_timestamp"
+  },
+  "time_ranges": null,
+  "sample_counts": {
+    "fit": 180038,
+    "evaluation": 24815,
+    "purged": 12
+  },
+  "seed": 42,
+  "budget": {
+    "candidate_configurations": 13,
+    "cv_estimator_fits": {
+      "random_forest": 12,
+      "hist_gradient_boosting": 12,
+      "linear": 9,
+      "decision_tree": 6,
+      "total": 39
+    },
+    "validation_refit_max": 6,
+    "folds": 3,
+    "automatic_retries": 0,
+    "parallel_jobs": 1,
+    "blas_threads": 1,
+    "minimum_free_memory_mb": 768
+  },
+  "is_test": false,
+  "source": "scripts/run_supplementary_experiments.py"
+}

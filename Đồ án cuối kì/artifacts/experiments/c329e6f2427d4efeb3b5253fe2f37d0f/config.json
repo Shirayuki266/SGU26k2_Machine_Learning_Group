@@ -1,0 +1,209 @@
+{
+  "task_id": "T17b",
+  "reference_run_id": "24cef47874a94d9faa7bfcbae29b5c58",
+  "parent_run_id": "19c6cc8b1fee4e4c84ec945ca7a47749",
+  "fold_id": 2,
+  "mode": "full",
+  "kind": "tuning",
+  "objective": "Out-of-fold prediction for rolling_mean_3h.",
+  "hypothesis": "The mean of the three most recent observed PM2.5 values through origin t may be a stronger non-learning baseline than persistence.",
+  "change": "Fold 2 only; fitted preprocessing/model use fold fit rows.",
+  "model": "rolling_mean_3h",
+  "parameters": {
+    "stage": "fold",
+    "candidate_id": "rolling_mean_3h",
+    "fold_audit": {
+      "fold_id": 2,
+      "evaluation_start": "2014-09-01 00:00:00",
+      "evaluation_end_exclusive": "2014-12-01 00:00:00",
+      "fit": {
+        "samples": 154497,
+        "ordered_ids_sha256": "bdfb4789b3179086798eb97db741513cb9505faa005f70f1dfdf5a13db634a50",
+        "stations": [
+          "Aotizhongxin",
+          "Changping",
+          "Dingling",
+          "Dongsi",
+          "Guanyuan",
+          "Gucheng",
+          "Huairou",
+          "Nongzhanguan",
+          "Shunyi",
+          "Tiantan",
+          "Wanliu",
+          "Wanshouxigong"
+        ],
+        "first_target": "2013-03-01 01:00:00",
+        "last_target": "2014-08-31 22:00:00",
+        "unique_target_timestamps": 13149
+      },
+      "evaluation": {
+        "samples": 25541,
+        "ordered_ids_sha256": "a36bd9020af6ded35797dc8ce3ae8bf769a5bfd1ef1636b4d0f0d70e06ff8db9",
+        "stations": [
+          "Aotizhongxin",
+          "Changping",
+          "Dingling",
+          "Dongsi",
+          "Guanyuan",
+          "Gucheng",
+          "Huairou",
+          "Nongzhanguan",
+          "Shunyi",
+          "Tiantan",
+          "Wanliu",
+          "Wanshouxigong"
+        ],
+        "first_target": "2014-09-01 00:00:00",
+        "last_target": "2014-11-30 23:00:00",
+        "unique_target_timestamps": 2182
+      },
+      "purged": {
+        "samples": 12,
+        "ordered_ids_sha256": "d6c4dd73367c6e0559e71d7b8c0bf924b56b7a7905a7ebdf9676a294d955574a",
+        "stations": [
+          "Aotizhongxin",
+          "Changping",
+          "Dingling",
+          "Dongsi",
+          "Guanyuan",
+          "Gucheng",
+          "Huairou",
+          "Nongzhanguan",
+          "Shunyi",
+          "Tiantan",
+          "Wanliu",
+          "Wanshouxigong"
+        ],
+        "first_target": "2014-08-31 23:00:00",
+        "last_target": "2014-08-31 23:00:00",
+        "unique_target_timestamps": 1
+      },
+      "label_availability": {
+        "status": "passed",
+        "fit_samples": 154497,
+        "evaluation_samples": 25541,
+        "latest_fit_target_timestamp": "2014-08-31T22:00:00",
+        "first_evaluation_input_timestamp": "2014-08-31T23:00:00",
+        "planned_label_cutoff": "2014-08-31T23:00:00",
+        "comparison": "<",
+        "fitted": false
+      },
+      "shared_station_boundaries": true,
+      "timestamp_grouping": "unique_target_timestamp"
+    },
+    "actual_model_parameters": {}
+  },
+  "feature_set": "B",
+  "preprocessing": {
+    "baseline": "rolling_mean_3h"
+  },
+  "data": {
+    "scope": "T05 train rows only; no test access"
+  },
+  "split": {
+    "fold_id": 2,
+    "evaluation_start": "2014-09-01 00:00:00",
+    "evaluation_end_exclusive": "2014-12-01 00:00:00",
+    "fit": {
+      "samples": 154497,
+      "ordered_ids_sha256": "bdfb4789b3179086798eb97db741513cb9505faa005f70f1dfdf5a13db634a50",
+      "stations": [
+        "Aotizhongxin",
+        "Changping",
+        "Dingling",
+        "Dongsi",
+        "Guanyuan",
+        "Gucheng",
+        "Huairou",
+        "Nongzhanguan",
+        "Shunyi",
+        "Tiantan",
+        "Wanliu",
+        "Wanshouxigong"
+      ],
+      "first_target": "2013-03-01 01:00:00",
+      "last_target": "2014-08-31 22:00:00",
+      "unique_target_timestamps": 13149
+    },
+    "evaluation": {
+      "samples": 25541,
+      "ordered_ids_sha256": "a36bd9020af6ded35797dc8ce3ae8bf769a5bfd1ef1636b4d0f0d70e06ff8db9",
+      "stations": [
+        "Aotizhongxin",
+        "Changping",
+        "Dingling",
+        "Dongsi",
+        "Guanyuan",
+        "Gucheng",
+        "Huairou",
+        "Nongzhanguan",
+        "Shunyi",
+        "Tiantan",
+        "Wanliu",
+        "Wanshouxigong"
+      ],
+      "first_target": "2014-09-01 00:00:00",
+      "last_target": "2014-11-30 23:00:00",
+      "unique_target_timestamps": 2182
+    },
+    "purged": {
+      "samples": 12,
+      "ordered_ids_sha256": "d6c4dd73367c6e0559e71d7b8c0bf924b56b7a7905a7ebdf9676a294d955574a",
+      "stations": [
+        "Aotizhongxin",
+        "Changping",
+        "Dingling",
+        "Dongsi",
+        "Guanyuan",
+        "Gucheng",
+        "Huairou",
+        "Nongzhanguan",
+        "Shunyi",
+        "Tiantan",
+        "Wanliu",
+        "Wanshouxigong"
+      ],
+      "first_target": "2014-08-31 23:00:00",
+      "last_target": "2014-08-31 23:00:00",
+      "unique_target_timestamps": 1
+    },
+    "label_availability": {
+      "status": "passed",
+      "fit_samples": 154497,
+      "evaluation_samples": 25541,
+      "latest_fit_target_timestamp": "2014-08-31T22:00:00",
+      "first_evaluation_input_timestamp": "2014-08-31T23:00:00",
+      "planned_label_cutoff": "2014-08-31T23:00:00",
+      "comparison": "<",
+      "fitted": false
+    },
+    "shared_station_boundaries": true,
+    "timestamp_grouping": "unique_target_timestamp"
+  },
+  "time_ranges": null,
+  "sample_counts": {
+    "fit": 154497,
+    "evaluation": 25541,
+    "purged": 12
+  },
+  "seed": 42,
+  "budget": {
+    "candidate_configurations": 13,
+    "cv_estimator_fits": {
+      "random_forest": 12,
+      "hist_gradient_boosting": 12,
+      "linear": 9,
+      "decision_tree": 6,
+      "total": 39
+    },
+    "validation_refit_max": 6,
+    "folds": 3,
+    "automatic_retries": 0,
+    "parallel_jobs": 1,
+    "blas_threads": 1,
+    "minimum_free_memory_mb": 768
+  },
+  "is_test": false,
+  "source": "scripts/run_supplementary_experiments.py"
+}

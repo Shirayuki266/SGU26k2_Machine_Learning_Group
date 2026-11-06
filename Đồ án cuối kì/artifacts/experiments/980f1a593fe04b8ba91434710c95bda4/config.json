@@ -1,0 +1,217 @@
+{
+  "task_id": "T17b",
+  "reference_run_id": null,
+  "parent_run_id": null,
+  "fold_id": null,
+  "mode": "full",
+  "kind": "tuning",
+  "objective": "Run the predeclared supplementary PM2.5 experiments on train/CV/validation only.",
+  "hypothesis": "Supplementary baselines/models/ensembles may or may not improve on locked RF A.",
+  "change": "Execute configs/supplementary_experiments.json in full mode.",
+  "model": "supplementary_search",
+  "parameters": {
+    "stage": "search",
+    "design_path": "configs/supplementary_experiments.json",
+    "t05_train_snapshot_id": "2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc",
+    "validation_ids_sha256": "534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7"
+  },
+  "feature_set": "A+B",
+  "preprocessing": {
+    "schema_version": "t08-preprocessing-v1",
+    "numeric": {
+      "imputation_strategy": "median",
+      "keep_empty_features": true,
+      "missing_indicators": "all",
+      "scale": {
+        "ridge": true,
+        "random_forest": false
+      }
+    },
+    "categorical": {
+      "imputation_strategy": "constant",
+      "fill_value": "__MISSING__",
+      "handle_unknown": "ignore",
+      "sparse_output": false
+    },
+    "output": {
+      "format": "pandas",
+      "verbose_feature_names": true
+    },
+    "prediction_postprocessing": {
+      "negative_predictions": "identity",
+      "applies_to": [
+        "persistence",
+        "ridge",
+        "random_forest"
+      ]
+    }
+  },
+  "data": {
+    "train": {
+      "train_provenance": {
+        "split_manifest": "reports/splits_full/split_manifest.json",
+        "split_manifest_sha256": "6d3ac3f05da50324a65c34c1e1601b5df45fefc3d2e6d0e834d43a27062d0e42",
+        "t05_snapshot_id": "2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc",
+        "input_files_read": [
+          {
+            "path": "data/processed/samples_full/train.csv",
+            "sha256": "ebc89c94b576f009705446da7c4bec079f750755e5755e5041b6a93f09226d46",
+            "bytes": 51395102
+          },
+          {
+            "path": "data/processed/samples_full/sample_ids/train.csv",
+            "sha256": "336d58dda970536fb0c7dc1739529fe2f1bcb4200a5f32e2f3d40cca1279d8bf",
+            "bytes": 24598381
+          }
+        ],
+        "source_mode": "full",
+        "validation_start": "2015-03-01T00:00:00"
+      },
+      "t07_manifest_sha256": "6f53aed4fd9e4bd592c9c980bcaa4a06f23e8abd3c92af3242fff479d97e7d43",
+      "train_B": {
+        "path": "data/processed/features_full/train_B.csv",
+        "sha256": "42ee245c9e8b1e1eac4467df1a6c6a82e8582fbb9518f926cd95f654ecbbfcdd",
+        "bytes": 74690923
+      },
+      "t07_snapshot_id": "1b01fe65f7bbff32d1273afd704241687b6f220dd867ee681446978db8139a51"
+    },
+    "validation": {
+      "provenance": {
+        "split_manifest": "reports/splits_full/split_manifest.json",
+        "split_manifest_sha256": "6d3ac3f05da50324a65c34c1e1601b5df45fefc3d2e6d0e834d43a27062d0e42",
+        "t05_snapshot_id": "2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc",
+        "input_files_read": [
+          {
+            "path": "data/processed/samples_full/train.csv",
+            "sha256": "ebc89c94b576f009705446da7c4bec079f750755e5755e5041b6a93f09226d46",
+            "bytes": 51395102
+          },
+          {
+            "path": "data/processed/samples_full/sample_ids/train.csv",
+            "sha256": "336d58dda970536fb0c7dc1739529fe2f1bcb4200a5f32e2f3d40cca1279d8bf",
+            "bytes": 24598381
+          }
+        ],
+        "source_mode": "full",
+        "validation_start": "2015-03-01T00:00:00",
+        "validation_files": {
+          "validation_samples": {
+            "path": "data/processed/samples_full/validation.csv",
+            "sha256": "eed8f0a497b352540705640ccf1a10d3db9084af88653184aa2e0b4abbbfa173",
+            "bytes": 26281009
+          },
+          "validation_ids": {
+            "path": "data/processed/samples_full/sample_ids/validation.csv",
+            "sha256": "4102afaecae6eb3f56434b0b1f93d53f90a914edad304496a429bfdad14f5a8c",
+            "bytes": 12333889
+          }
+        },
+        "validation_membership": {
+          "operational": {
+            "samples": 103287,
+            "ordered_sample_ids_sha256": "bd15e19b4ce89a5025e5f36f547fc4d3f56953e334d38da3bc8390270dd6444a"
+          },
+          "primary": {
+            "samples": 102479,
+            "ordered_sample_ids_sha256": "534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7"
+          }
+        },
+        "label_availability": {
+          "status": "passed",
+          "fit_samples": 205977,
+          "evaluation_samples": 103287,
+          "latest_fit_target_timestamp": "2015-02-28T23:00:00",
+          "first_evaluation_input_timestamp": "2015-02-28T23:00:00",
+          "planned_label_cutoff": "2015-02-28T23:00:00",
+          "comparison": "<=",
+          "fitted": false
+        }
+      },
+      "anchor": {
+        "schema_version": "validation-cohorts-v1",
+        "split": "validation",
+        "test_locked": true,
+        "t05_snapshot_id": "2129d08dbac2b6ebe6a6c7bf12cf8188d9ea7b0069939d690e27ad5c47cf0ddc",
+        "files": {
+          "validation_samples": {
+            "path": "data/processed/samples_full/validation.csv",
+            "sha256": "eed8f0a497b352540705640ccf1a10d3db9084af88653184aa2e0b4abbbfa173",
+            "bytes": 26281009
+          },
+          "validation_ids": {
+            "path": "data/processed/samples_full/sample_ids/validation.csv",
+            "sha256": "4102afaecae6eb3f56434b0b1f93d53f90a914edad304496a429bfdad14f5a8c",
+            "bytes": 12333889
+          }
+        },
+        "cohorts": {
+          "operational": {
+            "samples": 103287,
+            "ordered_sample_ids_sha256": "bd15e19b4ce89a5025e5f36f547fc4d3f56953e334d38da3bc8390270dd6444a"
+          },
+          "primary": {
+            "samples": 102479,
+            "ordered_sample_ids_sha256": "534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7"
+          }
+        },
+        "order": "T05 station/input_timestamp order",
+        "primary_filter": "is_primary == true",
+        "operational_filter": "all retained T05 validation IDs",
+        "comparison_rule": "same IDs/order; no dropping rows for missing features; report prediction coverage"
+      },
+      "history_scope": {
+        "raw_sha256": {
+          "PRSA_Data_Aotizhongxin_20130301-20170228.csv": "a94fbcfc71708b6ffdc033360163d91efb7f675e496f6b5860929aa96b96351b",
+          "PRSA_Data_Changping_20130301-20170228.csv": "a2e21402a6d95fb7043f87959e6e3dcbecb957aac356a6f8028a85b047c772e7",
+          "PRSA_Data_Dingling_20130301-20170228.csv": "3d8dff81f18a80d9f455876a785642bffe1e9b9924ec1e6b7ce8cca790432eeb",
+          "PRSA_Data_Dongsi_20130301-20170228.csv": "9c0020214425e5ee2a64d42f97a1f632e1d8f6b53ad50edd85a686cc7999f27e",
+          "PRSA_Data_Guanyuan_20130301-20170228.csv": "59390fee3b032597b387491f5230e7edb90a8558e30217ebd6d9befbe669fbf9",
+          "PRSA_Data_Gucheng_20130301-20170228.csv": "10ae48801ea55869fee56a48b885fb1127859c130551888d71673f34216ba951",
+          "PRSA_Data_Huairou_20130301-20170228.csv": "812dcbe848b3ba2c2d25731064797bff803c46eb0c602156a1fa044df136dc26",
+          "PRSA_Data_Nongzhanguan_20130301-20170228.csv": "572cf87b65ef543cd55d3a711b28474def224a46b0ec3fc8add8aaf13b67a487",
+          "PRSA_Data_Shunyi_20130301-20170228.csv": "520b59e4ead3b0cfe7f1ed673e30275de8441e999db6f413d5172d2277b8c15a",
+          "PRSA_Data_Tiantan_20130301-20170228.csv": "0743e34799cf1ee36195b73321b91baa5625276532e7263c588f68cdef3b4daa",
+          "PRSA_Data_Wanliu_20130301-20170228.csv": "0b1a6d754a07f0def2f55434ddfa3870dcd0063b7f766a6f66b6c11bb05a377a",
+          "PRSA_Data_Wanshouxigong_20130301-20170228.csv": "ab1d6a356d6997a45f6d657ad47de1e05a4a08d4a7015b38a329a90665ab74d0"
+        },
+        "rows": 315636,
+        "rows_per_station": 26303,
+        "first_timestamp": "2013-03-01 00:00:00",
+        "last_timestamp": "2016-02-29 22:00:00",
+        "values_scope": "observations through selected validation origins only",
+        "hash_scope": "full raw byte identity, no test CSV/IDs opened",
+        "test_csv_accessed": false
+      }
+    },
+    "scope": "train/CV/validation only; test samples and IDs not opened"
+  },
+  "split": {
+    "protocol": "expanding_window",
+    "folds": 3,
+    "validation_ids_sha256": "534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7"
+  },
+  "time_ranges": null,
+  "sample_counts": {
+    "train": 204865,
+    "validation": 102479,
+    "cv_evaluation": [
+      25746,
+      25541,
+      24815
+    ]
+  },
+  "seed": 42,
+  "budget": {
+    "mode": "full",
+    "candidate_configurations": 15,
+    "candidate_cv_fits": 39,
+    "validation_refit_max": 6,
+    "folds": 3,
+    "automatic_retries": 0,
+    "parallel_jobs": 1,
+    "blas_threads": 1,
+    "minimum_free_memory_mb": 768
+  },
+  "is_test": false,
+  "source": "scripts/run_supplementary_experiments.py"
+}

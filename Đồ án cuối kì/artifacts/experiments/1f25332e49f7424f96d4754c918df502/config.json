@@ -1,0 +1,119 @@
+{
+  "task_id": "T17b",
+  "reference_run_id": "780ecb7fb59d48bea58d5e4a076f1f26",
+  "parent_run_id": "fc0f447eb79d46b59a01b97c5b572a97",
+  "fold_id": null,
+  "mode": "smoke",
+  "kind": "tuning",
+  "objective": "Evaluate tree_B_depth_12 using train-only temporal CV.",
+  "hypothesis": "Compare the predeclared candidate without assuming it improves.",
+  "change": "Predeclared T17b candidate tree_B_depth_12.",
+  "model": "decision_tree",
+  "parameters": {
+    "stage": "candidate",
+    "candidate_id": "tree_B_depth_12",
+    "family": "decision_tree",
+    "actual_model_parameters": {
+      "ccp_alpha": 0.0,
+      "criterion": "squared_error",
+      "max_depth": 12,
+      "max_features": null,
+      "max_leaf_nodes": null,
+      "min_impurity_decrease": 0.0,
+      "min_samples_leaf": 50,
+      "min_samples_split": 2,
+      "min_weight_fraction_leaf": 0.0,
+      "monotonic_cst": null,
+      "random_state": 42,
+      "splitter": "best"
+    },
+    "declared_parameters": {
+      "max_depth": 12,
+      "min_samples_leaf": 50,
+      "random_state": 42
+    },
+    "missing_policy": null
+  },
+  "feature_set": "B",
+  "preprocessing": {
+    "schema_version": "t08-preprocessing-v1",
+    "numeric": {
+      "imputation_strategy": "median",
+      "keep_empty_features": true,
+      "missing_indicators": "all",
+      "scale": {
+        "ridge": true,
+        "random_forest": false
+      }
+    },
+    "categorical": {
+      "imputation_strategy": "constant",
+      "fill_value": "__MISSING__",
+      "handle_unknown": "ignore",
+      "sparse_output": false
+    },
+    "output": {
+      "format": "pandas",
+      "verbose_feature_names": true
+    },
+    "prediction_postprocessing": {
+      "negative_predictions": "identity",
+      "applies_to": [
+        "persistence",
+        "ridge",
+        "random_forest"
+      ]
+    },
+    "t17b_applied_scale": "none"
+  },
+  "data": {
+    "split_manifest": "reports/splits_full/split_manifest.json",
+    "feature_manifest": "reports/features_full/feature_manifest.json",
+    "scope": "T05 train only; no test file or test IDs accessed"
+  },
+  "split": {
+    "protocol": "expanding_window",
+    "folds": 1,
+    "fold_ids": [
+      1
+    ],
+    "selection_metric": "pooled_MAE"
+  },
+  "time_ranges": [
+    {
+      "fold_id": 1,
+      "mode": "smoke",
+      "fit_sample_ids_sha256": "55f0433191b25e99c9777fe9a37151d972b55e3646239507a8bdb71ec9740420",
+      "evaluation_sample_ids_sha256": "b3d71fb1b939fa3e3dcbdd1955135203e59c8ea6bea9ab557f3a3d2c016bbfb6",
+      "fit_samples": 756,
+      "evaluation_samples": 96,
+      "purged_samples": 12,
+      "test_csv_accessed": false
+    }
+  ],
+  "sample_counts": {
+    "train": 204865,
+    "fold_evaluations": [
+      96
+    ]
+  },
+  "seed": 42,
+  "budget": {
+    "candidate_configurations": 13,
+    "cv_estimator_fits": {
+      "random_forest": 12,
+      "hist_gradient_boosting": 12,
+      "linear": 9,
+      "decision_tree": 6,
+      "total": 39
+    },
+    "validation_refit_max": 6,
+    "folds": 3,
+    "automatic_retries": 0,
+    "parallel_jobs": 1,
+    "blas_threads": 1,
+    "minimum_free_memory_mb": 768
+  },
+  "is_test": false,
+  "source": "scripts/run_supplementary_experiments.py"
+}

@@ -1,0 +1,15 @@
+{
+  "validation_primary": {
+    "n_total": 102479,
+    "n_scored": 102479,
+    "unavailable": 0,
+    "coverage": 1.0,
+    "MAE": 9.509306382241279,
+    "RMSE": 18.761180046521684,
+    "R2": 0.9475217115115401,
+    "r2_undefined_reason": null
+  },
+  "validation_ids_sha256": "534385085c4feed8d9eea8bbb1d2ec2942c5675c96f7fc2f9bb1dd3f394dd5d7",
+  "test_csv_accessed": false,
+  "validation_run_seconds": null
+}

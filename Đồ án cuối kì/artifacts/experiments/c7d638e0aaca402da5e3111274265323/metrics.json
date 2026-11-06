@@ -1,0 +1,33 @@
+{
+  "fold_run_ids": [
+    "5276e5b06f7443279a113f0f8074fade"
+  ],
+  "failed_fold_run_ids": [],
+  "pooled": {
+    "n_total": 96,
+    "n_scored": 96,
+    "unavailable": 0,
+    "coverage": 1.0,
+    "MAE": 18.780191936086638,
+    "RMSE": 23.656574183309992,
+    "R2": 0.7249541572553655,
+    "r2_undefined_reason": null
+  },
+  "folds": [
+    {
+      "n_total": 96,
+      "n_scored": 96,
+      "unavailable": 0,
+      "coverage": 1.0,
+      "MAE": 18.780191936086638,
+      "RMSE": 23.656574183309992,
+      "R2": 0.7249541572553655,
+      "r2_undefined_reason": null
+    }
+  ],
+  "fold_mean": {},
+  "fold_std": {},
+  "std_ddof": 0,
+  "fit_and_cv_seconds": 0.8768943000468425,
+  "oof_sample_ids_sha256": "b3d71fb1b939fa3e3dcbdd1955135203e59c8ea6bea9ab557f3a3d2c016bbfb6"
+}
