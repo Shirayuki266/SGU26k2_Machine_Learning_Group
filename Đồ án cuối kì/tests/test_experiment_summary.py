@@ -249,6 +249,19 @@ def test_empty_log_without_plans_exports_headers_and_explanatory_image(tmp_path)
     assert (tmp_path/"reports/tables/experiment_summary.png").stat().st_size > 1000
 
 
+def test_t17b_exports_validation_comparison_against_locked_model(log):
+    supplementary = frame(.1)
+    log.add("TEST_T17B_CHART", task="T17b", model="hist_gradient_boosting",
+            metrics=validation_metrics(supplementary), predictions={"validation": supplementary})
+    reader, rows, evidence = build(log)
+
+    report = export_summary(reader, rows, evidence)
+
+    figure = log.root/"reports/tables/t17b_validation_comparison.png"
+    assert figure.is_file() and figure.stat().st_size > 1000
+    assert "t17b_validation_comparison.png" in report["outputs"]
+
+
 def test_exports_byte_identical_unicode_and_honest_checks(log):
     reader, rows, evidence = build(log)
     ledger = reader.ledger.read_bytes()

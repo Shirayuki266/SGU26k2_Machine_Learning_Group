@@ -148,6 +148,9 @@
 /reports/tables/experiment_summary*.json text eol=lf
 /reports/tables/experiment_summary.png binary
 /reports/tables/experiment_summary.xlsx binary
+/reports/tables/t17b_validation_comparison.png binary
+
+/docs/supplementary_experiments.md text eol=lf
 
 # NB01 executed evidence outputs retain their notebook cell outputs.
 /src/beijing_air/project_journey.py text eol=lf

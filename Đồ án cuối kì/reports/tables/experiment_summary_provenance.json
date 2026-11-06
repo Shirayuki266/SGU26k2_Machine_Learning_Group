@@ -7599,13 +7599,13 @@
   "ledger_rows": 264,
   "new_experiment_runs": 0,
   "raw_test_samples_read": false,
-  "input_signature": "c78214dda99210f416d4c236391b9196d6f957d42c481b2014295b422fe315de",
-  "source_commit": "53ccb2a9639426af134abcbdc510292ded8fd178",
-  "generated_at": "2026-11-06T12:24:59+07:00",
+  "input_signature": "f130aa250b40ce839a77d5125e6263db10ba40c823fb5ae4e4f810a7678156e1",
+  "source_commit": "657d59786a2013f36900ea50f59afc46b963b82d",
+  "generated_at": "2026-11-06T19:33:09+07:00",
   "source_log": "experiments/experiment_log.csv",
-  "generator_sha256": "d2eaee9c5cf4d688373efb9e4466042115c88cef3851f848f33b272ea0943bac",
+  "generator_sha256": "fe27e67099c6fb31590db57c8b77f9819d4fe992ca9c7dbdf94d678384e5311c",
   "generator_files": {
-    "src/beijing_air/experiment_summary.py": "d2eaee9c5cf4d688373efb9e4466042115c88cef3851f848f33b272ea0943bac",
+    "src/beijing_air/experiment_summary.py": "fe27e67099c6fb31590db57c8b77f9819d4fe992ca9c7dbdf94d678384e5311c",
     "scripts/build_experiment_summary.py": "df50f846168b1c9d0cd167f151d6e3c0cb91b3e8f7a966cb24d1dd416ac8376d"
   },
   "environment": {
@@ -10387,11 +10387,11 @@
   "note": "Đơn vị MAE/RMSE: µg/m³. Tô theo Validation MAE trên cùng primary IDs/coverage, chỉ mô tả; không đổi phương án khóa T12/T13. Test ML: T13 refit train+validation; persistence không fit, test_run_id riêng; không lấy chênh lệch/trung bình validation-test. CV mean±std ddof=0 chỉ mô tả, không là khoảng tin cậy.",
   "outputs": {
     "experiment_summary.csv": {
-      "sha256": "23567df6c6100354e9e2a270996b8dd5757e39406e3c8461bfbf9af05e16a707",
+      "sha256": "fd2ea3bed28e6496167da6abb06133376d032fb263b854765933d771a0d4fadf",
       "bytes": 14269
     },
     "experiment_summary.md": {
-      "sha256": "5c74be2a48d1c18f5ba315525d97df507320f73784cc7d1cbd4723b9a1eee4c7",
+      "sha256": "0a54904082851e9cf8d16ddbb76263ded77c0bf7077767c8eb84c181bf8ef7ce",
       "bytes": 55905
     },
     "experiment_summary_checks.csv": {
@@ -10403,12 +10403,16 @@
       "bytes": 23272
     },
     "experiment_summary.png": {
-      "sha256": "67f7ad2a430a95907fc83ab3b2005b8b9c6f15621ec6faf74d40999c4d6e9a60",
-      "bytes": 1070535
+      "sha256": "19606c2198ea0863e951e7acd7b77add7c7a51d4e3ce46490e359f3038c4588a",
+      "bytes": 1070731
+    },
+    "t17b_validation_comparison.png": {
+      "sha256": "acf377cd98eb34aecbd777f32d18fb6a667cd7e6f7fd9cf17b330552ac27e4ce",
+      "bytes": 110178
     },
     "experiment_summary.xlsx": {
-      "sha256": "0e34099196e48d3b784ddbfbe74925477e687a9fd4cd3f5622e28f4fba692a29",
-      "bytes": 44875
+      "sha256": "dcb4733d34eed907a0560942e18e7bc6e526a3fc8ef3b843da007670c54281cd",
+      "bytes": 44874
     }
   },
   "xlsx_available": true

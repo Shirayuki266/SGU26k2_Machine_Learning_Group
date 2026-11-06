@@ -616,6 +616,79 @@ def table_png(rows, footer):
     return buffer.getvalue()
 
 
+def t17b_validation_png(rows, footer):
+    """Plot supplementary model validation metrics against the locked RF A."""
+    completed = [row for row in rows if row["status"] == "completed"
+                 and row["validation_mae"] is not None and row["validation_rmse"] is not None]
+    supplementary = [row for row in completed if row["group"] in GROUPS[5:]]
+    reference = next((row for row in supplementary if row["method"] == "Random Forest A"), None)
+    if reference is None:
+        reference = next((row for row in completed if row["locked"]), None)
+    candidates = [row for row in supplementary
+                  if row["method"] not in ("rolling_mean_3h B", "same_target_hour_yesterday A",
+                                           "Random Forest A")]
+    if reference is None or not candidates:
+        return None
+
+    plotted = sorted([reference, *candidates], key=lambda row: row["validation_mae"])
+
+    def label(row):
+        if row is reference:
+            return "RF A (locked T12/T13)"
+        method = row["method"]
+        if method == "Random Forest B":
+            return "RF B (tuned)" if "max_depth=8" in row["approach"] else "RF B (locked params)"
+        return {
+            "hist_gradient_boosting B": "HistGradientBoosting B",
+            "lasso B": "Lasso B",
+            "decision_tree B": "Decision Tree B",
+            "fusion_3 A+B": "Fusion-3",
+            "stack A+B": "Stack (Ridge)",
+        }.get(method, method)
+
+    labels = [label(row) for row in plotted]
+    colors = ["#d97732" if row is reference else
+              "#21845a" if "stack" in row["method"].lower() else
+              "#3977a8" if "fusion" not in row["method"].lower() else "#7963a6"
+              for row in plotted]
+
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    with plt.rc_context({"font.family": "DejaVu Sans"}):
+        fig, axes = plt.subplots(1, 2, figsize=(13, 5.8), sharey=True)
+        metrics = (("validation_mae", "Validation MAE (µg/m³)"),
+                   ("validation_rmse", "Validation RMSE (µg/m³)"))
+        positions = np.arange(len(plotted))
+        for axis, (key, title) in zip(axes, metrics):
+            values = np.asarray([row[key] for row in plotted], dtype=float)
+            reference_value = reference[key]
+            padding = max(float(values.max()-values.min())*.15, .05)
+            axis.axvline(reference_value, color="#d97732", linestyle="--", linewidth=1.2, alpha=.8)
+            axis.scatter(values, positions, c=colors, s=58, zorder=3)
+            axis.set_xlim(float(values.min())-padding, float(values.max())+padding)
+            axis.set_title(title, fontsize=11, weight="bold")
+            axis.set_xlabel(title)
+            axis.grid(axis="x", color="#d9e0e5", linewidth=.7)
+            axis.set_axisbelow(True)
+        axes[0].set_yticks(positions, labels)
+        axes[0].invert_yaxis()
+        fig.suptitle("T17b validation comparison — same primary validation cohort",
+                     fontsize=14, weight="bold", color="#173548")
+        fig.text(.5, .035,
+                 "Model candidates only; non-learning baselines are in the results table. "
+                 "One development split; not a confidence interval or test result.",
+                 ha="center", fontsize=9, color="#43545e")
+        fig.text(.5, .005, footer, ha="center", fontsize=8, color="#43545e")
+        fig.tight_layout(rect=(0, .08, 1, .92))
+        buffer = io.BytesIO()
+        fig.savefig(buffer, format="png", dpi=160, facecolor="white",
+                    metadata={"Software": "T17b validation comparison"})
+        plt.close(fig)
+    return buffer.getvalue()
+
+
 def export_summary(reader, rows, evidence, output="reports/tables"):
     directory = reader.inside(output)
     directory.mkdir(parents=True, exist_ok=True)
@@ -666,6 +739,9 @@ def export_summary(reader, rows, evidence, output="reports/tables"):
         "experiment_summary_runs.csv": pd.DataFrame(evidence["runs"]).to_csv(index=False, lineterminator="\n").encode("utf-8-sig"),
         "experiment_summary.png": table_png(rows, footer),
     }
+    comparison = t17b_validation_png(rows, footer)
+    if comparison is not None:
+        contents["t17b_validation_comparison.png"] = comparison
     xlsx = stable_xlsx(frame, evidence["runs"], evidence["checks"], footer, generated_at)
     if xlsx is not None:
         contents["experiment_summary.xlsx"] = xlsx
