@@ -579,3 +579,15 @@ Bảng tổng hợp tái tạo từ ledger và run artifacts bằng
 264 hồ sơ và 412 kiểm tra nhất quán đều OK. Validation MAE nổi bật là RF B
 9.3798, Fusion-3 9.2746 và Stack 9.2321 µg/m³. Đây là kết quả phát triển bổ sung;
 không thay mô hình RF A đã khóa ở T12/T13 và không sử dụng hay chạm tập test.
+
+## T15: báo cáo, slide, poster và hồ sơ cuối kỳ
+
+[Hướng dẫn tạo/kiểm và giới hạn](docs/final_deliverables.md),
+[tài liệu tham khảo](docs/references.md),
+[ghi chú nghiên cứu liên quan](docs/related_work_notes.md).
+Bản nháp DOCX/PPTX/poster và traceability nằm trong `reports/final/`.
+Các trường thành viên/rubric/kích thước poster chưa xác nhận vẫn để
+`[CẦN BỔ SUNG]`; không nộp như bản hoàn chỉnh. Generator chỉ tổng hợp artifact
+đã lưu; không huấn luyện/tune/refit, không mở test raw, không ghi ledger hoặc
+thay đổi hồ sơ giữa kỳ. QA và các chênh lệch nguồn được ghi trong
+`reports/final/verification.json`.

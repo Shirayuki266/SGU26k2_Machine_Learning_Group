@@ -87,3 +87,16 @@ hợp nên compute thực vượt budget đã khai báo; không thêm/thay candi
 hyperparameter. T17a summary được tái tạo sau T17b, 412 kiểm tra đều OK; runner
 xác nhận không truy cập test CSV. Review/đọc/hiểu của thành viên
 [CẦN BỔ SUNG]. Trạng thái và kết quả ở docs/supplementary_experiments.md.
+
+## T15 / Issue #38
+
+Codex hỗ trợ đọc quy chuẩn/nguồn, viết module và script sinh DOCX/PPTX/poster,
+kiểm thử cấu trúc và lập chỉ mục/hash từ các artifact có sẵn. Không chạy model
+runner, không train/tune/refit, không đọc test thô hoặc ghi Experiment Log.
+Test metrics được trình bày từ CSV đã lưu; test T13 đã được mở trước task này.
+Các khác biệt giữa thông tin đầu vào và artifact được ghi rõ thay vì tự sửa số.
+
+Người dùng xác nhận người nhận là GitHub account `duyhuynh4869-byte`, trùng Git
+identity local. Họ tên/MSSV/% đóng góp và xác nhận đã đọc/hiểu/review vẫn
+[CẦN BỔ SUNG]. Báo cáo, slides và poster là bản nháp, chưa được nhóm/giảng viên
+review trực quan hoặc phê duyệt nộp.

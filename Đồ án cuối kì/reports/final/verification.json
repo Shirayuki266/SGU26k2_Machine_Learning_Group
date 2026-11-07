@@ -1,0 +1,74 @@
+{
+  "schema_version": "t15-verification-v1",
+  "status": "PASS_WITH_DRAFT_PLACEHOLDERS_AND_SOURCE_CONFLICTS",
+  "task_id": "T15",
+  "source_commit": "e37b3f8e8b15bcaa059a3c4326337b126bc9d206",
+  "checked_at": "2026-11-07T13:10:20.279363+00:00",
+  "files": {
+    "docx": {
+      "path": "NhomXX_DuBaoPM25_BacKinh_CuoiKy.docx",
+      "bytes": 1128444,
+      "sha256": "869beed69d2b54a94d2a15ec5de2af9ec78ed4bc39c50a1bbe04340522fd6967"
+    },
+    "slides": {
+      "path": "NhomXX_DuBaoPM25_BacKinh_CuoiKy.pptx",
+      "bytes": 1014162,
+      "sha256": "59438c510cfd168e9ca02e55b8e2fd2f38e64f0dfadcb074e25cd7dd61fb7f63"
+    },
+    "poster_pptx": {
+      "path": "NhomXX_DuBaoPM25_BacKinh_Poster.pptx",
+      "bytes": 782762,
+      "sha256": "eb59cd8a0a6e995f7a362f6b7a5600782d19ffa488f26a74dc560dad41f9c299"
+    },
+    "poster_png": {
+      "path": "NhomXX_DuBaoPM25_BacKinh_Poster.png",
+      "bytes": 536143,
+      "sha256": "b8ee44b59fa7de8f92e240aae0dda98f7ee93039bb4c276b1c470c4ef6e4907c"
+    }
+  },
+  "docx_paragraphs": 129,
+  "docx_tables": 13,
+  "presentation_slides": 18,
+  "presentation_tables": 11,
+  "poster_slides": 1,
+  "poster_png_dimensions": [
+    2400,
+    3200
+  ],
+  "office_crc": "PASS",
+  "required_report_content": "PASS",
+  "personal_absolute_paths": "NONE",
+  "traceability_source_hashes": "PASS",
+  "protected_experiment_ledger_unchanged": true,
+  "protected_midterm_tree_unchanged": true,
+  "test_raw_samples_accessed": false,
+  "model_fit_performed": false,
+  "ledger_written": false,
+  "t13_test_was_exposed_previously": true,
+  "evidence_conflicts": [
+    {
+      "item": "RF Dingling test MAE",
+      "requested_value": 8.6287,
+      "artifact_value": 8.59512230792016,
+      "source": "reports/final_evaluation/grouped_metrics.csv"
+    },
+    {
+      "item": "RF JJA test MAE",
+      "requested_value": 6.6666,
+      "artifact_value": 7.643730491286823,
+      "source": "reports/final_evaluation/grouped_metrics.csv"
+    },
+    {
+      "item": "T17b first full failure run",
+      "requested_value": "3cc5790dd34d4ca29435f4da86b68ae7",
+      "artifact_value": null,
+      "source": "experiments/experiment_log.csv",
+      "note": "The run ID was not found in the current ledger or artifacts; supplementary_experiments.md describes the recorded first full attempt as a Stack metadata failure."
+    }
+  ],
+  "notes": [
+    "Automated checks validate file structure and text, not full-page visual review or Office rendering.",
+    "Group identities, contributions, official rubric, poster dimensions, and video remain [CẦN BỔ SUNG].",
+    "Source metric conflicts are explicit; report follows the checked aggregate artifacts."
+  ]
+}

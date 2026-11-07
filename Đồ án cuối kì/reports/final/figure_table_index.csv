@@ -1,0 +1,23 @@
+﻿id,kind,title,source_paths,run_ids,metric_scope
+T01,table,"Thành viên, phần việc và tỷ lệ đóng góp",docs/team_contributions.md,,linked artifact
+T02,table,Quy mô dữ liệu và kiểm định chất lượng,configs/uci_501.json;reports/raw_audit_full.json,,linked artifact
+T03,table,Phân chia thời gian và số mẫu,reports/splits_full/split_summary.csv,,linked artifact
+T04,table,Kết quả T13 trên Test primary,reports/final_evaluation/comparison.csv,0960fac6455f4380bd5b6d1407633cf8;51975d2c66ff4263b83ace6962f3d3f7;24cd6d765f214d52aa26e5988380e2cd,linked artifact
+T05,table,Tổng quát hóa và khoảng cách train/test,reports/final_evaluation/generalization_gap.csv,0960fac6455f4380bd5b6d1407633cf8;51975d2c66ff4263b83ace6962f3d3f7;24cd6d765f214d52aa26e5988380e2cd,linked artifact
+T06,table,Độ ổn định ba fold trong Train,reports/final_evaluation/development_fold_metrics.csv,0960fac6455f4380bd5b6d1407633cf8;51975d2c66ff4263b83ace6962f3d3f7;24cd6d765f214d52aa26e5988380e2cd,linked artifact
+T07,table,Sai số theo trạm/mùa/nồng độ/biến đổi nhanh,reports/final_evaluation/grouped_metrics.csv,0960fac6455f4380bd5b6d1407633cf8;51975d2c66ff4263b83ace6962f3d3f7;24cd6d765f214d52aa26e5988380e2cd,linked artifact
+T08,table,Hành trình T09–T12,reports/initial_models/comparison.csv;reports/tuning/candidates.csv;reports/ablation/comparison.csv,,linked artifact
+T09,table,Tổng hợp 27 cấu hình T17a/T17b,reports/tables/experiment_summary.csv,24cef47874a94d9faa7bfcbae29b5c58;780ecb7fb59d48bea58d5e4a076f1f26;aec8630115714bb59d5c89c8a6b368c1;32e65c5a4cbc489c905cf146b743867f;09bf32c86d834aa5a7796d0ed8740a32;23ead96b6d554aba9cb429f03e7d9801;48d2f03be4614a25906f84d98df9e9dc;3a9f2500e4dd4ef28d7bc20def6f79c8;2a69d1bf135543998fd9b8f807056c82;4c7d175e1b434f6b8aeb8028775e91b5;62c9663eab7d49059ba3bcf87db21df1;0909291f18ae4c3887a4f54aaf8a0ec2;0524feb701164bf397e22ecbffa1c1cd;8169e7b42226418ea898f7957c9aa400;eecf89f226e44f448d8d4a98e6a8cde0;eca39f18564a403ca15c57d69a4a3042;117bbc288b774e6fbbcb887f9ad45a7d;1a155a7e6e7e4fc0bd0491500908dbb0;3ae07096597a4cab96b81443ad7462ce;2bb8ff9d7273457b8d7c4f00b22ba682;414f8aff5cd44fcab1919616c7e9ea90;9c6b003eae2348b68f389c84c88a2b83;68e69af3610e41e0b0f31651be242558;068d8c0a9f1f4ac8a1ed8e366810c5a2;9840ae4d73ec445b81ef9c66602d724b;e708283791cf4bafb4e75f21984855a4;b09e47f628624116a8272135767a4ada,linked artifact
+T10,table,Chỉ số Validation T17b,reports/tables/experiment_summary.csv,2512bc9c844a4b39a150c52f6bded9db;068d8c0a9f1f4ac8a1ed8e366810c5a2;9840ae4d73ec445b81ef9c66602d724b;eecf89f226e44f448d8d4a98e6a8cde0;9c6b003eae2348b68f389c84c88a2b83;414f8aff5cd44fcab1919616c7e9ea90;0524feb701164bf397e22ecbffa1c1cd;8169e7b42226418ea898f7957c9aa400;e708283791cf4bafb4e75f21984855a4;b09e47f628624116a8272135767a4ada,linked artifact
+T11,table,Hệ số Ridge,reports/final_evaluation/ridge_coefficients.csv,,linked artifact
+T12,table,Permutation importance theo nhóm,reports/final_evaluation/rf_permutation_summary.csv,,linked artifact
+H01,figure,Missing và phân phối EDA trên Train,reports/figures/eda_train/01_missing.png,,existing figure
+H02,figure,Mùa/tháng EDA trên Train,reports/figures/eda_train/07_calendar.png,,existing figure
+H03,figure,Actual so với dự báo trên Test T13,reports/figures/final_evaluation/actual_predicted.png,,existing figure
+H04,figure,Sai số nhóm Test T13,reports/figures/final_evaluation/group_errors.png,,existing figure
+H05,figure,Đợt ô nhiễm cao Test T13,reports/figures/final_evaluation/high_pollution_episode.png,,existing figure
+H06,figure,Permutation importance RF,reports/figures/final_evaluation/rf_permutation.png,,existing figure
+H07,figure,Hệ số Ridge,reports/figures/final_evaluation/ridge_coefficients.png,,existing figure
+H08,figure,Timeline Test T13,reports/figures/final_evaluation/timeline.png,,existing figure
+H09,figure,So sánh Validation T17b,reports/tables/t17b_validation_comparison.png,,existing figure
+H10,figure,Ảnh thật Demo Streamlit T14,reports/demo/screenshots/02_forecast.png,,existing figure

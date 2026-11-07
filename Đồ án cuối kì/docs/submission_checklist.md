@@ -108,3 +108,21 @@ quan giữ ở `source/reports/midterm/visual_review.json`.
 ZIP chứa predictions thực nên lớn và không commit vào Git. PR giữ generator,
 manifest/checksum/checklist và QA; ZIP bàn giao trong `reports/submission/` trên
 máy làm việc. Không có link upload công khai cho ZIP; người dùng tự nộp sau review.
+
+## T15 — hồ sơ cuối kỳ (bản nháp)
+
+T15 đã tạo report DOCX 5 chương, presentation 18 slide, poster PPTX/PNG, chỉ
+mục bảng/hình, traceability, verification, tham khảo và related-work notes.
+Hướng dẫn sinh/kiểm ở [final_deliverables.md](final_deliverables.md); đầu ra
+ở `reports/final/`.
+
+- [x] Có tài liệu tham khảo học thuật/kỹ thuật và ghi chú nghiên cứu liên quan.
+- [x] Số liệu T13/T17b gắn nguồn/run; không train, tune, refit hoặc đọc test thô.
+- [x] Ghi nhận QA protected: ledger và `reports/midterm/` không được ghi bởi generator.
+- [ ] Thành viên, MSSV, vai trò, phần việc và tổng đóng góp 100% do nhóm xác nhận.
+- [ ] Rubric, file/trang bài giảng và kích thước poster theo giảng viên.
+- [ ] Rà soát trực quan toàn bộ Office output; quay video thật và hoàn thiện T16/package.
+
+**Trạng thái hiện tại: BẢN NHÁP, CHƯA SẴN SÀNG NỘP.** Artifact có sai khác so
+với hai số nhóm theo trạm/mùa được nêu trong yêu cầu; xem
+`reports/final/verification.json` và `reports/final/NEEDS_GROUP_INPUT.md`.
