@@ -150,6 +150,22 @@
 /reports/tables/experiment_summary.xlsx binary
 /reports/tables/t17b_validation_comparison.png binary
 
+# T15 final report, slide, poster, indexes, and QA.
+/configs/final_deliverables.json text eol=lf
+/src/beijing_air/final_deliverables.py text eol=lf
+/scripts/build_final_deliverables.py text eol=lf
+/scripts/verify_final_deliverables.py text eol=lf
+/tests/test_final_deliverables.py text eol=lf
+/reports/final/*.json text eol=lf
+/reports/final/*.csv text eol=lf
+/reports/final/*.md text eol=lf
+/reports/final/*.docx binary
+/reports/final/*.pptx binary
+/reports/final/*.png binary
+/docs/references.md text eol=lf
+/docs/related_work_notes.md text eol=lf
+/docs/final_deliverables.md text eol=lf
+
 /docs/supplementary_experiments.md text eol=lf
 
 # NB01 executed evidence outputs retain their notebook cell outputs.

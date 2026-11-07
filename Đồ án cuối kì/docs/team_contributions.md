@@ -107,3 +107,14 @@ kiểm thử và cập nhật bảng tổng hợp T17a; Codex hỗ trợ triển
 kiểm chứng. Không truy cập test để chọn/tune hoặc chấm T17b. Người nhận cần
 đọc/hiểu/review trước merge [CẦN BỔ SUNG]; họ tên, MSSV và tỷ lệ đóng góp do
 nhóm cung cấp [CẦN BỔ SUNG].
+
+## Xác nhận người nhận T15 / Issue #38
+
+Người dùng xác nhận trong phiên T15 rằng GitHub account `duyhuynh4869-byte` là
+người nhận công việc; Issue #38 hiện gán cho tài khoản đó và Git identity local
+khớp. Đây chỉ là xác nhận tài khoản nhận task, không xác nhận họ tên/MSSV, vai
+trò học thuật hay tỷ lệ đóng góp. Phần việc T15: tổng hợp báo cáo, slide,
+poster và hồ sơ truy vết từ nguồn có sẵn; không huấn luyện, tune/refit hoặc đọc
+test thô. AI hỗ trợ tạo tài liệu/mã/kiểm chứng; thành viên cần đọc, hiểu và
+review trước merge [CẦN BỔ SUNG]. Họ tên, MSSV, GitHub cá nhân theo nhóm xác
+nhận, vai trò, phần việc thật, minh chứng và tỷ lệ đóng góp vẫn [CẦN BỔ SUNG].

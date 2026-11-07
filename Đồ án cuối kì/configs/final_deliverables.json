@@ -1,0 +1,32 @@
+{
+  "schema_version": "t15-final-deliverables-v1",
+  "task_id": "T15",
+  "issue": 38,
+  "assignee_github": "duyhuynh4869-byte",
+  "title": "Dự báo nồng độ PM2.5 trước 1 giờ tại các trạm quan trắc ở Bắc Kinh bằng học máy",
+  "filename_stem": "NhomXX_DuBaoPM25_BacKinh_CuoiKy",
+  "report_filename": "NhomXX_DuBaoPM25_BacKinh_CuoiKy.docx",
+  "slides_filename": "NhomXX_DuBaoPM25_BacKinh_CuoiKy.pptx",
+  "poster_pptx_filename": "NhomXX_DuBaoPM25_BacKinh_Poster.pptx",
+  "poster_png_filename": "NhomXX_DuBaoPM25_BacKinh_Poster.png",
+  "poster_size_inches": {
+    "width": 36,
+    "height": 48,
+    "note": "[CẦN BỔ SUNG] xác nhận kích thước/chiều poster theo giảng viên"
+  },
+  "group_number": "[CẦN BỔ SUNG]",
+  "members": [
+    {
+      "name": "[CẦN BỔ SUNG]",
+      "student_id": "[CẦN BỔ SUNG]",
+      "github": "[CẦN BỔ SUNG]",
+      "role": "[CẦN BỔ SUNG]",
+      "actual_work": "[CẦN BỔ SUNG]",
+      "contribution_percent": "[CẦN BỔ SUNG]",
+      "evidence": "[CẦN BỔ SUNG]"
+    }
+  ],
+  "lecturer_materials": "[CẦN BỔ SUNG] tên file/chủ đề/số trang slide cụ thể",
+  "rubric": "[CẦN BỔ SUNG] rubric chính thức",
+  "ai_review_confirmation": "[CẦN BỔ SUNG] thành viên xác nhận đã đọc/hiểu"
+}
