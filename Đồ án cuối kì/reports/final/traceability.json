@@ -1,8 +1,8 @@
 {
   "schema_version": "t15-traceability-v1",
   "task_id": "T15",
-  "source_commit": "e37b3f8e8b15bcaa059a3c4326337b126bc9d206",
-  "generated_at": "2026-11-07T13:09:59.985462+00:00",
+  "source_commit": "dc9ba548558ff4ffbcff94bcdbfc825fc3b71730",
+  "generated_at": "2026-11-07T13:38:11.381665+00:00",
   "source_hashes": {
     ".gitattributes": {
       "sha256": "8feb8d555a71c24781b93814b8b159a732ffc3a6123e60d842dcfeabf11d4978",
@@ -17,8 +17,8 @@
       "bytes": 39423
     },
     "configs/final_deliverables.json": {
-      "sha256": "5e8313da7b071ece6321ffec07bf7efdea5f4c1f06ed609357e4e662004f5791",
-      "bytes": 1341
+      "sha256": "4e7f5d00d908f3e4e0dcb45e5e1496f8782bb942affe9a3cef643cdf6087ef05",
+      "bytes": 1309
     },
     "configs/final_evaluation.json": {
       "sha256": "b02d1ecd66b05e54d4fe3f054e057e1cbba91bbf9c0aabe4b010c6cfb3f2884a",
@@ -29,8 +29,8 @@
       "bytes": 6358
     },
     "configs/uci_501.json": {
-      "sha256": "9a3773b1e4c90dba96dc345eda6f0dfb6747a68902a40233066dd8366bda9e82",
-      "bytes": 678
+      "sha256": "5be97d4a726785a80c3a51d1178bf1c0d7df2d956883709b199d8de1d39d681c",
+      "bytes": 665
     },
     "docs/ai_disclosure.md": {
       "sha256": "5dfe8fb5648faf2b3d9b486bc2596d053655e60a6f4c901f9d7f3e8d47e38d94",
@@ -61,8 +61,8 @@
       "bytes": 12386
     },
     "docs/final_deliverables.md": {
-      "sha256": "1867df8fd1604ce3ebc8b7381959c0c19c4fe1ac567a47f58fefca1d49ab90a1",
-      "bytes": 3187
+      "sha256": "8451d6c57d1f1388550a90e9f634b0f61d809510b68e3c661d69a1a0bc9d7933",
+      "bytes": 3130
     },
     "docs/final_evaluation.md": {
       "sha256": "e499da66a78aaf43a678eeb1b20851da815592ac59a27e68f2996723fb5ac43c",
@@ -85,12 +85,12 @@
       "bytes": 5292
     },
     "docs/references.md": {
-      "sha256": "b4b9603df39dd6ccda4ab8cbc695fe326e12d0783abf659d4d695a687681cfbb",
-      "bytes": 2897
+      "sha256": "c460aaa5300ff11198742d3fbe05f4e375221bd329056f26d5dffadd2b18e5c1",
+      "bytes": 2856
     },
     "docs/related_work_notes.md": {
-      "sha256": "ce0ec25e89bfe88193e97302896f8c621467ef57504516e8a4924e1b939416a7",
-      "bytes": 3116
+      "sha256": "49c0aacb79c8dfcb5dc78b8165ea5a0be445f0c877313608ec74f70b95e19a57",
+      "bytes": 3066
     },
     "docs/results_discussion.md": {
       "sha256": "51fb1fa2763faa13337a9357ca06d0e8343d8a3a7f83197f8ed8dbd77a363c0e",
@@ -265,20 +265,20 @@
       "bytes": 1123
     },
     "scripts/build_final_deliverables.py": {
-      "sha256": "daca77d99c842205d6be344f565a08f597ca835867dd9fea991762a7666fe3c5",
-      "bytes": 337
+      "sha256": "83f2d7602cf0247a833a44c9bf2b9f0134d4cf7e676508593fef65b0264c5279",
+      "bytes": 324
     },
     "scripts/verify_final_deliverables.py": {
-      "sha256": "effb477c8ca11771078204331b1de5768b2094d354fd30d468ed70ee37c04b72",
-      "bytes": 348
+      "sha256": "6382cf3643e8c08e8f282e29aeec6b29f93aec41f6ad5475ce6a439a11521df9",
+      "bytes": 335
     },
     "src/beijing_air/final_deliverables.py": {
-      "sha256": "9097582be47353aad444a388d9791e2219a50382c5a689793ae8efc50936ae39",
-      "bytes": 81984
+      "sha256": "6c974653e59d7e6e646f14f35c9c34e3962517202110cd1fcdd61e17a5f815f3",
+      "bytes": 80726
     },
     "tests/test_final_deliverables.py": {
-      "sha256": "437b6bf645534c5bc394bad33fb658933b34088f29c4d7717c16901c8e4e1272",
-      "bytes": 2361
+      "sha256": "d40c9de4bf46f5afa48ed5e2eb4c71e5510ff847f227f35f594356f675c47e05",
+      "bytes": 2312
     }
   },
   "items": [
@@ -310,8 +310,8 @@
       "sources": [
         {
           "path": "configs/uci_501.json",
-          "sha256": "9a3773b1e4c90dba96dc345eda6f0dfb6747a68902a40233066dd8366bda9e82",
-          "bytes": 678
+          "sha256": "5be97d4a726785a80c3a51d1178bf1c0d7df2d956883709b199d8de1d39d681c",
+          "bytes": 665
         },
         {
           "path": "reports/raw_audit_full.json",

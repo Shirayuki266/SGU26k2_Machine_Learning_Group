@@ -2,23 +2,23 @@
   "schema_version": "t15-verification-v1",
   "status": "PASS_WITH_DRAFT_PLACEHOLDERS_AND_SOURCE_CONFLICTS",
   "task_id": "T15",
-  "source_commit": "74a7cb711aa5c5c2db56b0af26639d199f190ed2",
-  "checked_at": "2026-11-07T13:22:57.310679+00:00",
+  "source_commit": "dc9ba548558ff4ffbcff94bcdbfc825fc3b71730",
+  "checked_at": "2026-11-07T13:38:15.984095+00:00",
   "files": {
     "docx": {
       "path": "NhomXX_DuBaoPM25_BacKinh_CuoiKy.docx",
-      "bytes": 1128444,
-      "sha256": "869beed69d2b54a94d2a15ec5de2af9ec78ed4bc39c50a1bbe04340522fd6967"
+      "bytes": 1123796,
+      "sha256": "e8fcbdcd6bd3a3f03382f33c299e04197c2b13fee16f24db58df768e0b154288"
     },
     "slides": {
       "path": "NhomXX_DuBaoPM25_BacKinh_CuoiKy.pptx",
-      "bytes": 1014162,
-      "sha256": "59438c510cfd168e9ca02e55b8e2fd2f38e64f0dfadcb074e25cd7dd61fb7f63"
+      "bytes": 1008098,
+      "sha256": "d5ca8bffb79acb63cb7f40d24a9271934e3a0441231bf3a2e2391faa3f567ec9"
     },
     "poster_pptx": {
       "path": "NhomXX_DuBaoPM25_BacKinh_Poster.pptx",
-      "bytes": 782762,
-      "sha256": "eb59cd8a0a6e995f7a362f6b7a5600782d19ffa488f26a74dc560dad41f9c299"
+      "bytes": 778550,
+      "sha256": "31a77f821b9afff8133a3445b98d8d6008616a58679add637c077efcaa56098f"
     },
     "poster_png": {
       "path": "NhomXX_DuBaoPM25_BacKinh_Poster.png",
