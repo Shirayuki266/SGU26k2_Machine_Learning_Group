@@ -2,8 +2,8 @@
   "schema_version": "t15-verification-v1",
   "status": "PASS_WITH_DRAFT_PLACEHOLDERS_AND_SOURCE_CONFLICTS",
   "task_id": "T15",
-  "source_commit": "e37b3f8e8b15bcaa059a3c4326337b126bc9d206",
-  "checked_at": "2026-11-07T13:10:20.279363+00:00",
+  "source_commit": "74a7cb711aa5c5c2db56b0af26639d199f190ed2",
+  "checked_at": "2026-11-07T13:22:57.310679+00:00",
   "files": {
     "docx": {
       "path": "NhomXX_DuBaoPM25_BacKinh_CuoiKy.docx",
